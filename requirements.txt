@@ -1,0 +1,35 @@
+# PROVISIONAL — dependencies are not pinned yet.
+#
+# The technology decisions in DECISIONS.md (D1-D5) are still open, so this file
+# intentionally does not commit to a stack. It records the candidate packages that
+# were checked for Python 3.14 compatibility, with the decision each one depends on.
+#
+# This file WILL be replaced with pinned versions once D1-D5 are approved.
+# A requirements.lock will be captured per experiment run for full reproducibility.
+
+# --- Core (expected in any case) ---
+numpy>=2.0
+pandas>=2.0
+
+# --- System A: keyword baseline ---
+# D4: bm25s (fast, maintained) vs rank-bm25 (pure Python) vs in-repo reference impl
+bm25s>=0.3
+
+# --- System B: RAG ---
+# D2: openai        -> OpenAI embeddings + GPT-4o-mini (as committed in CA1/CA2)
+#     sentence-transformers -> local open-weights alternative
+# D1: flowise       -> GUI orchestration (as committed in CA2)
+#     (no Python package needed if the RAG pipeline is implemented natively)
+openai>=1.0
+
+# D3: chromadb (as committed in CA2) vs exact NumPy cosine similarity
+chromadb>=1.0
+
+# --- App ---
+# D8: streamlit (simple, recommended) vs fastapi + custom UI
+streamlit>=1.0
+
+# --- Tooling ---
+pytest>=8.0
+python-dotenv>=1.0
+tqdm>=4.0

@@ -1,0 +1,141 @@
+# =============================================================================
+# ASSESSMENT SOURCE MATERIAL — kept on the Desktop, never pushed
+# =============================================================================
+# These are the submitted CA1/CA2 documents, the architecture diagram, the progress
+# deck, and the weekly report template. They contain the student ID, the student email
+# address, and an Academic Integrity Certificate Verification Code.
+#
+# That verification code is the credential used to confirm a submission is the
+# candidate's own work. It must not be published, so these files stay out of git
+# entirely — not just out of the working tree, but out of history.
+#
+# The Desktop copy is the primary record and stays where it is.
+# `docs/source_material/MANIFEST.md` documents what is excluded and why.
+Practicum_CA1 submission.pdf
+Practicum CA2 Submission.docx
+*Weekly Activity Report Template.docx
+architecture diagram.drawio.pdf
+From-Problem-to-Prototype.pptx
+*.docx
+*.pptx
+source_material/
+
+# =============================================================================
+# SECRETS — never commit. Checked before every push.
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+.openai_api_key
+*_api_key*
+*_apikey*
+service-account*.json
+gha-creds-*.json
+
+# Participant data. This project has no human-participant data during the current
+# phase, and must not acquire any before ethics approval is confirmed.
+# If this pattern ever matches a real file, that is an ethics incident, not a
+# gitignore problem — stop and report it.
+data/participants/
+data/raw/participants/
+*participant*responses*
+*participant*identifiers*
+*consent*records*
+anonymised/
+pseudonymised/
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+ENV/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# =============================================================================
+# SECRETS IN NOTEBOOKS
+# =============================================================================
+# Strip outputs before committing any notebook, so a key pasted into a cell
+# during exploration cannot be published by accident.
+*.ipynb_checkpoints
+.ipynb_output/
+
+# =============================================================================
+# LOCAL DATABASES AND VECTOR STORES
+# =============================================================================
+# Chroma and similar stores are rebuildable from the corpus plus the embedding
+# cache, so they are not committed. The *inputs* that define them are.
+chroma/
+*.sqlite
+*.sqlite3
+*.db
+chroma.sqlite3
+.pgdata/
+
+# =============================================================================
+# LARGE / REGENERABLE ARTEFACTS
+# =============================================================================
+# Embedding caches are large and fully rebuildable from the corpus + model name.
+# They are also the artefact most likely to silently drift from the corpus version,
+# so keeping them out of git is safer than versioning them.
+embeddings_cache/
+*.npy
+*.npz
+*.faiss
+*.bin
+.cache/
+
+# Note: the synthetic corpus, query set, ground truth and experiment results are
+# deliberately NOT ignored. Reproducibility requires them to be version-controlled
+# alongside the code that produced them. Only caches and secrets are excluded.
+
+# =============================================================================
+# OPERATING SYSTEM
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# EDITORS
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# TEMPORARY
+# =============================================================================
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+*.orig
+*.log
