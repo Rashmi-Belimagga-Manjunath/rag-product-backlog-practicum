@@ -9,6 +9,15 @@ BM25 keyword-search baseline over an identical corpus and query set.
 MSc in Artificial Intelligence for Business · National College of Ireland · 2026
 Module: Practicum (Final) · Supervisor: Prof. Namita Agarwal
 
+**Local:** `~/Desktop/RAG-Practicum` (primary working copy)
+**GitHub:** https://github.com/Rashmi-Belimagga-Manjunath/rag-product-backlog-practicum (private)
+
+> The submitted CA1/CA2 documents, architecture diagram, progress deck and weekly
+> report template are kept on the Desktop but are **not** committed — they contain your
+> student ID, student email, and an Academic Integrity Certificate verification code.
+> See `docs/excluded_source_material.md`.
+
+
 ---
 
 ## Status
