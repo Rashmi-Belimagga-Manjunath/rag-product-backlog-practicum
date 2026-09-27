@@ -1,0 +1,281 @@
+[
+  {
+    "document_id": "DOC-0001",
+    "doc_type": "prd",
+    "title": "Progressive Profiling for New Tenants",
+    "source_entity_type": "requirement",
+    "source_entity_id": "REQ-A-01",
+    "product_id": "PROD-A",
+    "created_date": "2026-02-11",
+    "version": "1.0",
+    "superseded_by": "DOC-0002",
+    "referenced_entity_ids": [
+      "FEAT-A-01"
+    ],
+    "word_count": 219
+  },
+  {
+    "document_id": "DOC-0002",
+    "doc_type": "prd",
+    "title": "Progressive Profiling for New Tenants",
+    "source_entity_type": "requirement",
+    "source_entity_id": "REQ-A-02",
+    "product_id": "PROD-A",
+    "created_date": "2026-06-30",
+    "version": "2.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01"
+    ],
+    "word_count": 289
+  },
+  {
+    "document_id": "DOC-0003",
+    "doc_type": "prd",
+    "title": "Streak Recovery Policy",
+    "source_entity_type": "requirement",
+    "source_entity_id": "REQ-B-01",
+    "product_id": "PROD-B",
+    "created_date": "2026-05-18",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01"
+    ],
+    "word_count": 147
+  },
+  {
+    "document_id": "DOC-0004",
+    "doc_type": "feature_spec",
+    "title": "Progressive Profiling - Technical Specification",
+    "source_entity_type": "feature",
+    "source_entity_id": "FEAT-A-01",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-02",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "PBI-A-011",
+      "PBI-A-012",
+      "TKT-104"
+    ],
+    "word_count": 206
+  },
+  {
+    "document_id": "DOC-0005",
+    "doc_type": "feature_spec",
+    "title": "Bulk Timesheet Approval - Technical Specification",
+    "source_entity_type": "feature",
+    "source_entity_id": "FEAT-A-02",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-19",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "PBI-A-013"
+    ],
+    "word_count": 122
+  },
+  {
+    "document_id": "DOC-0006",
+    "doc_type": "feature_spec",
+    "title": "Streak Rescue - Technical Specification",
+    "source_entity_type": "feature",
+    "source_entity_id": "FEAT-B-01",
+    "product_id": "PROD-B",
+    "created_date": "2026-07-30",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "PBI-B-021",
+      "PBI-B-022",
+      "TKT-109"
+    ],
+    "word_count": 179
+  },
+  {
+    "document_id": "DOC-0007",
+    "doc_type": "pbi",
+    "title": "Ask for tax details during the first session",
+    "source_entity_type": "pbi",
+    "source_entity_id": "PBI-A-011",
+    "product_id": "PROD-A",
+    "created_date": "2026-07-14",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01"
+    ],
+    "word_count": 83
+  },
+  {
+    "document_id": "DOC-0008",
+    "doc_type": "pbi",
+    "title": "Save partial profile when a user abandons the session",
+    "source_entity_type": "pbi",
+    "source_entity_id": "PBI-A-012",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-02",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01"
+    ],
+    "word_count": 80
+  },
+  {
+    "document_id": "DOC-0009",
+    "doc_type": "pbi",
+    "title": "Approve 20 or more timesheets in one action",
+    "source_entity_type": "pbi",
+    "source_entity_id": "PBI-A-013",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-19",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-02"
+    ],
+    "word_count": 71
+  },
+  {
+    "document_id": "DOC-0010",
+    "doc_type": "pbi",
+    "title": "Offer a freeze before a streak breaks",
+    "source_entity_type": "pbi",
+    "source_entity_id": "PBI-B-021",
+    "product_id": "PROD-B",
+    "created_date": "2026-06-08",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01"
+    ],
+    "word_count": 71
+  },
+  {
+    "document_id": "DOC-0011",
+    "doc_type": "pbi",
+    "title": "Let people restore a streak they already lost",
+    "source_entity_type": "pbi",
+    "source_entity_id": "PBI-B-022",
+    "product_id": "PROD-B",
+    "created_date": "2026-07-30",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01"
+    ],
+    "word_count": 68
+  },
+  {
+    "document_id": "DOC-0012",
+    "doc_type": "ticket",
+    "title": "TKT-104 - New signups get asked for tax details straight away and a lot of them never come back.",
+    "source_entity_type": "ticket",
+    "source_entity_id": "TKT-104",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-25",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01",
+      "COMP-A-01"
+    ],
+    "word_count": 100
+  },
+  {
+    "document_id": "DOC-0013",
+    "doc_type": "ticket",
+    "title": "TKT-109 - People are upset that they cannot get a streak back after it already broke. They did not know there was a freeze.",
+    "source_entity_type": "ticket",
+    "source_entity_id": "TKT-109",
+    "product_id": "PROD-B",
+    "created_date": "2026-08-11",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01",
+      "COMP-B-01"
+    ],
+    "word_count": 107
+  },
+  {
+    "document_id": "DOC-0014",
+    "doc_type": "decision_log",
+    "title": "Decision DEC-01",
+    "source_entity_type": "decision",
+    "source_entity_id": "DEC-01",
+    "product_id": "PROD-A",
+    "created_date": "2026-06-24",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01"
+    ],
+    "word_count": 54
+  },
+  {
+    "document_id": "DOC-0015",
+    "doc_type": "decision_log",
+    "title": "Decision DEC-02",
+    "source_entity_type": "decision",
+    "source_entity_id": "DEC-02",
+    "product_id": "PROD-B",
+    "created_date": "2026-06-01",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01"
+    ],
+    "word_count": 45
+  },
+  {
+    "document_id": "DOC-0016",
+    "doc_type": "meeting_notes",
+    "title": "Meeting notes 2026-08-28",
+    "source_entity_type": "meeting_note",
+    "source_entity_id": "NOTE-01",
+    "product_id": "PROD-A",
+    "created_date": "2026-08-28",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-A-01",
+      "PBI-A-012"
+    ],
+    "word_count": 56
+  },
+  {
+    "document_id": "DOC-0017",
+    "doc_type": "meeting_notes",
+    "title": "Meeting notes 2026-08-15",
+    "source_entity_type": "meeting_note",
+    "source_entity_id": "NOTE-02",
+    "product_id": "PROD-B",
+    "created_date": "2026-08-15",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "FEAT-B-01",
+      "PBI-B-021",
+      "PBI-B-022"
+    ],
+    "word_count": 45
+  },
+  {
+    "document_id": "DOC-0018",
+    "doc_type": "runbook",
+    "title": "Push Relay delivery failure runbook",
+    "source_entity_type": "runbook",
+    "source_entity_id": "RBK-01",
+    "product_id": "PROD-B",
+    "created_date": "2026-07-30",
+    "version": "1.0",
+    "superseded_by": "",
+    "referenced_entity_ids": [
+      "COMP-B-01"
+    ],
+    "word_count": 77
+  }
+]

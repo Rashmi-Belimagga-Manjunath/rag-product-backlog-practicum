@@ -91,19 +91,32 @@ def _register_for(
     """
     Decide which register a given document should use.
 
-    The mapping mirrors how real repositories behave: formal PRDs and technical specs
-    use precise vocabulary, while tickets and meeting notes use whatever the person
-    happened to type. A formal product still has informal documents, and an informal
-    product still has the occasional spec - which is why this is probabilistic within
-    bounds rather than a hard product-level rule.
+    The mapping mirrors how real repositories actually behave, and getting it wrong
+    would quietly break the experiment: if tickets used PRD vocabulary, there would be
+    no lexical divergence and BM25 would score well for the wrong reason.
+
+      - PRDs, specs, runbooks: mostly the precise technical term. A formally-governed
+        product does this more often than an informal one.
+      - Tickets: almost always the customer's own words. Customers do not read PRDs,
+        so this stays colloquial regardless of how formal the product is.
+      - Meeting notes: mostly colloquial, whatever the product's maturity.
+      - PBIs and decision logs: genuinely mixed, leaning informal.
+
+    `formal_bias` is therefore only applied to the document types where documentation
+    maturity is actually the governing factor.
     """
     formal_bias = 0.85 if product.documentation_maturity == "formal" else 0.35
 
     if doc_type in ("prd", "feature_spec", "runbook"):
         return "formal" if rng.random() < formal_bias else "colloquial"
-    if doc_type in ("ticket", "meeting_notes"):
-        return "colloquial" if rng.random() < (1 - formal_bias) else "formal"
-    # pbi, decision_log: mixed, leaning informal
+
+    if doc_type == "ticket":
+        return "colloquial" if rng.random() < 0.85 else "formal"
+
+    if doc_type == "meeting_notes":
+        return "colloquial" if rng.random() < 0.75 else "formal"
+
+    # pbi, decision_log: mixed
     return "formal" if rng.random() < (formal_bias * 0.5) else "colloquial"
 
 
