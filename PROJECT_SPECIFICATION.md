@@ -92,12 +92,17 @@ evaluation tasks**. This is the controlled comparison at the heart of the design
 documents → pre-processing → BM25 index → query → ranked results → top-k
 ```
 
-- Standard BM25, with `k1` and `b` parameters recorded in the experiment log.
+- Standard BM25, **`k1 = 1.5`, `b = 0.75`** (Robertson & Zaragoza 2009 defaults), with the
+  Lucene non-negative IDF variant. Frozen before the comparison and not tunable
+  afterwards. Full specification: `docs/bm25_configuration.md`.
 - **No LLM anywhere in this system.** Not for ranking, not for summarising, not for
   reranking.
 - Must be independently runnable and independently evaluable.
 
-*Parameter values for `k1`/`b` are an open decision — see §11.*
+*`k1`/`b` are **proposed** as 1.5 / 0.75 and await sign-off — see §11 and
+`docs/bm25_configuration.md`. One item remains open: BM25 returns ranked passages, not
+prose, so the usefulness/clarity/trust metrics are not comparable until BM25 is given a
+user-facing artefact. See `docs/evaluation_metrics.md` §8.1 and `DECISIONS.md` D-010.*
 
 ### System B — RAG assistant
 
@@ -117,14 +122,16 @@ documents → pre-processing → chunking → embeddings → vector store
 > comparison, which requires reproducible retrieval logging, versioned prompts,
 > configurable experiments, and clean separation of retrieval from generation.
 
-- Chunking: recursive text splitter, **chunk size 1000, overlap 200** (carried forward
-  from CA1). Chunking strategy is treated as a *configurable parameter*, not a fixed
-  design choice, and will be piloted against at least two strategies before being
-  committed — motivated by the findings of Merola & Singh (2025) and Kreileder et al.
-  (2026) discussed in CA2 §2.9.
-- Retrieval: cosine similarity, **top-k = 5** (carried forward from CA1).
-- Generation model: **GPT-4o-mini** (carried forward from CA1/CA2).
-- Every generated claim carries an inline citation back to a specific source chunk.
+- Chunking: structure-aware splitter, **1000 / 200 proposed** against **600 / 100**.
+  The pilot has been run against C1–C8 only; **no configuration is selected yet**, and
+  C6 as pre-specified turned out to be unusable in a closed-domain corpus. Selection
+  requires explicit approval — see `CHUNKING_DECISION.md` and `DECISIONS.md` D-005/D-006.
+- Retrieval: cosine similarity over Chroma, **top-k = 5 proposed**; matches the `@5`
+  metric cutoff so the system and the metrics describe the same object.
+- Generation model: **`gpt-4o-mini` proposed** at `temperature = 0`, `max_tokens = 800`,
+  `n = 1`. A fixed component of the RAG treatment, **not an experimental variable**.
+- Every generated claim carries an inline machine-checkable citation `[DOC-ID#Cn]`,
+  validated against the retrieval log. Full specification: `docs/rag_configuration.md`.
 - The system is **advisory**. It does not make, record, or autonomously alter backlog
   decisions. The product manager retains final authority.
 
@@ -181,10 +188,30 @@ expected_dependencies · expected_answer_elements
 
 Ground truth is traceable to the structured synthetic source.
 
-> **Query count, category distribution, and per-category allocation are NOT yet
-> fixed.** An initial working range of roughly 20–30 queries is a starting point, not
-> a commitment. The rationale and final distribution require the student's approval
-> before the query set is built, because it materially affects methodology.
+**The benchmark is now fixed at 32 slots** and machine-validated in
+`src/benchmark/query_spec.py`: 11 easy / 11 moderate / 10 hard, across six categories,
+with 13 dependency-related slots (6 explicit, 7 implicit). The human-readable
+specification `docs/query_specification.md` is **generated from the code** so the two
+cannot drift.
+
+Slots are **selectors over the structured model**, not hard-coded document IDs, because
+the final corpus has different IDs from the mechanism sample. Only the three Q-SUP
+queries have approved wording; all other wording is authored after corpus generation, so
+that wording cannot bake sample-specific vocabulary into the benchmark.
+
+25 of 32 selectors resolve against the 34-document mechanism sample. The remaining 7
+are **corpus requirements, not defects** — the sample deliberately omits the phenomena.
+`validate_ground_truth --against-final` makes any unresolved slot a hard STOP.
+
+**No selector may satisfy a slot with a fallback.** A selector that substitutes some other
+document when its own target is missing makes the slot look resolved and hides a corpus
+requirement. An automated test fails if any selector reintroduces a fallback; this is how
+Q-20 was found falsely resolving on the mechanism sample.
+
+Ground truth is derived from the structured source of truth only. Relevance is assigned
+by **provenance**, never by query-to-chunk text similarity, because a text-similarity label
+would be a second unstated retrieval model inside the scoring and would favour the
+embedding system by construction.
 
 ---
 
@@ -254,13 +281,22 @@ student on 2026-09-27**, before any experiment was run. See `DECISIONS.md` D-001
 |---|---|---|
 | D1 | Orchestration | ✅ **Native Python.** CA2 named Flowise; recorded as an implementation deviation to disclose. Architecture unchanged. |
 | D2 | Embedding model | ✅ **OpenAI embeddings**, as in CA1/CA2. Must not change after seeing results. |
-| D3 | Vector store | ⏸ **Recommendation prepared, awaiting sign-off** — see §11.1 |
+| D3 | Vector store | ✅ **Chroma, with an exact-NumPy validation cross-check** — see §11.1 |
 | D4 | BM25 implementation | ✅ **Standard implementation.** |
 | D5 | BM25 `k1` / `b` | ✅ **k1 = 1.5, b = 0.75**, fixed before the comparison. Must not be tuned after seeing RAG results. |
-| D6 | Corpus scale | ⏸ Deferred until the source model exists. Proposal to follow. |
-| D7 | Query count and distribution | ⏸ Deferred. Proposal to follow, then approval required. |
+| D6 | Corpus scale | ✅ **272 documents** (260 current + 12 superseded), 2 products, 12
+features each, ~208 dependencies, ~289 projected chunks. Deferred generation by design. |
+| D7 | Query count and distribution | ✅ **32 slots**, 11/11/10, 13 dependency-related (6/7).
+Machine-validated. Wording deferred except the three Q-SUP queries. |
 | D8 | App framework | ✅ **Deprioritised.** Pipeline first, UI later. |
 | D9 | Real artefacts | ✅ **None.** Fully synthetic. Must be documented as a threat to external validity. |
+| D10 | Chunking configuration | ⏸ **Open — awaiting approval.** 1000/200 recommended; C6 measure
+revision proposed. `CHUNKING_DECISION.md`. |
+| D11 | RAG configuration | ⏸ **Open — awaiting approval.** top-k 5, `gpt-4o-mini`, temp 0,
+`[DOC-ID#Cn]` citations. `docs/rag_configuration.md`. |
+| D12 | Evaluation metrics | ⏸ **Open — awaiting approval.** 8 metrics fixed by formula, including
+the retrieval-vs-generation error split. `docs/evaluation_metrics.md`. |
+| — | BM25 answer presentation | ⏸ **Open decision** (D-010). BM25 returns passages, not prose. |
 | — | Ethics approval for synthetic corpus | ⏸ Open. Do not assume either way. |
 | — | Human evaluation | 🔒 **Blocked** until ethics approval confirmed. No recruitment, no participant data. |
 

@@ -487,3 +487,100 @@ recorded as an open obligation rather than a resolved choice.
   gate.
 - The API key used for live verification was exposed in conversation and must be
   revoked and rotated. It is gitignored and was never committed.
+
+### D-005 — C6 as pre-specified cannot discriminate in a closed-domain corpus (PROPOSED)
+
+**Status:** PROPOSED, requires approval. Not frozen.
+
+The pilot comparison of 1000/200 and 600/100 on the long-document stress corpus passed
+C1-C5, C7 and C8 for both configurations, and failed C6 for both. C6 as pre-specified uses
+same-document word-type-bag containment > 0.9 to define a duplicate chunk.
+
+Direct measurement shows the measure is unusable here. A ~1,000-token chunk drawn from a
+closed-domain templated corpus contains only 143-169 distinct word types, so type-bag
+containment approaches 1.0 by vocabulary saturation rather than by copying. Measured
+maximum 8-gram containment of each chunk against every other chunk in the same document is
+**0.0% at every threshold from 0.2 to 0.8, for every chunk, in both configurations.**
+
+The criterion is therefore producing approximately 100% false positives and is
+indistinguishable from the construct it was meant to measure. Proposed replacement:
+same-document 8-gram containment > 0.5, fewer than 2% of chunks involved in such a pair.
+Threshold derived from the construct-validity argument and the measured distribution, with
+no retrieval or generation result involved. Under the proposal both configurations pass.
+
+Full evidence and reasoning: `CHUNKING_DECISION.md`.
+
+### D-006 — C1-C8 rank configurations; they do not select one (PROPOSED)
+
+**Status:** PROPOSED, requires approval. Not frozen.
+
+Once C6 is repaired, both 1000/200 and 600/100 pass all eight criteria. C1-C8 test that
+chunking does not break documents; they are not designed to measure retrieval quality and
+were never expected to separate two healthy configurations.
+
+Selection therefore requires a tie-break that is **not** derived from BM25 or RAG
+performance. Recommended: keep the already-approved 1000/200, since it introduces no new
+parameter choice, yields 42 chunks rather than 63 (fewer vectors, lower cost, smaller
+evaluation surface), and choosing the finer-grained configuration is a change that tends to
+favour embedding retrieval.
+
+### D-007 — RAG configuration proposals (PROPOSED, not frozen)
+
+**Status:** PROPOSED, requires approval. Not frozen.
+
+top-k 5 (matches the `@5` metric cutoff, ~1,700 token context, ~1.7% of the projected 289
+chunks); `gpt-4o-mini` at temperature 0, max_tokens 800, n=1; machine-checkable
+`[DOC-ID#Cn]` citations validated against the retrieval log. The system prompt must enforce
+grounding, abstention, per-claim citation, no invented identifiers, superseded-version
+awareness, advisory framing and no autonomous action. Prompt variants, temperature sweeps
+and top-k sweeps are explicitly excluded, because selecting among them would turn this into
+an optimisation exercise rather than a controlled comparison. Detail: `docs/rag_configuration.md`.
+
+### D-008 — BM25 configuration (PROPOSED, not frozen)
+
+**Status:** PROPOSED, requires approval. Not frozen.
+
+k1 1.5, b 0.75 (Robertson & Zaragoza 2009 defaults), Lucene non-negative IDF, chunk-level
+retrieval, lowercase with Unicode word tokenisation, no stemming and no stopword removal
+inside the retriever. Queries are used verbatim with no expansion or rewriting. Ties break
+on ascending chunk ID. BM25 may not be tuned, re-ranked or query-expanded after results are
+visible, since that would convert a traditional baseline into a fitted competitor. Detail:
+`docs/bm25_configuration.md`.
+
+### D-009 — Evaluation metrics and the retrieval/generation error split (PROPOSED)
+
+**Status:** PROPOSED, requires approval. Not frozen.
+
+Precision@5, Recall@5, MRR, dependency accuracy (TP/FP/FN over dependency IDs, split by
+explicitness), and task completion time (3 runs, median, A/B interleaved, warm-up
+discarded, retrieval-only latency logged separately so RAG's generation cost is not hidden).
+
+Every dependency error is classified as a **retrieval error** (relevant chunk was in the
+top-5) or a **generation error** (it was not), by checking the retrieval log for that
+query. Fabricated dependencies and fabricated citations are counted separately, since they
+are worse than wrong inference.
+
+Relevance is assigned by provenance from the source model, never by query-to-chunk text
+similarity: a text-similarity label would be a second unstated retrieval model inside the
+scoring and would favour the embedding system by construction. Detail:
+`docs/evaluation_metrics.md`.
+
+### D-010 — BM25 answer presentation is unresolved (OPEN)
+
+**Status:** OPEN, requires a decision. Not frozen.
+
+BM25 returns ranked passages, not prose, so usefulness, clarity and trust cannot be compared
+across the two systems unless BM25 is given a user-facing artefact. Recommended: present the
+top-5 passages as the BM25 response and disclose that this measures documentation
+readability as well as system usefulness. The alternatives (RAG-only generation metrics, or
+adding an extractive summariser to the baseline) are weaker in different ways and are set
+out in `docs/evaluation_metrics.md` section 8.1.
+
+### D-011 — Ethics determination for human-rated metrics remains open (OPEN)
+
+**Status:** OPEN. No change.
+
+Usefulness, clarity and trust are rated by the researcher against a fixed anchored rubric
+and disclosed as a limitation. No participant data is collected. Whether a formal
+determination is required from the NCI coordinator or supervisor is still unanswered, and
+neither its answer nor its absence may be assumed.

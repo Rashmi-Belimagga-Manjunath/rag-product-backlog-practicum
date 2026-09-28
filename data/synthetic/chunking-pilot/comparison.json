@@ -1,0 +1,711 @@
+{
+  "pilot": "chunking-comparison",
+  "status": "STRUCTURAL COMPARISON ONLY - no BM25/RAG run",
+  "documents": 34,
+  "source": "mechanism sample extended to approved full-corpus length targets",
+  "reports": [
+    {
+      "config": {
+        "label": "A",
+        "chunk_size": 1000,
+        "chunk_overlap": 200,
+        "splitter": "structure-aware (heading -> section packing -> sentence)",
+        "sentence_safe": true
+      },
+      "chunks": 42,
+      "documents_spanning_multiple_chunks": 4,
+      "chunks_by_doc_type": {
+        "component_doc": 6,
+        "decision_log": 2,
+        "feature_spec": 8,
+        "meeting_notes": 2,
+        "pbi": 9,
+        "prd": 12,
+        "runbook": 1,
+        "ticket": 2
+      },
+      "words": {
+        "total": 24234,
+        "min": 186,
+        "median": 670,
+        "max": 1000
+      },
+      "diagnostic": {
+        "note": "Diagnostic only. NOT a pre-specified criterion and NOT used to select a configuration. 8-gram containment measures verbatim repetition; the C6 type-bag measure is sensitive to type-vocabulary size.",
+        "document_type_diversity": {
+          "DOC-PRD-A-01": {
+            "tokens": 2333,
+            "distinct_types": 227
+          },
+          "DOC-PRD-A-01-v2": {
+            "tokens": 2210,
+            "distinct_types": 221
+          },
+          "DOC-PRD-A-02": {
+            "tokens": 2217,
+            "distinct_types": 219
+          },
+          "DOC-PRD-B-01": {
+            "tokens": 2248,
+            "distinct_types": 220
+          },
+          "DOC-FEAT-A-01": {
+            "tokens": 809,
+            "distinct_types": 183
+          },
+          "DOC-FEAT-A-01-v2": {
+            "tokens": 768,
+            "distinct_types": 163
+          },
+          "DOC-FEAT-A-02": {
+            "tokens": 812,
+            "distinct_types": 168
+          },
+          "DOC-FEAT-A-03": {
+            "tokens": 777,
+            "distinct_types": 174
+          },
+          "DOC-FEAT-A-04": {
+            "tokens": 777,
+            "distinct_types": 169
+          },
+          "DOC-FEAT-B-02": {
+            "tokens": 781,
+            "distinct_types": 169
+          },
+          "DOC-FEAT-B-01": {
+            "tokens": 800,
+            "distinct_types": 190
+          },
+          "DOC-FEAT-B-01-v2": {
+            "tokens": 746,
+            "distinct_types": 179
+          },
+          "DOC-PBI-A-011": {
+            "tokens": 246,
+            "distinct_types": 102
+          },
+          "DOC-PBI-A-012": {
+            "tokens": 210,
+            "distinct_types": 94
+          },
+          "DOC-PBI-A-013": {
+            "tokens": 229,
+            "distinct_types": 98
+          },
+          "DOC-PBI-A-014": {
+            "tokens": 225,
+            "distinct_types": 98
+          },
+          "DOC-PBI-A-015": {
+            "tokens": 232,
+            "distinct_types": 103
+          },
+          "DOC-PBI-A-016": {
+            "tokens": 228,
+            "distinct_types": 92
+          },
+          "DOC-PBI-A-017": {
+            "tokens": 237,
+            "distinct_types": 98
+          },
+          "DOC-PBI-B-021": {
+            "tokens": 235,
+            "distinct_types": 106
+          },
+          "DOC-PBI-B-022": {
+            "tokens": 216,
+            "distinct_types": 96
+          },
+          "DOC-TKT-A-101": {
+            "tokens": 223,
+            "distinct_types": 93
+          },
+          "DOC-TKT-A-102": {
+            "tokens": 232,
+            "distinct_types": 97
+          },
+          "DOC-DEC-A-01": {
+            "tokens": 394,
+            "distinct_types": 140
+          },
+          "DOC-DEC-B-01": {
+            "tokens": 356,
+            "distinct_types": 122
+          },
+          "DOC-NOTE-A-01": {
+            "tokens": 240,
+            "distinct_types": 98
+          },
+          "DOC-NOTE-B-01": {
+            "tokens": 198,
+            "distinct_types": 98
+          },
+          "DOC-RBK-A-01": {
+            "tokens": 579,
+            "distinct_types": 164
+          },
+          "DOC-COMP-01": {
+            "tokens": 712,
+            "distinct_types": 141
+          },
+          "DOC-COMP-02": {
+            "tokens": 557,
+            "distinct_types": 131
+          },
+          "DOC-COMP-03": {
+            "tokens": 719,
+            "distinct_types": 140
+          },
+          "DOC-COMP-04": {
+            "tokens": 690,
+            "distinct_types": 142
+          },
+          "DOC-COMP-05": {
+            "tokens": 725,
+            "distinct_types": 145
+          },
+          "DOC-COMP-06": {
+            "tokens": 718,
+            "distinct_types": 145
+          }
+        },
+        "adjacent_chunk_pairs": [
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C0|DOC-PRD-A-01-C1",
+            "type_bag_containment": 0.9194,
+            "ngram8_containment": 0.3368
+          },
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C1|DOC-PRD-A-01-C2",
+            "type_bag_containment": 0.9735,
+            "ngram8_containment": 0.4539
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C0|DOC-PRD-A-01-v2-C1",
+            "type_bag_containment": 0.9487,
+            "ngram8_containment": 0.305
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C1|DOC-PRD-A-01-v2-C2",
+            "type_bag_containment": 0.963,
+            "ngram8_containment": 0.4327
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C0|DOC-PRD-A-02-C1",
+            "type_bag_containment": 0.9244,
+            "ngram8_containment": 0.2795
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C1|DOC-PRD-A-02-C2",
+            "type_bag_containment": 0.9519,
+            "ngram8_containment": 0.4505
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C0|DOC-PRD-B-01-C1",
+            "type_bag_containment": 0.9174,
+            "ngram8_containment": 0.2889
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C1|DOC-PRD-B-01-C2",
+            "type_bag_containment": 0.9636,
+            "ngram8_containment": 0.4526
+          }
+        ]
+      },
+      "checks": [
+        {
+          "check_id": "C1",
+          "description": "No chunk splits a sentence (exact contiguous-unit test)",
+          "passed": true,
+          "observed": "0/42 chunks split a unit",
+          "threshold": "0%",
+          "critical": false
+        },
+        {
+          "check_id": "C2",
+          "description": "Dependency statements not split within a document",
+          "passed": true,
+          "observed": "0 split of 5 explicit (10 declared; implicit ones have no corpus text to split)",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C3",
+          "description": "Requirement statements not split within a document",
+          "passed": true,
+          "observed": "0 split of 5 requirements (2 legitimately appear in both a superseded and a current version)",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C4",
+          "description": "Every chunk carries an entity ID",
+          "passed": true,
+          "observed": "0 without provenance of 42",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C5",
+          "description": "Orphan chunks under 50 words (threshold calibrated for full-corpus scale)",
+          "passed": true,
+          "observed": "0/42 chunks under 50 words = 0.0%",
+          "threshold": "<3%",
+          "critical": false
+        },
+        {
+          "check_id": "C6",
+          "description": "Near-duplicate chunks within a document",
+          "passed": false,
+          "observed": "12 pairs = 28.6%",
+          "threshold": "<2%",
+          "critical": false
+        },
+        {
+          "check_id": "C7",
+          "description": "Every document produces at least one chunk",
+          "passed": true,
+          "observed": "34/34",
+          "threshold": "100%",
+          "critical": false
+        },
+        {
+          "check_id": "C8",
+          "description": "Every ground-truth document ID resolves to >=1 chunk",
+          "passed": true,
+          "observed": "34/34 reachable",
+          "threshold": "100%",
+          "critical": true
+        }
+      ],
+      "all_pass": false,
+      "failed": [
+        "C6"
+      ]
+    },
+    {
+      "config": {
+        "label": "B",
+        "chunk_size": 600,
+        "chunk_overlap": 100,
+        "splitter": "structure-aware (heading -> section packing -> sentence)",
+        "sentence_safe": true
+      },
+      "chunks": 63,
+      "documents_spanning_multiple_chunks": 17,
+      "chunks_by_doc_type": {
+        "component_doc": 11,
+        "decision_log": 2,
+        "feature_spec": 16,
+        "meeting_notes": 2,
+        "pbi": 9,
+        "prd": 20,
+        "runbook": 1,
+        "ticket": 2
+      },
+      "words": {
+        "total": 25238,
+        "min": 109,
+        "median": 379,
+        "max": 599
+      },
+      "diagnostic": {
+        "note": "Diagnostic only. NOT a pre-specified criterion and NOT used to select a configuration. 8-gram containment measures verbatim repetition; the C6 type-bag measure is sensitive to type-vocabulary size.",
+        "document_type_diversity": {
+          "DOC-PRD-A-01": {
+            "tokens": 2333,
+            "distinct_types": 227
+          },
+          "DOC-PRD-A-01-v2": {
+            "tokens": 2210,
+            "distinct_types": 221
+          },
+          "DOC-PRD-A-02": {
+            "tokens": 2217,
+            "distinct_types": 219
+          },
+          "DOC-PRD-B-01": {
+            "tokens": 2248,
+            "distinct_types": 220
+          },
+          "DOC-FEAT-A-01": {
+            "tokens": 809,
+            "distinct_types": 183
+          },
+          "DOC-FEAT-A-01-v2": {
+            "tokens": 768,
+            "distinct_types": 163
+          },
+          "DOC-FEAT-A-02": {
+            "tokens": 812,
+            "distinct_types": 168
+          },
+          "DOC-FEAT-A-03": {
+            "tokens": 777,
+            "distinct_types": 174
+          },
+          "DOC-FEAT-A-04": {
+            "tokens": 777,
+            "distinct_types": 169
+          },
+          "DOC-FEAT-B-02": {
+            "tokens": 781,
+            "distinct_types": 169
+          },
+          "DOC-FEAT-B-01": {
+            "tokens": 800,
+            "distinct_types": 190
+          },
+          "DOC-FEAT-B-01-v2": {
+            "tokens": 746,
+            "distinct_types": 179
+          },
+          "DOC-PBI-A-011": {
+            "tokens": 246,
+            "distinct_types": 102
+          },
+          "DOC-PBI-A-012": {
+            "tokens": 210,
+            "distinct_types": 94
+          },
+          "DOC-PBI-A-013": {
+            "tokens": 229,
+            "distinct_types": 98
+          },
+          "DOC-PBI-A-014": {
+            "tokens": 225,
+            "distinct_types": 98
+          },
+          "DOC-PBI-A-015": {
+            "tokens": 232,
+            "distinct_types": 103
+          },
+          "DOC-PBI-A-016": {
+            "tokens": 228,
+            "distinct_types": 92
+          },
+          "DOC-PBI-A-017": {
+            "tokens": 237,
+            "distinct_types": 98
+          },
+          "DOC-PBI-B-021": {
+            "tokens": 235,
+            "distinct_types": 106
+          },
+          "DOC-PBI-B-022": {
+            "tokens": 216,
+            "distinct_types": 96
+          },
+          "DOC-TKT-A-101": {
+            "tokens": 223,
+            "distinct_types": 93
+          },
+          "DOC-TKT-A-102": {
+            "tokens": 232,
+            "distinct_types": 97
+          },
+          "DOC-DEC-A-01": {
+            "tokens": 394,
+            "distinct_types": 140
+          },
+          "DOC-DEC-B-01": {
+            "tokens": 356,
+            "distinct_types": 122
+          },
+          "DOC-NOTE-A-01": {
+            "tokens": 240,
+            "distinct_types": 98
+          },
+          "DOC-NOTE-B-01": {
+            "tokens": 198,
+            "distinct_types": 98
+          },
+          "DOC-RBK-A-01": {
+            "tokens": 579,
+            "distinct_types": 164
+          },
+          "DOC-COMP-01": {
+            "tokens": 712,
+            "distinct_types": 141
+          },
+          "DOC-COMP-02": {
+            "tokens": 557,
+            "distinct_types": 131
+          },
+          "DOC-COMP-03": {
+            "tokens": 719,
+            "distinct_types": 140
+          },
+          "DOC-COMP-04": {
+            "tokens": 690,
+            "distinct_types": 142
+          },
+          "DOC-COMP-05": {
+            "tokens": 725,
+            "distinct_types": 145
+          },
+          "DOC-COMP-06": {
+            "tokens": 718,
+            "distinct_types": 145
+          }
+        },
+        "adjacent_chunk_pairs": [
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C0|DOC-PRD-A-01-C1",
+            "type_bag_containment": 0.9333,
+            "ngram8_containment": 0.2197
+          },
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C1|DOC-PRD-A-01-C2",
+            "type_bag_containment": 0.8762,
+            "ngram8_containment": 0.2652
+          },
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C2|DOC-PRD-A-01-C3",
+            "type_bag_containment": 0.8962,
+            "ngram8_containment": 0.3008
+          },
+          {
+            "document_id": "DOC-PRD-A-01",
+            "pair": "DOC-PRD-A-01-C3|DOC-PRD-A-01-C4",
+            "type_bag_containment": 0.9114,
+            "ngram8_containment": 0.4541
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C0|DOC-PRD-A-01-v2-C1",
+            "type_bag_containment": 0.8571,
+            "ngram8_containment": 0.2089
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C1|DOC-PRD-A-01-v2-C2",
+            "type_bag_containment": 0.9,
+            "ngram8_containment": 0.2588
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C2|DOC-PRD-A-01-v2-C3",
+            "type_bag_containment": 0.9266,
+            "ngram8_containment": 0.2623
+          },
+          {
+            "document_id": "DOC-PRD-A-01-v2",
+            "pair": "DOC-PRD-A-01-v2-C3|DOC-PRD-A-01-v2-C4",
+            "type_bag_containment": 0.9815,
+            "ngram8_containment": 0.7576
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C0|DOC-PRD-A-02-C1",
+            "type_bag_containment": 0.8796,
+            "ngram8_containment": 0.2216
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C1|DOC-PRD-A-02-C2",
+            "type_bag_containment": 0.9252,
+            "ngram8_containment": 0.2481
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C2|DOC-PRD-A-02-C3",
+            "type_bag_containment": 0.9346,
+            "ngram8_containment": 0.2294
+          },
+          {
+            "document_id": "DOC-PRD-A-02",
+            "pair": "DOC-PRD-A-02-C3|DOC-PRD-A-02-C4",
+            "type_bag_containment": 0.9796,
+            "ngram8_containment": 0.7864
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C0|DOC-PRD-B-01-C1",
+            "type_bag_containment": 0.8348,
+            "ngram8_containment": 0.2239
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C1|DOC-PRD-B-01-C2",
+            "type_bag_containment": 0.9204,
+            "ngram8_containment": 0.2838
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C2|DOC-PRD-B-01-C3",
+            "type_bag_containment": 0.9065,
+            "ngram8_containment": 0.2495
+          },
+          {
+            "document_id": "DOC-PRD-B-01",
+            "pair": "DOC-PRD-B-01-C3|DOC-PRD-B-01-C4",
+            "type_bag_containment": 0.9429,
+            "ngram8_containment": 0.525
+          },
+          {
+            "document_id": "DOC-FEAT-A-01",
+            "pair": "DOC-FEAT-A-01-C0|DOC-FEAT-A-01-C1",
+            "type_bag_containment": 0.914,
+            "ngram8_containment": 0.3609
+          },
+          {
+            "document_id": "DOC-FEAT-A-01-v2",
+            "pair": "DOC-FEAT-A-01-v2-C0|DOC-FEAT-A-01-v2-C1",
+            "type_bag_containment": 0.9625,
+            "ngram8_containment": 0.3929
+          },
+          {
+            "document_id": "DOC-FEAT-A-02",
+            "pair": "DOC-FEAT-A-02-C0|DOC-FEAT-A-02-C1",
+            "type_bag_containment": 0.9121,
+            "ngram8_containment": 0.337
+          },
+          {
+            "document_id": "DOC-FEAT-A-03",
+            "pair": "DOC-FEAT-A-03-C0|DOC-FEAT-A-03-C1",
+            "type_bag_containment": 0.8256,
+            "ngram8_containment": 0.3333
+          },
+          {
+            "document_id": "DOC-FEAT-A-04",
+            "pair": "DOC-FEAT-A-04-C0|DOC-FEAT-A-04-C1",
+            "type_bag_containment": 0.8721,
+            "ngram8_containment": 0.3708
+          },
+          {
+            "document_id": "DOC-FEAT-B-02",
+            "pair": "DOC-FEAT-B-02-C0|DOC-FEAT-B-02-C1",
+            "type_bag_containment": 0.9524,
+            "ngram8_containment": 0.3926
+          },
+          {
+            "document_id": "DOC-FEAT-B-01",
+            "pair": "DOC-FEAT-B-01-C0|DOC-FEAT-B-01-C1",
+            "type_bag_containment": 0.9468,
+            "ngram8_containment": 0.3791
+          },
+          {
+            "document_id": "DOC-FEAT-B-01-v2",
+            "pair": "DOC-FEAT-B-01-v2-C0|DOC-FEAT-B-01-v2-C1",
+            "type_bag_containment": 0.878,
+            "ngram8_containment": 0.4651
+          },
+          {
+            "document_id": "DOC-COMP-01",
+            "pair": "DOC-COMP-01-C0|DOC-COMP-01-C1",
+            "type_bag_containment": 0.9565,
+            "ngram8_containment": 0.4787
+          },
+          {
+            "document_id": "DOC-COMP-03",
+            "pair": "DOC-COMP-03-C0|DOC-COMP-03-C1",
+            "type_bag_containment": 0.9639,
+            "ngram8_containment": 0.4674
+          },
+          {
+            "document_id": "DOC-COMP-04",
+            "pair": "DOC-COMP-04-C0|DOC-COMP-04-C1",
+            "type_bag_containment": 0.9853,
+            "ngram8_containment": 0.5867
+          },
+          {
+            "document_id": "DOC-COMP-05",
+            "pair": "DOC-COMP-05-C0|DOC-COMP-05-C1",
+            "type_bag_containment": 0.9744,
+            "ngram8_containment": 0.487
+          },
+          {
+            "document_id": "DOC-COMP-06",
+            "pair": "DOC-COMP-06-C0|DOC-COMP-06-C1",
+            "type_bag_containment": 0.971,
+            "ngram8_containment": 0.4728
+          }
+        ]
+      },
+      "checks": [
+        {
+          "check_id": "C1",
+          "description": "No chunk splits a sentence (exact contiguous-unit test)",
+          "passed": true,
+          "observed": "0/63 chunks split a unit",
+          "threshold": "0%",
+          "critical": false
+        },
+        {
+          "check_id": "C2",
+          "description": "Dependency statements not split within a document",
+          "passed": true,
+          "observed": "0 split of 5 explicit (10 declared; implicit ones have no corpus text to split)",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C3",
+          "description": "Requirement statements not split within a document",
+          "passed": true,
+          "observed": "0 split of 5 requirements (2 legitimately appear in both a superseded and a current version)",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C4",
+          "description": "Every chunk carries an entity ID",
+          "passed": true,
+          "observed": "0 without provenance of 63",
+          "threshold": "0",
+          "critical": false
+        },
+        {
+          "check_id": "C5",
+          "description": "Orphan chunks under 50 words (threshold calibrated for full-corpus scale)",
+          "passed": true,
+          "observed": "0/63 chunks under 50 words = 0.0%",
+          "threshold": "<3%",
+          "critical": false
+        },
+        {
+          "check_id": "C6",
+          "description": "Near-duplicate chunks within a document",
+          "passed": false,
+          "observed": "29 pairs = 46.0%",
+          "threshold": "<2%",
+          "critical": false
+        },
+        {
+          "check_id": "C7",
+          "description": "Every document produces at least one chunk",
+          "passed": true,
+          "observed": "34/34",
+          "threshold": "100%",
+          "critical": false
+        },
+        {
+          "check_id": "C8",
+          "description": "Every ground-truth document ID resolves to >=1 chunk",
+          "passed": true,
+          "observed": "34/34 reachable",
+          "threshold": "100%",
+          "critical": true
+        }
+      ],
+      "all_pass": false,
+      "failed": [
+        "C6"
+      ]
+    }
+  ],
+  "verdict": "NO DISCRIMINATION. A fails ['C6']; B fails ['C6']. Both configurations fail the same pre-specified check, so the criteria do not select between them, and selecting on retrieval performance is prohibited. This is a genuine open decision requiring explicit approval."
+}

@@ -1,127 +1,100 @@
-# Query Specification — 32 Approved Slots
+# Query Benchmark Specification (32 slots)
 
-**Status:** Specification only. No query wording generated, no ground truth built.
-**Frozen:** the *distribution* is approved and frozen. Query *wording* is authored at
-generation time, then difficulty is measured and labels are confirmed before either
-system is evaluated.
+> **Generated file.** Produced by `python3 -m src.benchmark.render_spec_doc`
+> from `src/benchmark/query_spec.py`. Do not edit by hand; a test asserts this
+> file matches the code.
 
-## Approved distribution
+The slot distribution is **APPROVED and FROZEN**. Only the three Q-SUP queries
+have approved wording. Every other slot is `query_text = None`: wording cannot
+be authored before the corpus exists, because wording written against the
+mechanism sample would bake sample-specific vocabulary into the benchmark.
 
-| Category | Total | Easy | Moderate | Hard |
-|---|---:|---:|---:|---:|
-| Information retrieval | 6 | 3 | 2 | 1 |
-| Feature context | 5 | 2 | 2 | 1 |
-| Dependency identification | 8 | 2 | 3 | 3 |
-| Cross-document reasoning | 5 | 1 | 1 | 3 |
-| Conflict identification | 3 | 1 | 1 | 1 |
-| Backlog analysis | 5 | 2 | 2 | 1 |
-| **TOTAL** | **32** | **11** | **11** | **10** |
+## Approved totals
 
-Dependency-related: **13** = dependency identification (8) + cross-document reasoning (5).
+| Property | Required |
+|---|---|
+| Total slots | 32 |
+| Difficulty: easy | 11 |
+| Difficulty: moderate | 11 |
+| Difficulty: hard | 10 |
+| Information retrieval | 6 |
+| Feature context | 5 |
+| Dependency identification | 8 |
+| Cross-document reasoning | 5 |
+| Conflict identification | 3 |
+| Backlog analysis | 5 |
+| Dependency-related total | 13 (6 explicit, 7 implicit) |
 
-| Category | Total | Explicit | Implicit |
-|---|---:|---:|---:|
-| Dependency identification | 8 | 4 | 4 |
-| Cross-document reasoning | 5 | 2 | 3 |
-| **Total** | **13** | **6** | **7** |
-
-Version queries: **3** (Q-SUP-1 … Q-SUP-3), occupying slots inside information retrieval
-and feature context. **Not additional to the 32.**
+Dependency-related categories are `cross_document_reasoning` and `dependency_identification`.
 
 ## Slot register
 
-`Slot` is the position 1–32. `Cat` = category abbreviation:
-`IR` information retrieval · `FC` feature context · `DI` dependency identification ·
-`CDR` cross-document reasoning · `CI` conflict identification · `BA` backlog analysis.
+Slots are **selectors over the structured model**, not hard-coded document IDs.
+The final 272-document corpus has different IDs from the mechanism sample, so a
+selector that resolves against the sample must also resolve against the final
+corpus. An unresolved slot is a hard STOP at freeze, never a warning.
 
-| Slot | Query ID | Cat | Intended difficulty | Dependency | Target | Version query |
-|---:|---|---|---|---|---|---|
-| 1 | Q-01 | IR | easy | — | a high-traffic PBI | — |
-| 2 | Q-02 | IR | easy | — | a runbook | — |
-| 3 | Q-03 | IR | easy | — | a feature spec | — |
-| 4 | Q-04 | IR | moderate | — | a decision record | — |
-| 5 | Q-SUP-1 | IR | moderate | — | current PRD | **recency** |
-| 6 | Q-05 | IR | hard | — | a colloquial ticket | — |
-| 7 | Q-06 | FC | easy | — | a feature summary | — |
-| 8 | Q-07 | FC | easy | — | a requirement statement | — |
-| 9 | Q-SUP-3 | FC | easy | — | current spec limit | **current_value** |
-| 10 | Q-08 | FC | moderate | — | a ruled-out option | — |
-| 11 | Q-SUP-2 | FC | hard | — | superseded spec claim | **provenance** |
-| 12 | Q-09 | DI | easy | explicit | a stated component dependency | — |
-| 13 | Q-10 | DI | easy | explicit | a stated feature dependency | — |
-| 14 | Q-11 | DI | moderate | explicit | a stated ordering constraint | — |
-| 15 | Q-12 | DI | moderate | explicit | a third-party dependency | — |
-| 16 | Q-13 | DI | moderate | implicit | an unstated component dependency | — |
-| 17 | Q-14 | DI | hard | implicit | an unstated ordering constraint | — |
-| 18 | Q-15 | DI | hard | implicit | an unstated cross-feature dependency | — |
-| 19 | Q-16 | DI | hard | implicit | a dependency behind a runbook | — |
-| 20 | Q-17 | CDR | easy | explicit | a dependency visible in one document | — |
-| 21 | Q-18 | CDR | moderate | explicit | a dependency split across two documents | — |
-| 22 | Q-19 | CDR | moderate | implicit | a relationship from the meeting notes | — |
-| 23 | Q-20 | CDR | hard | implicit | an ordering inferred from the PRD sequence | — |
-| 24 | Q-21 | CDR | hard | implicit | a dependency behind a superseded document | — |
-| 25 | Q-22 | CI | easy | — | a resolved conflict | — |
-| 26 | Q-23 | CI | moderate | — | an unresolved conflict | — |
-| 27 | Q-24 | CI | hard | — | a conflict whose resolution lives in a later version | — |
-| 28 | Q-25 | BA | easy | — | a documented prioritisation decision | — |
-| 29 | Q-26 | BA | easy | — | a stated non-goal | — |
-| 30 | Q-27 | BA | moderate | — | the rationale behind a changed decision | — |
-| 31 | Q-28 | BA | moderate | — | a deprioritised item's reason | — |
-| 32 | Q-29 | BA | hard | — | a synthesis across a feature and its decision record | — |
+| Slot | ID | Category | Difficulty | Selector | Dep. | Version | Purpose |
+|---:|---|---|---|---|---|---|---|
+| 1 | `Q-01` | Information retrieval | easy | `current_prd` | - | - | Locate the PRD that governs the primary flow. |
+| 2 | `Q-02` | Information retrieval | easy | `runbook` | - | - | Locate the operational runbook for a core component. |
+| 3 | `Q-03` | Information retrieval | easy | `current_feature_spec` | - | - | Locate a single current feature specification. |
+| 4 | `Q-04` | Information retrieval | moderate | `decision_record` | - | - | Locate a decision record and the choice it records. |
+| 5 | `Q-SUP-1` | Information retrieval | moderate | `current_prd_with_superseded_sibling` | - | recency | Q-SUP-1. A superseded PRD is the D5 distractor; the answer is the current one. |
+| 6 | `Q-05` | Information retrieval | hard | `informal_ticket` | - | - | Colloquial ticket text with low lexical overlap against its target. |
+| 7 | `Q-06` | Feature context | easy | `feature_summary` | - | - | Summarise a feature from its own specification. |
+| 8 | `Q-SUP-3` | Feature context | easy | `current_spec_with_approval_limit` | - | current_value | Q-SUP-3. The superseded version holds a different historical value. |
+| 9 | `Q-07` | Feature context | moderate | `requirement_statement` | - | - | State a normative requirement and its owning document. |
+| 10 | `Q-08` | Feature context | moderate | `ruled_out_option` | - | - | Identify an option the documentation explicitly rules out. |
+| 11 | `Q-SUP-2` | Feature context | hard | `superseded_spec_with_current_successor` | - | provenance | Q-SUP-2. The claim exists in a superseded spec; ground truth must name the authoritative current document. relevance_basis = both. |
+| 12 | `Q-09` | Dependency identification | easy | `explicit_dep_feature_to_component` | explicit | - | A stated feature->component dependency. |
+| 13 | `Q-10` | Dependency identification | easy | `explicit_dep_component_to_component` | explicit | - | A stated component-to-component dependency. |
+| 14 | `Q-11` | Dependency identification | moderate | `explicit_dep_ordering` | explicit | - | A stated ordering constraint between two stages. |
+| 15 | `Q-12` | Dependency identification | moderate | `explicit_dep_third_party` | explicit | - | A stated dependency on an external party. |
+| 16 | `Q-13` | Dependency identification | moderate | `implicit_dep_component` | implicit | - | An unstated component dependency, encoded in the model and inferable only from context. |
+| 17 | `Q-14` | Dependency identification | hard | `implicit_dep_ordering` | implicit | - | An unstated ordering constraint. |
+| 18 | `Q-15` | Dependency identification | hard | `implicit_dep_cross_feature` | implicit | - | An unstated dependency spanning two features. |
+| 19 | `Q-16` | Dependency identification | hard | `implicit_dep_via_runbook` | implicit | - | A dependency implied by a runbook rather than stated in prose. |
+| 20 | `Q-17` | Cross-document reasoning | easy | `cdr_single_document` | explicit | - | A dependency visible within one document. |
+| 21 | `Q-18` | Cross-document reasoning | moderate | `cdr_two_documents` | explicit | - | A dependency that must be assembled from two documents. |
+| 22 | `Q-19` | Cross-document reasoning | hard | `cdr_meeting_notes` | implicit | - | A relationship recoverable from meeting notes, stated as a stand-in rather than asserted. |
+| 23 | `Q-20` | Cross-document reasoning | hard | `cdr_prd_sequence` | implicit | - | An ordering inferred from the sequence of a PRD's requirements. |
+| 24 | `Q-21` | Cross-document reasoning | hard | `cdr_via_superseded_document` | implicit | - | A dependency whose only textual evidence sits in a superseded document. |
+| 25 | `Q-22` | Conflict identification | easy | `conflict_resolved` | - | - | A conflict that the documentation resolves. |
+| 26 | `Q-23` | Conflict identification | moderate | `conflict_unresolved` | - | - | A conflict the documentation leaves open. |
+| 27 | `Q-24` | Conflict identification | hard | `conflict_resolved_in_later_version` | - | - | A conflict resolved only in a later document version. |
+| 28 | `Q-25` | Backlog analysis | easy | `backlog_prioritisation_decision` | - | - | A documented prioritisation decision. |
+| 29 | `Q-26` | Backlog analysis | easy | `backlog_non_goal` | - | - | A stated non-goal and why it was excluded. |
+| 30 | `Q-27` | Backlog analysis | moderate | `backlog_changed_decision_rationale` | - | - | The rationale behind a decision that changed. |
+| 31 | `Q-28` | Backlog analysis | moderate | `backlog_deprioritised_rationale` | - | - | The documented reason an item was deprioritised. |
+| 32 | `Q-29` | Backlog analysis | hard | `backlog_synthesis` | - | - | A synthesis across a feature and its decision record. |
 
-**Totals:** 32 slots · 11 easy · 11 moderate · 10 hard · 13 dependency-related
-(6 explicit, 7 implicit) · 3 version queries.
+## Exact approved wording
 
-## Slot design notes
+These three are fixed by the specification and are **not** placeholders.
 
-**Hard queries are concentrated in DI and CDR on purpose.** 6 of the 10 hard queries sit
-in the two dependency categories. If difficulty clustered in information retrieval, the
-experiment would measure lexical mismatch rather than reasoning, and would flatter
-whichever system tolerates paraphrase.
+- `Q-SUP-1`: "Which PRD is in production?"
+- `Q-SUP-3`: "What is the current approval limit?"
+- `Q-SUP-2`: "A spec says tax at first login — which doc, still current?"
 
-**Q-SUP-2 is in the hard band by construction.** Its target claim lives in a *superseded*
-document, so overlap with the current version is deliberately low.
+## Corpus requirements attached to slots
 
-**Q-SUP-2 is relevant-in-superseded.** It is the query that defeats the degenerate
-strategy of always retrieving the newest document. Its ground truth is both the
-superseded spec (which states the claim) and the current spec (which supersedes it), so
-`relevance_basis = "both"`.
+Some slots cannot resolve against the 34-document mechanism sample because the
+sample deliberately does not contain the phenomenon. These are **corpus
+requirements, not defects**; `validate_ground_truth --against-final` makes them
+hard stops.
 
-## Constraint on backlog-analysis slots
+- `Q-SUP-3`:
+  - A feature specification whose approval limit CHANGED between v1 and v2, so the superseded value differs from the current one. Not present in the mechanism sample.
 
-Slots 28–32 must be answerable from **documented rationale and requirement priority** —
-decision records, non-goals, stated prioritisation. If a drafted backlog question turns
-out to require dependency reasoning, it is **reclassified into the dependency-related set
-before the experiment** and recorded in `DECISIONS.md`. Backlog questions must not
-silently become dependency questions.
+## Difficulty definition
 
-## Difficulty classification
+Easy `>=40%` lexical overlap, moderate `20-39%`, hard `<20%`, computed with the
+frozen stopword set over query text versus the target documents. This is a
+property of the benchmark, not a psychological claim about difficulty.
 
-`overlap = |content_words(Q) ∩ content_words(G)| / |content_words(Q)|`
+## Validation
 
-`content_words` = lowercased, stopword-removed, length > 2, using the frozen `STOPWORDS`
-set in `src/ground_truth/schema.py`.
-
-| Band | Overlap |
-|---|---|
-| Easy | ≥ 40% |
-| Moderate | 20–39% |
-| Hard | < 20% |
-
-> **Required framing for the methodology.** Lexical overlap is a
-> **benchmark-construction measure**. It creates controlled variation in lexical alignment
-> between a query and the information that answers it. It is **not** a validated
-> psychological or cognitive measure of task difficulty. "Hard" means only that lexical
-> alignment is low — not that the question is cognitively demanding.
-
-**Procedure.** Wording is authored to target a band, then verified against the generated
-corpus. A query not falling into its intended band is revised **before** either system is
-evaluated. Difficulty labels are **never** reclassified after seeing results.
-
-## Reporting constraints
-
-- n=32 is **not** intended to support statistical significance testing. No statistical
-  generalisability may be claimed from it.
-- Results are interpreted through descriptive statistics, direction and effect of
-  differences, category-level analysis, and error analysis.
-- The 7-query implicit subset is **descriptive evidence only**.
+`python3 -m src.benchmark.query_spec` prints the table and exits non-zero on any
+distribution violation. `python3 -m src.benchmark.validate_ground_truth`
+resolves every selector against the structured model.
