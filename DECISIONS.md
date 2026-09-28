@@ -84,9 +84,34 @@ version or date where available, and all relevant settings.
 **Binding constraint:** the embedding model must not be changed after seeing
 experimental results.
 
-#### D3 — Vector store: recommendation pending approval
+#### D3 — Vector store: Chroma, approved
 
-See `PROJECT_SPECIFICATION.md` §11. Recommendation recorded, awaiting sign-off.
+**Decision.** Use **Chroma** as the vector store for the Python RAG implementation.
+
+**Binding constraints — the implementation must preserve:**
+
+| Property | Why |
+|---|---|
+| Stable document IDs | A recorded result must be checkable against a later run |
+| Stable chunk IDs | Ground truth attaches at chunk level by provenance; unstable IDs break it |
+| Metadata | Needed to report by document type, product, version, supersession |
+| Retrieval scores | Required for reproducible ranking inspection |
+| Retrieval ranking | Required for MRR, and for separating retrieval from generation failure |
+| Source-document traceability | Inline citations are a design-level interpretability measure |
+
+**Exact-NumPy cross-check — approved as a validation test.** Cosine similarity is
+computed directly in NumPy from the stored embedding matrix and compared against
+Chroma's returned ordering: top-k *set* equality, ordering equality, and score
+finiteness/consistency.
+
+**Binding constraint on the cross-check.** It is a **validation mechanism only**. It must
+not be used to alter, correct, adjust or tune experimental results. If it disagrees with
+Chroma, that is a finding to report and investigate, not a discrepancy to resolve in
+favour of whichever number looks better. A retrieval fault caused by the store is not a
+result about RAG, and reporting it as one would be a false finding.
+
+Full methodology in `PROJECT_SPECIFICATION.md` §11.1.
+
 
 #### D4 / D5 — BM25: standard implementation, parameters fixed in advance
 
@@ -157,6 +182,97 @@ participant data collection during the current implementation phase.
 **Status:** hard gate. No participant activity of any kind until approval is confirmed
 in writing.
 
+**Separation of phases — approved.** Synthetic-data development and human-participant
+evaluation are treated as two distinct phases:
+
+| Phase | Status | Gate |
+|---|---|---|
+| Synthetic-data development | **Active** | None. Proceeds now. |
+| Human-participant evaluation | **Not started** | Blocked pending NCI coordinator/supervisor confirmation. |
+
+No participant data collection, no recruitment, no human evaluation in the current phase.
+
+**Binding constraint on documentation.** Until the NCI process has confirmed the
+requirement, project documentation and the thesis must **not** state that ethics approval
+is — or is not — required for the synthetic-only corpus. It must be recorded as an open
+administrative/methodological question. The student will confirm with the NCI
+coordinator/supervisor.
+
+---
+
+### D-002 — Evaluation design decisions approved by the student
+
+**Date:** 2026-09-28
+**Phase:** Checkpoint 2 (source model complete, pre-corpus)
+**Decided before results:** Yes — no retrieval system has been built and no experiment
+has been run. **D3, Q5, Q6 and Q7 were all settled before the corpus existed**, which is
+the point: they are design commitments, not post-hoc adjustments.
+**Decided by:** Student
+
+#### Q5 — Stratify by explicit vs implicit dependencies: approved
+
+**Decision.** The evaluation distinguishes two dependency types:
+
+1. **Explicit** — the dependency is directly stated in the documentation.
+2. **Implicit** — the dependency must be inferred from relationships across documents or
+   from the structured source-of-truth model.
+
+This distinction is recorded **as metadata on every dependency-related query**, and
+results are later **stratified by explicit and implicit subsets**.
+
+**Binding constraint on what "implicit" may mean.** An implicit dependency must **not**
+require unsupported common-sense inference. The expected dependency must be explicitly
+defined in the structured source-of-truth model, so ground truth remains reproducible.
+
+**Why this is the most important stratification in the project.** It is the mechanism by
+which the write-up can say *where* semantic retrieval actually helps. A dependency that a
+document states outright may be findable by keyword search. A dependency that only
+follows from the relationship between three documents is the specific case where
+cross-document reasoning is doing work that lexical matching cannot.
+
+#### Q6 — Distractor ratio: approved at approximately one-third
+
+**Decision.** Approximately **one-third** of the retrieval candidates function as
+controlled distractors, where applicable.
+
+**Binding constraint — distractors must be realistic near-matches, not random
+irrelevant documents.** Random off-topic documents are trivially rejected by both
+systems and would inflate both scores while testing nothing. Approved distractor types:
+
+| Type | Description |
+|---|---|
+| D1 | Documents sharing terminology but addressing a different feature |
+| D2 | Related features carrying different requirements |
+| D3 | Technically related components that are **not** the required dependency |
+| D4 | Overlapping keywords without sufficient contextual relevance |
+| D5 | Superseded versions of the correct document (see Q7) |
+
+**How relevance and non-relevance are established.** By **construction, not by
+judgement**. Each distractor is generated as a structured near-miss of a relevant
+entity, and its non-relevance is asserted in the source-of-truth model by its differing
+`feature_id`/`component_id`. Ground truth is therefore derivable, never subjective.
+
+**Binding constraint.** The distractor ratio must be **fixed before the main experiment**
+and must **not** be changed after seeing BM25 or RAG results.
+
+#### Q7 — Superseded document versions: approved, in controlled manner
+
+**Decision.** The corpus will contain superseded/older document versions to test whether
+retrieval can distinguish current documentation from outdated but lexically similar
+documentation.
+
+**Required metadata on every versioned document:** `document_id`, `feature_id`,
+`version`, `status`, created/modified date, `superseded_by`, and effective/current status.
+The current version must be **unambiguous in the source-of-truth model**.
+
+**Binding constraints:**
+- Queries involving versions must have explicitly defined expected answers and relevant
+  documents.
+- **Ambiguity must not be manufactured for its own sake.** The purpose is to test
+  current-versus-outdated discrimination, not to make the task arbitrarily hard. Where a
+  query would be ambiguous, it is either rephrased or dropped.
+
+
 ---
 
 ## Open assumptions
@@ -171,7 +287,8 @@ upon. See `PROJECT_SPECIFICATION.md` §12.
 | A3 | A few hundred chunks is sufficient to observe a measurable difference | Unconfirmed — depends on D6 |
 | A4 | Chunk size 1000 / overlap 200 remains appropriate | Unconfirmed — CA2 flags this as needing a pilot |
 | A5 | Student intends to work ahead of the six-week schedule | Stated intention, not commitment |
-| A6 | Ethics approval is not required for a fully synthetic corpus | **Unconfirmed — do not assume either way** |
+| A6 | Ethics approval is not required for a fully synthetic corpus | **Unconfirmed — do not assume either way.** Being confirmed with the NCI coordinator/supervisor |
+| A7 | The exact OpenAI embedding model name | Not yet selected. Must be frozen before the comparison runs |
 
 ---
 
@@ -179,8 +296,11 @@ upon. See `PROJECT_SPECIFICATION.md` §12.
 
 | ID | Decision | Blocks |
 |---|---|---|
-| D3 | Vector store choice (recommendation prepared, needs sign-off) | Retrieval stage |
-| D6 | Corpus scale and product count | Full corpus generation |
-| D7 | Query count and category distribution | Query set — **requires approval** |
+| D6 | Corpus scale and product count | Full corpus generation — **proposal presented, awaiting approval** |
+| D7 | Query count, category distribution, difficulty definition | Query set — **proposal presented, awaiting approval** |
 | D8 | UI framework (deprioritised, not decided) | App stage |
-| — | Whether ethics approval covers a synthetic-only corpus | Any statement about ethics in the write-up |
+| A7 | Exact OpenAI embedding model | Experiment run — must be frozen before results |
+| — | Whether ethics approval covers a synthetic-only corpus | Any statement about ethics in the write-up. Hard gate on all human-participant activity |
+
+**Approved and closed:** D1, D2, D3, D4, D5, D9, Q4, Q5, Q6, Q7.
+

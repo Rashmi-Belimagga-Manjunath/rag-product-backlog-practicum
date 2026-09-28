@@ -264,38 +264,57 @@ student on 2026-09-27**, before any experiment was run. See `DECISIONS.md` D-001
 | — | Ethics approval for synthetic corpus | ⏸ Open. Do not assume either way. |
 | — | Human evaluation | 🔒 **Blocked** until ethics approval confirmed. No recruitment, no participant data. |
 
-### 11.1 Vector store — recommendation (D3)
+### 11.1 Vector store — Chroma (D3, approved)
 
-**Recommendation: Chroma, with an exact-NumPy cross-check in the test suite.**
+**Decision: Chroma, with an exact-NumPy cross-check used as a validation test.**
 
-*Why Chroma:*
-- It is a genuine vector database, so the implementation matches the "vector database"
-  committed in CA2 §3.4 without needing to argue for a departure.
-- It gives persistence, metadata filtering, stable IDs, and distance scores directly —
-  all of which the logging requirements need.
-- It runs locally. No cloud infrastructure, no account, no cost.
-- Python integration is straightforward.
+Chroma was approved because it satisfies every requirement the logging design places on
+the retrieval layer, runs locally, and matches the "vector database" committed in CA2
+§3.4 without needing a further deviation.
 
-*Costs, stated honestly:*
-- Heavy dependency. It pulls in `onnxruntime` and other packages it does not need for
-  this task. Slow first install.
-- It is a layer of indirection. Its ranking behaviour is less transparent than computing
-  the score yourself, which matters for a project whose central claim is about
-  retrieval quality.
+#### Required properties, all of which the implementation must preserve
 
-*Why the cross-check:* for a corpus of this size, exact NumPy cosine search is
-computable and gives a ground truth for "what correct retrieval looks like". A test
-asserting Chroma's top-k matches exact NumPy top-k means a retrieval anomaly can never
-be silently blamed on the model. This is a cheap guard against a class of invalid
-result, so it is worth the small extra code.
+| Property | Why it matters for the research |
+|---|---|
+| Stable document IDs | A recorded result must be checkable against a later run |
+| Stable chunk IDs | Ground truth is attached at chunk level by provenance; unstable IDs break that |
+| Metadata | Needed to report by document type, product, version, and supersession status |
+| Retrieval scores | Required for reproducible ranking inspection |
+| Retrieval ranking | Required for MRR, and for distinguishing retrieval from generation failure |
+| Source-document traceability | Inline citations are a design-level interpretability measure (Shneiderman 2020, cited in CA2 §2.7) |
 
-*Alternative if you prefer maximum transparency:* skip Chroma and use exact NumPy cosine
-similarity throughout, saving embeddings as `.npy` with a JSON sidecar for metadata.
-Simpler and fully inspectable, but departs from the committed "vector database" wording
-and does not scale.
+#### The exact-NumPy cross-check
 
-**This is a recommendation, not a decision. No retrieval code will be written until you
-confirm.**
+**Purpose: validation only.** It detects retrieval and indexing anomalies, so that a
+vector-store implementation fault can be distinguished from genuine embedding or model
+behaviour.
+
+**Hard constraint:** the cross-check must **never** be used to alter, correct, adjust or
+tune experimental results. It is a diagnostic, not a correction step. If it disagrees
+with Chroma, that is a finding to be reported and investigated — not a discrepancy to
+be silently resolved in favour of whichever number looks better.
+
+**Method.** For the retrieval layer, compute cosine similarity directly in NumPy from
+the stored embedding matrix and compare against Chroma's returned ordering:
+
+1. A test asserts that the **set** of top-k chunk IDs returned by Chroma equals the set
+   computed by exact NumPy cosine similarity for the same query embedding.
+2. A test asserts that the **ordering** matches, where Chroma returns a distance that
+   is a monotone function of cosine similarity.
+3. A test asserts that every returned score is finite, and that scores are consistent
+   with the embedding matrix (no stale or duplicated IDs).
+
+**Why exact NumPy is a valid reference at this scale.** The corpus is small enough
+(hundreds of chunks) that brute-force cosine similarity is exact and instantaneous.
+There is no approximate-nearest-neighbour index in play, so "exact" genuinely means
+exact. At a scale where ANN indexing was required, this reference would weaken — that
+is a limitation to disclose, not a problem now.
+
+**If the tests fail:** the run is invalid until the fault is understood. A retrieval
+anomaly caused by the store is not a result about RAG, and reporting it as one would be
+a false finding.
+
+---
 
 ---
 
