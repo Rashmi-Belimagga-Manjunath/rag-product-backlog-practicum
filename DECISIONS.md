@@ -304,3 +304,96 @@ upon. See `PROJECT_SPECIFICATION.md` §12.
 
 **Approved and closed:** D1, D2, D3, D4, D5, D9, Q4, Q5, Q6, Q7.
 
+
+---
+
+### D-003 — D6 and D7 approved with conditions
+
+**Date:** 2026-09-28
+**Phase:** Checkpoint 2 → 3 transition
+**Decided before results:** Yes. No corpus, no query set, no BM25, no RAG, no results.
+**Decided by:** Student
+
+Corpus scale, query count, and evaluation design approved as proposed in
+`docs/proposal_corpus_and_queries.md`, **subject to conditions the student attached.**
+
+#### Approved corpus targets — targets, not results
+
+272 documents (260 current, 12 superseded) · 24 features (12/product) · 16 requirements
+(8/product) · 18 components · ~208 dependencies · ~435 reference edges · 12 conflicts ·
+~289 chunks.
+
+**Binding constraint:** the ~208 dependencies, ~435 edges and ~289 chunks are **targets
+estimated from the structured model, not results.** After generation the actual counts must
+be calculated and reported: document count, chunk count, dependency count,
+explicit/implicit split, reference count, conflict count, superseded/current split.
+
+**These must not be modified after seeing retrieval results.**
+
+#### Approved query set — 32 queries
+
+**Binding constraint on reporting:** n=32 is **not** intended to support strong statistical
+significance testing, and no statistical generalisability may be claimed from it. Results
+are interpreted through descriptive statistics, direction and effect of differences,
+category-level analysis, and error analysis. This limitation must be stated in the thesis.
+
+**Binding constraint on difficulty:** lexical overlap is a **benchmark-construction
+measure**, not a universal or validated psychological measure of task difficulty. Its
+purpose is to create controlled variation in lexical alignment between a query and the
+information that answers it. Classification is frozen before either system is evaluated.
+A query not falling into its intended band is revised **before** the systems run, never
+reclassified after seeing results.
+
+**Binding constraint on distractors:** the ~1/3 ratio is **not** to be fabricated if the
+generated corpus does not naturally produce it. Sequence: design model → generate → measure
+actual distribution → report measured values → if materially inadequate, modify the source
+model and **regenerate before either system is evaluated** → freeze. Distractors must never
+be removed because BM25 performs well on them, nor added because RAG performs well.
+
+**Binding constraint on the corpus scale:** ~289 chunks is accepted as a
+semester-scale Master's prototype. The corpus must **not** be artificially enlarged to
+inflate the number. The methodology must state that the corpus is synthetic,
+semester-scale, and not intended to represent enterprise-scale retrieval, and that
+external validity is therefore limited. Ambiguous or null results must **not** be
+retro-fitted by enlarging or modifying the corpus after seeing which system performed
+better. A larger follow-up may be proposed separately if genuinely justified.
+
+**Binding constraint on supersession:** the 3 version queries are retained, and specifically
+Q-SUP-2, where the superseded document is the correct answer. The purpose is contextual
+and version awareness, not the ability to retrieve the newest document.
+
+#### Chunking — initial configuration, pilot-gated
+
+`chunk_size=1000`, `chunk_overlap=200` is permitted as the **initial** configuration, to be
+validated as a **pre-system configuration pilot** and not as a result-tuned parameter.
+Required before the main comparison: verify chunks are coherent; check that requirements
+and dependencies are not split incorrectly; document the decision; freeze; use the identical
+corpus and chunking policy for both systems. Chunking must not change after BM25/RAG
+performance is seen.
+
+#### Research-integrity sequence — binding
+
+Corpus, query set, ground truth, distractor structure, difficulty labels, chunking
+configuration and model configuration are all frozen **before** the main BM25 vs RAG
+comparison:
+
+```
+SOURCE-OF-TRUTH DESIGN → CORPUS GENERATION → GROUND TRUTH → QUERY DESIGN
+→ DIFFICULTY VALIDATION → CHUNKING PILOT → CONFIGURATION FREEZE
+→ BM25 + RAG EXPERIMENT → RESULTS → ANALYSIS
+```
+
+No component may be tuned after seeing which system performs better.
+
+#### Ethics — reaffirmed, still open
+
+Synthetic-data development and human-participant evaluation are separate phases. No
+participant data collection, no recruitment, no human evaluation. The requirement for the
+synthetic-only corpus remains an open administrative/methodological question to be
+confirmed with the NCI coordinator/supervisor, and documentation must not state a
+determination either way until confirmed.
+
+#### Not yet decided
+
+A7 — exact embedding model. A proposal is in `docs/proposal_pre_generation.md` §5 and
+requires both approval and live verification before it can be frozen.
