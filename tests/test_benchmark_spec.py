@@ -53,9 +53,11 @@ def test_dependency_explicitness_totals():
     assert sum(1 for s in dep if s.dependency_explicitness == "implicit") == APPROVED_IMPLICIT
 
 
-def test_only_q_sup_queries_have_approved_wording():
-    with_text = {s.query_id for s in SLOTS if s.query_text is not None}
-    assert with_text == {"Q-SUP-1", "Q-SUP-2", "Q-SUP-3"}
+def test_all_32_queries_have_approved_wording():
+    with_text = {s.query_id for s in SLOTS if s.query_text and s.query_text.strip()}
+    assert with_text == {s.query_id for s in SLOTS}
+    assert len(with_text) == 32
+    assert len({s.query_text for s in SLOTS}) == 32, "query wording must be unique"
 
 
 def test_q_sup_wording_is_exact_including_em_dash():

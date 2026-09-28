@@ -15,7 +15,9 @@ from pathlib import Path
 
 from .query_spec import (
     APPROVED_CATEGORY_COUNTS, APPROVED_DEPENDENCY_TOTAL, APPROVED_DIFFICULTY_COUNTS,
-    APPROVED_EXPLICIT, APPROVED_IMPLICIT, DEPENDENCY_CATEGORIES, SLOTS, validate_spec,
+    APPROVED_EXPLICIT, APPROVED_IMPLICIT, CHUNKING_LIMITATION_NOTE,
+    DEPENDENCY_CATEGORIES, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE, SLOTS,
+    validate_spec,
 )
 
 DOC = Path("docs/query_specification.md")
@@ -39,10 +41,12 @@ def render() -> str:
     L.append("> **Generated file.** Produced by `python3 -m src.benchmark.render_spec_doc`")
     L.append("> from `src/benchmark/query_spec.py`. Do not edit by hand; a test asserts this")
     L.append("> file matches the code.\n")
-    L.append("The slot distribution is **APPROVED and FROZEN**. Only the three Q-SUP queries")
-    L.append("have approved wording. Every other slot is `query_text = None`: wording cannot")
-    L.append("be authored before the corpus exists, because wording written against the")
-    L.append("mechanism sample would bake sample-specific vocabulary into the benchmark.\n")
+    L.append("The slot distribution is **APPROVED and FROZEN**. All 32 slots now carry")
+    L.append("approved wording (see Exact approved wording). The three Q-SUP queries were fixed")
+    L.append("before the corpus existed; the other 29 were authored against the frozen")
+    L.append("272-document corpus, each derived from the corpus and the slot's own selector.")
+    L.append("Difficulty is re-measured from the final wording before either system is")
+    L.append("evaluated.\n")
     L.append("## Approved totals\n")
     L.append("| Property | Required |")
     L.append("|---|---|")
@@ -69,8 +73,9 @@ def render() -> str:
             f"| {s.version_kind or '-'} | {s.purpose} |"
         )
     L.append("\n## Exact approved wording\n")
-    L.append("These three are fixed by the specification and are **not** placeholders.\n")
-    for s in SLOTS:
+    L.append("All 32 slots are worded. These are fixed by the specification and are **not**")
+    L.append("placeholders.\n")
+    for s in sorted(SLOTS, key=lambda s: s.slot):
         if s.query_text:
             L.append(f"- `{s.query_id}`: \"{s.query_text}\"")
     L.append("\n## Corpus requirements attached to slots\n")
@@ -87,6 +92,17 @@ def render() -> str:
     L.append("Easy `>=40%` lexical overlap, moderate `20-39%`, hard `<20%`, computed with the")
     L.append("frozen stopword set over query text versus the target documents. This is a")
     L.append("property of the benchmark, not a psychological claim about difficulty.\n")
+    L.append("## Difficulty labels vs lexical overlap\n")
+    L.append("Evidence terminology: `difficulty_label` is the frozen benchmark difficulty")
+    L.append("designation; `lexical_overlap` is the measured lexical-overlap percentage;")
+    L.append("`lexical_overlap_band` is the band produced by the frozen overlap thresholds;")
+    L.append("`difficulty_status` is MATCH / MISMATCH between the frozen label and the band.")
+    L.append("The QUERIES sheet of the evidence workbook reports one row per slot with all")
+    L.append("four fields.\n")
+    L.append(DIFFICULTY_METHOD_NOTE + "\n")
+    L.append(DIFFICULTY_MISMATCH_NOTE + "\n")
+    L.append("## Chunking limitation\n")
+    L.append(CHUNKING_LIMITATION_NOTE + "\n")
     L.append("## Validation\n")
     L.append("`python3 -m src.benchmark.query_spec` prints the table and exits non-zero on any")
     L.append("distribution violation. `python3 -m src.benchmark.validate_ground_truth`")

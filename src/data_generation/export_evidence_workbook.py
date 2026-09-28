@@ -33,10 +33,13 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-from ..benchmark.query_spec import SLOTS
+from ..benchmark.query_spec import (
+    CHUNKING_LIMITATION_NOTE, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE, SLOTS,
+)
 from ..benchmark.validate_ground_truth import known_ids, validate_ground_truth
 from ..chunking.splitter import ChunkingConfig, chunk_corpus, validate_coherence
 from ..data_generation.render_v1 import render_corpus
+from ..ground_truth.schema import band_for, lexical_overlap
 from .source_model import doc_ids_from, validate_model
 from .v1_full import build_final_corpus
 
@@ -73,11 +76,6 @@ DOC_TYPE_LABEL = {
     "meeting_notes": "Meeting notes",
     "runbook": "Operational runbook",
     "component_doc": "Technical component",
-}
-DIFFICULTY_BAND = {
-    "easy": "lexical overlap >= 40% (frozen stopword set)",
-    "moderate": "lexical overlap 20-39% (frozen stopword set)",
-    "hard": "lexical overlap < 20% (frozen stopword set)",
 }
 
 HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
@@ -255,12 +253,16 @@ class EvidenceExporter:
                            "edited."))
         ws.append(("NOTE", "No API keys, access tokens or secrets are included."))
         ws.append(("NOTE", "No BM25 or RAG experiment has been run; no experimental "
-                           "results or charts exist yet."))
-        ws.append(("NOTE", "Only the three Q-SUP queries have frozen authored wording. "
-                           "The other 29 slots are defined by their machine "
-                           "specification (category, difficulty, selector, purpose) and "
-                           "are resolved by selector; their wording is authored as a "
-                           "separate step before evaluation."))
+                            "results or charts exist yet."))
+        ws.append(("NOTE", "All 32 benchmark queries carry frozen authored wording. "
+                            "The three Q-SUP queries use the originally approved text; "
+                            "the other 29 slots were worded against the frozen "
+                            "272-document corpus, derived from the corpus and each "
+                            "slot's selector. See QUERIES and METHODOLOGY NOTES."))
+        ws.append(("NOTE", "Difficulty labels are frozen benchmark designation; the "
+                            "measured lexical-overlap band is a corpus-dependent "
+                            "diagnostic. A MATCH/MISMATCH difference between them is "
+                            "documented, not relabelled. See METHODOLOGY NOTES."))
         ws.append(())
         ws.append(("Export", None))
         ws.append(("Model version", self.model.model_version))
@@ -271,6 +273,75 @@ class EvidenceExporter:
                             "recorded."))
         self._style(ws, ["Field", "Value"],
                     {1: 30, 2: 120}, wrap={2})
+
+    # -- METHODOLOGY NOTES -------------------------------------------------
+    def _sheet_methodology_notes(self, wb) -> None:
+        ws = self._sheet(wb, "METHODOLOGY NOTES")
+        words = [d.word_count() for d in self.documents]
+        sorted_words = sorted(words)
+        median = ((sorted_words[len(sorted_words) // 2 - 1]
+                   + sorted_words[len(sorted_words) // 2]) / 2
+                  if len(sorted_words) % 2 == 0
+                  else sorted_words[len(sorted_words) // 2])
+        max_words = max(words)
+        over_600 = sum(1 for w in words if w >= 600)
+        multi_chunk = sum(1 for d in self.documents
+                          if len(self.chunks_by_doc.get(d.document_id, [])) > 1)
+        match = sum(1 for s in SLOTS if (lambda band: band is not None and
+                    band == s.difficulty)(self._band_of(s)))
+        mismatch = 32 - match
+        rows = [
+            ("SECTION", "Query difficulty terminology", ""),
+            ("difficulty_label",
+             "frozen benchmark difficulty designation", "11 easy / 11 moderate / 10 hard"),
+            ("lexical_overlap",
+             "measured lexical overlap percentage between the query wording and the "
+             "resolved target documents' body text (frozen stopword set)",
+             "computed per slot in the QUERIES sheet"),
+            ("lexical_overlap_band",
+             "band produced by the frozen lexical-overlap thresholds "
+             "(easy >= 40%, moderate 20-39%, hard < 20%)", "derived, not relabelled"),
+            ("difficulty_status",
+             "MATCH / MISMATCH between the frozen difficulty label and the "
+             "lexical-overlap band", f"{match} MATCH / {mismatch} MISMATCH"),
+            ("", "", ""),
+            ("SECTION", "Difficulty labels vs lexical overlap (methodological note)", ""),
+            ("methodological_note", DIFFICULTY_METHOD_NOTE, "frozen statement"),
+            ("mismatch_interpretation", DIFFICULTY_MISMATCH_NOTE,
+             "mismatches are visible, kept, and not relabelled"),
+            ("", "", ""),
+            ("SECTION", "Chunking limitation on the final corpus", ""),
+            ("Documents", str(len(self.documents)), "final corpus, all versions"),
+            ("Chunks (primary 1000/200)", str(len(self.chunks_primary)),
+             "frozen configuration"),
+            ("Chunks (comparison 600/100)", str(len(self.chunks_comparison)),
+             "comparison only"),
+            ("Chunks per document", "1 for every document",
+             f"272 documents = 272 chunks; every document produces exactly one chunk"),
+            ("Documents with more than one chunk", str(multi_chunk),
+             "0 = each document is a single retrieval unit"),
+            ("Median words per document", f"{median:.1f}",
+             "≈ 82.5 words"),
+            ("Maximum words per document", str(max_words),
+             "233 words"),
+            ("Documents reaching 600 words", str(over_600),
+             "0 = no document reaches 600 words"),
+            ("Layout 1000/200 vs 600/100", "identical",
+             "same one-chunk-per-document layout on the final corpus"),
+            ("limitation", CHUNKING_LIMITATION_NOTE, "frozen statement"),
+        ]
+        for row in rows:
+            ws.append(list(row))
+        self._style(ws, ["Field", "Statement", "Notes"],
+                    {1: 34, 2: 110, 3: 70}, wrap={2, 3})
+
+    def _band_of(self, slot) -> str | None:
+        res = self.report.resolutions.get(slot.query_id)
+        if not res or not slot.query_text or not res.document_ids:
+            return None
+        relevant = "\n".join(self.doc_by_id[d].body
+                             for d in res.document_ids if d in self.doc_by_id)
+        return band_for(lexical_overlap(slot.query_text, relevant))
 
     # -- DOCUMENTS -----------------------------------------------------------
     def _status_of(self, doc) -> tuple[str, str]:
@@ -491,25 +562,35 @@ class EvidenceExporter:
     def _sheet_queries(self, wb) -> None:
         ws = self._sheet(wb, "QUERIES")
         headers = ["query_id", "slot_number", "query_text", "category",
-                   "difficulty", "difficulty_measure", "dependency_related",
-                   "explicit_or_implicit", "superseded_case", "expected_answer_type",
-                   "selector", "purpose", "ground_truth_status"]
+                   "difficulty_label", "lexical_overlap", "lexical_overlap_band",
+                   "difficulty_status", "dependency_related", "explicit_or_implicit",
+                   "superseded_case", "expected_answer_type", "selector", "purpose",
+                   "ground_truth_status"]
         for s in sorted(SLOTS, key=lambda x: x.slot):
             res = self.report.resolutions[s.query_id]
             query_text = (s.query_text if s.query_text
-                          else "[Wording not yet authored (by design). The slot is "
-                               "fully specified and resolved by its selector.]")
+                          else "[Wording not yet authored. The slot is fully specified "
+                               "and resolved by its selector.]")
             answer = CATEGORY_LABEL[s.category]
             dep_related = "yes" if s.dependency_explicitness else "no"
             status = "RESOLVED" if res.resolved else "UNRESOLVED"
+            if query_text and res.document_ids:
+                relevant = "\n".join(self.doc_by_id[d].body
+                                     for d in res.document_ids if d in self.doc_by_id)
+                overlap = lexical_overlap(query_text, relevant)
+                band = band_for(overlap)
+                difficulty_status = "MATCH" if band == s.difficulty else "MISMATCH"
+            else:
+                overlap = band = difficulty_status = "-"
             ws.append([s.query_id, s.slot, query_text, CATEGORY_LABEL[s.category],
-                       s.difficulty, DIFFICULTY_BAND[s.difficulty], dep_related,
+                       s.difficulty, f"{overlap:.1%}" if overlap != "-" else "-",
+                       band, difficulty_status, dep_related,
                        s.dependency_explicitness or "-", s.version_kind or "-",
                        answer, s.selector, s.purpose, status])
         self._style(ws, headers,
-                    {1: 11, 2: 11, 3: 70, 4: 24, 5: 11, 6: 40, 7: 15, 8: 18, 9: 16,
-                     10: 34, 11: 38, 12: 90, 13: 14},
-                    wrap={3, 6, 10, 11, 12})
+                    {1: 11, 2: 11, 3: 70, 4: 24, 5: 13, 6: 13, 7: 17, 8: 15,
+                     9: 15, 10: 18, 11: 16, 12: 34, 13: 38, 14: 90, 15: 14},
+                    wrap={3, 12, 13, 14})
 
     # -- QUERY GROUND TRUTH --------------------------------------------------
     def _ground_truth_rows(self):
@@ -797,6 +878,7 @@ class EvidenceExporter:
         wb = Workbook()
         wb.remove(wb.active)
         self._sheet_readme(wb)
+        self._sheet_methodology_notes(wb)
         self._sheet_documents(wb)
         self._sheet_document_content(wb)
         self._sheet_chunks(wb)

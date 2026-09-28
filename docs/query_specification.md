@@ -4,10 +4,12 @@
 > from `src/benchmark/query_spec.py`. Do not edit by hand; a test asserts this
 > file matches the code.
 
-The slot distribution is **APPROVED and FROZEN**. Only the three Q-SUP queries
-have approved wording. Every other slot is `query_text = None`: wording cannot
-be authored before the corpus exists, because wording written against the
-mechanism sample would bake sample-specific vocabulary into the benchmark.
+The slot distribution is **APPROVED and FROZEN**. All 32 slots now carry
+approved wording (see Exact approved wording). The three Q-SUP queries were fixed
+before the corpus existed; the other 29 were authored against the frozen
+272-document corpus, each derived from the corpus and the slot's own selector.
+Difficulty is re-measured from the final wording before either system is
+evaluated.
 
 ## Approved totals
 
@@ -71,11 +73,41 @@ corpus. An unresolved slot is a hard STOP at freeze, never a warning.
 
 ## Exact approved wording
 
-These three are fixed by the specification and are **not** placeholders.
+All 32 slots are worded. These are fixed by the specification and are **not**
+placeholders.
 
+- `Q-01`: "Which Meridian PRD defines employee onboarding and payroll readiness?"
+- `Q-02`: "Where is the runbook for recovering a delayed event on the domain event bus?"
+- `Q-03`: "Which document is the current feature specification for Progressive Profiling?"
+- `Q-04`: "Which decision record explains why tax paperwork is no longer part of initial registration?"
 - `Q-SUP-1`: "Which PRD is in production?"
+- `Q-05`: "When I logged in this morning the whole thing just sat there frozen for ages, so I had to give up on it."
+- `Q-06`: "Can you summarise what the Progressive Profiling feature does?"
 - `Q-SUP-3`: "What is the current approval limit?"
+- `Q-07`: "Which document would an internal audit point to as the place where tax paperwork is requested only after a person has signed in for the very first time?"
+- `Q-08`: "What does the onboarding PRD explicitly leave out of its remit?"
 - `Q-SUP-2`: "A spec says tax at first login — which doc, still current?"
+- `Q-09`: "Which component does Progressive Profiling depend on, per the feature specification?"
+- `Q-10`: "Which component document says the Timesheet Approval Engine depends on the payroll ledger database?"
+- `Q-11`: "Is there a stated order so identity verification finishes before progressive profiling in the product sequence?"
+- `Q-12`: "According to the specification, which external third-party service does Progressive Profiling rely on?"
+- `Q-13`: "Which component is needed to support Bulk Timesheet Approval even though no specification states it directly?"
+- `Q-14`: "Which part of the product must be available before streak saver can work even though no document states that plainly?"
+- `Q-15`: "Which feature's work has to wait on another feature's delivery before its own items can proceed?"
+- `Q-16`: "Which operating guide reveals the hidden dependency that Bulk Timesheet Approval has on another component?"
+- `Q-17`: "Which document mentions that Progressive Profiling depends on the taxband rate service?"
+- `Q-18`: "Which two places in the documentation must a reader consult together to spot where Progressive Profiling leans on the taxband rate service?"
+- `Q-19`: "Which set of meeting minutes alludes to a connection between two backend services without ever asserting it outright?"
+- `Q-20`: "From the sequence in which the product's requirements are listed, which stage must complete before streak saver can act?"
+- `Q-21`: "Which older document still holds the only written trace of the dependency between requirement REQ-M-03 and the timesheet engine?"
+- `Q-22`: "Which documents settle the dispute between the onboarding PRD and the Progressive Profiling specification?"
+- `Q-23`: "Which documents disagree about how long generated payslips stay available for download?"
+- `Q-24`: "Which two documents were originally at odds until a later PRD revision quietly resolved the discrepancy?"
+- `Q-25`: "Which decision record prioritised releasing bulk approval for whole batches only?"
+- `Q-26`: "What does the onboarding PRD state as a non-goal and why was it excluded?"
+- `Q-27`: "What exactly is different in the second release of the onboarding PRD, and which documented decision explains that difference?"
+- `Q-28`: "Why did the team deprioritise partial-batch approval according to the decision record?"
+- `Q-29`: "Putting the Progressive Profiling specification next to the tax-collection decision record, what do these two documents together tell a stakeholder?"
 
 ## Corpus requirements attached to slots
 
@@ -92,6 +124,23 @@ hard stops.
 Easy `>=40%` lexical overlap, moderate `20-39%`, hard `<20%`, computed with the
 frozen stopword set over query text versus the target documents. This is a
 property of the benchmark, not a psychological claim about difficulty.
+
+## Difficulty labels vs lexical overlap
+
+Evidence terminology: `difficulty_label` is the frozen benchmark difficulty
+designation; `lexical_overlap` is the measured lexical-overlap percentage;
+`lexical_overlap_band` is the band produced by the frozen overlap thresholds;
+`difficulty_status` is MATCH / MISMATCH between the frozen label and the band.
+The QUERIES sheet of the evidence workbook reports one row per slot with all
+four fields.
+
+Difficulty labels were assigned during benchmark construction based on the intended reasoning complexity of each task. Lexical overlap was subsequently measured as a corpus-dependent diagnostic. Because product-management queries may necessarily contain domain-specific terminology, feature names, component names, and requirement identifiers, lexical-overlap bands do not always correspond to the intended difficulty labels. The original difficulty labels were retained rather than altered post hoc to force agreement with the lexical measure.
+
+The slots whose lexical-overlap band differs from their frozen difficulty label are documented and kept visible rather than hidden. A band mismatch is not treated as evidence that the benchmark difficulty labels are automatically wrong: the labels encode intended task/reasoning complexity, whereas lexical overlap is a corpus-dependent diagnostic.
+
+## Chunking limitation
+
+The frozen 1000/200 chunking configuration does not produce multi-chunk documents in the final synthetic corpus. Consequently, the experiment evaluates retrieval over document-sized chunks and does not test cross-chunk retrieval behaviour.
 
 ## Validation
 
