@@ -176,3 +176,59 @@ def test_q_sup_3_does_not_match_a_bare_number():
         assert r.entity_ids, "a resolved approval-limit spec must name its feature"
     else:
         assert r.problems("Q-SUP-3")
+
+
+# ------------------------------------------------------------------- C6 measure
+
+def test_revised_c6_catches_genuine_verbatim_duplication():
+    """
+    Positive control for the revised C6.
+
+    A measure that only ever returns zero would pass the corpus just as easily as a clean
+    chunker, so it must be shown to fail on real duplication.
+    """
+    from src.chunking.splitter import (C6_MAX_DUPLICATE_RATIO, C6_NGRAM_CONTAMINATION,
+                                       Chunk, ChunkingConfig, validate_coherence)
+
+    def make(doc_id, text, i):
+        return Chunk(chunk_id=f"{doc_id}-C{i}", document_id=doc_id, chunk_index=i,
+                     text=text, word_count=len(text.split()))
+
+    paragraph = "The checkout service must retry failed card authorisations exactly twice."
+    duplicated = paragraph + " " + "Retry budget is fixed at two attempts per order."
+
+    chunks = [
+        make("DOC-1", duplicated, 0),
+        make("DOC-1", duplicated, 1),      # verbatim copy of chunk 0
+        make("DOC-1", "Session tokens expire after thirty minutes of inactivity.", 2),
+        make("DOC-1", "The warehouse ledger reconciles nightly against supplier invoices.", 3),
+    ]
+    assert C6_NGRAM_CONTAMINATION == 0.5
+    assert C6_MAX_DUPLICATE_RATIO == 0.02
+
+    from src.data_generation.v1_sample import build_mechanism_sample
+    results = {r.check_id: r for r in validate_coherence(
+        [], chunks, build_mechanism_sample(), ChunkingConfig())}
+    c6 = results["C6"]
+    assert not c6.passed, "C6 must FAIL on a verbatim duplicate pair"
+    assert "1 pairs" in c6.observed
+
+
+def test_revised_c6_ignores_shared_vocabulary_across_documents():
+    """The old measure flagged different documents that merely shared a word type.
+    Duplication is scoped to one document, so a near-identical chunk in a DIFFERENT
+    document must not be flagged."""
+    from src.chunking.splitter import Chunk, ChunkingConfig, validate_coherence
+    from src.data_generation.v1_sample import build_mechanism_sample
+
+    text = ("The checkout service retries failed card authorisations twice before "
+            "escalating to the payment operations on-call engineer.")
+
+    def make(doc_id, i):
+        return Chunk(chunk_id=f"{doc_id}-C{i}", document_id=doc_id, chunk_index=i,
+                     text=text, word_count=len(text.split()))
+
+    chunks = [make("DOC-A", 0), make("DOC-B", 0)]
+    results = {r.check_id: r for r in validate_coherence(
+        [], chunks, build_mechanism_sample(), ChunkingConfig())}
+    assert results["C6"].passed, "identical text in two documents is not chunk duplication"

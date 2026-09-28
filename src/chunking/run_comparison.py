@@ -182,25 +182,31 @@ def main() -> int:
         )
     print(verdict)
     print()
-    print("  Both configurations FAIL C6 (>90% duplicate chunks < 2%).")
-    print("  Diagnosis required before this can be called a chunking defect:")
+    print("  C6 history (recorded, not a live decision):")
+    print("    The original C6 measure was same-document word-TYPE-BAG containment > 0.9.")
+    print("    It was replaced on 2026-09-28 by same-document 8-gram containment > 0.5,")
+    print("    because type-bag containment saturates in a closed-domain templated corpus")
+    print("    and flagged pairs that share no repeated text. See CHUNKING_DECISION.md.")
+    print()
+    print("  The revision is a corpus/chunk COHERENCE check. It is a project-defined")
+    print("  structural validation threshold, not an externally validated constant, and")
+    print("  it is NOT a retrieval-performance metric. No BM25 or RAG result exists or may")
+    print("  be used to choose a configuration.")
+    print()
     for report in reports:
         cfg = report["config"]
         pairs = report["diagnostic"]["adjacent_chunk_pairs"]
-        flagged = [p for p in pairs if p["type_bag_containment"] > 0.9]
-        if flagged:
-            mean_type = sum(p["type_bag_containment"] for p in flagged) / len(flagged)
-            mean_ng = sum(p["ngram8_containment"] for p in flagged) / len(flagged)
-            print(f"    {cfg['label']} ({cfg['chunk_size']}/{cfg['chunk_overlap']}): "
-                  f"{len(flagged)} pair(s) exceed 0.9 on the C6 type-bag measure; "
-                  f"mean type-bag {mean_type:.3f} vs mean 8-gram containment {mean_ng:.3f}")
-    print()
-    print("  The C6 type-bag measure and the 8-gram diagnostic disagree by roughly 3x.")
-    print("  Type-bag containment is dominated by how many distinct word TYPES a document")
-    print("  uses, not by whether text is repeated. The pilot documents use very few types")
-    print("  (see diagnostic.document_type_diversity), so any two long chunks of the same")
-    print("  document share most types by construction.")
-    print("  The threshold has NOT been changed and C6 is reported as FAILING.")
+        if not pairs:
+            continue
+        t = [p["type_bag_containment"] for p in pairs]
+        n = [p["ngram8_containment"] for p in pairs]
+        over_old = sum(1 for v in t if v > 0.9)
+        over_new = sum(1 for v in n if v > 0.5)
+        print(f"  {cfg['label']} ({cfg['chunk_size']}/{cfg['chunk_overlap']}): "
+              f"{len(pairs)} adjacent same-document pair(s) measured; "
+              f"type-bag>0.9 flags {over_old}, 8-gram>0.5 flags {over_new}")
+        print(f"       mean type-bag {sum(t)/len(t):.3f} (max {max(t):.3f})   "
+              f"mean 8-gram {sum(n)/len(n):.3f} (max {max(n):.3f})")
 
     print()
     print("Observed differences (reported for transparency, NOT a selection basis):")

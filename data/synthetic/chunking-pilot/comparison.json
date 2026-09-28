@@ -264,10 +264,10 @@
         },
         {
           "check_id": "C6",
-          "description": "Near-duplicate chunks within a document",
-          "passed": false,
-          "observed": "12 pairs = 28.6%",
-          "threshold": "<2%",
+          "description": "Near-duplicate chunks within a document (8-gram containment)",
+          "passed": true,
+          "observed": "0 pairs = 0.0%",
+          "threshold": "<2% of chunks (pair overlap >0.5)",
           "critical": false
         },
         {
@@ -287,10 +287,8 @@
           "critical": true
         }
       ],
-      "all_pass": false,
-      "failed": [
-        "C6"
-      ]
+      "all_pass": true,
+      "failed": []
     },
     {
       "config": {
@@ -678,10 +676,10 @@
         },
         {
           "check_id": "C6",
-          "description": "Near-duplicate chunks within a document",
+          "description": "Near-duplicate chunks within a document (8-gram containment)",
           "passed": false,
-          "observed": "29 pairs = 46.0%",
-          "threshold": "<2%",
+          "observed": "4 pairs = 6.3%",
+          "threshold": "<2% of chunks (pair overlap >0.5)",
           "critical": false
         },
         {
@@ -707,5 +705,5 @@
       ]
     }
   ],
-  "verdict": "NO DISCRIMINATION. A fails ['C6']; B fails ['C6']. Both configurations fail the same pre-specified check, so the criteria do not select between them, and selecting on retrieval performance is prohibited. This is a genuine open decision requiring explicit approval."
+  "verdict": "SELECT A (1000/200) - only A satisfies every criterion. B fails ['C6']."
 }

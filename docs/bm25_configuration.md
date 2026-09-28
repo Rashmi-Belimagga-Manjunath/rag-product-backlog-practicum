@@ -68,10 +68,17 @@ Fixed so the baseline is reproducible and the comparison is not confounded by to
 - The output logs, per query: `chunk_id`, `rank`, `score`, `document_id`. Retrieval is
   logged **before** any presentation step, independently of any answer.
 
-**Open design decision.** BM25 returns passages, not prose, so usefulness/clarity/trust are
-not directly comparable. See §8.1 of `docs/evaluation_metrics.md` — the recommended option
-is to present the top-5 passages as the BM25 response, with the confound disclosed. **This
-requires explicit approval and has not been decided.**
+### Output form — decided 2026-09-28
+
+**BM25's user-facing output is the top-5 retrieved passages, presented as retrieved
+evidence.** It has no generation component, and **no prose answer is fabricated for BM25** in
+order to make it look like RAG's output. The two systems produce different output forms:
+BM25 produces retrieved evidence, RAG produces a generated grounded answer.
+
+This is resolved by the two-layer evaluation design in `docs/evaluation_metrics.md` §0:
+Layer A compares retrieval like-for-like, Layer B rates each system's real output. The
+asymmetry is a documented characteristic of the systems being compared, and the confound it
+introduces into the Layer B user-facing metrics is disclosed rather than engineered away.
 
 ---
 

@@ -26,6 +26,21 @@ from dataclasses import dataclass, field
 
 _SENTENCE_SPLIT = re.compile(r"(?<=[.!?;])\s+(?=[A-Z0-9\"'(])")
 
+# --- C6 constants (revised 2026-09-28, approved) ----------------------------------
+# A project-defined structural validation threshold, NOT an externally validated
+# constant and NOT a retrieval-performance metric. See CHUNKING_DECISION.md.
+C6_NGRAM_SIZE = 8
+C6_NGRAM_CONTAMINATION = 0.5
+C6_MAX_DUPLICATE_RATIO = 0.02
+
+# --- Frozen chunking configuration (approved 2026-09-28) ---------------------------
+# Selected as a pre-experiment design decision from C1-C8 coherence alone. Both
+# candidates pass every structural check, so C1-C8 rank configurations but cannot
+# select one; the already-approved 1000/200 is retained as the declared tie-break.
+# Must NOT be re-tuned after BM25 or RAG results are observed.
+FROZEN_CHUNK_SIZE = 1000
+FROZEN_CHUNK_OVERLAP = 200
+
 
 @dataclass
 class Chunk:
@@ -61,9 +76,11 @@ class Chunk:
 
 @dataclass
 class ChunkingConfig:
-    chunk_size: int = 1000
-    chunk_overlap: int = 200
-    label: str = "primary"
+    """Defaults are the FROZEN configuration approved 2026-09-28. Passing explicit values
+    is for the comparison pilot only, and must not be used after results are observed."""
+    chunk_size: int = FROZEN_CHUNK_SIZE
+    chunk_overlap: int = FROZEN_CHUNK_OVERLAP
+    label: str = "frozen"
 
     def as_dict(self) -> dict:
         return {
@@ -218,7 +235,17 @@ class CoherenceResult:
 
 
 def _bag(text: str) -> frozenset:
+    """Word-type bag. Retained for diagnostics; no longer used by C6 (revised 2026-09-28)."""
     return frozenset(w for w in re.findall(r"[a-z0-9]+", text.lower()) if len(w) > 3)
+
+
+def _shingles(text: str, n: int = C6_NGRAM_SIZE) -> frozenset:
+    """Word n-grams. A chunk shorter than n yields a single degenerate shingle so that
+    short chunks are compared for equality rather than silently skipped."""
+    words = text.split()
+    if len(words) < n:
+        return frozenset({tuple(words)}) if words else frozenset()
+    return frozenset(tuple(words[i:i + n]) for i in range(len(words) - n + 1))
 
 
 def validate_coherence(documents, chunks, model, config: ChunkingConfig,
@@ -345,24 +372,44 @@ def validate_coherence(documents, chunks, model, config: ChunkingConfig,
     ))
 
     # C6 - near-duplicate chunks within a document
+    #
+    # REVISED 2026-09-28 by student approval. The original measure used same-document
+    # word-type-bag containment > 0.9, which produced ~100% false positives in this
+    # closed-domain templated corpus: a ~1,000-token chunk drawn from that corpus holds
+    # only 143-169 distinct word types, so type-bag containment saturates toward 1.0 by
+    # vocabulary exhaustion rather than by copying. Measured maximum same-document
+    # 8-gram containment was 0.0% at every threshold for every chunk in both candidate
+    # configurations, so the original measure was not measuring duplication at all.
+    #
+    # The replacement measures verbatim duplication: two chunks in the SAME document
+    # sharing more than C6_NGRAM_N_CONTAMINATION of their C6_NGRAM_SIZE-word shingles.
+    # Restricting to one document is deliberate - two documents agreeing on a section
+    # heading is consistent documentation, not a chunking fault.
+    #
+    # This is a project-defined structural validation threshold. It is NOT a
+    # externally validated constant and NOT a retrieval-performance metric. C6 asks only
+    # whether the chunker duplicated content; it says nothing about how either retrieval
+    # system will perform. See CHUNKING_DECISION.md for the full diagnostic.
+    shingles = {c.chunk_id: _shingles(c.text) for c in chunks}
     duplicates = 0
     for i, a in enumerate(chunks):
-        bag_a = _bag(a.text)
-        if not bag_a:
+        sa = shingles[a.chunk_id]
+        if not sa:
             continue
         for b in chunks[i + 1:]:
             if a.document_id != b.document_id:
                 continue
-            bag_b = _bag(b.text)
-            if not bag_b:
+            sb = shingles[b.chunk_id]
+            if not sb:
                 continue
-            if len(bag_a & bag_b) / min(len(bag_a), len(bag_b)) > 0.9:
+            if len(sa & sb) / min(len(sa), len(sb)) > C6_NGRAM_CONTAMINATION:
                 duplicates += 1
     dup_ratio = duplicates / len(chunks) if chunks else 0.0
     results.append(CoherenceResult(
-        "C6", "Near-duplicate chunks within a document",
+        "C6", "Near-duplicate chunks within a document (8-gram containment)",
         dup_ratio < 0.02,
-        f"{duplicates} pairs = {dup_ratio:.1%}", "<2%",
+        f"{duplicates} pairs = {dup_ratio:.1%}",
+        f"<2% of chunks (pair overlap >{C6_NGRAM_CONTAMINATION})",
     ))
 
     # C7 - every document yields at least one chunk

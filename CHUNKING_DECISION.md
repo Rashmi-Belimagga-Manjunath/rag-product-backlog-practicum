@@ -1,15 +1,33 @@
-# Chunking Decision — Pending Approval
+# Chunking Decision — APPROVED AND FROZEN
 
-**Status:** DECISION REQUIRED. Neither the C6 measure nor the configuration choice is
-frozen. No BM25 or RAG result has been computed or consulted at any point in this document.
+**Frozen 2026-09-28 on explicit student approval. Recorded before any BM25 or RAG run.**
+No retrieval or generation result exists, and none was used at any point in this document.
+
+**Frozen configuration: chunk target 1000 words, overlap 200 words.**
 
 ---
 
-## 1. What was run
+## 1. Correction to an earlier draft of this record
 
-Both approved configurations were compared on the deterministic long-document pilot, which
-extends the 34-document mechanism sample past the approved length band to stress the
-packer. C1–C8 only.
+An earlier draft of this document claimed that "maximum same-document 8-gram containment is
+0.0% at every threshold from 0.2 to 0.8, for every chunk, in both configurations", and used
+that to support the C6 revision.
+
+**That figure was wrong, and it was an artefact of a bug in the analysis script, not a
+property of the corpus.** The script grouped chunks by splitting the chunk ID on `"#"`, but
+chunk IDs have the form `<document_id>-C<index>` and contain no `#`. Every chunk therefore
+formed its own group, the "same document" comparison set was always empty, and the reported
+maximum was necessarily 0.0.
+
+The claim is withdrawn. All numbers below were recomputed after grouping by `document_id`
+correctly. The corrected figures change the *reason* the configuration was selected, and
+strengthen the case for the C6 revision, but they do not change the outcome.
+
+---
+
+## 2. What was run
+
+Both approved candidates on the deterministic long-document pilot, against C1–C8 only.
 
 | | A: 1000 / 200 | B: 600 / 100 |
 |---|---|---|
@@ -19,108 +37,104 @@ packer. C1–C8 only.
 | C3 no version pair split | PASS | PASS |
 | C4 no orphan references | PASS | PASS |
 | C5 dependency coverage | PASS | PASS |
-| **C6 <2% duplicate chunks** | **FAIL** | **FAIL** |
-| C7 all chunks retrievable | PASS | PASS |
+| **C6 duplicate chunks (revised measure)** | **PASS — 0 pairs = 0.0%** | **FAIL — 4 pairs = 6.3%** |
+| C7 all documents retrievable | PASS | PASS |
 | C8 zero unassigned content | PASS | PASS |
 
-**C6 is the only failing criterion, and it fails identically for both configurations.**
+---
+
+## 3. Why the original C6 had to be replaced
+
+**Original definition:** a duplicate chunk pair is two chunks in the same document whose
+word-**type**-bag containment exceeds 0.9, where the type bag is the set of distinct
+lowercased word tokens of length > 3.
+
+**Corrected measurement of that measure, grouping by document:**
+
+| | same-document pairs | pairs the original measure flags | mean type-bag | max type-bag |
+|---|---|---|---|---|
+| A | 12 | **12 (100%)** | 0.940 | 0.974 |
+| B | 53 | 29 (55%) | 0.908 | 0.985 |
+
+For configuration A the original measure flags **every single pair**, including pairs whose
+true 8-gram containment is as low as 0.000 — pairs that share no repeated text at all.
+
+The cause is saturation, not duplication. In this closed-domain templated corpus a chunk
+carries only **128 distinct word types across 577 words** (A) and **111 across 401 words** (B),
+a type-per-word ratio of 0.22–0.28. Once vocabulary is this narrow, two long chunks of the
+same document necessarily contain almost all of the same types, so type-bag containment
+approaches 1.0 by arithmetic whether or not anything was copied. A threshold of 0.9
+therefore measures corpus vocabulary size, not chunk duplication, and cannot serve as a
+coherence criterion.
+
+The original threshold has **not** been weakened in the sense of being loosened to make a
+configuration pass; the criterion was replaced with one that measures the construct it was
+named for.
 
 ---
 
-## 2. Why C6 fails: the measure cannot work in this corpus
+## 4. The replacement, as approved
 
-C6 as pre-specified uses **same-document word-type-bag containment > 0.9** as its
-definition of a duplicate chunk. Diagnostic on the flagged pairs:
+**A duplicate chunk pair is two chunks in the same document whose 8-word shingle
+containment exceeds 0.5.** Containment is measured against the smaller shingle set, and the
+criterion requires fewer than 2% of chunks to be involved in such a pair.
 
-| | mean type-bag containment | mean 8-gram containment |
-|---|---|---|
-| A | 0.945 | 0.375 |
-| B | 0.945 | 0.419 |
+Corrected measurement:
 
-The two measures disagree by ~2x, and the type-bag measure is the one failing. The cause is
-structural, not a packer defect: a chunk of ~1,000 tokens drawn from a closed-domain
-templated corpus of ~1,700 words contains only **169 word types** (A) or **143** (B). Once
-vocabulary saturates, nearly every long chunk contains nearly every other long chunk's
-vocabulary, so type-bag containment approaches 1.0 by arithmetic rather than by copying.
+| | same-document pairs | pairs the revised measure flags | mean 8-gram | max 8-gram |
+|---|---|---|---|---|
+| A | 12 | **0 (0%)** | 0.306 | 0.454 |
+| B | 53 | **4 (7.5%)** | 0.262 | 0.786 |
 
-**Direct measurement of the full per-chunk distribution confirms there is no duplication at
-all.** Maximum 8-gram containment of each chunk against every other chunk *in the same
-document*:
+**Scope and status of this threshold, stated explicitly:**
 
-| Threshold | A (% chunks) | B (% chunks) |
-|---|---|---|
-| > 0.2 | 0.0% | 0.0% |
-| > 0.3 | 0.0% | 0.0% |
-| > 0.4 | 0.0% | 0.0% |
-| > 0.5 | 0.0% | 0.0% |
-| > 0.6 | 0.0% | 0.0% |
-| > 0.8 | 0.0% | 0.0% |
+- **It is a project-defined structural validation threshold for this corpus.** It is not an
+  externally validated constant, not drawn from a published standard, and must not be
+  described as one.
+- **C6 is a corpus/chunk coherence check, not an experimental retrieval-performance metric.**
+  It asks only whether the chunker duplicated content. It says nothing about how BM25 or
+  RAG will perform, and no C6 result may be used as evidence about either system.
+- Restricting the comparison to a **single document** is deliberate. Two documents that
+  agree on a section heading are consistent documentation, not a chunking fault. Measured
+  cross-document 8-gram containment is substantial (0.3–0.45) and is expected.
+- A positive control is enforced in `tests/test_benchmark_spec.py`: the measure is shown to
+  **fail** on a genuine verbatim duplicate and to **pass** on identical text in two different
+  documents. A measure that only ever returned zero would be worthless, and this test
+  prevents that from going unnoticed.
 
-**Every same-document pair of chunks shares zero 8-grams.** The type-bag measure is
-therefore producing ~100% false positives. C6 is not detecting a defect; it is
-indistinguishable from the criterion it was meant to implement.
+### What B actually does wrong
 
-Cross-document containment is substantial (23–32% of chunks above 0.3), but that is shared
-section-template boilerplate across different documents — legitimate documentation
-consistency, and related to the D-distractor design, not chunk duplication.
-
----
-
-## 3. Proposed C6 revision — REQUIRES APPROVAL
-
-**Proposed:** define a duplicate chunk pair as two chunks **in the same document** sharing
-more than **50%** of their 8-gram shingles (8-word shingles, containment against the
-smaller shingle set). Criterion: **fewer than 2% of chunks** involved in such a pair.
-
-Rationale, fixed before any comparative run:
-
-1. It measures the construct C6 is named for — **verbatim duplication** — rather than
-   vocabulary overlap.
-2. Threshold 0.5 means "half the chunk is copied word-for-word", a conservative bar. Real
-   duplication of a requirement table, an acceptance-criterion block or a risk paragraph
-   clears it easily; template phrasing does not.
-3. Restricting to the same document keeps shared cross-document boilerplate out of the
-   criterion, which is correct — two documents agreeing on a section heading is not a
-   chunking fault.
-4. It is derived from the **construct-validity** argument and the measured distribution
-   above. No retrieval or generation result was involved.
-
-**Under this revision both configurations pass C6 with 0.0% of chunks flagged.**
-
-I am not asserting the revision is approved. Until it is, C6 remains failing and the
-methodology cannot be frozen.
+All four flagged B pairs are the same pattern: a full chunk followed by a short ragged
+remainder. For example, in `DOC-PRD-A-01-v2`, a 597-word chunk is followed by a 109-word
+tail whose shingles are 75.8% contained in the preceding chunk. With a 100-word overlap
+window, almost the whole tail restates what came immediately before it. B's smaller chunk
+target produces more of these short tails; A's larger target produces fewer, and A's worst
+pair reaches only 0.454. This is real, explainable duplication, which is exactly what C6
+exists to catch.
 
 ---
 
-## 4. Consequence: C1–C8 do not discriminate A from B
+## 5. Basis for freezing 1000/200
 
-Even with C6 repaired, **both configurations pass all eight criteria.** C1–C8 are coherence
-and provenance criteria; they check that chunking is not *breaking* documents. They do not
-measure retrieval quality, and they were never designed to rank two healthy configurations.
+**Frozen on C1–C8 structural grounds: A is the only candidate that satisfies every
+criterion.** B fails C6 at 6.3% against a 2% limit.
 
-No configuration may be selected on BM25 or RAG performance — that would make chunking a
-tuned variable and destroy the comparison.
+This is a stronger basis than the tie-break originally anticipated, and it is still not a
+performance basis. C6 measures duplication introduced by the chunker; it is a property of
+the chunker alone and is computable without running either retrieval system.
 
-**Recommended tie-break, stated in advance and not derived from any result:** keep **A
-(1000 / 200)**, the already-approved configuration, because
+**Explicitly forbidden going forward:**
 
-- it is the configuration already in the approved specification, so freezing it introduces
-  no new parameter choice;
-- it yields 42 chunks versus 63, i.e. 33% fewer vectors, lower embedding and index cost,
-  and a smaller evaluation surface — real operational advantages that do not depend on
-  which system is being tested;
-- choosing B would introduce finer-grained retrieval units at exactly the point where we
-  know finer granularity tends to favour embedding retrieval, which is a reason to
-  withhold that change, not to make it.
-
-**This is a recommendation requiring explicit approval.** If B is preferred, say so and it
-will be recorded as a deliberate deviation, with the bias noted.
+- Switching to 600/100 on the basis of anticipated or observed retrieval performance. Finer
+  granularity can favour embedding retrieval, which is a reason to withhold that change, not
+  to make it.
+- Re-tuning chunk size or overlap after any BM25 or RAG result is seen.
+- Relaxing the C6 threshold to admit a configuration.
 
 ---
 
-## 5. Open items
+## 6. State
 
-1. Approve or reject the C6 revision in §3.
-2. Approve or reject configuration A as the tie-break in §4.
-3. If both approved, the chunking criterion is frozen and C8 remains the hard halt for the
-   final corpus.
+- C6 measure: **frozen** at same-document 8-gram containment > 0.5, <2% of chunks.
+- Chunking configuration: **frozen** at 1000 / 200.
+- C8 remains the hard halt for the final corpus.

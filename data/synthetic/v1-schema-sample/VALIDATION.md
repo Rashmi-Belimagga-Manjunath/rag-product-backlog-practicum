@@ -85,8 +85,8 @@ Model: `v1-schema-sample` · seed `20260928` · created 2026-09-28
   - 0 without provenance of 34 (threshold 0)
 - **C5 FAIL** — Orphan chunks under 50 words (threshold calibrated for full-corpus scale)
   - 12/34 chunks under 50 words = 35.3%; concentrated in component_doc, decision_log, meeting_notes, pbi, ticket. SAMPLE-SCALE ARTEFACT: these document types are well below the approved full-corpus length targets, so this is not yet a corpus-level result. See project_scaling() for the projection and the full corpus for the measurement. (threshold <3%)
-- **C6 PASS** — Near-duplicate chunks within a document
-  - 0 pairs = 0.0% (threshold <2%)
+- **C6 PASS** — Near-duplicate chunks within a document (8-gram containment)
+  - 0 pairs = 0.0% (threshold <2% of chunks (pair overlap >0.5))
 - **C7 PASS** — Every document produces at least one chunk
   - 34/34 (threshold 100%)
 - **C8 PASS** — Every ground-truth document ID resolves to >=1 chunk
@@ -104,8 +104,8 @@ Model: `v1-schema-sample` · seed `20260928` · created 2026-09-28
   - 0 without provenance of 34 (threshold 0)
 - **C5 FAIL** — Orphan chunks under 50 words (threshold calibrated for full-corpus scale)
   - 12/34 chunks under 50 words = 35.3%; concentrated in component_doc, decision_log, meeting_notes, pbi, ticket. SAMPLE-SCALE ARTEFACT: these document types are well below the approved full-corpus length targets, so this is not yet a corpus-level result. See project_scaling() for the projection and the full corpus for the measurement. (threshold <3%)
-- **C6 PASS** — Near-duplicate chunks within a document
-  - 0 pairs = 0.0% (threshold <2%)
+- **C6 PASS** — Near-duplicate chunks within a document (8-gram containment)
+  - 0 pairs = 0.0% (threshold <2% of chunks (pair overlap >0.5))
 - **C7 PASS** — Every document produces at least one chunk
   - 34/34 (threshold 100%)
 - **C8 PASS** — Every ground-truth document ID resolves to >=1 chunk

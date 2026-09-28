@@ -144,7 +144,14 @@ or tune experimental results.
 
 ---
 
-## 7. What is deliberately NOT decided here
+## 7. Output form, relative to BM25
+
+RAG's user-facing output is a **generated grounded answer** with `[DOC-ID#Cn]` citations.
+BM25's is its **top-5 retrieved passages**. The two forms are explicitly not identical and
+are not claimed to be. Evaluation is layered accordingly — see
+`docs/evaluation_metrics.md` §0.
+
+## 8. What is deliberately NOT decided here
 
 - No comparison of `text-embedding-3-large` against `-small`. The embedding model is a fixed
   component of the RAG treatment.

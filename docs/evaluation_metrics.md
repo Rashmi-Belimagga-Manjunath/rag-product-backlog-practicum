@@ -6,11 +6,60 @@ results happen to need.
 
 **Scope note.** This document defines *how* metrics are computed. It contains no results.
 
+## 0. Evaluation design: two layers, and why the outputs differ
+
+Evaluation is split into two layers because **the two systems do not produce the same kind
+of output**, and pretending otherwise would corrupt the comparison.
+
+| | BM25 (System A) | RAG (System B) |
+|---|---|---|
+| Output form | **retrieved evidence** — the top-5 ranked passages | **generated grounded answer** built on the retrieved evidence |
+| Generation component | none | yes |
+| Answer prose | none | yes, with `[DOC-ID#Cn]` citations |
+
+**The two output forms are explicitly not identical and are not claimed to be.** BM25 is a
+pure retrieval system; it has no model that could synthesise an answer, and **no prose
+answer will be fabricated for BM25 to make the two superficially symmetrical.** Doing so
+would invent a capability the baseline does not have, and it would blur the very distinction
+the research question is about.
+
+This asymmetry is a **documented characteristic of the systems under comparison**, not a
+confound to be engineered away. It also has a direct consequence: the two layers below
+measure different things, and a difference between layers must be interpreted as a
+difference in *output capability*, not as a like-for-like win.
+
+### Layer A — retrieval comparison (like-for-like)
+
+BM25 and RAG **retrieval** are compared directly, because both return a ranked list of the
+same chunk objects under the same conditions:
+
+- same corpus
+- same 32 queries
+- same ground truth
+- same `k = 5`
+
+Metrics: **Precision@5, Recall@5, MRR**, and **dependency retrieval accuracy** where
+applicable. This layer is a genuine like-for-like comparison of ranking quality.
+
+### Layer B — user-facing decision support (not like-for-like)
+
+Each system is presented as it actually is, and the resulting user-facing output is
+evaluated on: **usefulness, clarity, trust, and task completion time.**
+
+BM25's user-facing output is its top-5 retrieved passages. RAG's is the generated grounded
+answer with citations. Because these are different artefacts, Layer B measures **the
+end-to-end decision-support experience of each system as designed**, including the cost of
+BM25 leaving the user to read and reconcile passages unaided. Section 7.1 records what this means
+for interpretation; the difference is disclosed rather than removed.
+
+Any claim of the form "RAG and BM25 produce the same thing, but RAG does it better" is
+unsupported by design and will not be made.
+
 ---
 
-## 0. Preliminaries
+## 1. Preliminaries
 
-### 0.1 Unit of retrieval and relevance
+### 1.1 Unit of retrieval and relevance
 
 Both systems retrieve **chunks**, produced by the same structure-aware chunker over the same
 corpus. A chunk is the unit because that is the unit both systems actually rank.
@@ -24,13 +73,13 @@ inside the scoring, and it would favour the embedding system by construction.
 Ground truth is derived from the structured source of truth only. No LLM and no retrieval
 run produces a label.
 
-### 0.2 Cutoff
+### 1.2 Cutoff
 
 `k = 5` for all `@k` metrics, matching the RAG retrieval depth proposed in
 `docs/rag_configuration.md`. BM25 and RAG are truncated to the same 5 chunks, so the
 comparison is at equal budget.
 
-### 0.3 Independent logging
+### 1.3 Independent logging
 
 Each system writes a retrieval log **before** any answer is generated:
 
@@ -44,7 +93,7 @@ dropped from the denominator.
 
 ---
 
-## 1. Precision@5
+## 2. Precision@5
 
 ```
 Precision@5 = |retrieved_top5 ∩ relevant| / |retrieved_top5|
@@ -57,7 +106,7 @@ returning 3 results and scoring 3/3 would reward a broken retriever.
 Reported as a proportion, per query, then averaged over the 32 queries (macro-average). The
 per-query values are also retained so category-level analysis is possible.
 
-## 2. Recall@5
+## 3. Recall@5
 
 ```
 Recall@5 = |retrieved_top5 ∩ relevant| / |relevant|
@@ -69,7 +118,7 @@ A system that returns 5 chunks cannot achieve Recall@5 = 1.0 on a query with 9 r
 chunks. This is a property of the metric, not a system defect, and must be stated in the
 results rather than worked around by widening `k`.
 
-## 3. MRR (Mean Reciprocal Rank)
+## 4. MRR (Mean Reciprocal Rank)
 
 ```
 RR(q)  = 1 / rank of the FIRST relevant chunk in the ranked list
@@ -80,7 +129,7 @@ MRR    = (1 / 32) × Σ RR(q)
 Rank is 1-based within the top-5 list. `RR = 0` when the answer-relevant chunk is present
 at rank 6 — it counts as a miss at this cutoff, which is the point of the metric.
 
-## 4. Dependency accuracy
+## 5. Dependency accuracy
 
 Defined over the 13 dependency-related queries. The unit is a **dependency ID**, not a
 document.
@@ -109,30 +158,47 @@ The 19 non-dependency queries are scored on **false-dependency rate only**: any 
 the system asserts when none is expected is a false positive. A system that invents
 dependencies on unrelated queries scores 1.0 precision here, and that must be reported.
 
-### 4.1 Retrieval error vs generation error — mandatory separation
+### 5.1 Retrieval error vs generation error — mandatory separation
 
 This distinction is the difference between "the RAG pipeline works" and "the retriever
 missed", and collapsing it would make the results uninterpretable.
 
 For every dependency error, classify it into exactly one:
 
-| Class | Condition |
-|---|---|
-| **Retrieval error** | The correct document/chunk was in the system's top-5, but the answer still omitted the dependency or asserted a wrong one. |
-| **Generation error** | The correct document/chunk was **not** in the top-5, and the answer omitted the dependency or asserted a wrong one. |
-| **Correct** | The dependency set matches `E(q)` exactly. |
+| Class | Condition | Applies to |
+|---|---|---|
+| **Retrieval error** | The required evidence was **not** retrieved into the top-5, so the answer could not be grounded on it. | Both systems |
+| **Generation / reasoning error** | The required evidence **was** retrieved, but the answer was incorrect, incomplete, unsupported by the retrieved evidence, or failed to use that evidence correctly. | **RAG only** |
+| **Correct** | The dependency set matches `E(q)` exactly. | Both systems |
 
-Procedure: for each error, check whether any ground-truth-relevant chunk appears in that
-system's top-5 for that query. That single lookup determines the class. Both counts are
-reported, and the generation-error count is always conditional on a retrieval miss.
+**BM25.** BM25 has no generation stage, so it cannot commit a generation or reasoning error.
+**Every BM25 error is a retrieval error, and this is assessed directly**: the ground-truth
+document is simply absent from, or ranked below the cutoff in, the top-5. BM25 dependency
+accuracy is therefore a pure retrieval measurement with no interpretation required.
+
+**RAG.** RAG can fail at either stage, and conflating them would make the results
+uninterpretable — a missing dependency could mean the retriever missed it or that the
+generator ignored evidence it was given, and those are opposite findings about the system.
+
+Procedure for RAG, applied per error: check whether any ground-truth-relevant chunk appears
+in that query's logged top-5.
+
+- Not present → **retrieval failure** (required evidence was not retrieved).
+- Present, but the answer still omitted the dependency, asserted a wrong one, or did not
+  cite the evidence → **generation/reasoning failure**.
+
+The classification is driven by the **retrieval log**, which is written before generation, so
+it cannot be influenced by what the generator went on to say. Both counts are reported, and
+the generation-error count is always stated as conditional on a retrieval success.
 
 An answer that invents a dependency **not present in any retrieved chunk** is recorded
 separately as a **fabrication**, counted, and reported. It is a distinct and more serious
-failure than a wrong inference from retrieved evidence.
+failure than a wrong inference from retrieved evidence, because it means the generator
+asserted something the evidence does not support at all.
 
 ---
 
-## 5. Task completion time
+## 6. Task completion time
 
 ```
 time(q, system) = t_answer_visible - t_query_submitted
@@ -162,7 +228,7 @@ be separated.
 
 ---
 
-## 6. Usefulness, 7. Clarity, 8. Trust
+## 7. Usefulness, clarity and trust
 
 **Human rating is gated.** No participant data is collected until the NCI determination is
 confirmed. Until then these three are rated by the researcher/assessor against a fixed
@@ -187,27 +253,38 @@ accurate citations and calibrated statements of uncertainty?
 Reported as mean and distribution per system. With a single rater and n=32, these are
 **descriptive only** — no significance test, no inter-rater reliability claim.
 
-### 8.1 The BM25 answer problem — an open design decision
+### 7.1 The BM25 answer problem — RESOLVED by the two-layer design
 
-BM25 returns ranked chunks. It does not generate prose. **Usefulness, clarity and trust are
-therefore not directly comparable unless BM25 is given something to be rated.**
+BM25 returns ranked passages, not prose, so usefulness, clarity and trust cannot be measured
+on a like-for-like basis. Three options were considered:
 
-Three options, none silently chosen:
+1. Rate the top-5 passages as the BM25 "response".
+2. Report generation metrics for RAG only.
+3. Add a neutral extractive summariser to BM25.
 
-1. **Rate the top-5 passages as the BM25 "response."** Fair in that both systems present
-   user-facing output; it measures documentation readability as much as system usefulness,
-   and penalises BM25 for the corpus's own writing.
-2. **Report generation metrics for RAG only.** Honest, but leaves the research question
-   partly unanswered, since the question asks about efficiency, relevance *and* accuracy.
-3. **Add a neutral extractive summariser to BM25.** Gives BM25 a prose answer, but
-   introduces a second generative component into the baseline, which weakens the
-   "keyword-based retrieval" framing and risks becoming a second RAG system.
+**Decision taken: option 1, implemented as Layer B.** BM25's top-5 passages are presented as
+its user-facing output and rated as such.
 
-**Recommendation:** option 1, with the confound disclosed, because it keeps the baseline a
-pure retrieval system and still yields a comparable user-facing artefact. **This requires
-explicit approval** and is listed as an open decision.
+Options 2 and 3 were rejected for stated reasons. Option 2 leaves the research question
+partly unanswered, since the question asks about efficiency, relevance *and* accuracy.
+Option 3 introduces a second generative component into a baseline that is defined as
+keyword-based retrieval, and risks turning the baseline into a second RAG system.
 
-### 8.2 Citation correctness (RAG only)
+**Consequences that must be disclosed in the results, not glossed over:**
+
+- Layer B is **not** a like-for-like comparison. It compares a retrieval-only system's
+  output against a generation system's output. That is the honest description of the two
+  systems being compared.
+- BM25's usefulness and clarity scores are affected by the readability of the underlying
+  documentation, not only by retrieval quality. This is a property of the closed-domain
+  templated corpus and a limitation of the design, not of the BM25 implementation.
+- A BM25 score that reflects a user having to read and mentally reconcile five passages is a
+  **real cost of the keyword-search workflow**, which is exactly the practical problem the
+  research question asks about. It is reported as such, and the confound is stated in the
+  same sentence as the number.
+- No prose answer is fabricated for BM25 at any point.
+
+### 7.2 Citation correctness (RAG only)
 
 For every claim in a RAG answer that carries a citation, the cited chunk must contain the
 supporting content:
@@ -224,7 +301,7 @@ as a headline number.
 
 ---
 
-## 9. Reporting requirements
+## 8. Reporting requirements
 
 - Every metric is computed over **all 32 queries**. No query is excluded. If a query failed
   to run, it is reported as a failure with its denominator intact.

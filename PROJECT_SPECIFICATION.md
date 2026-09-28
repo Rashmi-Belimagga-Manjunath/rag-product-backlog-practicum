@@ -100,9 +100,11 @@ documents → pre-processing → BM25 index → query → ranked results → top
 - Must be independently runnable and independently evaluable.
 
 *`k1`/`b` are **proposed** as 1.5 / 0.75 and await sign-off — see §11 and
-`docs/bm25_configuration.md`. One item remains open: BM25 returns ranked passages, not
-prose, so the usefulness/clarity/trust metrics are not comparable until BM25 is given a
-user-facing artefact. See `docs/evaluation_metrics.md` §8.1 and `DECISIONS.md` D-010.*
+`docs/bm25_configuration.md`. BM25's user-facing output is its **top-5 retrieved passages**;
+it has no generation component, and **no prose answer is fabricated for BM25**. The two
+systems' output forms are explicitly not identical. Evaluation is layered accordingly —
+Layer A compares retrieval like-for-like, Layer B rates each system's real output. See
+`docs/evaluation_metrics.md` §0 and §7.1, and `DECISIONS.md` D-010.*
 
 ### System B — RAG assistant
 
@@ -122,10 +124,12 @@ documents → pre-processing → chunking → embeddings → vector store
 > comparison, which requires reproducible retrieval logging, versioned prompts,
 > configurable experiments, and clean separation of retrieval from generation.
 
-- Chunking: structure-aware splitter, **1000 / 200 proposed** against **600 / 100**.
-  The pilot has been run against C1–C8 only; **no configuration is selected yet**, and
-  C6 as pre-specified turned out to be unusable in a closed-domain corpus. Selection
-  requires explicit approval — see `CHUNKING_DECISION.md` and `DECISIONS.md` D-005/D-006.
+- Chunking: structure-aware splitter, **FROZEN at 1000 / 200** (approved 2026-09-28).
+  Selected against C1–C8 only: after C6 was replaced with a measure that discriminates,
+  1000/200 is the only candidate passing all eight criteria (600/100 fails C6 at 6.3% vs a
+  2% limit, because its small tail chunks restate their predecessors). Must not be re-tuned
+  after BM25 or RAG results are observed. See `CHUNKING_DECISION.md`, `DECISIONS.md`
+  D-005/D-006.
 - Retrieval: cosine similarity over Chroma, **top-k = 5 proposed**; matches the `@5`
   metric cutoff so the system and the metrics describe the same object.
 - Generation model: **`gpt-4o-mini` proposed** at `temperature = 0`, `max_tokens = 800`,
@@ -290,13 +294,16 @@ features each, ~208 dependencies, ~289 projected chunks. Deferred generation by 
 Machine-validated. Wording deferred except the three Q-SUP queries. |
 | D8 | App framework | ✅ **Deprioritised.** Pipeline first, UI later. |
 | D9 | Real artefacts | ✅ **None.** Fully synthetic. Must be documented as a threat to external validity. |
-| D10 | Chunking configuration | ⏸ **Open — awaiting approval.** 1000/200 recommended; C6 measure
-revision proposed. `CHUNKING_DECISION.md`. |
+| D10 | Chunking configuration | ✅ **FROZEN at 1000/200** (2026-09-28), selected on C1–C8 alone. C6
+replaced with same-document 8-gram containment > 0.5. `CHUNKING_DECISION.md`. |
 | D11 | RAG configuration | ⏸ **Open — awaiting approval.** top-k 5, `gpt-4o-mini`, temp 0,
 `[DOC-ID#Cn]` citations. `docs/rag_configuration.md`. |
-| D12 | Evaluation metrics | ⏸ **Open — awaiting approval.** 8 metrics fixed by formula, including
-the retrieval-vs-generation error split. `docs/evaluation_metrics.md`. |
-| — | BM25 answer presentation | ⏸ **Open decision** (D-010). BM25 returns passages, not prose. |
+| D12 | Evaluation metrics | ⏸ **Definitions proposed.** Two-layer design **approved**: Layer A
+retrieval (P@5, R@5, MRR, dependency accuracy); Layer B user-facing (usefulness, clarity,
+trust, time). BM25 = passages, RAG = generated answer; not identical forms.
+`docs/evaluation_metrics.md`. |
+| — | BM25 answer presentation | ✅ **Settled** (D-010). BM25 presents its top-5 passages; no prose
+answer is fabricated. Layered evaluation. |
 | — | Ethics approval for synthetic corpus | ⏸ Open. Do not assume either way. |
 | — | Human evaluation | 🔒 **Blocked** until ethics approval confirmed. No recruitment, no participant data. |
 

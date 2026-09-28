@@ -26,8 +26,8 @@ python3 -m src.benchmark.validate_ground_truth        # query + ground truth
 | 6 | Query categories | 6 categories, distribution frozen | **FROZEN** |
 | 7 | Difficulty labels | 11 / 11 / 10 by lexical overlap | BANDS FROZEN, LABELS PENDING CORPUS |
 | 8 | Distractor structure | D1–D5, measured not asserted | SCHEMA READY |
-| 9 | Chunking configuration | — | **PENDING — see `CHUNKING_DECISION.md`** |
-| 10 | C6 duplicate-chunk measure | — | **PENDING APPROVAL** |
+| 9 | Chunking configuration | **1000 / 200** | ✅ **FROZEN 2026-09-28** |
+| 10 | C6 duplicate-chunk measure | same-document 8-gram containment > 0.5, <2% of chunks | ✅ **FROZEN 2026-09-28** |
 | 11 | BM25 k1 | 1.5 | **PROPOSED** |
 | 12 | BM25 b | 0.75 | **PROPOSED** |
 | 13 | BM25 tokenisation / no stemming | documented | **PROPOSED** |
@@ -41,30 +41,62 @@ python3 -m src.benchmark.validate_ground_truth        # query + ground truth
 | 21 | Generation config | temp 0, max_tokens 800, n=1 | **PROPOSED** |
 | 22 | RAG system prompt | — | **NOT YET WRITTEN** |
 | 23 | Citation format | `[DOC-ID#Cn]` | **PROPOSED** |
-| 24 | Evaluation metrics | 8 metrics, formulas fixed | **DEFINED, SCRIPTS PENDING** |
-| 25 | BM25 answer presentation | — | **OPEN DECISION — see metrics §8.1** |
+| 24 | Evaluation metrics | Layer A retrieval + Layer B user-facing, 8 metrics | **DESIGN APPROVED, SCRIPTS PENDING** |
+| 25 | BM25 answer presentation | top-5 passages; no prose answer fabricated | ✅ **SETTLED 2026-09-28** |
 | 26 | Reproducibility artefacts | corpus hash, embedding hash, prompt hash, model snapshot | PENDING FREEZE |
 | 27 | Ethics determination | — | **OPEN — NCI coordinator/supervisor** |
 
-Nothing in this table is FROZEN. **State: NOT FROZEN.**
+**State: PARTIALLY FROZEN.** The chunking configuration, the C6 measure, the two-layer
+evaluation design and the BM25 output form are **frozen**. The rest are not. The RAG configuration (items 19–23), the BM25 scoring
+parameters (11–13) and the evaluation scripts (24) still await approval.
+
+**Deliberately not started, by instruction:** the final 272-document corpus, the BM25 run,
+the RAG run, and all results and charts.
 
 ---
 
-## A. Approvals required before the freeze
+## A. Approved on 2026-09-28
 
-These are the only open decisions. Each needs an explicit answer.
+The following were settled by explicit student approval and are recorded **before any BM25
+or RAG run**. No retrieval or generation result was used for any of them.
 
-1. **C6 measure revision** — replace type-bag containment with same-document 8-gram
-   containment > 0.5, threshold <2% of chunks. Evidence: same-document 8-gram overlap is
-   0.0% for every chunk in both configurations, so the current measure has ~100% false
-   positives. See `CHUNKING_DECISION.md` §3.
-2. **Chunking configuration** — C1–C8 pass for both A (1000/200) and B (600/100) once C6 is
-   repaired, so the criteria cannot rank them. Recommended tie-break: keep the already-
-   approved A. See `CHUNKING_DECISION.md` §4.
-3. **BM25 answer presentation** — BM25 returns passages, not prose, so usefulness, clarity
-   and trust are not comparable unless BM25 is given a user-facing artefact. Recommended:
-   present the top-5 passages as the BM25 response and disclose the confound. See
-   `docs/evaluation_metrics.md` §8.1.
+1. **C6 measure revision — APPROVED.** Original: same-document word-type-bag containment
+   > 0.9, which flags 12 of 12 same-document pairs in the 1000/200 configuration including
+   pairs sharing no repeated text, because a chunk here carries only 128 word types per 577
+   words. Replacement: **same-document 8-word shingle containment > 0.5, fewer than 2% of
+   chunks**. This is a **project-defined structural validation threshold**, not an
+   externally validated constant, and **C6 is a corpus/chunk coherence check, not a
+   retrieval-performance metric**. A positive control requires it to fail on a real verbatim
+   duplicate and pass on identical text in two different documents. See
+   `CHUNKING_DECISION.md` §3–4.
+2. **Chunking configuration — FROZEN at 1000 / 200.** Once C6 discriminates, 1000/200 is the
+   only candidate passing all eight criteria; 600/100 fails C6 at 6.3% against a 2% limit.
+   A pre-experiment structural decision. Must not be re-tuned after results are observed, and
+   must not be changed on anticipated retrieval performance. See `CHUNKING_DECISION.md` §5.
+3. **Two-layer evaluation — APPROVED.** Layer A compares BM25 and RAG retrieval like-for-like
+   (P@5, R@5, MRR, dependency accuracy) over the same corpus, queries, ground truth and
+   `k=5`. Layer B rates each system's real user-facing output (usefulness, clarity, trust,
+   task completion time). **BM25 presents its top-5 retrieved passages; RAG presents a
+   generated grounded answer with `[DOC-ID#Cn]` citations. The two output forms are
+   explicitly not identical and are not claimed to be, and no prose answer is fabricated for
+   BM25.** Layer B is therefore not like-for-like, and that asymmetry is a documented
+   characteristic of the systems, not a confound to be engineered away. See
+   `docs/evaluation_metrics.md` §0 and §7.1.
+4. **Error analysis — APPROVED.** BM25 has no generation stage, so **every BM25 error is a
+   retrieval error** and is assessed directly. For RAG: required evidence absent from the
+   top-5 is a **retrieval failure**; evidence retrieved but the answer incorrect, incomplete,
+   unsupported, or failing to use it is a **generation/reasoning failure**. Classification is
+   driven by the retrieval log, which is written before generation. See
+   `docs/evaluation_metrics.md` §5.1.
+
+### A.1 Correction recorded
+
+An earlier draft of `CHUNKING_DECISION.md` and D-005/D-006 claimed same-document 8-gram
+containment was 0.0% at every threshold. **That was a bug in the analysis script, not a
+property of the corpus** — it grouped chunks by splitting the chunk ID on `"#"`, but chunk
+IDs are `<document_id>-C<index>` and contain no `#`, so every same-document comparison set
+was empty. The claim is withdrawn, the figures were recomputed, and the corrected numbers
+strengthened the C6 revision and did not change the frozen configuration. See D-006a.
 
 ## B. Corpus requirements before generation
 

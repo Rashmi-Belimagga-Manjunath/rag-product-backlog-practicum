@@ -488,45 +488,78 @@ recorded as an open obligation rather than a resolved choice.
 - The API key used for live verification was exposed in conversation and must be
   revoked and rotated. It is gitignored and was never committed.
 
-### D-005 — C6 as pre-specified cannot discriminate in a closed-domain corpus (PROPOSED)
+### D-005 — C6 replaced: type-bag containment is not a duplication measure (APPROVED)
 
-**Status:** PROPOSED, requires approval. Not frozen.
+**Status:** APPROVED by the student 2026-09-28 and FROZEN. Recorded before any BM25 or RAG
+run. No retrieval or generation result was used.
 
-The pilot comparison of 1000/200 and 600/100 on the long-document stress corpus passed
-C1-C5, C7 and C8 for both configurations, and failed C6 for both. C6 as pre-specified uses
-same-document word-type-bag containment > 0.9 to define a duplicate chunk.
+The original C6 defined a duplicate chunk pair as two chunks in the same document whose
+word-type-bag containment exceeded 0.9. Measured over all same-document pairs, that measure
+flags **12 of 12 pairs (100%)** for the 1000/200 configuration and 29 of 53 (55%) for
+600/100 — including pairs that share no repeated text at all.
 
-Direct measurement shows the measure is unusable here. A ~1,000-token chunk drawn from a
-closed-domain templated corpus contains only 143-169 distinct word types, so type-bag
-containment approaches 1.0 by vocabulary saturation rather than by copying. Measured
-maximum 8-gram containment of each chunk against every other chunk in the same document is
-**0.0% at every threshold from 0.2 to 0.8, for every chunk, in both configurations.**
+The cause is saturation. A chunk in this closed-domain templated corpus carries only 128
+distinct word types across 577 words (ratio 0.22), so two long chunks of the same document
+necessarily contain nearly the same types whether or not anything was copied. A 0.9
+threshold therefore measures corpus vocabulary size, not chunk duplication.
 
-The criterion is therefore producing approximately 100% false positives and is
-indistinguishable from the construct it was meant to measure. Proposed replacement:
-same-document 8-gram containment > 0.5, fewer than 2% of chunks involved in such a pair.
-Threshold derived from the construct-validity argument and the measured distribution, with
-no retrieval or generation result involved. Under the proposal both configurations pass.
+**Approved replacement:** a duplicate chunk pair is two chunks in the same document whose
+8-word shingle containment exceeds 0.5, and fewer than 2% of chunks may be involved in such
+a pair. Under the replacement, 1000/200 flags 0 pairs (0.0%) and 600/100 flags 4 pairs
+(6.3%).
 
-Full evidence and reasoning: `CHUNKING_DECISION.md`.
+The threshold is **a project-defined structural validation threshold for this corpus**. It
+is not an externally validated constant and must not be described as one. **C6 is a
+corpus/chunk coherence check, not a retrieval-performance metric**, and no C6 result may be
+cited as evidence about either system. A positive control in `tests/test_benchmark_spec.py`
+requires the measure to fail on a genuine verbatim duplicate and to pass on identical text
+in two different documents.
 
-### D-006 — C1-C8 rank configurations; they do not select one (PROPOSED)
+Full evidence, including a correction to an earlier faulty analysis, is in
+`CHUNKING_DECISION.md`.
 
-**Status:** PROPOSED, requires approval. Not frozen.
+### D-006 — Chunking frozen at 1000/200 on C1–C8 grounds (APPROVED)
 
-Once C6 is repaired, both 1000/200 and 600/100 pass all eight criteria. C1-C8 test that
-chunking does not break documents; they are not designed to measure retrieval quality and
-were never expected to separate two healthy configurations.
+**Status:** APPROVED by the student 2026-09-28 and FROZEN. Recorded before any BM25 or RAG
+run.
 
-Selection therefore requires a tie-break that is **not** derived from BM25 or RAG
-performance. Recommended: keep the already-approved 1000/200, since it introduces no new
-parameter choice, yields 42 chunks rather than 63 (fewer vectors, lower cost, smaller
-evaluation surface), and choosing the finer-grained configuration is a change that tends to
-favour embedding retrieval.
+Once C6 was replaced with a measure that actually discriminates, **1000/200 is the only
+candidate that satisfies all eight criteria**; 600/100 fails C6 at 6.3% against a 2% limit.
+The four B failures are all short ragged remainder chunks that substantially restate the
+preceding chunk, because B's 100-word overlap window accounts for most of a 109-word tail.
 
-### D-007 — RAG configuration proposals (PROPOSED, not frozen)
+The frozen configuration was originally anticipated to require a non-performance tie-break
+between two passing candidates. It does not: the corrected measurement shows a clean
+structural discriminator. The outcome is the same, and the basis is still entirely
+structural — C6 measures duplication introduced by the chunker and is computable without
+running either retrieval system.
 
-**Status:** PROPOSED, requires approval. Not frozen.
+**Explicitly forbidden:** switching to 600/100 on anticipated or observed retrieval
+performance; re-tuning chunk size or overlap after any BM25 or RAG result is seen; relaxing
+the C6 threshold to admit a configuration. Finer granularity can favour embedding retrieval,
+which is a reason to withhold the change, not to make it.
+
+### D-006a — Correction: an earlier analysis in this record was wrong (2026-09-28)
+
+An earlier draft of D-005/D-006 and of `CHUNKING_DECISION.md` reported that "maximum
+same-document 8-gram containment is 0.0% at every threshold, for every chunk, in both
+configurations", and used that figure to argue that C6 had no false positives.
+
+**That figure was an artefact of a bug in the analysis script, not a property of the corpus.**
+The script grouped chunks by splitting the chunk ID on `"#"`, but chunk IDs have the form
+`<document_id>-C<index>` and contain no `#`. Every chunk formed its own group, the
+same-document comparison set was always empty, and the reported maximum was necessarily 0.0.
+
+The claim is withdrawn and the numbers recomputed with correct grouping by `document_id`.
+The correction changed the reason 1000/200 was selected — from "tie-break between two
+passing candidates" to "only candidate passing the structural checks" — and strengthened the
+case for the C6 revision, but did not change the frozen outcome. Recorded here because a
+research record must not contain evidence that later turns out to be wrong, even when the
+conclusion survives.
+
+### D-007 — RAG configuration (PROPOSED, not yet frozen)
+
+**Status:** PROPOSED. Awaiting explicit approval; values must not be used in a run until frozen.
 
 top-k 5 (matches the `@5` metric cutoff, ~1,700 token context, ~1.7% of the projected 289
 chunks); `gpt-4o-mini` at temperature 0, max_tokens 800, n=1; machine-checkable
@@ -536,9 +569,9 @@ awareness, advisory framing and no autonomous action. Prompt variants, temperatu
 and top-k sweeps are explicitly excluded, because selecting among them would turn this into
 an optimisation exercise rather than a controlled comparison. Detail: `docs/rag_configuration.md`.
 
-### D-008 — BM25 configuration (PROPOSED, not frozen)
+### D-008 — BM25 configuration (PROPOSED, not yet frozen)
 
-**Status:** PROPOSED, requires approval. Not frozen.
+**Status:** PROPOSED. Awaiting explicit approval; values must not be used in a run until frozen.
 
 k1 1.5, b 0.75 (Robertson & Zaragoza 2009 defaults), Lucene non-negative IDF, chunk-level
 retrieval, lowercase with Unicode word tokenisation, no stemming and no stopword removal
@@ -547,34 +580,52 @@ on ascending chunk ID. BM25 may not be tuned, re-ranked or query-expanded after 
 visible, since that would convert a traditional baseline into a fitted competitor. Detail:
 `docs/bm25_configuration.md`.
 
-### D-009 — Evaluation metrics and the retrieval/generation error split (PROPOSED)
+### D-009 — Evaluation metrics, two-layer design, and the error split (PROPOSED)
 
-**Status:** PROPOSED, requires approval. Not frozen.
+**Status:** Metric definitions PROPOSED. The two-layer design and the BM25 output form are APPROVED.
 
 Precision@5, Recall@5, MRR, dependency accuracy (TP/FP/FN over dependency IDs, split by
 explicitness), and task completion time (3 runs, median, A/B interleaved, warm-up
 discarded, retrieval-only latency logged separately so RAG's generation cost is not hidden).
 
-Every dependency error is classified as a **retrieval error** (relevant chunk was in the
-top-5) or a **generation error** (it was not), by checking the retrieval log for that
-query. Fabricated dependencies and fabricated citations are counted separately, since they
-are worse than wrong inference.
+Every dependency error is classified from the retrieval log, which is written before
+generation and therefore cannot be influenced by what the generator went on to say. **BM25
+has no generation stage, so every BM25 error is a retrieval error and is assessed
+directly.** For RAG: required evidence absent from the top-5 is a **retrieval failure**;
+evidence present but the answer incorrect, incomplete, unsupported, or failing to use that
+evidence is a **generation/reasoning failure**. Fabricated dependencies and fabricated
+citations are counted separately, since they are worse than wrong inference.
 
 Relevance is assigned by provenance from the source model, never by query-to-chunk text
 similarity: a text-similarity label would be a second unstated retrieval model inside the
 scoring and would favour the embedding system by construction. Detail:
 `docs/evaluation_metrics.md`.
 
-### D-010 — BM25 answer presentation is unresolved (OPEN)
+### D-010 — Two-layer evaluation; BM25 presents retrieved passages (APPROVED)
 
-**Status:** OPEN, requires a decision. Not frozen.
+**Status:** APPROVED by the student 2026-09-28. Not frozen as code, but settled as design.
 
-BM25 returns ranked passages, not prose, so usefulness, clarity and trust cannot be compared
-across the two systems unless BM25 is given a user-facing artefact. Recommended: present the
-top-5 passages as the BM25 response and disclose that this measures documentation
-readability as well as system usefulness. The alternatives (RAG-only generation metrics, or
-adding an extractive summariser to the baseline) are weaker in different ways and are set
-out in `docs/evaluation_metrics.md` section 8.1.
+BM25 returns ranked passages and RAG returns a generated grounded answer. **The two output
+forms are explicitly not identical and are not claimed to be**, and **no prose answer is
+fabricated for BM25** to make the systems superficially symmetrical. The asymmetry is a
+documented characteristic of the systems being compared.
+
+Evaluation is therefore layered:
+
+- **Layer A — retrieval comparison (like-for-like).** Precision@5, Recall@5, MRR and
+  dependency retrieval accuracy, over the same corpus, the same 32 queries, the same ground
+  truth and the same `k = 5`. Both systems return the same chunk objects, so this layer is a
+  genuine like-for-like ranking comparison.
+- **Layer B — user-facing decision support (not like-for-like).** Usefulness, clarity, trust
+  and task completion time, rated on each system's real output: BM25's top-5 passages, RAG's
+  generated answer with `[DOC-ID#Cn]` citations.
+
+Layer B is explicitly not like-for-like, and a difference between layers is a difference in
+**output capability**, not a like-for-like win. The confound this introduces — that BM25's
+usefulness and clarity depend partly on the readability of the underlying documentation, and
+that a user reconciling five passages unaided is a real cost of the keyword workflow — is
+disclosed in the same sentence as the number, not removed. Detail: `docs/evaluation_metrics.md`
+§0 and §7.1.
 
 ### D-011 — Ethics determination for human-rated metrics remains open (OPEN)
 
