@@ -66,9 +66,13 @@ Nine entity types. Every entity carries a stable, human-readable ID.
 | `formal_term` | the precise technical name, e.g. "Progressive Profiling" |
 | `colloquial_terms` | informal phrasings used in prose, e.g. "onboarding ramp" |
 | `priority` | |
+| `approval_limit` | stated cost/limit, e.g. `"$5,000"`; empty means the spec states none. **D-013 amendment.** Q-SUP-3 requires a v1/v2 feature-spec pair whose stated limit CHANGED between the versions. |
 
 `formal_term` and `colloquial_terms` exist for the lexical-divergence mechanism in §6.
 They are **not** decoration — they are the experimental control.
+`approval_limit` is rendered into the feature specification body as an "Approval limit"
+section, so the Q-SUP-3 selector can read the stated value out of rendered prose without
+matching on bare numbers (the false-positive trap recorded in `src/benchmark/selectors.py`).
 
 ### 2.3 `requirements` (PRD-level)
 
@@ -117,7 +121,7 @@ not control, which is where a PM's context is most often missing.
 | `dependency_id` | `DEP-031` |
 | `from_type` / `from_id` | entity type + id |
 | `to_type` / `to_id` | entity type + id |
-| `dependency_type` | `blocks` / `depends_on` / `duplicates` / `conflicts_with` / `informs` |
+| `dependency_type` | `blocks` / `depends_on` / `duplicates` / `conflicts_with` / `informs` / `ordering` |
 | `description` | natural-language statement |
 | `is_explicit_in_docs` | whether any document states this, or it is only inferable |
 

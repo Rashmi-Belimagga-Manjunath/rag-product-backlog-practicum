@@ -311,6 +311,7 @@ scores 19/32 precision, not 1.0). Two-layer design **approved**. |
 | — | Embedding configuration | ✅ **FROZEN 2026-09-28**: `text-embedding-3-large`, 3072 dims,
 no overrides, matrix creation config recorded. `experiments/configs/embedding_config.json`. |
 | — | Reproducibility artefacts | ✅ **D-012 FROZEN 2026-09-28.** 12 artefacts, SHA-256, manifest + verifier (`--verify` recomputes). `docs/reproducibility.md`, `src/manifest/manifest.py`. |
+| — | D-013 amendments | ✅ **Approved 2026-09-28.** `DependencyType` gains `ordering` (Q-11/Q-14/Q-20 satisfiable); `Feature.approval_limit` renders a stated limit (Q-SUP-3 satisfiable). Selectors and the 32-query spec are unchanged; mechanism sample unchanged. |
 | — | BM25 answer presentation | ✅ **Settled** (D-010). BM25 presents its top-5 passages; no prose
 answer is fabricated. Layered evaluation. |
 | — | Ethics approval for synthetic corpus | ⏸ **OPEN (D-011).** Do not assume approval or exemption. |

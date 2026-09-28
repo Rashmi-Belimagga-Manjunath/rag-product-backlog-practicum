@@ -715,3 +715,38 @@ Notable choices:
 - Artefacts 1–10 are captured once at the freeze. Reaffirmed at approval: the embedding matrix hash is included; the matrix's positional `chunk_id_order` is hashed/recorded in the sidecar; the code commit is captured and a dirty working tree invalidates the freeze; dependency/environment information is captured via the lockfile and record; and `--verify` recomputes every hash rather than trusting stored values. `.env` and the actual API key are **never** included in any artefact or hash. A later run appends only its own run
   outputs under a new `run_id`; if a frozen input changes, that is a protocol deviation,
   not a re-freeze.
+
+### D-013 — Final-corpus blockers found during freeze validation; two approved extensions (APPROVED 2026-09-28)
+
+**Status:** APPROVED AND RECORDED. Amends the frozen `be92946` methodology by the two
+changes the student approved after the final-corpus feasibility check surfaced them.
+
+During pre-corpus validation, no corpus generation could satisfy three of the seven final
+gates and one more gate had no rendering mechanism, entirely within the frozen definitions:
+
+| Blocker | Gate | Root cause |
+|---|---|---|
+| Ordering cannot be expressed | Q-11 `explicit_dep_ordering` | Selectors match `"order" in dependency_type or "sequence" in dependency_type`; the closed `DependencyType` literal had no value containing either substring, so zero elements of the corpus's dependency set could ever satisfy the predicate. |
+| Ordering cannot be expressed | Q-14 `implicit_dep_ordering` | same as above |
+| Ordering cannot be expressed | Q-20 `cdr_prd_sequence` | same as above (matches on `"order"` specifically) |
+| No approval-limit mechanism | Q-SUP-3 `current_spec_with_approval_limit` | The final corpus must contain a v1/v2 feature-spec pair whose stated approval limit differs. No schema field carried a limit and the renderer emitted no limit text, so the value could not be stated as a limit (the bare-number trap the selector explicitly rejects). |
+
+**Approved changes (both in scope of the frozen experiment design; neither alters the
+32-query spec, the dependency/distractor counts, or any configuration already frozen):**
+
+1. **Dependency vocabulary extended:** `DependencyType` gains the value `ordering`
+   (a stage/phase sequencing constraint). `source_model.py`, `DATA_DESIGN.md` §2.6.
+   The existing selectors for Q-11/Q-14/Q-20 now have corpus content they can match on;
+   selectors and query spec are unchanged. The mechanism sample is **unchanged** (it
+   carries no ordering dependency), so the sample probe continues to report exactly the
+   seven originally-recorded unmet corpus requirements.
+2. **Feature specifications may state an approval limit:** `Feature` gains
+   `approval_limit: str = ""`; `render_v1.py` renders a dedicated "Approval limit"
+   section only when the field is set (current: "is"; superseded: "was"). The final
+   corpus supplies a v1/v2 feature-spec pair with a changed value (Q-SUP-3). The
+   mechanism sample sets no approval limit, so its rendered bytes are unchanged.
+
+Neither change is a rerun or a tuning of any frozen number; both are data-model
+extensions needed for the already-approved gate set to be satisfiable. Re-freeze is
+recorded in a new commit that re-verifies the deterministic sample and the full suite
+before final-corpus generation proceeds.

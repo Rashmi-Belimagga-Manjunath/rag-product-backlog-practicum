@@ -53,8 +53,10 @@ PbiStatus = Literal["to_do", "in_progress", "in_review", "done"]
 #   duplicates          -> near-identical scope, a classic source of wasted effort
 #   conflicts_with      -> a genuine contradiction between two artefacts
 #   informs             -> one document provides context for another
+#   ordering            -> a stage/phase sequencing constraint (D-013 amendment).
+#                          Represents the "order" the Q-11/Q-14/Q-20 selectors match on.
 DependencyType = Literal[
-    "blocks", "depends_on", "duplicates", "conflicts_with", "informs"
+    "blocks", "depends_on", "duplicates", "conflicts_with", "informs", "ordering"
 ]
 
 # Component types. Third-party components are included deliberately: dependencies the
@@ -188,6 +190,10 @@ class Feature(VersionedEntity):
     # Which requirement governs this feature. Used by D2 distractors: a related feature
     # carrying a different requirement must be distinguishable from this one.
     requirement_id: str = ""
+    # An approval limit or threshold stated by this feature specification, e.g. "$5,000".
+    # Empty means the spec states no limit. Required for Q-SUP-3 (D-013 amendment): the
+    # corpus must contain a v1/v2 pair whose stated limit CHANGED between versions.
+    approval_limit: str = ""
 
 
 @dataclass

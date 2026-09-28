@@ -183,6 +183,16 @@ def render_feature_spec(feature: Feature, model: SourceModel, product: Product,
             lines.append(f"- {dependency.description}")
         lines.append("")
 
+    if feature.approval_limit:
+        lines += ["## Approval limit", ""]
+        if feature.is_current:
+            lines.append(f"The current approval limit for {term} is "
+                         f"{feature.approval_limit}.")
+        else:
+            lines.append(f"Under version {feature.version}, the approval limit for "
+                         f"{term} was {feature.approval_limit}.")
+        lines.append("")
+
     if feature.confusable_with:
         lines += ["## Related features", "",
                   "The following features are adjacent in scope and are sometimes "

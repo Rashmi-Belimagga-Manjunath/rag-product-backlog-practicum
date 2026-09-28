@@ -46,7 +46,8 @@
         "FEAT-A-02",
         "FEAT-A-04"
       ],
-      "requirement_id": "REQ-A-01"
+      "requirement_id": "REQ-A-01",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-A-01-v2",
@@ -73,7 +74,8 @@
         "FEAT-A-02",
         "FEAT-A-04"
       ],
-      "requirement_id": "REQ-A-01"
+      "requirement_id": "REQ-A-01",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-A-02",
@@ -100,7 +102,8 @@
         "FEAT-A-01",
         "FEAT-A-03"
       ],
-      "requirement_id": "REQ-A-02"
+      "requirement_id": "REQ-A-02",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-A-03",
@@ -126,7 +129,8 @@
         "FEAT-A-02",
         "FEAT-A-04"
       ],
-      "requirement_id": "REQ-A-03"
+      "requirement_id": "REQ-A-03",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-A-04",
@@ -152,7 +156,8 @@
         "FEAT-A-01",
         "FEAT-A-03"
       ],
-      "requirement_id": "REQ-A-04"
+      "requirement_id": "REQ-A-04",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-B-02",
@@ -177,7 +182,8 @@
       "confusable_with": [
         "FEAT-B-01"
       ],
-      "requirement_id": "REQ-B-01"
+      "requirement_id": "REQ-B-01",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-B-01",
@@ -203,7 +209,8 @@
       "confusable_with": [
         "FEAT-B-02"
       ],
-      "requirement_id": "REQ-B-01"
+      "requirement_id": "REQ-B-01",
+      "approval_limit": ""
     },
     {
       "document_id": "DOC-FEAT-B-01-v2",
@@ -229,7 +236,8 @@
       "confusable_with": [
         "FEAT-B-02"
       ],
-      "requirement_id": "REQ-B-01"
+      "requirement_id": "REQ-B-01",
+      "approval_limit": ""
     }
   ],
   "prds": [

@@ -45,6 +45,8 @@ python3 -m src.benchmark.validate_ground_truth        # query + ground truth
 | 25 | BM25 answer presentation | top-5 passages; no prose answer fabricated | ✅ **SETTLED 2026-09-28** |
 | 26 | Reproducibility artefacts | 12 artefacts, SHA-256, manifest + verifier | ✅ **FROZEN 2026-09-28** (D-012) |
 | 27 | Ethics determination | — | **OPEN — NCI coordinator/supervisor** |
+| 28 | Dependency vocabulary | `ordering` added for Q-11/Q-14/Q-20 (D-013) | ✅ **APPROVED 2026-09-28** — selectors + 32-query spec unchanged |
+| 29 | Approval-limit field | `Feature.approval_limit` for Q-SUP-3 (D-013) | ✅ **APPROVED 2026-09-28** — mechanism sample carries none |
 
 **State: PARTIALLY FROZEN.**
 
