@@ -34,7 +34,8 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 from ..benchmark.query_spec import (
-    CHUNKING_LIMITATION_NOTE, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE, SLOTS,
+    CHUNKING_LIMITATION_NOTE, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE,
+    Q05_INTENT_NOTE, SLOTS,
 )
 from ..benchmark.validate_ground_truth import known_ids, validate_ground_truth
 from ..chunking.splitter import ChunkingConfig, chunk_corpus, validate_coherence
@@ -50,7 +51,10 @@ EXPECTED_SCALE = {"superseded_documents": 12, "explicit_dependencies": 104}
 
 GATES = ["Q-05", "Q-SUP-3", "Q-10", "Q-11", "Q-14", "Q-20", "Q-21"]
 GATE_DESCRIPTIONS = {
-    "Q-05": "An informal/colloquial ticket; lowest lexical overlap in the benchmark.",
+    "Q-05": "Intentionally a colloquial, non-interrogative symptom statement (see "
+            "Q05 intent in METHODOLOGY NOTES). Retrieval task: match the informal "
+            "problem description to the 20 Tally support tickets reporting the same "
+            "symptoms. Lowest lexical overlap in the benchmark.",
     "Q-SUP-3": "A feature spec whose approval limit VALUE CHANGED between v1 and v2.",
     "Q-10": "An explicit component-to-component dependency.",
     "Q-11": "An explicit ordering dependency.",
@@ -329,6 +333,11 @@ class EvidenceExporter:
             ("Layout 1000/200 vs 600/100", "identical",
              "same one-chunk-per-document layout on the final corpus"),
             ("limitation", CHUNKING_LIMITATION_NOTE, "frozen statement"),
+            ("", "", ""),
+            ("SECTION", "Q-05 intent", ""),
+            ("intent_statement", Q05_INTENT_NOTE, "frozen statement"),
+            ("ground_truth_target", "20 Tally support tickets "
+             "(DOC-TKT-T-001 to DOC-TKT-T-020)", "selector informal_ticket"),
         ]
         for row in rows:
             ws.append(list(row))

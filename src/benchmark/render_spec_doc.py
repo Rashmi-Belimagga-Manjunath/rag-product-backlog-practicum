@@ -16,8 +16,8 @@ from pathlib import Path
 from .query_spec import (
     APPROVED_CATEGORY_COUNTS, APPROVED_DEPENDENCY_TOTAL, APPROVED_DIFFICULTY_COUNTS,
     APPROVED_EXPLICIT, APPROVED_IMPLICIT, CHUNKING_LIMITATION_NOTE,
-    DEPENDENCY_CATEGORIES, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE, SLOTS,
-    validate_spec,
+    DEPENDENCY_CATEGORIES, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE,
+    Q05_INTENT_NOTE, SLOTS, validate_spec,
 )
 
 DOC = Path("docs/query_specification.md")
@@ -103,6 +103,8 @@ def render() -> str:
     L.append(DIFFICULTY_MISMATCH_NOTE + "\n")
     L.append("## Chunking limitation\n")
     L.append(CHUNKING_LIMITATION_NOTE + "\n")
+    L.append("## Q-05 intent\n")
+    L.append(Q05_INTENT_NOTE + "\n")
     L.append("## Validation\n")
     L.append("`python3 -m src.benchmark.query_spec` prints the table and exits non-zero on any")
     L.append("distribution violation. `python3 -m src.benchmark.validate_ground_truth`")

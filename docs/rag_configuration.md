@@ -19,7 +19,7 @@ longer a controlled comparison, and the change must be reported as a protocol de
 |---|---|
 | Matches the evaluation cutoff | Precision@5, Recall@5 and MRR are all defined at `@5`. Retrieving 5 makes the system and the metrics describe the same object. Retrieving 20 and scoring the top 5 would mean the 6th-20th chunk changed the answer without being measured. |
 | Bounded generation context | ~5 chunks x ~250 words is roughly 1,250 words, about 1,700 tokens. That fits a generation context with room for instructions and output, without truncation. |
-| Matches the approved chunk projection | ~289 projected chunks. Top-5 is ~1.7% of the corpus - selective enough to be a real ranking test, not so small that a single bad document dominates. |
+| Matches the actual retrieval corpus | 272 document-sized chunks (every document is exactly one chunk; no document reaches the split threshold). Top-5 is ~1.8% of the corpus - selective enough to be a real ranking test, not so small that a single bad document dominates. |
 | Corresponds to a reviewable set | Five chunks is roughly one screen of evidence. It matches the "evidence a person would read" framing of the research question. |
 
 **Considered and rejected:** `k=3` (too little context for cross-document queries, which is
@@ -136,8 +136,15 @@ Chroma and asserts:
 - all scores finite
 - no stale or duplicated chunk IDs
 
-At roughly 289 chunks, brute force is exact and instantaneous, so no approximate index is in
-play and "exact" genuinely means exact.
+At roughly 272 chunks, brute force is exact and instantaneous, so no approximate index is
+in play and "exact" genuinely means exact.
+
+**Retrieval unit.** Because the frozen corpus produces exactly one chunk per document
+(272 documents = 272 chunks; no document reaches the 600-word region), the retrieval unit
+is effectively **document-sized**. Cross-chunk retrieval behaviour is **untested** — the
+experiment evaluates retrieval over document-sized chunks only. This is stated verbatim in
+`docs/query_specification.md` ("Chunking limitation") and in the evidence workbook
+("METHODOLOGY NOTES"). The corpus must not be altered to fabricate multi-chunk documents.
 
 **This is a validation instrument, not a second experimental treatment.** Its purpose is to
 distinguish vector-store implementation problems from embedding/retrieval behaviour. If it

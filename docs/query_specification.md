@@ -43,7 +43,7 @@ corpus. An unresolved slot is a hard STOP at freeze, never a warning.
 | 3 | `Q-03` | Information retrieval | easy | `current_feature_spec` | - | - | Locate a single current feature specification. |
 | 4 | `Q-04` | Information retrieval | moderate | `decision_record` | - | - | Locate a decision record and the choice it records. |
 | 5 | `Q-SUP-1` | Information retrieval | moderate | `current_prd_with_superseded_sibling` | - | recency | Q-SUP-1. A superseded PRD is the D5 distractor; the answer is the current one. |
-| 6 | `Q-05` | Information retrieval | hard | `informal_ticket` | - | - | Colloquial ticket text with low lexical overlap against its target. |
+| 6 | `Q-05` | Information retrieval | hard | `informal_ticket` | - | - | Deliberately non-interrogative symptom statement (see Q05_INTENT_NOTE); lowest lexical overlap in the benchmark. |
 | 7 | `Q-06` | Feature context | easy | `feature_summary` | - | - | Summarise a feature from its own specification. |
 | 8 | `Q-SUP-3` | Feature context | easy | `current_spec_with_approval_limit` | - | current_value | Q-SUP-3. The superseded version holds a different historical value. |
 | 9 | `Q-07` | Feature context | moderate | `requirement_statement` | - | - | State a normative requirement and its owning document. |
@@ -116,6 +116,8 @@ sample deliberately does not contain the phenomenon. These are **corpus
 requirements, not defects**; `validate_ground_truth --against-final` makes them
 hard stops.
 
+- `Q-05`:
+  - Requires the 20 Tally support tickets (TKT-T-001 to TKT-T-020) describing the unresponsive/frozen-product symptom so the informal statement resolves to them. Q-05 is intentionally a problem/symptom statement, not an interrogative question (see Q05_INTENT_NOTE).
 - `Q-SUP-3`:
   - A feature specification whose approval limit CHANGED between v1 and v2, so the superseded value differs from the current one. Not present in the mechanism sample.
 
@@ -141,6 +143,10 @@ The slots whose lexical-overlap band differs from their frozen difficulty label 
 ## Chunking limitation
 
 The frozen 1000/200 chunking configuration does not produce multi-chunk documents in the final synthetic corpus. Consequently, the experiment evaluates retrieval over document-sized chunks and does not test cross-chunk retrieval behaviour.
+
+## Q-05 intent
+
+Q-05 is deliberately authored as a natural-language problem/symptom statement rather than an interrogative question. Its intended information-retrieval task is to match an informal problem description to the support tickets that report the same symptoms; the ground-truth target is the 20 Tally support tickets (TKT-T-001 to TKT-T-020). The wording deliberately avoids technical keywords so that lexical overlap stays the lowest in the benchmark (12.5%, hard). Technical keywords must not be added merely to raise the measured overlap.
 
 ## Validation
 

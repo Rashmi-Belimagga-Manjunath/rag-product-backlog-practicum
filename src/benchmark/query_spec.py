@@ -69,6 +69,15 @@ CHUNKING_LIMITATION_NOTE = (
     "in the final synthetic corpus. Consequently, the experiment evaluates retrieval "
     "over document-sized chunks and does not test cross-chunk retrieval behaviour."
 )
+Q05_INTENT_NOTE = (
+    "Q-05 is deliberately authored as a natural-language problem/symptom statement "
+    "rather than an interrogative question. Its intended information-retrieval task is "
+    "to match an informal problem description to the support tickets that report the "
+    "same symptoms; the ground-truth target is the 20 Tally support tickets "
+    "(TKT-T-001 to TKT-T-020). The wording deliberately avoids technical keywords so "
+    "that lexical overlap stays the lowest in the benchmark (12.5%, hard). Technical "
+    "keywords must not be added merely to raise the measured overlap."
+)
 
 # Wording for the remaining 29 slots, authored against the frozen 272-document corpus and
 # each slot's approved selector. Frozen here alongside the slot distribution.
@@ -158,7 +167,14 @@ SLOTS: tuple = (
          "Q-SUP-1. A superseded PRD is the D5 distractor; the answer is the current one.",
          version_kind="recency", query_text=Q_SUP_1),
     Slot("Q-05", 6, "information_retrieval", "hard", "informal_ticket",
-         "Colloquial ticket text with low lexical overlap against its target."),
+         "Deliberately non-interrogative symptom statement (see Q05_INTENT_NOTE); "
+         "lowest lexical overlap in the benchmark.",
+         required_corpus_facts=(
+             "Requires the 20 Tally support tickets (TKT-T-001 to TKT-T-020) describing "
+             "the unresponsive/frozen-product symptom so the informal statement resolves "
+             "to them. Q-05 is intentionally a problem/symptom statement, not an "
+             "interrogative question (see Q05_INTENT_NOTE).",
+         ),),
 
     # --- feature context: 5 (2 easy, 2 moderate, 1 hard) -----------------------
     Slot("Q-06", 7, "feature_context", "easy", "feature_summary",
