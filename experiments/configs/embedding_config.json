@@ -1,0 +1,151 @@
+{
+  "_comment": [
+    "Embedding configuration for the RAG system. FROZEN CONFIGURATION, not a variable.",
+    "Per the approved decision: the embedding model is a fixed component of the RAG",
+    "treatment. The study does not compare embedding models; it compares the resulting",
+    "RAG configuration against the BM25 baseline.",
+    "Verified live against the OpenAI API on 2026-09-28. See verification block below."
+  ],
+
+  "model_name": "text-embedding-3-large",
+  "model_snapshot": "text-embedding-3-large",
+  "embedding_dimension": 3072,
+
+  "request_parameters": {
+    "_comment": [
+      "The `dimensions` parameter is deliberately NOT set. Matryoshka truncation would",
+      "introduce a free parameter that could be mistaken for tuning. Verified: omitting it",
+      "returns the native 3072 dimensions."
+    ],
+    "dimensions": null,
+    "encoding_format": "float",
+    "_encoding_format_note": [
+      "The API accepts only 'float' or 'base64'. 'float32' returns HTTP 400.",
+      "This was found by testing, not assumed."
+    ]
+  },
+
+  "vector_store": {
+    "name": "chromadb",
+    "version_verified": "1.5.9",
+    "metric": "cosine",
+    "_metric_note": [
+      "Verified: OpenAI returns unit-normalised vectors (measured L2 norm 0.9999), so",
+      "cosine similarity is a plain dot product on the stored vectors and the NumPy",
+      "cross-check can compare against Chroma directly without renormalising."
+    ],
+    "persist_directory": "data/vectorstore/v1-corpus",
+    "required_preserved_properties": [
+      "stable document IDs",
+      "stable chunk IDs",
+      "metadata",
+      "retrieval scores",
+      "retrieval ranking",
+      "source-document traceability"
+    ]
+  },
+
+  "cross_check": {
+    "_comment": [
+      "VALIDATION ONLY. Must never be used to alter, correct, adjust or tune experimental",
+      "results. If it disagrees with Chroma, that is a finding to report and investigate,",
+      "not a discrepancy to resolve in favour of whichever number looks better."
+    ],
+    "method": "exact brute-force NumPy cosine similarity from the stored embedding matrix",
+    "assertions": [
+      "top-k chunk ID set from Chroma equals the set computed by exact NumPy",
+      "ranking order matches",
+      "all returned scores are finite",
+      "no stale or duplicated chunk IDs"
+    ],
+    "valid_at_this_scale": true,
+    "_valid_at_this_scale_note": [
+      "The corpus is small enough (hundreds of chunks) that brute force is exact and",
+      "instantaneous. No approximate-nearest-neighbour index is in play, so 'exact'",
+      "genuinely means exact. At a scale requiring ANN, this reference would weaken, and",
+      "that would need disclosing."
+    ]
+  },
+
+  "batching": {
+    "_comment": [
+      "Documented API limits observed in the reference: 8192 input tokens per string;",
+      "300,000 tokens summed across all inputs in a single request."
+    ],
+    "max_input_tokens_per_string": 8192,
+    "max_total_tokens_per_request": 300000,
+    "target_tokens_per_request": 60000,
+    "_target_note": [
+      "Well under the per-request ceiling, so a failure can be retried without risking a",
+      "silently truncated batch. Recorded here because the choice affects reproducibility."
+    ]
+  },
+
+  "cost": {
+    "price_per_million_tokens_usd": 0.13,
+    "estimated_corpus_tokens": 72000,
+    "estimated_full_corpus_embedding_usd": 0.0094
+  },
+
+  "reproducibility_artifact": {
+    "_comment": [
+      "Approved mitigation: store the embedding matrix so re-runs and re-analysis reuse",
+      "byte-identical vectors, since the model itself cannot be pinned to a dated snapshot."
+    ],
+    "path": "data/embeddings/v1-corpus/embeddings.npy",
+    "sidecar_metadata": "data/embeddings/v1-corpus/embeddings.meta.json",
+    "sidecar_fields": [
+      "model_name",
+      "model_snapshot",
+      "embedding_dimension",
+      "generated_date",
+      "corpus_version",
+      "chunking_version",
+      "chunk_id_order",
+      "token_usage"
+    ],
+    "commit_to_repository": true
+  },
+
+  "verification": {
+    "date": "2026-09-28",
+    "method": "live call to /v1/embeddings and /v1/models using the account API key",
+    "confirmed": {
+      "model_available": true,
+      "returned_model_string": "text-embedding-3-large",
+      "dimension_returned": 3072,
+      "matches_approved_dimension": true,
+      "vectors_unit_normalised": true,
+      "measured_l2_norm": 0.9999,
+      "all_values_finite": true
+    },
+    "snapshot_finding": {
+      "claim_under_review": "whether text-embedding-3-large offers pinnable dated snapshots",
+      "official_docs": "https://developers.openai.com/api/docs/models/text-embedding-3-large",
+      "docs_snapshots_section": "Present. The page lists a Snapshots section for this model.",
+      "docs_default_snapshot": "text-embedding-3-large",
+      "docs_full_snapshot_list": ["text-embedding-3-large"],
+      "live_api_model_ids": [
+        "text-embedding-3-large",
+        "text-embedding-3-small",
+        "text-embedding-ada-002"
+      ],
+      "dated_snapshots_published": false,
+      "conclusion": [
+        "Snapshots DO exist as a documented OpenAI feature and the documentation does list",
+        "them for this model. The earlier claim that snapshots do not exist was wrong and",
+        "is withdrawn.",
+        "Precisely: the complete published snapshot list for text-embedding-3-large contains",
+        "exactly one entry, which is identical to the model alias and the default snapshot.",
+        "No dated or versioned variant is published, and the live API returns no dated",
+        "alias either.",
+        "Practical consequence: pinning to a more specific snapshot is not available for",
+        "this model. The recorded snapshot is therefore the alias itself, and the approved",
+        "cached embedding matrix is the operative reproducibility guarantee."
+      ]
+    }
+  },
+
+  "frozen": false,
+  "_frozen_note": "Set to true only at the experiment freeze, recorded in DECISIONS.md."
+}

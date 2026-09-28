@@ -154,97 +154,89 @@ dropped. Difficulty is not to be manufactured for its own sake.
 
 ---
 
-## 5. Proposed embedding model
+## 5. Embedding model — APPROVED AND VERIFIED
 
-### Recommendation: `text-embedding-3-large`, native 3072 dimensions
+**Status: approved 2026-09-28. Verified live against the OpenAI API on 2026-09-28.**
 
-### Verification status
-
-> **I cannot verify this from the available project information.**
-
-`openai` and `chromadb` are **not installed** and **`OPENAI_API_KEY` is not set** in the
-current environment, so I could not confirm live model availability or run a compatibility
-test. I have not claimed otherwise.
-
-To verify before freezing, run:
-
-```bash
-pip install openai chromadb
-export OPENAI_API_KEY="..."
-python - <<'PY'
-import os
-from openai import OpenAI
-client = OpenAI()
-models = client.models.list()
-names = sorted(m.id for m in models.data if "embedding" in m.id)
-print("available embedding models:", names)
-r = client.embeddings.create(
-    model="text-embedding-3-large",
-    input="chunking coherence check",
-    encoding_format="float32",
-)
-print("dim:", len(r.data[0].embedding))
-print("usage:", r.usage)
-PY
-```
-
-Expected: `dim: 3072`. If the model is absent or returns a different dimension, **stop and
-report back** rather than substituting silently.
-
-### Why `text-embedding-3-large`
-
-**1. Cost is not a reason to choose the smaller model.** The corpus is ~289 chunks ×
-~250 tokens ≈ **72,000 tokens**. At $0.13 / 1M tokens that is roughly **$0.009** for a full
-corpus embedding. Even 20 repeat runs total about $0.18. Choosing
-`text-embedding-3-small` to save roughly $0.008 would be a false economy that measurably
-weakens the arm of the study.
-
-**2. With n=32, I cannot afford to handicap RAG.** This study cannot support significance
-testing. If a deliberately weaker embedder produced a null result, the finding would be
-about my model choice, not about RAG. A small-corpus, underpowered design needs its
-strongest reasonable configuration, or a null result is uninterpretable.
-
-**3. The bias runs in the conservative direction.** This choice deliberately favours the
-RAG arm. That is the defensible direction: selecting a weaker embedder to make the keyword
-baseline look relatively better would be the biasing choice. The choice and its rationale
-are disclosed in the methodology.
-
-**4. Retrieval quality is the variable under study.** `text-embedding-3-large` is
-substantially stronger than `-small` on retrieval benchmarks, and retrieval quality is
-precisely what System B is being asked to demonstrate.
-
-### Configuration to freeze
+### Selected configuration
 
 | Setting | Value | Note |
 |---|---|---|
 | Model | `text-embedding-3-large` | Exact string, no alias |
+| Snapshot | `text-embedding-3-large` | The sole published snapshot; see below |
 | Dimensions | native 3072 | **Do not set the `dimensions` parameter.** Matryoshka truncation would add a free parameter that could be mistaken for tuning |
-| `encoding_format` | `float32` | Consistent with the NumPy cross-check |
-| Batch size | fixed, recorded | Documented per run |
+| `encoding_format` | `float` | The API accepts only `float` or `base64`. `float32` returns HTTP 400. Verified by test, not assumed |
+| Vector store | Chroma, cosine | Verified: OpenAI returns unit-normalised vectors (measured L2 norm 0.9999), so cosine is a plain dot product and the NumPy cross-check compares directly |
 
-**Do not change after seeing results.**
+Frozen in `experiments/configs/embedding_config.json`.
 
-### Reproducibility limitation — must be disclosed
+### Live verification results
 
-OpenAI does **not** version-pin embedding models. There is no
-`text-embedding-3-large-2024-xx-xx` identifier, so there is no immutable snapshot to pin.
-If the provider changes the model, a re-run produces different vectors. This is a genuine
-reproducibility threat and belongs in the limitations section.
+Checked on 2026-09-28 with the account API key:
 
-**Mitigation: cache the embedding matrix in the repository.** Store the vectors as a
-committed derived artefact (`.npy` plus a metadata JSON recording model name, dimension
-count, corpus version, chunking config, and embedding timestamp). Re-runs and re-analysis
-then reuse byte-identical vectors, so the experiment remains reproducible even though the
-model itself is not pinable.
+| Check | Result |
+|---|---|
+| Model available | Yes — `/v1/models` returns `text-embedding-3-large` |
+| `returned.model` | `text-embedding-3-large` |
+| Dimension returned | **3072**, matching the approved value |
+| Values finite | Yes |
+| L2 norm | 0.9999 — unit-normalised |
+| Cost for full corpus | ≈ **$0.0094** at $0.13 / 1M tokens for ~72,000 tokens |
+| Environment | `openai 3.19.2`, `chromadb 1.5.9`, `numpy 2.5.3` in `.venv` |
 
-### Documented alternative
+The dimension matches the approved configuration, so no substitution occurred.
 
-If you prefer the conventional default: `text-embedding-3-small`, 1536 dimensions,
-$0.02 / 1M tokens. It is what most production RAG systems use, which makes the study more
-representative of typical practice. The trade-off is a weaker retriever in System B. Either
-choice is defensible provided it is frozen before the run — but only one can be.
+### Snapshots — corrected finding
 
----
+An earlier draft in this document stated that OpenAI "does not version-pin embedding
+models". **That was wrong and is withdrawn.** Snapshots are a documented OpenAI feature,
+and the documentation does list them for `text-embedding-3-large`.
+
+Precisely what the current documentation and API show:
+
+- The model page has a **Snapshots section**, and it lists `text-embedding-3-large`.
+- That single entry is identical to the model alias and to the documented default
+  snapshot.
+- **No dated or versioned `text-embedding-3-large-*` variant is published**, and the live
+  API returns no dated alias either.
+
+So the accurate statement is not "snapshots do not exist" but "**pinning to a more
+specific snapshot is not available for this model**." The recorded snapshot is therefore
+the alias itself.
+
+### Reproducibility limitation and mitigation
+
+Because no dated snapshot is published, a provider-side change would produce different
+vectors on a re-run. This is a genuine reproducibility threat and belongs in the
+limitations section.
+
+**Mitigation — the operative guarantee: cache the embedding matrix in the repository.**
+Vectors are stored as a committed derived artefact (`.npy` plus a metadata JSON recording
+model name, snapshot, dimension, corpus version, chunking version, chunk ID order, and
+token usage). Re-runs and re-analysis then reuse byte-identical vectors. The cached matrix,
+not the unavailable snapshot, is what makes the experiment reproducible.
+
+### Why this model
+
+The embedding model is a **fixed component of the RAG treatment**, not an experimental
+variable. This study compares BM25 against RAG; it does not compare embedding models, and
+a model comparison is outside the design.
+
+The model was selected before the comparative experiment and then frozen. Rationale:
+
+1. **It is the strongest model offered for this purpose.** Retrieval quality is what System
+   B is being asked to demonstrate, so the strongest available retriever is the appropriate
+   fixed choice.
+2. **Cost is negligible at this scale.** ~$0.0094 per full-corpus embedding, ~$0.18 across
+   20 repeat runs. Cost provides no basis for trading retrieval quality away.
+3. **It is a common production choice.** It is representative of deployed RAG systems, which
+   is the context the research question is about.
+
+**Framing constraint.** This choice is a configuration decision recorded for
+reproducibility. It must **not** be described in the methodology as "not handicapping
+RAG", "avoiding a weak embedder", or "weakening the RAG arm", and it must not be presented
+as a bias that favours one arm. A deliberately weakened component is a different design,
+and it is not this one.
 
 ## 6. Final source-of-truth schema
 

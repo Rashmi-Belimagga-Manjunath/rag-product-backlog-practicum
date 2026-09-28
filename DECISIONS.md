@@ -393,7 +393,97 @@ synthetic-only corpus remains an open administrative/methodological question to 
 confirmed with the NCI coordinator/supervisor, and documentation must not state a
 determination either way until confirmed.
 
-#### Not yet decided
+#### A7 — resolved, see D-004
 
-A7 — exact embedding model. A proposal is in `docs/proposal_pre_generation.md` §5 and
-requires both approval and live verification before it can be frozen.
+A7 is closed by D-004 below. The model was approved and verified live on 2026-09-28.
+
+---
+
+## D-004 — Final schema, mechanism sample, and pre-experiment configuration
+
+**Date:** 2026-09-28
+**Status:** Accepted
+
+### A7 closed — embedding model approved and verified
+
+`text-embedding-3-large`, native 3072 dimensions, `dimensions` parameter unset, Chroma
+cosine. Verified live: model available, 3072 dimensions returned, vectors finite and
+unit-normalised (L2 norm 0.9999). `encoding_format` is `float`; `float32` returns HTTP 400.
+
+**Two corrections recorded here, because both were previously wrong in writing:**
+
+1. **Snapshots.** The earlier claim that OpenAI provides no version-pinning for embedding
+   models was wrong and is withdrawn. Snapshots are a documented feature and are listed for
+   this model. The complete published snapshot list contains exactly one entry, identical
+   to the alias and the default; **no dated `text-embedding-3-large-*` variant is
+   published**, and the live API returns no dated alias. Pinning to a more specific snapshot
+   is therefore not available for this model. The cached embedding matrix is the operative
+   reproducibility guarantee and must be committed as a derived artefact.
+
+2. **Framing.** The embedding model is a **fixed component of the RAG treatment**, not an
+   experimental variable. This study does not compare embedding models. The methodology must
+   **not** describe the choice as "not handicapping RAG", "avoiding a weak embedder", or
+   "weakening the RAG arm", nor as a bias favouring one arm. Those framings describe a
+   different design.
+
+### Final source-of-truth schema accepted
+
+Applied in `src/data_generation/source_model.py`: version lineage with an unambiguous
+`is_current`; a distinct `Prd` entity; `DocumentLink` as a first-class reference edge;
+`Feature.confusable_with` for declared distractors; `adjacent_component_ids` on components;
+PBI feature terminology de-duplicated; and provenance accessors that fail loudly rather than
+guessing.
+
+### Mechanism sample accepted as a mechanism demonstration
+
+34 documents from 69 links, 3,046 words, 3 superseded, 2 products with deliberately
+different registers, 5/5 explicit and implicit dependencies, 2 conflicts, and all eight
+document types. All six link types are exercised. All structural checks pass; determinism
+holds at model, render, and chunk level.
+
+### Defects found and fixed during validation
+
+These were found by validation and are recorded because each one silently corrupted data:
+
+- **A document's subject was the wrong entity.** `_primary_id_of` searched fields by name
+  order, and `Pbi`/`Ticket` *carry* a `feature_id` reference, so every PBI and ticket
+  document claimed to be a feature document. PBI and ticket entities never appeared as the
+  subject of any chunk, so provenance-based ground truth could not target them. Fixed by
+  explicit type dispatch, which now fails loudly for an unmapped type.
+- **Versioned lookups returned superseded content.** `get_feature`/`get_prd` took the first
+  match, which is normally the superseded v1. Now resolved to the current version, and
+  refuses to guess when zero or multiple current versions exist.
+- **Chunks carried only their own subject.** Ground truth needs a PBI chunk that states a
+  dependency on `COMP-06` to be *about* `COMP-06`. All referenced entity IDs are now
+  propagated from the declared `DocumentLink` set, along with version, supersession, and
+  document date.
+- **Two coherence checks were wrong, not the data.** C1 used a punctuation heuristic and
+  flagged chunks that correctly ended on a bullet or a metadata field; replaced with an
+  exact contiguous-unit test. C2/C3 counted occurrences corpus-wide, so a requirement
+  legitimately appearing in both a superseded and a current PRD was reported as "split";
+  now scoped per document. Both changes fixed the tests, not the corpus.
+
+### C5 recorded as a sample-scale artefact, threshold unchanged
+
+C5 (`<3%` orphan chunks) fails at 35.3% on the sample. The cause is measured, not guessed:
+the sample's component documents are 38–51 words against an approved full-corpus target of
+300–550. The threshold was **not** loosened. A projection using the real packer at approved
+length targets gives 272 documents, 292 chunks (approved target 289), and 0 orphans — which
+explains the artefact without replacing the measurement. **C5 must be re-measured on the
+generated corpus before the freeze.**
+
+### Chunk configuration: primary carried forward, comparison still owed
+
+Primary 1000/200 is carried forward. The sample **cannot** discriminate between 1000/200 and
+600/100, because no sample document exceeds 239 words and both sizes yield one chunk per
+document. The comparison must be repeated on the full corpus before the freeze. This is
+recorded as an open obligation rather than a resolved choice.
+
+### Still open
+
+- RAG top-k, generation model, RAG prompt, and evaluation scripts are not yet set.
+- Ethics determination remains open with the NCI coordinator/supervisor. No determination
+  may be stated in either direction until confirmed. Human-participant evaluation is a hard
+  gate.
+- The API key used for live verification was exposed in conversation and must be
+  revoked and rotated. It is gitignored and was never committed.

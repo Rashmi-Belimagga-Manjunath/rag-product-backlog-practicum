@@ -1,0 +1,46 @@
+# Meridian employee onboarding and payroll readiness
+
+Document: DOC-PRD-A-01-v2
+Status: current. Version 2.0. Last modified 2026-07-18.
+
+Author: Senior Product Manager
+Product: Meridian (PROD-A)
+
+## Background
+
+Defines how a new employee becomes payroll-ready, including the progressive collection of tax and banking details.
+
+## Goals
+
+Reduce the number of steps a new employee must complete before they can reach a working product, while keeping every mandatory compliance step enforced.
+
+## Non-goals
+
+This document does not cover manager approval workflows or payroll export formatting. Those are specified separately.
+
+## Requirements
+
+### REQ-A-01: Tax details are collected progressively
+
+Tax documentation must be collected after the employee's first successful login, not as part of initial account registration.
+
+This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence.
+
+### REQ-A-02: Identity is verified before payment privileges
+
+An employee must not be granted payment privileges until identity verification has succeeded.
+
+This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence.
+
+## Success measures
+
+Measured as: completion rate of the compliance steps, time to first productive action, and support contact volume in the first week.
+
+## Change log
+
+Version 2.0 supersedes version 1.0. The change moves the tax collection step out of initial registration and into the onboarding ramp, following the decision recorded in the decision log.
+
+## Open questions
+
+How many days should elapse before the tax step is requested? The current answer of three days is provisional.
+

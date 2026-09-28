@@ -1,0 +1,1273 @@
+{
+  "model_version": "v1-schema-sample",
+  "seed": 20260928,
+  "created_date": "2026-09-28",
+  "products": [
+    {
+      "product_id": "PROD-A",
+      "name": "Meridian",
+      "domain": "HRTech",
+      "documentation_maturity": "formal",
+      "team_size": 14,
+      "maintains_version_history": true
+    },
+    {
+      "product_id": "PROD-B",
+      "name": "Tally",
+      "domain": "Consumer habit-tracking",
+      "documentation_maturity": "informal",
+      "team_size": 5,
+      "maintains_version_history": true
+    }
+  ],
+  "features": [
+    {
+      "document_id": "DOC-FEAT-A-01",
+      "version": "1.0",
+      "version_status": "superseded",
+      "created_date": "2026-02-10",
+      "modified_date": "2026-02-10",
+      "superseded_by": "DOC-FEAT-A-01-v2",
+      "supersedes": "",
+      "is_current": false,
+      "feature_id": "FEAT-A-01",
+      "product_id": "PROD-A",
+      "name": "Progressive Profiling",
+      "status": "launched",
+      "priority": 1,
+      "formal_term": "Progressive Profiling",
+      "colloquial_terms": [
+        "onboarding ramp",
+        "new-user activation",
+        "first-run setup"
+      ],
+      "summary": "Collects additional employee details progressively after first login rather than in a single mandatory form.",
+      "confusable_with": [
+        "FEAT-A-02",
+        "FEAT-A-04"
+      ],
+      "requirement_id": "REQ-A-01"
+    },
+    {
+      "document_id": "DOC-FEAT-A-01-v2",
+      "version": "2.0",
+      "version_status": "current",
+      "created_date": "2026-02-10",
+      "modified_date": "2026-07-22",
+      "superseded_by": "",
+      "supersedes": "DOC-FEAT-A-01",
+      "is_current": true,
+      "feature_id": "FEAT-A-01",
+      "product_id": "PROD-A",
+      "name": "Progressive Profiling",
+      "status": "launched",
+      "priority": 1,
+      "formal_term": "Progressive Profiling",
+      "colloquial_terms": [
+        "onboarding ramp",
+        "new-user activation",
+        "first-run setup"
+      ],
+      "summary": "Collects additional employee details progressively after first login rather than in a single mandatory form.",
+      "confusable_with": [
+        "FEAT-A-02",
+        "FEAT-A-04"
+      ],
+      "requirement_id": "REQ-A-01"
+    },
+    {
+      "document_id": "DOC-FEAT-A-02",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-03-04",
+      "modified_date": "2026-03-04",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "feature_id": "FEAT-A-02",
+      "product_id": "PROD-A",
+      "name": "Identity Verification Window",
+      "status": "launched",
+      "priority": 2,
+      "formal_term": "Identity Verification Window",
+      "colloquial_terms": [
+        "ID check stage",
+        "KYC prompt",
+        "the verification pop-up"
+      ],
+      "summary": "Requires identity document verification before an employee can be granted payment privileges.",
+      "confusable_with": [
+        "FEAT-A-01",
+        "FEAT-A-03"
+      ],
+      "requirement_id": "REQ-A-02"
+    },
+    {
+      "document_id": "DOC-FEAT-A-03",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-04-18",
+      "modified_date": "2026-04-18",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "feature_id": "FEAT-A-03",
+      "product_id": "PROD-A",
+      "name": "Bulk Timesheet Approval",
+      "status": "in_progress",
+      "priority": 3,
+      "formal_term": "Bulk Timesheet Approval",
+      "colloquial_terms": [
+        "batch timesheet sign-off",
+        "approving hours in bulk"
+      ],
+      "summary": "Allows a manager to approve multiple submitted timesheets in a single action.",
+      "confusable_with": [
+        "FEAT-A-02",
+        "FEAT-A-04"
+      ],
+      "requirement_id": "REQ-A-03"
+    },
+    {
+      "document_id": "DOC-FEAT-A-04",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-05-30",
+      "modified_date": "2026-05-30",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "feature_id": "FEAT-A-04",
+      "product_id": "PROD-A",
+      "name": "Payroll Export Scheduling",
+      "status": "planned",
+      "priority": 4,
+      "formal_term": "Payroll Export Scheduling",
+      "colloquial_terms": [
+        "automated payroll file",
+        "scheduled payslip dump"
+      ],
+      "summary": "Schedules recurring export of payroll data to third-party payroll providers in a fixed file format.",
+      "confusable_with": [
+        "FEAT-A-01",
+        "FEAT-A-03"
+      ],
+      "requirement_id": "REQ-A-04"
+    },
+    {
+      "document_id": "DOC-FEAT-B-02",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-07-02",
+      "modified_date": "2026-07-02",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "feature_id": "FEAT-B-02",
+      "product_id": "PROD-B",
+      "name": "Habit Template Marketplace",
+      "status": "planned",
+      "priority": 2,
+      "formal_term": "Habit Template Marketplace",
+      "colloquial_terms": [
+        "browse habit packs",
+        "ready-made routines"
+      ],
+      "summary": "Lets users adopt a pre-built template of habits instead of creating each habit from scratch.",
+      "confusable_with": [
+        "FEAT-B-01"
+      ],
+      "requirement_id": "REQ-B-01"
+    },
+    {
+      "document_id": "DOC-FEAT-B-01",
+      "version": "1.0",
+      "version_status": "superseded",
+      "created_date": "2026-06-11",
+      "modified_date": "2026-06-11",
+      "superseded_by": "DOC-FEAT-B-01-v2",
+      "supersedes": "",
+      "is_current": false,
+      "feature_id": "FEAT-B-01",
+      "product_id": "PROD-B",
+      "name": "Streak Recovery Suggestion Engine",
+      "status": "launched",
+      "priority": 1,
+      "formal_term": "Streak Recovery Suggestion Engine",
+      "colloquial_terms": [
+        "streak saver",
+        "saving a broken streak",
+        "losing a streak"
+      ],
+      "summary": "Suggests a reduced-effort alternative habit when a user is about to break a multi-week streak.",
+      "confusable_with": [
+        "FEAT-B-02"
+      ],
+      "requirement_id": "REQ-B-01"
+    },
+    {
+      "document_id": "DOC-FEAT-B-01-v2",
+      "version": "2.0",
+      "version_status": "current",
+      "created_date": "2026-06-11",
+      "modified_date": "2026-08-02",
+      "superseded_by": "",
+      "supersedes": "DOC-FEAT-B-01",
+      "is_current": true,
+      "feature_id": "FEAT-B-01",
+      "product_id": "PROD-B",
+      "name": "Streak Recovery Suggestion Engine",
+      "status": "launched",
+      "priority": 1,
+      "formal_term": "Streak Recovery Suggestion Engine",
+      "colloquial_terms": [
+        "streak saver",
+        "saving a broken streak",
+        "losing a streak"
+      ],
+      "summary": "Suggests a reduced-effort alternative habit when a user is about to break a multi-week streak.",
+      "confusable_with": [
+        "FEAT-B-02"
+      ],
+      "requirement_id": "REQ-B-01"
+    }
+  ],
+  "prds": [
+    {
+      "document_id": "DOC-PRD-A-01",
+      "version": "1.0",
+      "version_status": "superseded",
+      "created_date": "2026-02-02",
+      "modified_date": "2026-02-02",
+      "superseded_by": "DOC-PRD-A-01-v2",
+      "supersedes": "",
+      "is_current": false,
+      "prd_id": "PRD-A-01",
+      "product_id": "PROD-A",
+      "title": "Meridian employee onboarding and payroll readiness",
+      "author_role": "Senior Product Manager",
+      "is_normative": true,
+      "summary": "Defines how a new employee becomes payroll-ready, including the progressive collection of tax and banking details.",
+      "sections": [
+        "Background",
+        "Goals",
+        "Non-goals",
+        "Requirements",
+        "Success measures",
+        "Open questions"
+      ],
+      "requirement_ids": [
+        "REQ-A-01",
+        "REQ-A-02"
+      ]
+    },
+    {
+      "document_id": "DOC-PRD-A-01-v2",
+      "version": "2.0",
+      "version_status": "current",
+      "created_date": "2026-02-02",
+      "modified_date": "2026-07-18",
+      "superseded_by": "",
+      "supersedes": "DOC-PRD-A-01",
+      "is_current": true,
+      "prd_id": "PRD-A-01",
+      "product_id": "PROD-A",
+      "title": "Meridian employee onboarding and payroll readiness",
+      "author_role": "Senior Product Manager",
+      "is_normative": true,
+      "summary": "Defines how a new employee becomes payroll-ready, including the progressive collection of tax and banking details.",
+      "sections": [
+        "Background",
+        "Goals",
+        "Non-goals",
+        "Requirements",
+        "Success measures",
+        "Open questions",
+        "Change log"
+      ],
+      "requirement_ids": [
+        "REQ-A-01",
+        "REQ-A-02"
+      ]
+    },
+    {
+      "document_id": "DOC-PRD-A-02",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-04-10",
+      "modified_date": "2026-04-10",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "prd_id": "PRD-A-02",
+      "product_id": "PROD-A",
+      "title": "Meridian manager approval and payroll export",
+      "author_role": "Product Manager",
+      "is_normative": true,
+      "summary": "Covers bulk timesheet approval and recurring payroll file export to external payroll providers.",
+      "sections": [
+        "Background",
+        "Goals",
+        "Non-goals",
+        "Requirements",
+        "Success measures",
+        "Risks"
+      ],
+      "requirement_ids": [
+        "REQ-A-03",
+        "REQ-A-04"
+      ]
+    },
+    {
+      "document_id": "DOC-PRD-B-01",
+      "version": "1.0",
+      "version_status": "current",
+      "created_date": "2026-06-15",
+      "modified_date": "2026-06-15",
+      "superseded_by": "",
+      "supersedes": "",
+      "is_current": true,
+      "prd_id": "PRD-B-01",
+      "product_id": "PROD-B",
+      "title": "Tally streak retention",
+      "author_role": "Founder",
+      "is_normative": true,
+      "summary": "Covers reducing user churn when an established streak is about to break.",
+      "sections": [
+        "Background",
+        "Goals",
+        "Requirements",
+        "Open questions"
+      ],
+      "requirement_ids": [
+        "REQ-B-01"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "requirement_id": "REQ-A-01",
+      "prd_id": "PRD-A-01",
+      "product_id": "PROD-A",
+      "title": "Tax details are collected progressively",
+      "statement": "Tax documentation must be collected after the employee's first successful login, not as part of initial account registration.",
+      "is_normative": true
+    },
+    {
+      "requirement_id": "REQ-A-02",
+      "prd_id": "PRD-A-01",
+      "product_id": "PROD-A",
+      "title": "Identity is verified before payment privileges",
+      "statement": "An employee must not be granted payment privileges until identity verification has succeeded.",
+      "is_normative": true
+    },
+    {
+      "requirement_id": "REQ-A-03",
+      "prd_id": "PRD-A-02",
+      "product_id": "PROD-A",
+      "title": "Managers approve timesheets in bulk",
+      "statement": "A manager must be able to approve multiple timesheets in one action where all selected timesheets are complete.",
+      "is_normative": true
+    },
+    {
+      "requirement_id": "REQ-A-04",
+      "prd_id": "PRD-A-02",
+      "product_id": "PROD-A",
+      "title": "Payroll exports follow a fixed schedule",
+      "statement": "Payroll exports must run on a fixed, pre-configured schedule and must not be triggered ad hoc by end users.",
+      "is_normative": true
+    },
+    {
+      "requirement_id": "REQ-B-01",
+      "prd_id": "PRD-B-01",
+      "product_id": "PROD-B",
+      "title": "Streak loss is mitigated before it occurs",
+      "statement": "The product must offer a reduced-effort alternative before a user breaks an established streak.",
+      "is_normative": true
+    }
+  ],
+  "pbis": [
+    {
+      "pbi_id": "PBI-A-011",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-01",
+      "title": "Ask for tax details on day three",
+      "description": "As a new starter I want to be asked for my tax details a few days after I sign up, so that I am not stuck on a long form before I have even seen the product.",
+      "story_points": 3,
+      "status": "done",
+      "created_date": "2026-03-02",
+      "author_role": "Product Owner",
+      "component_id": "COMP-06"
+    },
+    {
+      "pbi_id": "PBI-A-012",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-01",
+      "title": "Show the ramp checklist after first login",
+      "description": "As a new starter I want to see what information will be asked of me over the next week, so I know what is coming.",
+      "story_points": 2,
+      "status": "done",
+      "created_date": "2026-03-05",
+      "author_role": "Product Owner",
+      "component_id": "COMP-05"
+    },
+    {
+      "pbi_id": "PBI-A-013",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-02",
+      "title": "Block payment privileges until ID check passes",
+      "description": "As a payroll admin I want payment privileges blocked until the ID check has come back, so that we never pay an unverified person.",
+      "story_points": 5,
+      "status": "done",
+      "created_date": "2026-03-12",
+      "author_role": "Product Owner",
+      "component_id": "COMP-01"
+    },
+    {
+      "pbi_id": "PBI-A-014",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-03",
+      "title": "Select-all approve on the timesheet grid",
+      "description": "As a manager I want to select all timesheets and approve them in one go, rather than approving each row separately.",
+      "story_points": 5,
+      "status": "in_progress",
+      "created_date": "2026-05-02",
+      "author_role": "Product Owner",
+      "component_id": "COMP-03"
+    },
+    {
+      "pbi_id": "PBI-A-015",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-03",
+      "title": "Reject the whole batch with one reason",
+      "description": "As a manager I want to reject a whole batch with a single reason, because writing the same note twenty times is pointless.",
+      "story_points": 3,
+      "status": "to_do",
+      "created_date": "2026-05-06",
+      "author_role": "Product Owner",
+      "component_id": "COMP-03"
+    },
+    {
+      "pbi_id": "PBI-A-016",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-04",
+      "title": "Nightly payroll export job",
+      "description": "As a payroll admin I want the payroll file exported every night at a fixed time, so my provider always has today's data.",
+      "story_points": 5,
+      "status": "to_do",
+      "created_date": "2026-06-01",
+      "author_role": "Product Owner",
+      "component_id": "COMP-03"
+    },
+    {
+      "pbi_id": "PBI-A-017",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-02",
+      "title": "Hide the payment tab until verification clears",
+      "description": "As a new starter I want the payment area hidden until my ID has been checked, so that I do not try to add a card and get rejected later.",
+      "story_points": 2,
+      "status": "done",
+      "created_date": "2026-03-20",
+      "author_role": "Product Owner",
+      "component_id": "COMP-02"
+    },
+    {
+      "pbi_id": "PBI-B-021",
+      "product_id": "PROD-B",
+      "feature_id": "FEAT-B-01",
+      "title": "Offer a lighter habit before the streak breaks",
+      "description": "As a user I want to be offered an easier version of my habit before I break my streak, so I do not lose weeks of progress.",
+      "story_points": 3,
+      "status": "done",
+      "created_date": "2026-06-20",
+      "author_role": "Founder",
+      "component_id": "COMP-05"
+    },
+    {
+      "pbi_id": "PBI-B-022",
+      "product_id": "PROD-B",
+      "feature_id": "FEAT-B-01",
+      "title": "Explain why the suggestion appeared",
+      "description": "As a user I want the app to say why it is suggesting something easier, instead of it just appearing out of nowhere.",
+      "story_points": 2,
+      "status": "in_progress",
+      "created_date": "2026-07-14",
+      "author_role": "Founder",
+      "component_id": "COMP-04"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "COMP-01",
+      "name": "Verisign ID Verification API",
+      "component_type": "third_party",
+      "owner_team": "external vendor",
+      "notes": "Third-party identity document verification. Team does not own this service; failures surface only as a timeout.",
+      "adjacent_component_ids": [
+        "COMP-02",
+        "COMP-05"
+      ]
+    },
+    {
+      "component_id": "COMP-02",
+      "name": "Stripe Payments Gateway",
+      "component_type": "third_party",
+      "owner_team": "external vendor",
+      "notes": "Handles payment instrument tokenisation.",
+      "adjacent_component_ids": [
+        "COMP-01",
+        "COMP-03"
+      ]
+    },
+    {
+      "component_id": "COMP-03",
+      "name": "Payroll Ledger Database",
+      "component_type": "database",
+      "owner_team": "platform",
+      "notes": "System of record for approved hours and payroll totals.",
+      "adjacent_component_ids": [
+        "COMP-02",
+        "COMP-04"
+      ]
+    },
+    {
+      "component_id": "COMP-04",
+      "name": "Digest Notification Worker",
+      "component_type": "service",
+      "owner_team": "platform",
+      "notes": "Builds and sends scheduled email digests.",
+      "adjacent_component_ids": [
+        "COMP-03",
+        "COMP-05"
+      ]
+    },
+    {
+      "component_id": "COMP-05",
+      "name": "Domain Event Bus",
+      "component_type": "queue",
+      "owner_team": "platform",
+      "notes": "Carries domain events between services.",
+      "adjacent_component_ids": [
+        "COMP-01",
+        "COMP-04"
+      ]
+    },
+    {
+      "component_id": "COMP-06",
+      "name": "TaxBand Rate Service",
+      "component_type": "third_party",
+      "owner_team": "external vendor",
+      "notes": "Resolves tax bands for a given jurisdiction. Rate-limited, 20 calls/min.",
+      "adjacent_component_ids": [
+        "COMP-02",
+        "COMP-05"
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "ticket_id": "TKT-A-101",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-01",
+      "related_component_id": "COMP-06",
+      "pbi_id": "PBI-A-011",
+      "reported_symptom": "I set up my account on Monday and it wanted my tax details straight away. I only wanted to look around first.",
+      "customer_segment": "new starter",
+      "severity": "medium",
+      "opened_date": "2026-03-18",
+      "reporter_role": "Support agent"
+    },
+    {
+      "ticket_id": "TKT-A-102",
+      "product_id": "PROD-A",
+      "feature_id": "FEAT-A-03",
+      "related_component_id": "COMP-03",
+      "pbi_id": "PBI-A-014",
+      "reported_symptom": "I have got forty hours to sign off on and I have to click approve on every single row. Please add a select all.",
+      "customer_segment": "line manager",
+      "severity": "high",
+      "opened_date": "2026-05-20",
+      "reporter_role": "Support agent"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "DEC-A-01",
+      "product_id": "PROD-A",
+      "about_entity_id": "FEAT-A-01",
+      "decision": "Move tax collection to day three of the onboarding ramp rather than requiring it during sign-up.",
+      "rationale": "Early testing showed the long sign-up form caused abandonment in the first session. Asking later, once the user has seen value, raised completion of the tax step from 54% to 88%.",
+      "decided_date": "2026-07-16",
+      "decided_by_role": "Senior Product Manager"
+    },
+    {
+      "decision_id": "DEC-B-01",
+      "product_id": "PROD-B",
+      "about_entity_id": "FEAT-B-01",
+      "decision": "Ship the streak saver prompt only in the evening, not on waking.",
+      "rationale": "Morning prompts were being dismissed unread. Evening is when people are already opening the app.",
+      "decided_date": "2026-08-01",
+      "decided_by_role": "Founder"
+    }
+  ],
+  "meeting_notes": [
+    {
+      "note_id": "NOTE-A-01",
+      "product_id": "PROD-A",
+      "about_entity_ids": [
+        "FEAT-A-03",
+        "PBI-A-014"
+      ],
+      "meeting_date": "2026-05-08",
+      "attendees_role": [
+        "Product Manager",
+        "Engineering lead"
+      ],
+      "topics": [
+        "Managers are approving roughly forty rows at a time, so the per-row click is the bottleneck",
+        "Not doing partial-batch approval this quarter, it complicates the audit trail",
+        "Need to check the ledger is not the slow part before committing to a date"
+      ]
+    },
+    {
+      "note_id": "NOTE-B-01",
+      "product_id": "PROD-B",
+      "about_entity_ids": [
+        "FEAT-B-01"
+      ],
+      "meeting_date": "2026-07-20",
+      "attendees_role": [
+        "Founder"
+      ],
+      "topics": [
+        "The saver prompt fires too early in the day and people swipe it away",
+        "Trying evening only for a fortnight"
+      ]
+    }
+  ],
+  "runbooks": [
+    {
+      "runbook_id": "RBK-A-01",
+      "product_id": "PROD-A",
+      "component_id": "COMP-06",
+      "title": "TaxBand rate service: handling rate-limit responses",
+      "steps": [
+        "A 429 from the rate service means the 20 calls/minute budget is exhausted.",
+        "Back off for 30 seconds, then retry the single call. Do not retry the batch.",
+        "If three consecutive batches fail, raise an operations alert; the tax step cannot complete without resolved rates."
+      ],
+      "last_reviewed": "2026-08-05"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependency_id": "DEP-001",
+      "from_type": "feature",
+      "from_id": "FEAT-A-02",
+      "to_type": "component",
+      "to_id": "COMP-01",
+      "dependency_type": "depends_on",
+      "description": "Identity Verification Window calls the third-party identity verification service. Stated in the feature specification.",
+      "explicitness": "explicit"
+    },
+    {
+      "dependency_id": "DEP-002",
+      "from_type": "feature",
+      "from_id": "FEAT-A-03",
+      "to_type": "component",
+      "to_id": "COMP-03",
+      "dependency_type": "depends_on",
+      "description": "Bulk Timesheet Approval reads and writes approved hours in the payroll ledger. Stated in the feature specification.",
+      "explicitness": "explicit"
+    },
+    {
+      "dependency_id": "DEP-003",
+      "from_type": "feature",
+      "from_id": "FEAT-A-04",
+      "to_type": "component",
+      "to_id": "COMP-03",
+      "dependency_type": "depends_on",
+      "description": "Payroll Export Scheduling reads payroll totals from the ledger. Stated in the feature specification.",
+      "explicitness": "explicit"
+    },
+    {
+      "dependency_id": "DEP-004",
+      "from_type": "feature",
+      "from_id": "FEAT-A-02",
+      "to_type": "feature",
+      "to_id": "FEAT-A-01",
+      "dependency_type": "depends_on",
+      "description": "Payment privileges are granted only once the employee is payroll-ready, so this follows from the first PRD. Stated in that PRD.",
+      "explicitness": "explicit"
+    },
+    {
+      "dependency_id": "DEP-005",
+      "from_type": "pbi",
+      "from_id": "PBI-A-016",
+      "to_type": "component",
+      "to_id": "COMP-03",
+      "dependency_type": "depends_on",
+      "description": "The nightly export job reads totals from the ledger. Stated in the PBI description.",
+      "explicitness": "explicit"
+    },
+    {
+      "dependency_id": "DEP-006",
+      "from_type": "feature",
+      "from_id": "FEAT-A-01",
+      "to_type": "component",
+      "to_id": "COMP-06",
+      "dependency_type": "depends_on",
+      "description": "Progressive Profiling cannot resolve a tax band without the rate service. No document states this; it follows from the feature collecting tax details and from the runbook describing that service as the only source of resolved rates.",
+      "explicitness": "implicit"
+    },
+    {
+      "dependency_id": "DEP-007",
+      "from_type": "feature",
+      "from_id": "FEAT-A-01",
+      "to_type": "feature",
+      "to_id": "FEAT-A-02",
+      "dependency_type": "depends_on",
+      "description": "A new employee reaches the tax step only after identity verification. No document states the ordering; it follows from the onboarding sequence in PRD-A-01 v2.",
+      "explicitness": "implicit"
+    },
+    {
+      "dependency_id": "DEP-008",
+      "from_type": "pbi",
+      "from_id": "PBI-A-014",
+      "to_type": "pbi",
+      "to_id": "PBI-A-015",
+      "dependency_type": "blocks",
+      "description": "Select-all approve cannot ship before batch rejection exists, because approving a whole batch with no way to reject part of it is not shippable. Stated nowhere.",
+      "explicitness": "implicit"
+    },
+    {
+      "dependency_id": "DEP-009",
+      "from_type": "feature",
+      "from_id": "FEAT-A-04",
+      "to_type": "component",
+      "to_id": "COMP-05",
+      "dependency_type": "depends_on",
+      "description": "The scheduled export is driven by a recurring domain event rather than a cron, so it needs the event bus. Not stated in any document.",
+      "explicitness": "implicit"
+    },
+    {
+      "dependency_id": "DEP-010",
+      "from_type": "feature",
+      "from_id": "FEAT-B-01",
+      "to_type": "component",
+      "to_id": "COMP-04",
+      "dependency_type": "depends_on",
+      "description": "The evening prompt is dispatched by the digest worker. Not stated in any document.",
+      "explicitness": "implicit"
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "CONF-01",
+      "product_id": "PROD-A",
+      "document_a_id": "DOC-PRD-A-01",
+      "document_b_id": "DOC-FEAT-A-01",
+      "conflict_type": "stale_requirement",
+      "description": "PRD-A-01 v1 and the Progressive Profiling v1 spec both require tax details during initial registration. DEC-A-01 later moved the tax step to day three, but v1 of the PRD was never reissued.",
+      "is_resolved": true,
+      "resolution_note": "Resolved by PRD-A-01 v2, which is normative. Both v1 documents remain in the repository and are now stale.",
+      "resolved_by_document_id": "DOC-PRD-A-01-v2"
+    },
+    {
+      "conflict_id": "CONF-02",
+      "product_id": "PROD-B",
+      "document_a_id": "DOC-FEAT-B-01",
+      "document_b_id": "DOC-FEAT-B-01-v2",
+      "conflict_type": "inconsistent_claim",
+      "description": "Streak Recovery v1 states the prompt fires on waking. v2 states it fires in the evening. Both versions are still in the repository and the v1 spec has not been annotated.",
+      "is_resolved": false,
+      "resolution_note": "",
+      "resolved_by_document_id": ""
+    }
+  ],
+  "document_links": [
+    {
+      "link_id": "LNK-0001",
+      "from_document_id": "DOC-PRD-A-01",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-01",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0002",
+      "from_document_id": "DOC-PRD-A-01",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-02",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0003",
+      "from_document_id": "DOC-PRD-A-01-v2",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "supersedes"
+    },
+    {
+      "link_id": "LNK-0004",
+      "from_document_id": "DOC-PRD-A-01-v2",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-01",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0005",
+      "from_document_id": "DOC-PRD-A-01-v2",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-02",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0006",
+      "from_document_id": "DOC-PRD-A-02",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-03",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0007",
+      "from_document_id": "DOC-PRD-A-02",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-A-04",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0008",
+      "from_document_id": "DOC-PRD-B-01",
+      "to_entity_type": "requirement",
+      "to_entity_id": "REQ-B-01",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0009",
+      "from_document_id": "DOC-FEAT-A-01",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0010",
+      "from_document_id": "DOC-FEAT-A-01-v2",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "supersedes"
+    },
+    {
+      "link_id": "LNK-0011",
+      "from_document_id": "DOC-FEAT-A-01-v2",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0012",
+      "from_document_id": "DOC-FEAT-A-02",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0013",
+      "from_document_id": "DOC-FEAT-A-03",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0014",
+      "from_document_id": "DOC-FEAT-A-04",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-A",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0015",
+      "from_document_id": "DOC-FEAT-B-02",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-B",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0016",
+      "from_document_id": "DOC-FEAT-B-01",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-B",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0017",
+      "from_document_id": "DOC-FEAT-B-01-v2",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-B",
+      "link_type": "supersedes"
+    },
+    {
+      "link_id": "LNK-0018",
+      "from_document_id": "DOC-FEAT-B-01-v2",
+      "to_entity_type": "product",
+      "to_entity_id": "PROD-B",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0019",
+      "from_document_id": "DOC-PBI-A-011",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0020",
+      "from_document_id": "DOC-PBI-A-011",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-06",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0021",
+      "from_document_id": "DOC-PBI-A-012",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0022",
+      "from_document_id": "DOC-PBI-A-012",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-05",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0023",
+      "from_document_id": "DOC-PBI-A-013",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-02",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0024",
+      "from_document_id": "DOC-PBI-A-013",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0025",
+      "from_document_id": "DOC-PBI-A-014",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0026",
+      "from_document_id": "DOC-PBI-A-014",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0027",
+      "from_document_id": "DOC-PBI-A-015",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0028",
+      "from_document_id": "DOC-PBI-A-015",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0029",
+      "from_document_id": "DOC-PBI-A-016",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-04",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0030",
+      "from_document_id": "DOC-PBI-A-016",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0031",
+      "from_document_id": "DOC-PBI-A-017",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-02",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0032",
+      "from_document_id": "DOC-PBI-A-017",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-02",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0033",
+      "from_document_id": "DOC-PBI-B-021",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0034",
+      "from_document_id": "DOC-PBI-B-021",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-05",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0035",
+      "from_document_id": "DOC-PBI-B-022",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0036",
+      "from_document_id": "DOC-PBI-B-022",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-04",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0037",
+      "from_document_id": "DOC-TKT-A-101",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0038",
+      "from_document_id": "DOC-TKT-A-101",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-06",
+      "link_type": "depends_on"
+    },
+    {
+      "link_id": "LNK-0039",
+      "from_document_id": "DOC-TKT-A-102",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "implements"
+    },
+    {
+      "link_id": "LNK-0040",
+      "from_document_id": "DOC-TKT-A-102",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "depends_on"
+    },
+    {
+      "link_id": "LNK-0041",
+      "from_document_id": "DOC-NOTE-A-01",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0042",
+      "from_document_id": "DOC-NOTE-A-01",
+      "to_entity_type": "pbi",
+      "to_entity_id": "PBI-A-014",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0043",
+      "from_document_id": "DOC-NOTE-B-01",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0044",
+      "from_document_id": "DOC-RBK-A-01",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-06",
+      "link_type": "defines"
+    },
+    {
+      "link_id": "LNK-0045",
+      "from_document_id": "DOC-DEC-A-01",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0046",
+      "from_document_id": "DOC-DEC-B-01",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0047",
+      "from_document_id": "DOC-COMP-01",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-02",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0048",
+      "from_document_id": "DOC-COMP-01",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-05",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0049",
+      "from_document_id": "DOC-COMP-02",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0050",
+      "from_document_id": "DOC-COMP-02",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0051",
+      "from_document_id": "DOC-COMP-03",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-02",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0052",
+      "from_document_id": "DOC-COMP-03",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-04",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0053",
+      "from_document_id": "DOC-COMP-04",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-03",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0054",
+      "from_document_id": "DOC-COMP-04",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-05",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0055",
+      "from_document_id": "DOC-COMP-05",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0056",
+      "from_document_id": "DOC-COMP-05",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-04",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0057",
+      "from_document_id": "DOC-COMP-06",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-02",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0058",
+      "from_document_id": "DOC-COMP-06",
+      "to_entity_type": "component",
+      "to_entity_id": "COMP-05",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0059",
+      "from_document_id": "DOC-PBI-A-017",
+      "to_entity_type": "pbi",
+      "to_entity_id": "PBI-A-016",
+      "link_type": "blocks"
+    },
+    {
+      "link_id": "LNK-0060",
+      "from_document_id": "DOC-FEAT-A-01-v2",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-02",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0061",
+      "from_document_id": "DOC-FEAT-A-01-v2",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-04",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0062",
+      "from_document_id": "DOC-FEAT-A-02",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0063",
+      "from_document_id": "DOC-FEAT-A-02",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0064",
+      "from_document_id": "DOC-FEAT-A-03",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-02",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0065",
+      "from_document_id": "DOC-FEAT-A-03",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-04",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0066",
+      "from_document_id": "DOC-FEAT-A-04",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0067",
+      "from_document_id": "DOC-FEAT-A-04",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-A-03",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0068",
+      "from_document_id": "DOC-FEAT-B-02",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-01",
+      "link_type": "contextualises"
+    },
+    {
+      "link_id": "LNK-0069",
+      "from_document_id": "DOC-FEAT-B-01-v2",
+      "to_entity_type": "feature",
+      "to_entity_id": "FEAT-B-02",
+      "link_type": "contextualises"
+    }
+  ]
+}

@@ -1,0 +1,902 @@
+[
+  {
+    "chunk_id": "DOC-PRD-A-01-C0",
+    "document_id": "DOC-PRD-A-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-PRD-A-01\nStatus: SUPERSEDED. Version 1.0, last modified 2026-02-02. This version was replaced by DOC-PRD-A-01-v2 and is retained for history only. Do not implement from this document. Author: Senior Product Manager\nProduct: Meridian (PROD-A) Defines how a new employee becomes payroll-ready, including the progressive collection of tax and banking details. Reduce the number of steps a new employee must complete before they can reach a working product, while keeping every mandatory compliance step enforced. This document does not cover manager approval workflows or payroll export formatting. Those are specified separately. Tax documentation must be collected after the employee's first successful login, not as part of initial account registration. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. An employee must not be granted payment privileges until identity verification has succeeded. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. Measured as: completion rate of the compliance steps, time to first productive action, and support contact volume in the first week. How many days should elapse before the tax step is requested? The current answer of three days is provisional.",
+    "heading_path": [
+      "Meridian employee onboarding and payroll readiness",
+      "Background",
+      "Goals",
+      "Non-goals",
+      "REQ-A-01: Tax details are collected progressively",
+      "REQ-A-02: Identity is verified before payment privileges",
+      "Success measures",
+      "Open questions"
+    ],
+    "word_count": 189,
+    "source_entity_id": "PRD-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "prd",
+    "version": "1.0",
+    "version_status": "superseded",
+    "is_current": false,
+    "supersedes": [],
+    "superseded_by": "DOC-PRD-A-01-v2",
+    "document_date": "2026-02-02",
+    "entity_ids": [
+      "REQ-A-01",
+      "REQ-A-02"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PRD-A-01-v2-C0",
+    "document_id": "DOC-PRD-A-01-v2",
+    "chunk_index": 0,
+    "text": "Document: DOC-PRD-A-01-v2\nStatus: current. Version 2.0. Last modified 2026-07-18. Author: Senior Product Manager\nProduct: Meridian (PROD-A) Defines how a new employee becomes payroll-ready, including the progressive collection of tax and banking details. Reduce the number of steps a new employee must complete before they can reach a working product, while keeping every mandatory compliance step enforced. This document does not cover manager approval workflows or payroll export formatting. Those are specified separately. Tax documentation must be collected after the employee's first successful login, not as part of initial account registration. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. An employee must not be granted payment privileges until identity verification has succeeded. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. Measured as: completion rate of the compliance steps, time to first productive action, and support contact volume in the first week. Version 2.0 supersedes version 1.0. The change moves the tax collection step out of initial registration and into the onboarding ramp, following the decision recorded in the decision log. How many days should elapse before the tax step is requested? The current answer of three days is provisional.",
+    "heading_path": [
+      "Meridian employee onboarding and payroll readiness",
+      "Background",
+      "Goals",
+      "Non-goals",
+      "REQ-A-01: Tax details are collected progressively",
+      "REQ-A-02: Identity is verified before payment privileges",
+      "Success measures",
+      "Change log",
+      "Open questions"
+    ],
+    "word_count": 200,
+    "source_entity_id": "PRD-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "prd",
+    "version": "2.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [
+      "DOC-PRD-A-01"
+    ],
+    "superseded_by": "",
+    "document_date": "2026-02-02",
+    "entity_ids": [
+      "PROD-A",
+      "REQ-A-01",
+      "REQ-A-02"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PRD-A-02-C0",
+    "document_id": "DOC-PRD-A-02",
+    "chunk_index": 0,
+    "text": "Document: DOC-PRD-A-02\nStatus: current. Version 1.0. Last modified 2026-04-10. Author: Product Manager\nProduct: Meridian (PROD-A) Covers bulk timesheet approval and recurring payroll file export to external payroll providers. Reduce the number of steps a new employee must complete before they can reach a working product, while keeping every mandatory compliance step enforced. This document does not cover manager approval workflows or payroll export formatting. Those are specified separately. A manager must be able to approve multiple timesheets in one action where all selected timesheets are complete. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. Payroll exports must run on a fixed, pre-configured schedule and must not be triggered ad hoc by end users. This requirement is normative for Meridian. Where another document disagrees, this statement takes precedence. Measured as: completion rate of the compliance steps, time to first productive action, and support contact volume in the first week. How many days should elapse before the tax step is requested? The current answer of three days is provisional.",
+    "heading_path": [
+      "Meridian manager approval and payroll export",
+      "Background",
+      "Goals",
+      "Non-goals",
+      "REQ-A-03: Managers approve timesheets in bulk",
+      "REQ-A-04: Payroll exports follow a fixed schedule",
+      "Success measures",
+      "Open questions"
+    ],
+    "word_count": 173,
+    "source_entity_id": "PRD-A-02",
+    "product_id": "PROD-A",
+    "doc_type": "prd",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-04-10",
+    "entity_ids": [
+      "REQ-A-03",
+      "REQ-A-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PRD-B-01-C0",
+    "document_id": "DOC-PRD-B-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-PRD-B-01\nStatus: current. Version 1.0. Last modified 2026-06-15. Author: Founder\nProduct: Tally (PROD-B) Covers reducing user churn when an established streak is about to break. Reduce the number of steps a new employee must complete before they can reach a working product, while keeping every mandatory compliance step enforced. This document does not cover manager approval workflows or payroll export formatting. Those are specified separately. The product must offer a reduced-effort alternative before a user breaks an established streak. This requirement is normative for Tally. Where another document disagrees, this statement takes precedence. Measured as: completion rate of the compliance steps, time to first productive action, and support contact volume in the first week. How many days should elapse before the tax step is requested? The current answer of three days is provisional.",
+    "heading_path": [
+      "Tally streak retention",
+      "Background",
+      "Goals",
+      "Non-goals",
+      "REQ-B-01: Streak loss is mitigated before it occurs",
+      "Success measures",
+      "Open questions"
+    ],
+    "word_count": 134,
+    "source_entity_id": "PRD-B-01",
+    "product_id": "PROD-B",
+    "doc_type": "prd",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-06-15",
+    "entity_ids": [
+      "REQ-B-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-A-01-C0",
+    "document_id": "DOC-FEAT-A-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-A-01\nStatus: SUPERSEDED. Version 1.0, last modified 2026-02-10. This version was replaced by DOC-FEAT-A-01-v2 and is retained for history only. Do not implement from this document. Product: Meridian (PROD-A)\nFeature: FEAT-A-01\nLifecycle status: launched\nPriority: 1 Collects additional employee details progressively after first login rather than in a single mandatory form. Within this document the feature is referred to as: Progressive Profiling. Users describe the same thing as: onboarding ramp, new-user activation, first-run setup. When progressive profiling is active, the product behaves as follows. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-A-02\n- FEAT-A-04 Under version 1.0, tax documentation was collected during initial account registration, before the employee had used the product. This was replaced in version 2.0.",
+    "heading_path": [
+      "Progressive Profiling - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Related features",
+      "Historical behaviour"
+    ],
+    "word_count": 127,
+    "source_entity_id": "FEAT-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "superseded",
+    "is_current": false,
+    "supersedes": [],
+    "superseded_by": "DOC-FEAT-A-01-v2",
+    "document_date": "2026-02-10",
+    "entity_ids": [
+      "PROD-A"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-A-01-v2-C0",
+    "document_id": "DOC-FEAT-A-01-v2",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-A-01-v2\nStatus: current. Version 2.0. Last modified 2026-07-22. Product: Meridian (PROD-A)\nFeature: FEAT-A-01\nLifecycle status: launched\nPriority: 1 Collects additional employee details progressively after first login rather than in a single mandatory form. Within this document the feature is referred to as: onboarding ramp. Users describe the same thing as: onboarding ramp, new-user activation, first-run setup. When onboarding ramp is active, the product behaves as follows. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-A-02\n- FEAT-A-04",
+    "heading_path": [
+      "Progressive Profiling - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Related features"
+    ],
+    "word_count": 85,
+    "source_entity_id": "FEAT-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "feature_spec",
+    "version": "2.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [
+      "DOC-FEAT-A-01"
+    ],
+    "superseded_by": "",
+    "document_date": "2026-02-10",
+    "entity_ids": [
+      "PROD-A",
+      "PROD-A",
+      "FEAT-A-02",
+      "FEAT-A-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-A-02-C0",
+    "document_id": "DOC-FEAT-A-02",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-A-02\nStatus: current. Version 1.0. Last modified 2026-03-04. Product: Meridian (PROD-A)\nFeature: FEAT-A-02\nLifecycle status: launched\nPriority: 2 Requires identity document verification before an employee can be granted payment privileges. Within this document the feature is referred to as: Identity Verification Window. Users describe the same thing as: ID check stage, KYC prompt, the verification pop-up. When identity verification window is active, the product behaves as follows. - Identity Verification Window calls the third-party identity verification service. Stated in the feature specification.\n- Payment privileges are granted only once the employee is payroll-ready, so this follows from the first PRD. Stated in that PRD. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-A-01\n- FEAT-A-03",
+    "heading_path": [
+      "Identity Verification Window - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Dependencies",
+      "Related features"
+    ],
+    "word_count": 123,
+    "source_entity_id": "FEAT-A-02",
+    "product_id": "PROD-A",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-03-04",
+    "entity_ids": [
+      "PROD-A",
+      "FEAT-A-01",
+      "FEAT-A-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-A-03-C0",
+    "document_id": "DOC-FEAT-A-03",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-A-03\nStatus: current. Version 1.0. Last modified 2026-04-18. Product: Meridian (PROD-A)\nFeature: FEAT-A-03\nLifecycle status: in_progress\nPriority: 3 Allows a manager to approve multiple submitted timesheets in a single action. Within this document the feature is referred to as: batch timesheet sign-off. Users describe the same thing as: batch timesheet sign-off, approving hours in bulk. When batch timesheet sign-off is active, the product behaves as follows. - Bulk Timesheet Approval reads and writes approved hours in the payroll ledger. Stated in the feature specification. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-A-02\n- FEAT-A-04",
+    "heading_path": [
+      "Bulk Timesheet Approval - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Dependencies",
+      "Related features"
+    ],
+    "word_count": 103,
+    "source_entity_id": "FEAT-A-03",
+    "product_id": "PROD-A",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-04-18",
+    "entity_ids": [
+      "PROD-A",
+      "FEAT-A-02",
+      "FEAT-A-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-A-04-C0",
+    "document_id": "DOC-FEAT-A-04",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-A-04\nStatus: current. Version 1.0. Last modified 2026-05-30. Product: Meridian (PROD-A)\nFeature: FEAT-A-04\nLifecycle status: planned\nPriority: 4 Schedules recurring export of payroll data to third-party payroll providers in a fixed file format. Within this document the feature is referred to as: automated payroll file. Users describe the same thing as: automated payroll file, scheduled payslip dump. When automated payroll file is active, the product behaves as follows. - Payroll Export Scheduling reads payroll totals from the ledger. Stated in the feature specification. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-A-01\n- FEAT-A-03",
+    "heading_path": [
+      "Payroll Export Scheduling - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Dependencies",
+      "Related features"
+    ],
+    "word_count": 102,
+    "source_entity_id": "FEAT-A-04",
+    "product_id": "PROD-A",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-05-30",
+    "entity_ids": [
+      "PROD-A",
+      "FEAT-A-01",
+      "FEAT-A-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-B-02-C0",
+    "document_id": "DOC-FEAT-B-02",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-B-02\nStatus: current. Version 1.0. Last modified 2026-07-02. Product: Tally (PROD-B)\nFeature: FEAT-B-02\nLifecycle status: planned\nPriority: 2 Lets users adopt a pre-built template of habits instead of creating each habit from scratch. Within this document the feature is referred to as: Habit Template Marketplace. Users describe the same thing as: browse habit packs, ready-made routines. When habit template marketplace is active, the product behaves as follows. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-B-01",
+    "heading_path": [
+      "Habit Template Marketplace - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Related features"
+    ],
+    "word_count": 84,
+    "source_entity_id": "FEAT-B-02",
+    "product_id": "PROD-B",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-07-02",
+    "entity_ids": [
+      "PROD-B",
+      "FEAT-B-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-B-01-C0",
+    "document_id": "DOC-FEAT-B-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-B-01\nStatus: SUPERSEDED. Version 1.0, last modified 2026-06-11. This version was replaced by DOC-FEAT-B-01-v2 and is retained for history only. Do not implement from this document. Product: Tally (PROD-B)\nFeature: FEAT-B-01\nLifecycle status: launched\nPriority: 1 Suggests a reduced-effort alternative habit when a user is about to break a multi-week streak. Within this document the feature is referred to as: streak saver. Users describe the same thing as: streak saver, saving a broken streak, losing a streak. When streak saver is active, the product behaves as follows. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-B-02 Under version 1.0, tax documentation was collected during initial account registration, before the employee had used the product. This was replaced in version 2.0.",
+    "heading_path": [
+      "Streak Recovery Suggestion Engine - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Related features",
+      "Historical behaviour"
+    ],
+    "word_count": 128,
+    "source_entity_id": "FEAT-B-01",
+    "product_id": "PROD-B",
+    "doc_type": "feature_spec",
+    "version": "1.0",
+    "version_status": "superseded",
+    "is_current": false,
+    "supersedes": [],
+    "superseded_by": "DOC-FEAT-B-01-v2",
+    "document_date": "2026-06-11",
+    "entity_ids": [
+      "PROD-B"
+    ]
+  },
+  {
+    "chunk_id": "DOC-FEAT-B-01-v2-C0",
+    "document_id": "DOC-FEAT-B-01-v2",
+    "chunk_index": 0,
+    "text": "Document: DOC-FEAT-B-01-v2\nStatus: current. Version 2.0. Last modified 2026-08-02. Product: Tally (PROD-B)\nFeature: FEAT-B-01\nLifecycle status: launched\nPriority: 1 Suggests a reduced-effort alternative habit when a user is about to break a multi-week streak. Within this document the feature is referred to as: streak saver. Users describe the same thing as: streak saver, saving a broken streak, losing a streak. When streak saver is active, the product behaves as follows. The following features are adjacent in scope and are sometimes confused with this one:\n\n- FEAT-B-02",
+    "heading_path": [
+      "Streak Recovery Suggestion Engine - specification",
+      "Purpose",
+      "Terminology",
+      "Behaviour",
+      "Related features"
+    ],
+    "word_count": 86,
+    "source_entity_id": "FEAT-B-01",
+    "product_id": "PROD-B",
+    "doc_type": "feature_spec",
+    "version": "2.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [
+      "DOC-FEAT-B-01"
+    ],
+    "superseded_by": "",
+    "document_date": "2026-06-11",
+    "entity_ids": [
+      "PROD-B",
+      "PROD-B",
+      "FEAT-B-02"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-011-C0",
+    "document_id": "DOC-PBI-A-011",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-011\nStatus: current. Backlog item: PBI-A-011\nFeature: FEAT-A-01\nStory points: 3\nRaised: 2026-03-02 As a new starter I want to be asked for my tax details a few days after I sign up, so that I am not stuck on a long form before I have even seen the product. This item sits under FEAT-A-01 (Progressive Profiling). Primary component touched: COMP-06.",
+    "heading_path": [
+      "Ask for tax details on day three",
+      "Story",
+      "Context"
+    ],
+    "word_count": 62,
+    "source_entity_id": "PBI-A-011",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-03-02",
+    "entity_ids": [
+      "FEAT-A-01",
+      "COMP-06"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-012-C0",
+    "document_id": "DOC-PBI-A-012",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-012\nStatus: current. Backlog item: PBI-A-012\nFeature: FEAT-A-01\nStory points: 2\nRaised: 2026-03-05 As a new starter I want to see what information will be asked of me over the next week, so I know what is coming. This item sits under FEAT-A-01 (Progressive Profiling). Primary component touched: COMP-05.",
+    "heading_path": [
+      "Show the ramp checklist after first login",
+      "Story",
+      "Context"
+    ],
+    "word_count": 50,
+    "source_entity_id": "PBI-A-012",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-03-05",
+    "entity_ids": [
+      "FEAT-A-01",
+      "COMP-05"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-013-C0",
+    "document_id": "DOC-PBI-A-013",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-013\nStatus: current. Backlog item: PBI-A-013\nFeature: FEAT-A-02\nStory points: 5\nRaised: 2026-03-12 As a payroll admin I want payment privileges blocked until the ID check has come back, so that we never pay an unverified person. This item sits under FEAT-A-02 (ID check stage). Primary component touched: COMP-01.",
+    "heading_path": [
+      "Block payment privileges until ID check passes",
+      "Story",
+      "Context"
+    ],
+    "word_count": 50,
+    "source_entity_id": "PBI-A-013",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-03-12",
+    "entity_ids": [
+      "FEAT-A-02",
+      "COMP-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-014-C0",
+    "document_id": "DOC-PBI-A-014",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-014\nStatus: current. Backlog item: PBI-A-014\nFeature: FEAT-A-03\nStory points: 5\nRaised: 2026-05-02 As a manager I want to select all timesheets and approve them in one go, rather than approving each row separately. This item sits under FEAT-A-03 (Bulk Timesheet Approval). Primary component touched: COMP-03.",
+    "heading_path": [
+      "Select-all approve on the timesheet grid",
+      "Story",
+      "Context"
+    ],
+    "word_count": 47,
+    "source_entity_id": "PBI-A-014",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-05-02",
+    "entity_ids": [
+      "FEAT-A-03",
+      "COMP-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-015-C0",
+    "document_id": "DOC-PBI-A-015",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-015\nStatus: current. Backlog item: PBI-A-015\nFeature: FEAT-A-03\nStory points: 3\nRaised: 2026-05-06 As a manager I want to reject a whole batch with a single reason, because writing the same note twenty times is pointless. This item sits under FEAT-A-03 (batch timesheet sign-off). Primary component touched: COMP-03.",
+    "heading_path": [
+      "Reject the whole batch with one reason",
+      "Story",
+      "Context"
+    ],
+    "word_count": 49,
+    "source_entity_id": "PBI-A-015",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-05-06",
+    "entity_ids": [
+      "FEAT-A-03",
+      "COMP-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-016-C0",
+    "document_id": "DOC-PBI-A-016",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-016\nStatus: current. Backlog item: PBI-A-016\nFeature: FEAT-A-04\nStory points: 5\nRaised: 2026-06-01 As a payroll admin I want the payroll file exported every night at a fixed time, so my provider always has today's data. This item sits under FEAT-A-04 (automated payroll file). Primary component touched: COMP-03.",
+    "heading_path": [
+      "Nightly payroll export job",
+      "Story",
+      "Context"
+    ],
+    "word_count": 49,
+    "source_entity_id": "PBI-A-016",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-06-01",
+    "entity_ids": [
+      "FEAT-A-04",
+      "COMP-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-A-017-C0",
+    "document_id": "DOC-PBI-A-017",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-A-017\nStatus: current. Backlog item: PBI-A-017\nFeature: FEAT-A-02\nStory points: 2\nRaised: 2026-03-20 As a new starter I want the payment area hidden until my ID has been checked, so that I do not try to add a card and get rejected later. This item sits under FEAT-A-02 (ID check stage). Primary component touched: COMP-02.",
+    "heading_path": [
+      "Hide the payment tab until verification clears",
+      "Story",
+      "Context"
+    ],
+    "word_count": 56,
+    "source_entity_id": "PBI-A-017",
+    "product_id": "PROD-A",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-03-20",
+    "entity_ids": [
+      "FEAT-A-02",
+      "COMP-02",
+      "PBI-A-016"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-B-021-C0",
+    "document_id": "DOC-PBI-B-021",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-B-021\nStatus: current. Backlog item: PBI-B-021\nFeature: FEAT-B-01\nStory points: 3\nRaised: 2026-06-20 As a user I want to be offered an easier version of my habit before I break my streak, so I do not lose weeks of progress. This item sits under FEAT-B-01 (streak saver). Primary component touched: COMP-05.",
+    "heading_path": [
+      "Offer a lighter habit before the streak breaks",
+      "Story",
+      "Context"
+    ],
+    "word_count": 52,
+    "source_entity_id": "PBI-B-021",
+    "product_id": "PROD-B",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-06-20",
+    "entity_ids": [
+      "FEAT-B-01",
+      "COMP-05"
+    ]
+  },
+  {
+    "chunk_id": "DOC-PBI-B-022-C0",
+    "document_id": "DOC-PBI-B-022",
+    "chunk_index": 0,
+    "text": "Document: DOC-PBI-B-022\nStatus: current. Backlog item: PBI-B-022\nFeature: FEAT-B-01\nStory points: 2\nRaised: 2026-07-14 As a user I want the app to say why it is suggesting something easier, instead of it just appearing out of nowhere. This item sits under FEAT-B-01 (Streak Recovery Suggestion Engine). Primary component touched: COMP-04.",
+    "heading_path": [
+      "Explain why the suggestion appeared",
+      "Story",
+      "Context"
+    ],
+    "word_count": 50,
+    "source_entity_id": "PBI-B-022",
+    "product_id": "PROD-B",
+    "doc_type": "pbi",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-07-14",
+    "entity_ids": [
+      "FEAT-B-01",
+      "COMP-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-TKT-A-101-C0",
+    "document_id": "DOC-TKT-A-101",
+    "chunk_index": 0,
+    "text": "Document: DOC-TKT-A-101\nRaised: 2026-03-18\nSeverity: medium\nReported by: Support agent\nSegment: new starter I set up my account on Monday and it wanted my tax details straight away. I only wanted to look around first. Routed to FEAT-A-01 (onboarding ramp). Linked backlog item: PBI-A-011. Related component: COMP-06.",
+    "heading_path": [
+      "Ticket TKT-A-101",
+      "Reported symptom",
+      "Triage"
+    ],
+    "word_count": 47,
+    "source_entity_id": "TKT-A-101",
+    "product_id": "PROD-A",
+    "doc_type": "ticket",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "FEAT-A-01",
+      "COMP-06"
+    ]
+  },
+  {
+    "chunk_id": "DOC-TKT-A-102-C0",
+    "document_id": "DOC-TKT-A-102",
+    "chunk_index": 0,
+    "text": "Document: DOC-TKT-A-102\nRaised: 2026-05-20\nSeverity: high\nReported by: Support agent\nSegment: line manager I have got forty hours to sign off on and I have to click approve on every single row. Please add a select all. Routed to FEAT-A-03 (batch timesheet sign-off). Linked backlog item: PBI-A-014. Related component: COMP-03.",
+    "heading_path": [
+      "Ticket TKT-A-102",
+      "Reported symptom",
+      "Triage"
+    ],
+    "word_count": 50,
+    "source_entity_id": "TKT-A-102",
+    "product_id": "PROD-A",
+    "doc_type": "ticket",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "FEAT-A-03",
+      "COMP-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-DEC-A-01-C0",
+    "document_id": "DOC-DEC-A-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-DEC-A-01\nDecided: 2026-07-16\nDecided by: Senior Product Manager Move tax collection to day three of the onboarding ramp rather than requiring it during sign-up. Early testing showed the long sign-up form caused abandonment in the first session. Asking later, once the user has seen value, raised completion of the tax step from 54% to 88%. FEAT-A-01 (Progressive Profiling).",
+    "heading_path": [
+      "Decision DEC-A-01",
+      "Decision",
+      "Rationale",
+      "Applies to"
+    ],
+    "word_count": 59,
+    "source_entity_id": "DEC-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "decision_log",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "FEAT-A-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-DEC-B-01-C0",
+    "document_id": "DOC-DEC-B-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-DEC-B-01\nDecided: 2026-08-01\nDecided by: Founder Ship the streak saver prompt only in the evening, not on waking. Morning prompts were being dismissed unread. Evening is when people are already opening the app. FEAT-B-01 (streak saver).",
+    "heading_path": [
+      "Decision DEC-B-01",
+      "Decision",
+      "Rationale",
+      "Applies to"
+    ],
+    "word_count": 37,
+    "source_entity_id": "DEC-B-01",
+    "product_id": "PROD-B",
+    "doc_type": "decision_log",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "FEAT-B-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-NOTE-A-01-C0",
+    "document_id": "DOC-NOTE-A-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-NOTE-A-01\nDate: 2026-05-08\nAttending: Product Manager, Engineering lead\nProduct: Meridian - Managers are approving roughly forty rows at a time, so the per-row click is the bottleneck\n- Not doing partial-batch approval this quarter, it complicates the audit trail\n- Need to check the ledger is not the slow part before committing to a date - FEAT-A-03\n- PBI-A-014",
+    "heading_path": [
+      "Meeting note NOTE-A-01",
+      "Topics",
+      "Entities discussed"
+    ],
+    "word_count": 60,
+    "source_entity_id": "NOTE-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "meeting_notes",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-05-08",
+    "entity_ids": [
+      "FEAT-A-03",
+      "PBI-A-014"
+    ]
+  },
+  {
+    "chunk_id": "DOC-NOTE-B-01-C0",
+    "document_id": "DOC-NOTE-B-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-NOTE-B-01\nDate: 2026-07-20\nAttending: Founder\nProduct: Tally - The saver prompt fires too early in the day and people swipe it away\n- Trying evening only for a fortnight - FEAT-B-01",
+    "heading_path": [
+      "Meeting note NOTE-B-01",
+      "Topics",
+      "Entities discussed"
+    ],
+    "word_count": 32,
+    "source_entity_id": "NOTE-B-01",
+    "product_id": "PROD-B",
+    "doc_type": "meeting_notes",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "2026-07-20",
+    "entity_ids": [
+      "FEAT-B-01"
+    ]
+  },
+  {
+    "chunk_id": "DOC-RBK-A-01-C0",
+    "document_id": "DOC-RBK-A-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-RBK-A-01\nComponent: COMP-06 (TaxBand Rate Service)\nOwner: external vendor\nLast reviewed: 2026-08-05 1. A 429 from the rate service means the 20 calls/minute budget is exhausted. 2. Back off for 30 seconds, then retry the single call. Do not retry the batch. 3. If three consecutive batches fail, raise an operations alert; the tax step cannot complete without resolved rates. Resolves tax bands for a given jurisdiction. Rate-limited, 20 calls/min.",
+    "heading_path": [
+      "Runbook: TaxBand rate service: handling rate-limit responses",
+      "Steps",
+      "Notes"
+    ],
+    "word_count": 71,
+    "source_entity_id": "RBK-A-01",
+    "product_id": "PROD-A",
+    "doc_type": "runbook",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-06"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-01-C0",
+    "document_id": "DOC-COMP-01",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-01\nComponent: COMP-01\nType: third_party\nOwner: external vendor Third-party identity document verification. Team does not own this service; failures surface only as a timeout. These components are technically related but are NOT dependencies of this one:\n\n- COMP-02\n- COMP-05",
+    "heading_path": [
+      "Verisign ID Verification API",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 41,
+    "source_entity_id": "COMP-01",
+    "product_id": "PROD-A",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-02",
+      "COMP-05"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-02-C0",
+    "document_id": "DOC-COMP-02",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-02\nComponent: COMP-02\nType: third_party\nOwner: external vendor Handles payment instrument tokenisation. These components are technically related but are NOT dependencies of this one:\n\n- COMP-01\n- COMP-03",
+    "heading_path": [
+      "Stripe Payments Gateway",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 29,
+    "source_entity_id": "COMP-02",
+    "product_id": "PROD-A",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-01",
+      "COMP-03"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-03-C0",
+    "document_id": "DOC-COMP-03",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-03\nComponent: COMP-03\nType: database\nOwner: platform System of record for approved hours and payroll totals. These components are technically related but are NOT dependencies of this one:\n\n- COMP-02\n- COMP-04",
+    "heading_path": [
+      "Payroll Ledger Database",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 33,
+    "source_entity_id": "COMP-03",
+    "product_id": "PROD-A",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-02",
+      "COMP-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-04-C0",
+    "document_id": "DOC-COMP-04",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-04\nComponent: COMP-04\nType: service\nOwner: platform Builds and sends scheduled email digests. These components are technically related but are NOT dependencies of this one:\n\n- COMP-03\n- COMP-05",
+    "heading_path": [
+      "Digest Notification Worker",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 30,
+    "source_entity_id": "COMP-04",
+    "product_id": "PROD-B",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-03",
+      "COMP-05"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-05-C0",
+    "document_id": "DOC-COMP-05",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-05\nComponent: COMP-05\nType: queue\nOwner: platform Carries domain events between services. These components are technically related but are NOT dependencies of this one:\n\n- COMP-01\n- COMP-04",
+    "heading_path": [
+      "Domain Event Bus",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 29,
+    "source_entity_id": "COMP-05",
+    "product_id": "PROD-A",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-01",
+      "COMP-04"
+    ]
+  },
+  {
+    "chunk_id": "DOC-COMP-06-C0",
+    "document_id": "DOC-COMP-06",
+    "chunk_index": 0,
+    "text": "Document: DOC-COMP-06\nComponent: COMP-06\nType: third_party\nOwner: external vendor Resolves tax bands for a given jurisdiction. Rate-limited, 20 calls/min. These components are technically related but are NOT dependencies of this one:\n\n- COMP-02\n- COMP-05",
+    "heading_path": [
+      "TaxBand Rate Service",
+      "Description",
+      "Adjacent components"
+    ],
+    "word_count": 35,
+    "source_entity_id": "COMP-06",
+    "product_id": "PROD-A",
+    "doc_type": "component_doc",
+    "version": "1.0",
+    "version_status": "current",
+    "is_current": true,
+    "supersedes": [],
+    "superseded_by": "",
+    "document_date": "",
+    "entity_ids": [
+      "COMP-02",
+      "COMP-05"
+    ]
+  }
+]
