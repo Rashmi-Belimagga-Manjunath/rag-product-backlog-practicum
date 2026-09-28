@@ -33,3 +33,5 @@ streamlit>=1.0
 pytest>=8.0
 python-dotenv>=1.0
 tqdm>=4.0
+# Evidence export (data/exports/practicum_dataset_evidence.xlsx)
+openpyxl>=3.1
