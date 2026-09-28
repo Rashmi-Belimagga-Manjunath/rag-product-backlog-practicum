@@ -12,4 +12,6 @@ Two supporting documents carry the detail:
 
 - `docs/rag_configuration.md` — RAG top-k, generation model, system prompt and citation format
 - `docs/bm25_configuration.md` — BM25 k1/b, tokenisation and result presentation
-- `docs/evaluation_metrics.md` — the eight metric formulas and procedures
+- `docs/evaluation_metrics.md` — exact operational definitions of the eight metrics (D-009, not yet frozen)
+- `docs/reproducibility.md` — reproducibility artefact and hash specification (D-012, proposed)
+- `CHUNKING_DECISION.md` — the frozen C6 measure and the frozen 1000/200 configuration

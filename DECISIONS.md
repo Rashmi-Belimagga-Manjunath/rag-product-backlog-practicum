@@ -557,9 +557,11 @@ case for the C6 revision, but did not change the frozen outcome. Recorded here b
 research record must not contain evidence that later turns out to be wrong, even when the
 conclusion survives.
 
-### D-007 — RAG configuration (PROPOSED, not yet frozen)
+### D-007 — RAG configuration (APPROVED AND FROZEN)
 
-**Status:** PROPOSED. Awaiting explicit approval; values must not be used in a run until frozen.
+**Status:** APPROVED and FROZEN by the student 2026-09-28. Recorded before any BM25 or RAG
+run. Machine-readable form: `experiments/configs/rag_config.json` (`"frozen": true`), prompt
+at `experiments/configs/rag_prompt.txt`.
 
 top-k 5 (matches the `@5` metric cutoff, ~1,700 token context, ~1.7% of the projected 289
 chunks); `gpt-4o-mini` at temperature 0, max_tokens 800, n=1; machine-checkable
@@ -569,9 +571,10 @@ awareness, advisory framing and no autonomous action. Prompt variants, temperatu
 and top-k sweeps are explicitly excluded, because selecting among them would turn this into
 an optimisation exercise rather than a controlled comparison. Detail: `docs/rag_configuration.md`.
 
-### D-008 — BM25 configuration (PROPOSED, not yet frozen)
+### D-008 — BM25 configuration (APPROVED AND FROZEN)
 
-**Status:** PROPOSED. Awaiting explicit approval; values must not be used in a run until frozen.
+**Status:** APPROVED and FROZEN by the student 2026-09-28. Recorded before any RAG run.
+Machine-readable form: `experiments/configs/bm25_config.json` (`"frozen": true`).
 
 k1 1.5, b 0.75 (Robertson & Zaragoza 2009 defaults), Lucene non-negative IDF, chunk-level
 retrieval, lowercase with Unicode word tokenisation, no stemming and no stopword removal
@@ -580,26 +583,38 @@ on ascending chunk ID. BM25 may not be tuned, re-ranked or query-expanded after 
 visible, since that would convert a traditional baseline into a fitted competitor. Detail:
 `docs/bm25_configuration.md`.
 
-### D-009 — Evaluation metrics, two-layer design, and the error split (PROPOSED)
+### D-009 — Evaluation metrics (DEFINITIONS SUBMITTED, NOT YET FROZEN)
 
-**Status:** Metric definitions PROPOSED. The two-layer design and the BM25 output form are APPROVED.
+**Status:** NOT FROZEN. Exact operational definitions for all eight metrics are submitted
+for review in `docs/evaluation_metrics.md` on 2026-09-28 and are deliberately not frozen
+until reviewed. The two-layer design and the BM25 output form (D-010) are already approved
+and are not reopened by this.
 
-Precision@5, Recall@5, MRR, dependency accuracy (TP/FP/FN over dependency IDs, split by
-explicitness), and task completion time (3 runs, median, A/B interleaved, warm-up
-discarded, retrieval-only latency logged separately so RAG's generation cost is not hidden).
+Each metric now specifies numerator and denominator, unit of analysis, aggregation, tie
+treatment, zero-relevant-item queries, dependency-not-applicable queries, scale for
+human-facing measures, missing-value handling, which system it applies to, and whether it
+is retrieval-level or user-facing. Conventions are stated once in §1 and per metric in
+§2–§7.
 
-Every dependency error is classified from the retrieval log, which is written before
-generation and therefore cannot be influenced by what the generator went on to say. **BM25
-has no generation stage, so every BM25 error is a retrieval error and is assessed
-directly.** For RAG: required evidence absent from the top-5 is a **retrieval failure**;
-evidence present but the answer incorrect, incomplete, unsupported, or failing to use that
-evidence is a **generation/reasoning failure**. Fabricated dependencies and fabricated
-citations are counted separately, since they are worse than wrong inference.
+Points that required an explicit decision rather than a default:
 
-Relevance is assigned by provenance from the source model, never by query-to-chunk text
-similarity: a text-similarity label would be a second unstated retrieval model inside the
-scoring and would favour the embedding system by construction. Detail:
-`docs/evaluation_metrics.md`.
+- **Zero-relevant-item queries are a ground-truth defect, not a metric value.** Recall@5
+  would have an undefined denominator, so the run is aborted and reported as invalid
+  rather than scoring the query.
+- **Dependency precision is defined over all 32 queries; recall and F1 over the 13
+  dependency-related queries only.** On the other 19, `E(q) = ∅` makes recall `0/0` and
+  undefined. Those queries still penalise a system that invents a dependency, via
+  precision. A system answering "no dependencies" to everything scores precision 1.0 and
+  recall 0.0; both are always reported together, and precision alone is never used as a
+  summary.
+- **A failed run is not a missing value.** It scores zero and stays in every denominator. A
+  retriever that crashes on hard queries must not score better by dropping them.
+- **A human rating never assigned is a missing value and is never imputed.** The denominator
+  is printed with every mean, and above 10% missing, Layer B is reported as incomplete and
+  not compared.
+- **Ties are resolved at retrieval time**, by the frozen ascending-chunk-ID rule, so a
+  metric is never computed over an order-ambiguous list.
+- **MRR is defined on the 13 plus all 32**; it is reported over all 32.
 
 ### D-010 — Two-layer evaluation; BM25 presents retrieved passages (APPROVED)
 
@@ -629,9 +644,61 @@ disclosed in the same sentence as the number, not removed. Detail: `docs/evaluat
 
 ### D-011 — Ethics determination for human-rated metrics remains open (OPEN)
 
-**Status:** OPEN. No change.
+**Status:** OPEN. Reaffirmed 2026-09-28. No change to its substance.
 
-Usefulness, clarity and trust are rated by the researcher against a fixed anchored rubric
-and disclosed as a limitation. No participant data is collected. Whether a formal
-determination is required from the NCI coordinator or supervisor is still unanswered, and
-neither its answer nor its absence may be assumed.
+**No assumption is made in either direction.** This decision does not record that ethics
+approval exists, and it does not record that approval is unnecessary or that an exemption
+applies. Both remain unestablished.
+
+Consequences, all binding:
+
+- **No human-participant data is collected.** No recruitment, no consent process, no
+  participant responses, no participant-derived measurements of any kind.
+- **Nothing begins until the NCI coordinator or the appropriate ethics process has
+  determined what is required.** An unanswered determination is not a permission.
+- **The technical BM25/RAG experiment must remain separable from any human-participant
+  evaluation.** The technical experiment proceeds on its own terms and does not depend on,
+  wait for, or share infrastructure with a participant study. If a participant study never
+  happens, the technical results are unaffected.
+- **If participant evaluation is later approved, it must evaluate the already-frozen
+  technical system.** Changing the chunking configuration, the retrieval depth, the
+  generation model, the prompt, the BM25 parameters or the metric definitions during
+  participant testing would invalidate both the technical comparison and the participant
+  data. Any such change is a new freeze with a new manifest version and a recorded protocol
+  deviation.
+- **Usefulness, clarity and trust are currently rated by the researcher** against the fixed
+  5-point anchored scale in `docs/evaluation_metrics.md` §7, and that substitution is
+  disclosed as a limitation. It is not presented as equivalent to participant evaluation,
+  and it carries no claim of inter-rater reliability.
+
+The Layer B user-facing metrics are therefore a **researcher-rating** result at this stage.
+If participant evaluation is approved later, the two must be reported as distinct
+evidences and never merged into a single score.
+
+### D-012 — Reproducibility artefacts and hash specification (PROPOSED)
+
+**Status:** PROPOSED 2026-09-28, pending approval. Specification: `docs/reproducibility.md`.
+Implemented in `src/manifest/manifest.py` with `build`, `verify` and `status`.
+
+Twelve artefacts, all SHA-256, all captured at the final experiment freeze into
+`data/manifest/FREEZE.json` (authoritative) with a rendered `FREEZE.md`. For each: what is
+hashed, the algorithm, when it is captured, where it is recorded, and whether it is
+committed to Git or stored separately. Every one of the nine artefacts named by the
+supervisor is covered; environment record, validation reports and run outputs are added.
+
+Notable choices:
+
+- **The embedding matrix is the operative reproducibility guarantee**, because no dated
+  snapshot of `text-embedding-3-large` is published. Its positional `chunk_id_order` is
+  hashed separately and stored alongside it, since a matrix without its row order is
+  meaningless.
+- **Tree digests are computed over sorted per-file digests**, so filesystem iteration order
+  cannot change the value, and both the individual digests and an aggregate are recorded.
+- **A dirty working tree invalidates a freeze** and is recorded as such in the manifest.
+- **The manifest is verified, not trusted:** `python3 -m src.manifest.manifest --verify`
+  recomputes every digest and fails on the first mismatch or if HEAD has moved, so a later
+  silent edit to a frozen artefact is caught rather than discovered during write-up.
+- **`.env` is never hashed into a committed manifest.** It holds a secret and is gitignored.
+- Artefacts 1–10 are captured once at the freeze. A later run appends only its own run
+  outputs under a new `run_id`; if a frozen input changes, that is a protocol deviation,
+  not a re-freeze.

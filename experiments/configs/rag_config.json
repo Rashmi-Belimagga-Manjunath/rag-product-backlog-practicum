@@ -1,0 +1,59 @@
+{
+  "_status": "FROZEN 2026-09-28 by explicit student approval (D-007). Do not change after results are observed.",
+  "_prohibition": "Do not run alternative configurations and select a preferred one on performance. No prompt variants, no temperature sweep, no top-k sweep.",
+
+  "retrieval": {
+    "top_k": 5,
+    "_top_k_rationale": "Matches the @5 metric cutoff, ~1,700 token context, ~1.7% of the ~289 projected chunks."
+  },
+
+  "generation": {
+    "model_name": "gpt-4o-mini",
+    "_model_note": "Fixed component of the RAG treatment, NOT an experimental variable. Verified available on the account API 2026-09-28.",
+    "model_snapshot": "gpt-4o-mini",
+    "_snapshot_note": "No dated snapshot is published for this model; the alias is recorded as-is and every response is stored as a reproducibility artefact.",
+    "temperature": 0.0,
+    "top_p": null,
+    "max_tokens": 800,
+    "n": 1,
+    "seed": null,
+    "_seed_note": "Set and recorded if the endpoint supports it. Recorded either way, including whether it was honoured."
+  },
+
+  "citation_format": {
+    "pattern": "[DOCUMENT_ID#Cn]",
+    "example": "[DOC-PRD-A-01-v2#C0]",
+    "machine_checkable": true,
+    "_note": "Validated against the retrieval log for that query. Retrieved-but-unsupporting = mis-citation; never-supplied = fabricated citation."
+  },
+
+  "prompt": {
+    "path": "experiments/configs/rag_prompt.txt",
+    "sha256": "7ab15349db7a7a5db04c3b1a5f6aa52505a4f7bbc3e7d1a37ea234b4ca553dc1",
+    "_status": "The seven REQUIREMENTS are frozen by approval. This text implements them.",
+    "frozen_requirements": [
+      "grounding: answer only from supplied chunks, no outside knowledge",
+      "abstention: say so explicitly when the evidence is insufficient",
+      "citation on every claim, in a machine-checkable form",
+      "no invented identifiers",
+      "version awareness for superseded passages",
+      "advisory framing: supports a human decision, does not make it",
+      "no autonomous action on the backlog"
+    ]
+  },
+
+  "vector_store": {
+    "name": "chromadb",
+    "version_verified": "1.5.9",
+    "metric": "cosine",
+    "persist_directory": "data/vectorstore/v1-corpus",
+    "numpy_cross_check": "exact brute-force validation only; never used to alter, correct or tune results"
+  },
+
+  "layering": {
+    "layer_a_retrieval_comparison": "BM25 and RAG retrieval compared like-for-like over the same corpus, queries, ground truth and k=5.",
+    "layer_b_user_facing": "BM25 presents its top-5 retrieved passages; RAG presents this generated grounded answer. The two output forms are explicitly NOT identical. No prose answer is fabricated for BM25."
+  },
+
+  "frozen": true
+}

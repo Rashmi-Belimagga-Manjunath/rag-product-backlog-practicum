@@ -1,0 +1,53 @@
+{
+  "_status": "FROZEN 2026-09-28 by explicit student approval (D-008). Do not change after RAG results are observed.",
+  "_prohibition": "Do not tune k1, b, tokenisation or the query path after results are seen. Converting the traditional baseline into a fitted competitor would invalidate the comparison.",
+
+  "scoring": {
+    "k1": 1.5,
+    "b": 0.75,
+    "idf": "lucene",
+    "idf_formula": "ln(1 + (N - df(t) + 0.5) / (df(t) + 0.5))",
+    "idf_note": "Non-negative Lucene variant. Cannot produce negative scores. df computed over the indexed chunk set.",
+    "tf_formula": "(f(t,D) * (k1 + 1)) / (f(t,D) + k1 * (1 - b + b * |D| / avgdl))",
+    "unit_of_retrieval": "chunk",
+    "_unit_note": "Identical to RAG. The two systems must rank the same objects."
+  },
+
+  "text_handling": {
+    "lowercase": true,
+    "tokenisation": "unicode word tokens, [\\w']+",
+    "stemming": false,
+    "stopword_removal": false,
+    "_note": "BM25's IDF already down-weights ubiquitous terms. Removing stopwords or stemming would be an unstated deviation from standard BM25. The frozen stopword set is used ONLY for query difficulty banding, never inside the retriever."
+  },
+
+  "query_handling": {
+    "verbatim": true,
+    "query_expansion": false,
+    "synonym_rewriting": false,
+    "spell_correction": false,
+    "_note": "These are RAG-side capabilities. Adding them to the baseline would confound the comparison. Both systems receive byte-identical query strings."
+  },
+
+  "output": {
+    "top_k": 5,
+    "user_facing_output_form": "top-5 retrieved passages presented as retrieved evidence",
+    "tie_breaking": "ascending chunk ID",
+    "_tie_note": "Deterministic and content-independent. An arbitrary tie-break would make runs non-reproducible.",
+    "logged_per_query": ["chunk_id", "rank", "score", "document_id"],
+    "_log_note": "Retrieval is logged before any presentation step, independently of any answer."
+  },
+
+  "forbidden_after_freeze": [
+    "adjusting k1 or b",
+    "adding stemming, stopword removal or n-gram expansion",
+    "adding a re-ranking or fusion stage",
+    "changing the unit of retrieval from chunk to document",
+    "truncating or extending the top-5 output to close a gap to RAG",
+    "removing queries, or excluding queries where BM25 performs badly"
+  ],
+
+  "defect_disclosure": "A genuine implementation defect found after the freeze is fixed AND disclosed as a protocol deviation. Silently correcting the baseline in whichever direction is convenient would compromise the comparison.",
+
+  "frozen": true
+}

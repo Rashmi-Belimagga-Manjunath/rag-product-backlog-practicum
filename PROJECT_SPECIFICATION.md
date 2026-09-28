@@ -287,7 +287,9 @@ student on 2026-09-27**, before any experiment was run. See `DECISIONS.md` D-001
 | D2 | Embedding model | ✅ **OpenAI embeddings**, as in CA1/CA2. Must not change after seeing results. |
 | D3 | Vector store | ✅ **Chroma, with an exact-NumPy validation cross-check** — see §11.1 |
 | D4 | BM25 implementation | ✅ **Standard implementation.** |
-| D5 | BM25 `k1` / `b` | ✅ **k1 = 1.5, b = 0.75**, fixed before the comparison. Must not be tuned after seeing RAG results. |
+| D5 | BM25 `k1` / `b` | ✅ **FROZEN 2026-09-28** (D-008): k1 = 1.5, b = 0.75, Lucene IDF, no
+stemming, verbatim queries, ties on ascending chunk ID. Must not be tuned after seeing
+RAG results. `experiments/configs/bm25_config.json`. |
 | D6 | Corpus scale | ✅ **272 documents** (260 current + 12 superseded), 2 products, 12
 features each, ~208 dependencies, ~289 projected chunks. Deferred generation by design. |
 | D7 | Query count and distribution | ✅ **32 slots**, 11/11/10, 13 dependency-related (6/7).
@@ -296,16 +298,20 @@ Machine-validated. Wording deferred except the three Q-SUP queries. |
 | D9 | Real artefacts | ✅ **None.** Fully synthetic. Must be documented as a threat to external validity. |
 | D10 | Chunking configuration | ✅ **FROZEN at 1000/200** (2026-09-28), selected on C1–C8 alone. C6
 replaced with same-document 8-gram containment > 0.5. `CHUNKING_DECISION.md`. |
-| D11 | RAG configuration | ⏸ **Open — awaiting approval.** top-k 5, `gpt-4o-mini`, temp 0,
-`[DOC-ID#Cn]` citations. `docs/rag_configuration.md`. |
-| D12 | Evaluation metrics | ⏸ **Definitions proposed.** Two-layer design **approved**: Layer A
-retrieval (P@5, R@5, MRR, dependency accuracy); Layer B user-facing (usefulness, clarity,
-trust, time). BM25 = passages, RAG = generated answer; not identical forms.
-`docs/evaluation_metrics.md`. |
+| D11 | RAG configuration | ✅ **FROZEN 2026-09-28** (D-007): top-k 5, `gpt-4o-mini`, temp 0,
+max_tokens 800, `[DOC-ID#Cn]` citations, 7 frozen prompt requirements.
+`experiments/configs/rag_config.json`. |
+| D12 | Evaluation metrics | ⏸ **D-009 NOT FROZEN.** Exact operational definitions for all 8 metrics
+submitted 2026-09-28 in `docs/evaluation_metrics.md`, awaiting review. Two-layer design
+**approved**. |
+| — | Reproducibility artefacts | ⏸ **D-012 proposed.** 12 artefacts, SHA-256, manifest + verifier.
+`docs/reproducibility.md`, `src/manifest/manifest.py`. |
 | — | BM25 answer presentation | ✅ **Settled** (D-010). BM25 presents its top-5 passages; no prose
 answer is fabricated. Layered evaluation. |
-| — | Ethics approval for synthetic corpus | ⏸ Open. Do not assume either way. |
-| — | Human evaluation | 🔒 **Blocked** until ethics approval confirmed. No recruitment, no participant data. |
+| — | Ethics approval for synthetic corpus | ⏸ **OPEN (D-011).** Do not assume approval or exemption. |
+| — | Human evaluation | 🔒 **Blocked.** D-011 **OPEN**: no assumption either way. No recruitment,
+no consent process, no participant data. Technical experiment is separable from any
+participant study; if approved later it must evaluate the frozen system. |
 
 ### 11.1 Vector store — Chroma (D3, approved)
 

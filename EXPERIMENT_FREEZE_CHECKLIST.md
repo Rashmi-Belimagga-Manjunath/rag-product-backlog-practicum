@@ -28,27 +28,36 @@ python3 -m src.benchmark.validate_ground_truth        # query + ground truth
 | 8 | Distractor structure | D1–D5, measured not asserted | SCHEMA READY |
 | 9 | Chunking configuration | **1000 / 200** | ✅ **FROZEN 2026-09-28** |
 | 10 | C6 duplicate-chunk measure | same-document 8-gram containment > 0.5, <2% of chunks | ✅ **FROZEN 2026-09-28** |
-| 11 | BM25 k1 | 1.5 | **PROPOSED** |
-| 12 | BM25 b | 0.75 | **PROPOSED** |
-| 13 | BM25 tokenisation / no stemming | documented | **PROPOSED** |
-| 14 | Embedding model | `text-embedding-3-large` | **VERIFIED LIVE** |
+| 11 | BM25 k1 | 1.5 | ✅ **FROZEN 2026-09-28** |
+| 12 | BM25 b | 0.75 | ✅ **FROZEN 2026-09-28** |
+| 13 | BM25 tokenisation / no stemming / verbatim queries / ties on chunk ID | documented | ✅ **FROZEN 2026-09-28** |
+| 14 | Embedding model | `text-embedding-3-large` | ✅ **VERIFIED LIVE** — `frozen` flag still false, needs sign-off |
 | 15 | Embedding snapshot | `text-embedding-3-large` (sole published) | **VERIFIED — no dated alias exists** |
 | 16 | Embedding dimension | 3072, `dimensions` unset | **VERIFIED LIVE** |
-| 17 | Vector store | Chroma 1.5.9, cosine | **PROPOSED** |
-| 18 | NumPy exact cross-check | validation only, never used to alter results | **PROPOSED** |
-| 19 | RAG top-k | 5 | **PROPOSED** |
-| 20 | Generation model | `gpt-4o-mini` | **PROPOSED** |
-| 21 | Generation config | temp 0, max_tokens 800, n=1 | **PROPOSED** |
-| 22 | RAG system prompt | — | **NOT YET WRITTEN** |
-| 23 | Citation format | `[DOC-ID#Cn]` | **PROPOSED** |
-| 24 | Evaluation metrics | Layer A retrieval + Layer B user-facing, 8 metrics | **DESIGN APPROVED, SCRIPTS PENDING** |
+| 17 | Vector store | Chroma 1.5.9, cosine | ✅ **FROZEN 2026-09-28** (D3) |
+| 18 | NumPy exact cross-check | validation only, never used to alter results | ✅ **FROZEN 2026-09-28** |
+| 19 | RAG top-k | 5 | ✅ **FROZEN 2026-09-28** (D-007) |
+| 20 | Generation model | `gpt-4o-mini` | ✅ **FROZEN 2026-09-28** (D-007) |
+| 21 | Generation config | temp 0, max_tokens 800, n=1 | ✅ **FROZEN 2026-09-28** (D-007) |
+| 22 | RAG system prompt | 7 requirements frozen; text written + hashed | ✅ **REQUIREMENTS FROZEN 2026-09-28** |
+| 23 | Citation format | `[DOC-ID#Cn]` | ✅ **FROZEN 2026-09-28** (D-007) |
+| 24 | Evaluation metrics | Layer A + Layer B, 8 metrics | ⏸ **DEFINITIONS SUBMITTED — D-009 NOT FROZEN** |
 | 25 | BM25 answer presentation | top-5 passages; no prose answer fabricated | ✅ **SETTLED 2026-09-28** |
-| 26 | Reproducibility artefacts | corpus hash, embedding hash, prompt hash, model snapshot | PENDING FREEZE |
+| 26 | Reproducibility artefacts | 12 artefacts, SHA-256, manifest + verifier | ⏸ **SPEC PROPOSED (D-012)** |
 | 27 | Ethics determination | — | **OPEN — NCI coordinator/supervisor** |
 
-**State: PARTIALLY FROZEN.** The chunking configuration, the C6 measure, the two-layer
-evaluation design and the BM25 output form are **frozen**. The rest are not. The RAG configuration (items 19–23), the BM25 scoring
-parameters (11–13) and the evaluation scripts (24) still await approval.
+**State: PARTIALLY FROZEN.**
+
+Frozen: chunking configuration (9), the C6 measure (10), BM25 scoring (11–13), the vector
+store and cross-check (17–18), the whole RAG configuration (19–23), the two-layer design
+and BM25 output form (25).
+
+Not frozen, awaiting approval: the evaluation metric definitions (24, D-009) and the
+reproducibility artefact specification (26, D-012). The embedding configuration's
+`frozen` flag (14) is still `false` and needs an explicit decision. Validation reports
+(item 20 of the old list) are captured at freeze, not before.
+
+**No final corpus, BM25 run, RAG run, results or charts have been produced.**
 
 **Deliberately not started, by instruction:** the final 272-document corpus, the BM25 run,
 the RAG run, and all results and charts.
@@ -98,7 +107,24 @@ IDs are `<document_id>-C<index>` and contain no `#`, so every same-document comp
 was empty. The claim is withdrawn, the figures were recomputed, and the corrected numbers
 strengthened the C6 revision and did not change the frozen configuration. See D-006a.
 
+## A.2 Ethics — D-011 remains OPEN
+
+No assumption is made that ethics approval exists, or that it is unnecessary. No
+human-participant data is collected, and nothing begins until the NCI coordinator or the
+appropriate ethics process has determined what is required. **The technical BM25/RAG
+experiment is separable from any participant evaluation** and does not depend on one. If
+participant evaluation is later approved, it must evaluate the **already-frozen** system;
+changing the system during participant testing would invalidate both the technical
+comparison and the participant data. Detail: `DECISIONS.md` D-011.
+
 ## B. Corpus requirements before generation
+
+These seven are **explicit final-corpus gates**. They are intentionally unresolved until
+the final corpus is generated, and **no artificial replacement may be invented merely to
+satisfy the benchmark** — a fabricated document would make the benchmark satisfiable
+without the corpus genuinely containing the phenomenon. The final corpus generation must
+satisfy them, and the ground-truth selectors must then resolve against the resulting
+authoritative corpus.
 
 Generation is blocked until the source model guarantees all of these. The 34-document
 mechanism sample deliberately does **not** contain them, so `validate_ground_truth` reports
