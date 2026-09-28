@@ -1,7 +1,8 @@
 # BM25 Baseline Configuration
 
-**Status:** PROPOSED. Not frozen. Frozen only on explicit approval, before any comparative
-result is examined.
+**Status: FROZEN (D-008, approved 2026-09-28).** This document is the configuration of
+record. Frozen only by explicit approval, **before** any comparative result is examined;
+the machine-readable location of record is `experiments/configs/bm25_config.json`.
 
 The baseline is a **standard BM25 lexical retriever** over the same corpus, the same chunks
 and the same queries as the RAG system. It contains no generation component. It is the

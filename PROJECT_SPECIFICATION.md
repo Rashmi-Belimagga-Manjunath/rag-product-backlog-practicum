@@ -99,7 +99,7 @@ documents → pre-processing → BM25 index → query → ranked results → top
   reranking.
 - Must be independently runnable and independently evaluable.
 
-*`k1`/`b` are **proposed** as 1.5 / 0.75 and await sign-off — see §11 and
+*`k1`/`b` are **FROZEN** at 1.5 / 0.75 (D-008, approved 2026-09-28) — see §11 and
 `docs/bm25_configuration.md`. BM25's user-facing output is its **top-5 retrieved passages**;
 it has no generation component, and **no prose answer is fabricated for BM25**. The two
 systems' output forms are explicitly not identical. Evaluation is layered accordingly —
@@ -130,12 +130,16 @@ documents → pre-processing → chunking → embeddings → vector store
   2% limit, because its small tail chunks restate their predecessors). Must not be re-tuned
   after BM25 or RAG results are observed. See `CHUNKING_DECISION.md`, `DECISIONS.md`
   D-005/D-006.
-- Retrieval: cosine similarity over Chroma, **top-k = 5 proposed**; matches the `@5`
-  metric cutoff so the system and the metrics describe the same object.
-- Generation model: **`gpt-4o-mini` proposed** at `temperature = 0`, `max_tokens = 800`,
-  `n = 1`. A fixed component of the RAG treatment, **not an experimental variable**.
-- Every generated claim carries an inline machine-checkable citation `[DOC-ID#Cn]`,
-  validated against the retrieval log. Full specification: `docs/rag_configuration.md`.
+- Retrieval: cosine similarity over Chroma, **top-k = 5 FROZEN** (D-007, approved
+  2026-09-28); matches the `@5` metric cutoff so the system and the metrics describe the
+  same object.
+- Generation model: **`gpt-4o-mini` FROZEN** (D-007, approved 2026-09-28) at
+  `temperature = 0`, `max_tokens = 800`, `n = 1`. A fixed component of the RAG treatment, **not an experimental variable**.
+- Every generated claim carries an inline machine-checkable citation `[DOC-ID#Cn]`
+  (frozen formatting, D-007), validated against the retrieval log. The exact prompt
+  implementing the seven frozen prompt requirements is `experiments/configs/rag_prompt.txt`
+  (SHA-256 `7ab1534…`), and the full frozen configuration is
+  `experiments/configs/rag_config.json`. Full specification: `docs/rag_configuration.md`.
 - The system is **advisory**. It does not make, record, or autonomously alter backlog
   decisions. The product manager retains final authority.
 
@@ -301,11 +305,12 @@ replaced with same-document 8-gram containment > 0.5. `CHUNKING_DECISION.md`. |
 | D11 | RAG configuration | ✅ **FROZEN 2026-09-28** (D-007): top-k 5, `gpt-4o-mini`, temp 0,
 max_tokens 800, `[DOC-ID#Cn]` citations, 7 frozen prompt requirements.
 `experiments/configs/rag_config.json`. |
-| D12 | Evaluation metrics | ⏸ **D-009 NOT FROZEN.** Exact operational definitions for all 8 metrics
-submitted 2026-09-28 in `docs/evaluation_metrics.md`, awaiting review. Two-layer design
-**approved**. |
-| — | Reproducibility artefacts | ⏸ **D-012 proposed.** 12 artefacts, SHA-256, manifest + verifier.
-`docs/reproducibility.md`, `src/manifest/manifest.py`. |
+| D12 | Evaluation metrics | ✅ **D-009 FROZEN 2026-09-28.** Exact operational definitions in
+`docs/evaluation_metrics.md`; empty-prediction convention explicit (all-negative predictor
+scores 19/32 precision, not 1.0). Two-layer design **approved**. |
+| — | Embedding configuration | ✅ **FROZEN 2026-09-28**: `text-embedding-3-large`, 3072 dims,
+no overrides, matrix creation config recorded. `experiments/configs/embedding_config.json`. |
+| — | Reproducibility artefacts | ✅ **D-012 FROZEN 2026-09-28.** 12 artefacts, SHA-256, manifest + verifier (`--verify` recomputes). `docs/reproducibility.md`, `src/manifest/manifest.py`. |
 | — | BM25 answer presentation | ✅ **Settled** (D-010). BM25 presents its top-5 passages; no prose
 answer is fabricated. Layered evaluation. |
 | — | Ethics approval for synthetic corpus | ⏸ **OPEN (D-011).** Do not assume approval or exemption. |

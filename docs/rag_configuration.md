@@ -1,7 +1,9 @@
-# RAG Configuration — Proposed for Freeze
+# RAG Configuration
 
-**Status:** PROPOSED. Not frozen. Frozen only on explicit approval, before any comparative
-result is examined.
+**Status: FROZEN (D-007, approved 2026-09-28).** This document is the configuration of
+record. Frozen only by explicit approval, **before** any comparative result is examined;
+the machine-readable location of record is `experiments/configs/rag_config.json` and the
+prompt is `experiments/configs/rag_prompt.txt` (SHA-256 `7ab1534…`).
 
 Every value below is proposed with a rationale that is *independent of retrieval
 performance*. If a value is ever changed after results are visible, the experiment is no

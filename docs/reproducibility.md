@@ -1,6 +1,7 @@
 # Reproducibility Artefacts and Hash Specification
 
-**Status: proposed 2026-09-28, pending approval.** Defines exactly what is captured at the
+**Status: APPROVED AND FROZEN 2026-09-28 (D-012).** This specification is approved and
+frozen; do not change it without a new freeze. Defines exactly what is captured at the
 final experiment freeze so a third party can reconstruct or verify the run.
 
 ## 0. Hashing rules

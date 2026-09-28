@@ -296,8 +296,8 @@ upon. See `PROJECT_SPECIFICATION.md` §12.
 
 | ID | Decision | Blocks |
 |---|---|---|
-| D6 | Corpus scale and product count | Full corpus generation — **proposal presented, awaiting approval** |
-| D7 | Query count, category distribution, difficulty definition | Query set — **proposal presented, awaiting approval** |
+| D6 | Corpus scale and product count | Full corpus generation — **APPROVED**, generation pending (272 docs) |
+| D7 | Query count, category distribution, difficulty definition | Query set — **APPROVED** (32 queries, 2/2/2, 11/11/10) |
 | D8 | UI framework (deprioritised, not decided) | App stage |
 | A7 | Exact OpenAI embedding model | Experiment run — must be frozen before results |
 | — | Whether ethics approval covers a synthetic-only corpus | Any statement about ethics in the write-up. Hard gate on all human-participant activity |
@@ -583,12 +583,13 @@ on ascending chunk ID. BM25 may not be tuned, re-ranked or query-expanded after 
 visible, since that would convert a traditional baseline into a fitted competitor. Detail:
 `docs/bm25_configuration.md`.
 
-### D-009 — Evaluation metrics (DEFINITIONS SUBMITTED, NOT YET FROZEN)
+### D-009 — Evaluation metrics (APPROVED AND FROZEN)
 
-**Status:** NOT FROZEN. Exact operational definitions for all eight metrics are submitted
-for review in `docs/evaluation_metrics.md` on 2026-09-28 and are deliberately not frozen
-until reviewed. The two-layer design and the BM25 output form (D-010) are already approved
-and are not reopened by this.
+**Status:** APPROVED AND FROZEN 2026-09-28. The exact operational definitions in
+`docs/evaluation_metrics.md` are frozen. The dependency precision empty-prediction
+convention documented below supersedes the earlier "1.0 silence" convention; the
+corrected definitions were formally approved on 2026-09-28. The two-layer design and the
+BM25 output form (D-010) were already approved and are not reopened by this.
 
 Each metric now specifies numerator and denominator, unit of analysis, aggregation, tie
 treatment, zero-relevant-item queries, dependency-not-applicable queries, scale for
@@ -604,9 +605,19 @@ Points that required an explicit decision rather than a default:
 - **Dependency precision is defined over all 32 queries; recall and F1 over the 13
   dependency-related queries only.** On the other 19, `E(q) = ∅` makes recall `0/0` and
   undefined. Those queries still penalise a system that invents a dependency, via
-  precision. A system answering "no dependencies" to everything scores precision 1.0 and
-  recall 0.0; both are always reported together, and precision alone is never used as a
-  summary.
+  precision.
+- **Empty-prediction convention for dependency precision (explicit, corrected 2026-09-28).**
+  An empty prediction is not one rule but three:
+  - `P(q) = ∅` and `E(q) = ∅` — **correct vacuous prediction**, precision 1.0 (the expected
+    answer *is* "no dependencies"; this is desirable non-invention).
+  - `P(q) = ∅` and `E(q) ≠ ∅` — **missed every dependency**, precision 0.0 and recall 0.0.
+  - `P(q) ≠ ∅` — standard `TP/(TP+FP)`.
+  A **failed run** contributes 0.0 to precision regardless of `E(q)` and is never counted
+  as vacuous-correct. Consequence: an all-negative predictor scores precision `19/32 =
+  0.594`, **not** 1.0, with recall 0.0 and F1 0.0; both are always reported together, and
+  the vacuous-correct count is reportable. Implemented and tested in
+  `src/evaluation/dependency_metrics.py` / `tests/test_dependency_metrics.py`. This
+  supersedes the earlier convention under which an all-negative predictor scored 1.0.
 - **A failed run is not a missing value.** It scores zero and stays in every denominator. A
   retriever that crashes on hard queries must not score better by dropping them.
 - **A human rating never assigned is a missing value and is never imputed.** The denominator
@@ -614,7 +625,9 @@ Points that required an explicit decision rather than a default:
   not compared.
 - **Ties are resolved at retrieval time**, by the frozen ascending-chunk-ID rule, so a
   metric is never computed over an order-ambiguous list.
-- **MRR is defined on the 13 plus all 32**; it is reported over all 32.
+- **MRR is defined and reported over all 32 queries.** Its numerator is problem-defined for
+  the first ground-truth-relevant chunk in the ranked top-5 (else 0) and its denominator is
+  1 per query, so no 13/32 ambiguity applies.
 
 ### D-010 — Two-layer evaluation; BM25 presents retrieved passages (APPROVED)
 
@@ -675,9 +688,9 @@ The Layer B user-facing metrics are therefore a **researcher-rating** result at 
 If participant evaluation is approved later, the two must be reported as distinct
 evidences and never merged into a single score.
 
-### D-012 — Reproducibility artefacts and hash specification (PROPOSED)
+### D-012 — Reproducibility artefacts and hash specification (FROZEN)
 
-**Status:** PROPOSED 2026-09-28, pending approval. Specification: `docs/reproducibility.md`.
+**Status:** APPROVED AND FROZEN 2026-09-28. Specification: `docs/reproducibility.md`.
 Implemented in `src/manifest/manifest.py` with `build`, `verify` and `status`.
 
 Twelve artefacts, all SHA-256, all captured at the final experiment freeze into
@@ -699,6 +712,6 @@ Notable choices:
   recomputes every digest and fails on the first mismatch or if HEAD has moved, so a later
   silent edit to a frozen artefact is caught rather than discovered during write-up.
 - **`.env` is never hashed into a committed manifest.** It holds a secret and is gitignored.
-- Artefacts 1–10 are captured once at the freeze. A later run appends only its own run
+- Artefacts 1–10 are captured once at the freeze. Reaffirmed at approval: the embedding matrix hash is included; the matrix's positional `chunk_id_order` is hashed/recorded in the sidecar; the code commit is captured and a dirty working tree invalidates the freeze; dependency/environment information is captured via the lockfile and record; and `--verify` recomputes every hash rather than trusting stored values. `.env` and the actual API key are **never** included in any artefact or hash. A later run appends only its own run
   outputs under a new `run_id`; if a frozen input changes, that is a protocol deviation,
   not a re-freeze.

@@ -1,8 +1,8 @@
 # Evaluation Metric Definitions
 
-**Status: D-009 NOT FROZEN.** Definitions below are submitted for review. The two-layer
-design (§0) and the BM25 output form are already approved (D-010) and are not reopened
-here.
+**Status: D-009 FROZEN 2026-09-28.** Approver confirmed these exact definitions. The
+two-layer design (§0) and the BM25 output form are already approved (D-010) and are not
+reopened here.
 
 This document specifies the operational definition of all eight metrics. Each entry states
 the numerator and denominator, unit of analysis, aggregation, tie handling, zero-relevant
@@ -196,10 +196,38 @@ FN(q) = |E(q) \ P(q)|     MISSED dependency
 |---|---|
 | Numerator | `TP(q)` |
 | Denominator | `TP(q) + FP(q)` |
-| Zero denominator | if `TP+FP = 0` — the system asserted nothing — precision is defined as **1.0**, and the count of such queries is reported explicitly so a system cannot look perfect by staying silent |
+| Zero denominator | **explicit empty-prediction convention** (below) |
 | Aggregation | macro-average over 32 queries |
 | Applies to | both |
 | Level | retrieval (Layer A) |
+
+**Zero-prediction convention (explicit).** The empty-answer case is not one rule; it is
+three, because the three situations have different mathematical truth values:
+
+- `P(q) = ∅` and `E(q) = ∅` — **correct vacuous prediction**, precision = 1.0. The
+  expected answer on a non-dependency query *is* "no dependencies", and the desirable
+  behaviour is precisely to not invent dependencies. Scoring this 0 would penalise a
+  system for correctly declining.
+- `P(q) = ∅` and `E(q) ≠ ∅` — **missed every dependency**, precision = 0.0 and recall =
+  0.0. The query had an expected set of size ≥ 1 and the system identified none of it.
+- `P(q) ≠ ∅` — standard `TP/(TP+FP)`, with denominator ≥ 1 by construction.
+
+**The failed-run case is NOT the same as a correct empty answer.** A query whose run
+failed outright (no retrieval output) contributes **0.0** to precision regardless of
+`E(q)`, and is never counted as vacuous-correct. A crashed run is a failure, not a
+deliberate empty prediction; this closes the interaction where a system that simply
+crashes on the non-dependency queries would otherwise earn the vacuous-correct 1.0 on
+them.
+
+Rationale: without this convention, an **all-negative predictor** — a system that answers
+"no dependencies" to every query — scores precision 1.0 on all 32 (every `TP+FP = 0`)
+while recalling nothing: a superficially perfect score. Under this convention it scores
+precision **`19/32 = 0.594`** (0.0 on the 13 dependency queries, 1.0 vacuous-correct on
+the 19), recall 0.0 and F1 0.0. Both are always reported together, and precision alone is
+never used as a summary. The `vacuous_correct_count` (number of queries that contributed
+the 1.0 convention, 19 here) is reportable alongside the figures, so the composition is
+visible and the metrics cannot hide behind the convention. Implemented and tested in
+`src/evaluation/dependency_metrics.py` / `tests/test_dependency_metrics.py`.
 
 **On the 13 dependency-related queries only — recall and F1:**
 
@@ -213,13 +241,15 @@ FN(q) = |E(q) \ P(q)|     MISSED dependency
 | Aggregation | macro-average over the 13; **also split by explicitness (6 explicit, 7 implicit)** because these are different tasks — an explicit dependency is stated in the retrieved text, an implicit one is not |
 | Ties | n/a (set comparison, no ranking) |
 | Zero-relevant queries | n/a; the abort rule in §1 still applies corpus-wide |
-| Missing values | failed run sets `P(q) = ∅`, giving FN on the 13 and precision 1.0 on the 19; it remains in every denominator and the run summary counts the failure |
+| Missing values | a failed run contributes **precision 0.0 on every query to which it applies** — including the 19, where it does **not** earn the vacuous-correct 1.0 — recall 0.0 and F1 0.0 on the 13, and remains in every denominator; the run summary counts the failure |
 | Applies to | both |
 | Level | retrieval (Layer A) |
 
-**A system that answers "no dependencies" to everything scores precision 1.0 on all 32 and
-recall 0.0 on all 13.** Both are always reported together. Precision alone is not a valid
-summary of this metric and will not be used as one.
+**An all-negative predictor (answers "no dependencies" to every query) is not rewarded.**
+Under the explicit convention it scores precision **19/32 = 0.594** — 0.0 on the 13
+dependency queries, 1.0 vacuous-correct on the 19 — and recall 0.0, F1 0.0. Precision and
+recall are always reported together, precision alone is not a valid summary, and the
+vacuous-correct count is reportable so the all-negative composition remains visible.
 
 ### 5.1 Error classification — mandatory
 

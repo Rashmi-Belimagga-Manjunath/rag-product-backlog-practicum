@@ -102,6 +102,8 @@
       "corpus_version",
       "chunking_version",
       "chunk_id_order",
+      "matrix_creation_frozen_block",
+      "frozen_config_git_commit",
       "token_usage"
     ],
     "commit_to_repository": true
@@ -146,6 +148,18 @@
     }
   },
 
-  "frozen": false,
-  "_frozen_note": "Set to true only at the experiment freeze, recorded in DECISIONS.md."
+  "frozen": true,
+  "_frozen_note": "FROZEN 2026-09-28 in DECISIONS.md (embedding configuration approved for freeze). May not be changed after seeing experimental results; any change is a new freeze.",
+  "frozen_at": "2026-09-28",
+  "matrix_creation": {
+    "_comment": [
+      "The exact configuration used to create the embedding matrix. Frozen at approval.",
+      "The resulting matrix and its sidecar are reproducibility artefacts; the sidecar",
+      "re-records this block and the Git commit at creation time."
+    ],
+    "model": "text-embedding-3-large",
+    "dimensions": 3072,
+    "dimensions_override": "none",
+    "encoding_format": "float"
+  }
 }
