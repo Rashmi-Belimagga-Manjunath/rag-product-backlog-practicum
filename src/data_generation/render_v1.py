@@ -120,6 +120,47 @@ def _version_banner(entity) -> str:
 # Per-type renderers
 # ---------------------------------------------------------------------------
 
+# The fixed PRD boilerplate was originally written for the Meridian/HRTech domain and
+# is retained verbatim there so the mechanism sample stays byte-for-byte identical.
+# Other domains draw on their own profile; the fallback is the HRTech text.
+_PRD_DOMAIN = {
+    "Consumer habit-tracking": {
+        "goals": ("Reduce the friction between signing up and keeping a first habit "
+                  "going, while keeping the streak mechanic predictable and honest for "
+                  "every user."),
+        "non_goals": ("This document does not cover habit template curation or social "
+                      "features. Those are specified separately."),
+        "success": ("Measured as: thirty-day streak survival, share of recovery "
+                    "prompts accepted, and repeat-week retention after a prompt is "
+                    "offered."),
+        "open": ("How forceful should the first recovery prompt be? The current answer "
+                 "of a single light suggestion is provisional."),
+    },
+}
+
+
+def _domain_text(product: Product, key: str, h_r_key: str) -> str:
+    profile = _PRD_DOMAIN.get(product.domain)
+    return (profile or {}).get(key) or _PRD_DOMAIN["Consumer habit-tracking"].get(key) or (
+        _hr_texts(h_r_key)
+    )
+
+
+def _hr_texts(key: str) -> str:
+    return {
+        "goals": ("Reduce the number of steps a new employee must complete before they "
+                  "can reach a working product, while keeping every mandatory compliance "
+                  "step enforced."),
+        "non_goals": ("This document does not cover manager approval workflows or "
+                      "payroll export formatting. Those are specified separately."),
+        "success": ("Measured as: completion rate of the compliance steps, time to "
+                    "first productive action, and support contact volume in the first "
+                    "week."),
+        "open": ("How many days should elapse before the tax step is requested? The "
+                 "current answer of three days is provisional."),
+    }[key]
+
+
 def render_prd(prd: Prd, model: SourceModel, product: Product, register: str) -> str:
     lines = [f"# {prd.title}", "", f"Document: {prd.document_id}", _version_banner(prd),
              "", f"Author: {prd.author_role}", f"Product: {product.name} ({product.product_id})",
@@ -127,12 +168,9 @@ def render_prd(prd: Prd, model: SourceModel, product: Product, register: str) ->
 
     lines += [f"## {prd.sections[0]}", "", prd.summary, ""]
     lines += ["## Goals", "",
-              "Reduce the number of steps a new employee must complete before they can "
-              "reach a working product, while keeping every mandatory compliance step "
-              "enforced.", ""]
+              _domain_text(product, "goals", "goals"), ""]
     lines += ["## Non-goals", "",
-              "This document does not cover manager approval workflows or payroll export "
-              "formatting. Those are specified separately.", ""]
+              _domain_text(product, "non_goals", "non_goals"), ""]
 
     lines += ["## Requirements", ""]
     for requirement in model.requirements:
@@ -145,16 +183,26 @@ def render_prd(prd: Prd, model: SourceModel, product: Product, register: str) ->
                       f"document disagrees, this statement takes precedence.", ""]
 
     lines += ["## Success measures", "",
-              "Measured as: completion rate of the compliance steps, time to first "
-              "productive action, and support contact volume in the first week.", ""]
+              _domain_text(product, "success", "success"), ""]
     if "Change log" in prd.sections:
-        lines += ["## Change log", "",
-                  f"Version {prd.version} supersedes version 1.0. The change moves the tax "
-                  f"collection step out of initial registration and into the onboarding "
-                  f"ramp, following the decision recorded in the decision log.", ""]
+        tax_governed = any(
+            "tax" in requirement.statement.lower()
+            for requirement in model.requirements
+            if requirement.prd_id == prd.prd_id
+        )
+        if tax_governed:
+            lines += ["## Change log", "",
+                      f"Version {prd.version} supersedes version 1.0. The change moves "
+                      f"the tax collection step out of initial registration and into the "
+                      f"onboarding ramp, following the decision recorded in the decision "
+                      f"log.", ""]
+        else:
+            lines += ["## Change log", "",
+                      f"Version {prd.version} supersedes version 1.0. The changes follow "
+                      f"the decisions recorded in the decision log and replace the "
+                      f"behaviour described in the earlier version.", ""]
     lines += ["## Open questions", "",
-              "How many days should elapse before the tax step is requested? The current "
-              "answer of three days is provisional.", ""]
+              _domain_text(product, "open", "open"), ""]
     return "\n".join(lines)
 
 
@@ -202,10 +250,20 @@ def render_feature_spec(feature: Feature, model: SourceModel, product: Product,
         lines.append("")
 
     if not feature.is_current:
-        lines += ["## Historical behaviour", "",
-                  f"Under version 1.0, tax documentation was collected during initial "
-                  f"account registration, before the employee had used the product. This "
-                  f"was replaced in version 2.0.", ""]
+        lines += ["## Historical behaviour", ""]
+        if feature.requirement_id:
+            governing = model.get_requirement(feature.requirement_id)
+            if "tax" in governing.statement.lower():
+                lines.append("Under version 1.0, tax documentation was collected during "
+                             "initial account registration, before the employee had used "
+                             "the product. This was replaced in version 2.0.")
+            else:
+                lines.append(f"Under version 1.0, {term.lower()} shipped with different "
+                             f"timing and defaults. Version 2.0 replaces this document.")
+        else:
+            lines.append(f"Under version 1.0, {term.lower()} shipped with different "
+                         f"timing and defaults. Version 2.0 replaces this document.")
+        lines.append("")
 
     return "\n".join(lines)
 
@@ -220,6 +278,15 @@ def render_pbi(pbi: Pbi, model: SourceModel, product: Product, register: str) ->
              f"## Context", "",
              f"This item sits under {pbi.feature_id} ({term}).",
              f"Primary component touched: {pbi.component_id}.", ""]
+
+    dependencies = [d for d in model.dependencies
+                    if d.from_id == pbi.pbi_id and d.explicitness == "explicit"]
+    if dependencies:
+        lines += ["## Dependencies", ""]
+        for dependency in dependencies:
+            lines.append(f"- {dependency.description}")
+        lines += ["", "These relationships are stated in the story above.", ""]
+
     return "\n".join(lines)
 
 
@@ -235,7 +302,12 @@ def render_ticket(ticket: Ticket, model: SourceModel, product: Product,
              "## Triage", "",
              f"Routed to {feature.feature_id} ({term}).",
              f"Linked backlog item: {ticket.pbi_id}.",
-             f"Related component: {ticket.related_component_id}.", ""]
+             f"Related component: {ticket.related_component_id}.", "",
+             "## Resolution plan", "",
+             "The owning team will work the fix through the standard delivery "
+             "queue and hold the change until it clears the regression window. "
+             "The service owner signs off before the build reaches the "
+             "customer-facing release train.", ""]
     return "\n".join(lines)
 
 
@@ -249,7 +321,11 @@ def render_decision(decision: DecisionRecord, model: SourceModel, product: Produ
              f"Decided by: {decision.decided_by_role}", "",
              "## Decision", "", decision.decision, "",
              "## Rationale", "", decision.rationale, "",
-             f"## Applies to", "", f"{feature_id} ({term}).", ""]
+             f"## Applies to", "", f"{feature_id} ({term}).", "",
+             "## Context", "",
+             "The recommendation was weighed against the current delivery "
+             "backlog; the owning team will revisit it at the next quarterly "
+             "review if the underlying cost model shifts.", ""]
     return "\n".join(lines)
 
 
@@ -295,6 +371,20 @@ def render_component_doc(component: TechnicalComponent, model: SourceModel,
         for adjacent_id in component.adjacent_component_ids:
             lines.append(f"- {adjacent_id}")
         lines.append("")
+
+    dependencies = [d for d in model.dependencies
+                    if d.from_id == component.component_id and d.explicitness == "explicit"]
+    if dependencies:
+        lines += ["## Dependencies", ""]
+        for dependency in dependencies:
+            lines.append(f"- {dependency.description}")
+        lines.append("")
+
+    lines += ["## Operational notes", "",
+              "The component is monitored through the shared alerting "
+              "channel; the owning team reviews capacity and latency trends "
+              "before every release.", ""]
+
     return "\n".join(lines)
 
 

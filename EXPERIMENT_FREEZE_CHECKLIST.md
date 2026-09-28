@@ -18,13 +18,13 @@ python3 -m src.benchmark.validate_ground_truth        # query + ground truth
 
 | # | Item | Value | State |
 |---|---|---|---|
-| 1 | Corpus (272 documents) | — | **NOT GENERATED — by design** |
-| 2 | Document versions | 12 superseded, explicit `is_current` | SCHEMA READY |
-| 3 | Structured source of truth | `source_model.py` | **READY** (34-doc mechanism sample) |
-| 4 | Ground truth | derived from model only | SCHEMA READY; 25/32 slots resolve on sample |
+| 1 | Corpus (272 documents) | `data/corpus/v1/` — 272 docs | ✅ **BUILT + VALIDATED 2026-09-28** |
+| 2 | Document versions | 12 superseded, explicit `is_current` | ✅ **CONFIRMED ON CORPUS** |
+| 3 | Structured source of truth | `source_model.py` → `data/corpus/v1/source_model.json` | ✅ **CORPUS MODEL 2026-09-28** |
+| 4 | Ground truth | derived from model only | ✅ **32/32 RESOLVED on final corpus (`--against-final`)** |
 | 5 | Query set | 32 slots | **MACHINE SPEC VALID** |
 | 6 | Query categories | 6 categories, distribution frozen | **FROZEN** |
-| 7 | Difficulty labels | 11 / 11 / 10 by lexical overlap | BANDS FROZEN, LABELS PENDING CORPUS |
+| 7 | Difficulty labels | 11 / 11 / 10 by lexical overlap | ✅ **11/11/10 CONFIRMED ON CORPUS 2026-09-28** |
 | 8 | Distractor structure | D1–D5, measured not asserted | SCHEMA READY |
 | 9 | Chunking configuration | **1000 / 200** | ✅ **FROZEN 2026-09-28** |
 | 10 | C6 duplicate-chunk measure | same-document 8-gram containment > 0.5, <2% of chunks | ✅ **FROZEN 2026-09-28** |
@@ -59,12 +59,15 @@ Everything the methodology freeze requires is now FROZEN, including the evaluati
 definitions (24, D-009, approved 2026-09-28 with the explicit empty-prediction
 convention). Validation reports (item 20 of the old list) are captured at freeze, not
 before.
-**No final corpus, BM25 run, RAG run, results or charts have been produced.**
+**The final corpus is BUILT and VALIDATED (2026-09-28):** 272 documents, 208 dependencies
+(104 explicit / 104 implicit), 543 links, all V1–V9 invariants, C1–C8 coherence, byte-level
+determinism, and all 32 ground-truth slots resolved in final mode against `data/corpus/v1/`.
+The report is `data/manifest/validation/final_corpus_report.md`.
 
-**No final corpus, BM25 run, RAG run, results or charts have been produced.**
+**No BM25 run, RAG run, results or charts have been produced.**
 
-**Deliberately not started, by instruction:** the final 272-document corpus, the BM25 run,
-the RAG run, and all results and charts.
+**Deliberately not started, by instruction:** the BM25 run, the RAG run, and all results
+and charts.
 
 ---
 
@@ -147,6 +150,13 @@ mechanism sample deliberately does **not** contain them, so `validate_ground_tru
 `python3 -m src.benchmark.validate_ground_truth --against-final` makes any unmet slot a
 **hard stop** at freeze time (exit 1). Without the flag, unmet slots are reported as corpus
 requirements and the gate exits 2, so the two cases cannot be confused.
+
+**All seven are met on the final corpus (2026-09-28).** Each resolved with a specific,
+naturally-occurring construction: Q-05 the lowest-overlap informal ticket; Q-SUP-3
+FEAT-M-01's limit changed $2,500 → $5,000 between v1 and v2; Q-10 COMP-M-03 → COMP-M-02
+(component doc); Q-11 FEAT-M-02 → FEAT-M-01 ordering; Q-14 FEAT-T-01 → FEAT-T-04 ordering;
+Q-20 the PRD-M-01..03 sequence; Q-21 REQ-M-03 → COMP-M-03 evidenced only in superseded
+PRD-M-02 v1.
 
 **No selector may resolve a slot via a fallback.** Q-20 was found substituting current PRDs
 when no implicit ordering dependency existed, which made it look resolved against the
