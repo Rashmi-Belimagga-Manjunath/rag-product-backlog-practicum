@@ -1,0 +1,52 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The team deprioritised partial-batch approval because it complicates the audit trail and is not needed by the managers interviewed. This decision was made during the approval for bulk timesheet approval, which only allows for whole batches to be approved [DOC-DEC-M-02#C0].\n\nEvidence: DOC-DEC-M-02#C0",
+  "latency_seconds_total": 1.206078624818474,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-28",
+  "query_text": "Why did the team deprioritise partial-batch approval according to the decision record?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 0.6212563514709473
+    },
+    {
+      "chunk_id": "DOC-DEC-M-04-C0",
+      "document_id": "DOC-DEC-M-04",
+      "rank": 2,
+      "score": 0.5145902037620544
+    },
+    {
+      "chunk_id": "DOC-DEC-T-04-C0",
+      "document_id": "DOC-DEC-T-04",
+      "rank": 3,
+      "score": 0.5047028064727783
+    },
+    {
+      "chunk_id": "DOC-TKT-M-006-C0",
+      "document_id": "DOC-TKT-M-006",
+      "rank": 4,
+      "score": 0.4985842704772949
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-02-C0",
+      "document_id": "DOC-NOTE-M-02",
+      "rank": 5,
+      "score": 0.4709569215774536
+    }
+  ],
+  "source_citations": [
+    "DOC-DEC-M-02#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 70,
+    "prompt_tokens": 1337,
+    "total_tokens": 1407
+  }
+}

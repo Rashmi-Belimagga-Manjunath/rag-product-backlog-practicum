@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The Meridian PRD that defines employee onboarding and payroll readiness is DOC-PRD-M-01-v2, which is the current version of the document. It specifies how a new employee becomes payroll-ready, including the progressive collection of tax and banking details, and outlines that tax documentation must be collected after the employee's first successful login, not as part of initial account registration [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+  "latency_seconds_total": 1.6756174159236252,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-01",
+  "query_text": "Which Meridian PRD defines employee onboarding and payroll readiness?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 1,
+      "score": 0.6178678870201111
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 2,
+      "score": 0.6039688587188721
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-11-C0",
+      "document_id": "DOC-FEAT-M-11",
+      "rank": 3,
+      "score": 0.5648407936096191
+    },
+    {
+      "chunk_id": "DOC-PRD-M-04-C0",
+      "document_id": "DOC-PRD-M-04",
+      "rank": 4,
+      "score": 0.55611652135849
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-C0",
+      "document_id": "DOC-PRD-M-02",
+      "rank": 5,
+      "score": 0.5513464212417603
+    }
+  ],
+  "source_citations": [
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-PRD-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 104,
+    "prompt_tokens": 2035,
+    "total_tokens": 2139
+  }
+}

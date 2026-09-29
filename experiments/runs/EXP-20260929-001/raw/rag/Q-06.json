@@ -1,0 +1,52 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The Progressive Profiling feature collects additional employee details progressively after the first login rather than in a single mandatory form. It is also referred to as onboarding ramp, new-user activation, or first-run setup. When this feature is active, it depends on the taxband rate service and relies on the Verisign Identity Verification API for its functionality. The current approval limit for this feature is $5,000 [DOC-FEAT-M-01-v2#C0].\n\nEvidence: DOC-FEAT-M-01-v2#C0",
+  "latency_seconds_total": 1.5217775832861662,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-06",
+  "query_text": "Can you summarise what the Progressive Profiling feature does?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.6216338872909546
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.5944111943244934
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 3,
+      "score": 0.429739773273468
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 4,
+      "score": 0.4186464548110962
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 5,
+      "score": 0.3897998332977295
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 108,
+    "prompt_tokens": 1679,
+    "total_tokens": 1787
+  }
+}

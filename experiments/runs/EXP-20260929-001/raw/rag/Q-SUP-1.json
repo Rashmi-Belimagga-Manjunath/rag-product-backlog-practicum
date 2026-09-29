@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.6980851250700653,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-SUP-1",
+  "query_text": "Which PRD is in production?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-NOTE-M-06-C0",
+      "document_id": "DOC-NOTE-M-06",
+      "rank": 1,
+      "score": 0.3638498783111572
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-C0",
+      "document_id": "DOC-PRD-M-02",
+      "rank": 2,
+      "score": 0.3631659746170044
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 0.3625067472457886
+    },
+    {
+      "chunk_id": "DOC-DEC-M-03-C0",
+      "document_id": "DOC-DEC-M-03",
+      "rank": 4,
+      "score": 0.3587445020675659
+    },
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 5,
+      "score": 0.35836362838745117
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1471,
+    "total_tokens": 1487
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "A reader must consult Passage 2 (DOC-FEAT-M-01-v2#C0) and Passage 4 (DOC-COMP-M-06#C0) together to spot where Progressive Profiling leans on the taxband rate service. Passage 2 states that Progressive Profiling depends on the taxband rate service to provide its behavior, while Passage 4 describes the TaxBand Rate Service and its functionality in resolving tax bands for a given jurisdiction. \n\nEvidence: DOC-FEAT-M-01-v2#C0, DOC-COMP-M-06#C0",
+  "latency_seconds_total": 2.6485813753679395,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-18",
+  "query_text": "Which two places in the documentation must a reader consult together to spot where Progressive Profiling leans on the taxband rate service?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 1,
+      "score": 0.5763741731643677
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 0.5664985179901123
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-08-C0",
+      "document_id": "DOC-FEAT-M-08",
+      "rank": 3,
+      "score": 0.5331325531005859
+    },
+    {
+      "chunk_id": "DOC-COMP-M-06-C0",
+      "document_id": "DOC-COMP-M-06",
+      "rank": 4,
+      "score": 0.521257221698761
+    },
+    {
+      "chunk_id": "DOC-PBI-M-037-C0",
+      "document_id": "DOC-PBI-M-037",
+      "rank": 5,
+      "score": 0.5187732577323914
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 119,
+    "prompt_tokens": 1753,
+    "total_tokens": 1872
+  }
+}

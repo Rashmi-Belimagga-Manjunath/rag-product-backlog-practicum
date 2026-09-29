@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-SUP-2",
+  "query_text": "A spec says tax at first login \u2014 which doc, still current?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 1,
+      "score": 9.124678649013353
+    },
+    {
+      "chunk_id": "DOC-DEC-M-01-C0",
+      "document_id": "DOC-DEC-M-01",
+      "rank": 2,
+      "score": 8.792089192361399
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 3,
+      "score": 8.470233227388674
+    },
+    {
+      "chunk_id": "DOC-PBI-M-036-C0",
+      "document_id": "DOC-PBI-M-036",
+      "rank": 4,
+      "score": 7.18810440166806
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 5,
+      "score": 6.5157973667374804
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

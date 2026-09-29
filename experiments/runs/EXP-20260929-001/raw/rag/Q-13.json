@@ -1,0 +1,55 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The component needed to support Bulk Timesheet Approval, even though no specification states it directly, is the payroll ledger database. This is indicated in the passages where it states that both Bulk Timesheet Approval and the Timesheet Approval Engine depend on the payroll ledger database to provide their respective behaviors [DOC-FEAT-M-03#C0], [DOC-COMP-M-03#C0].\n\nEvidence: [DOC-FEAT-M-03#C0], [DOC-COMP-M-03#C0]",
+  "latency_seconds_total": 1.7060127090662718,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-13",
+  "query_text": "Which component is needed to support Bulk Timesheet Approval even though no specification states it directly?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 1,
+      "score": 0.6259226202964783
+    },
+    {
+      "chunk_id": "DOC-COMP-M-03-C0",
+      "document_id": "DOC-COMP-M-03",
+      "rank": 2,
+      "score": 0.5894259810447693
+    },
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 3,
+      "score": 0.5665605664253235
+    },
+    {
+      "chunk_id": "DOC-PBI-M-012-C0",
+      "document_id": "DOC-PBI-M-012",
+      "rank": 4,
+      "score": 0.5486937165260315
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-06-C0",
+      "document_id": "DOC-FEAT-M-06",
+      "rank": 5,
+      "score": 0.524405837059021
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-03#C0",
+    "DOC-COMP-M-03#C0",
+    "DOC-FEAT-M-03#C0",
+    "DOC-COMP-M-03#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 104,
+    "prompt_tokens": 1530,
+    "total_tokens": 1634
+  }
+}

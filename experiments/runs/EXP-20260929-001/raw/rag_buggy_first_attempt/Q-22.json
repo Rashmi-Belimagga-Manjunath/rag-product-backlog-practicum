@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved passages do not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.6169127919711173,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-22",
+  "query_text": "Which documents settle the dispute between the onboarding PRD and the Progressive Profiling specification?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.5615167617797852
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.5409272313117981
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 0.5057247877120972
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 4,
+      "score": 0.4959753751754761
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 5,
+      "score": 0.47750818729400635
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1954,
+    "total_tokens": 1970
+  }
+}

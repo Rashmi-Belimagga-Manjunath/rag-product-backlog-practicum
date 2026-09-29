@@ -1,0 +1,16 @@
+{
+  "api_key_available": false,
+  "embedding_artefact_fingerprint": null,
+  "frozen_inputs": {
+    "data/corpus/v1/chunks/chunks.json": "622801a1055c5de6addf1e881d53035feac3fadfd8e94797955538bb02dee1ed",
+    "data/exports/practicum_dataset_evidence.xlsx": "137bbaa1464747ad96acc970b98545b3ae95679629594f26c9ae34a3068ab57a",
+    "experiments/configs/bm25_config.json": "8674dcb3d2974df9c63d5ed24c46deaf56f05c2c6ce5da0460b8a593705e72ce",
+    "experiments/configs/embedding_config.json": "0219ca7e0f0c245fd1cbed2e8fdb8bcdf61859172ecb9d96f478b8fbb0dbb0b8",
+    "experiments/configs/rag_config.json": "cfccebc722abab8c41a2979f0a578fd49ce47164da11ed8afca128c60ab215ab",
+    "experiments/configs/rag_prompt.txt": "7ab15349db7a7a5db04c3b1a5f6aa52505a4f7bbc3e7d1a37ea234b4ca553dc1"
+  },
+  "git_commit": "bbf4fd581ed81baa9d67716654e0fbe3d1eb6cc2",
+  "n_queries": 32,
+  "run_id": "EXP-20260929-001",
+  "top_k": 5
+}

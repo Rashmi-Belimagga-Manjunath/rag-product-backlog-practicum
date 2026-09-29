@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-11",
+  "query_text": "Is there a stated order so identity verification finishes before progressive profiling in the product sequence?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 20.920154514402846
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 19.46474946527742
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 3,
+      "score": 19.019115262141085
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-02-C0",
+      "document_id": "DOC-FEAT-M-02",
+      "rank": 4,
+      "score": 17.603208860354364
+    },
+    {
+      "chunk_id": "DOC-PBI-M-009-C0",
+      "document_id": "DOC-PBI-M-009",
+      "rank": 5,
+      "score": 13.586165006786164
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

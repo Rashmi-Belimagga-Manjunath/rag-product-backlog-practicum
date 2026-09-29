@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-SUP-1",
+  "query_text": "Which PRD is in production?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-T-04-C0",
+      "document_id": "DOC-PRD-T-04",
+      "rank": 1,
+      "score": 3.9108006426661124
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-C0",
+      "document_id": "DOC-PRD-M-02",
+      "rank": 2,
+      "score": 3.8407614954627625
+    },
+    {
+      "chunk_id": "DOC-PRD-T-01-C0",
+      "document_id": "DOC-PRD-T-01",
+      "rank": 3,
+      "score": 3.6715610667442893
+    },
+    {
+      "chunk_id": "DOC-PRD-M-03-C0",
+      "document_id": "DOC-PRD-M-03",
+      "rank": 4,
+      "score": 3.6588362499808262
+    },
+    {
+      "chunk_id": "DOC-PRD-T-02-C0",
+      "document_id": "DOC-PRD-T-02",
+      "rank": 5,
+      "score": 3.3868493636484023
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The feature that has to wait on another feature's delivery before its own items can proceed is FEAT-M-06 (Manager Approval Console), which depends on PBI-M-026 being complete before it can proceed with PBI-M-027 [DOC-PBI-M-027#C0].\n\nEvidence: [DOC-PBI-M-027#C0]",
+  "latency_seconds_total": 1.200941833667457,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-15",
+  "query_text": "Which feature's work has to wait on another feature's delivery before its own items can proceed?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PBI-M-027-C0",
+      "document_id": "DOC-PBI-M-027",
+      "rank": 1,
+      "score": 0.3970373868942261
+    },
+    {
+      "chunk_id": "DOC-PBI-M-007-C0",
+      "document_id": "DOC-PBI-M-007",
+      "rank": 2,
+      "score": 0.3969533443450928
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-06-C0",
+      "document_id": "DOC-NOTE-M-06",
+      "rank": 3,
+      "score": 0.3938037157058716
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-02-C0",
+      "document_id": "DOC-NOTE-M-02",
+      "rank": 4,
+      "score": 0.3936351537704468
+    },
+    {
+      "chunk_id": "DOC-PBI-T-022-C0",
+      "document_id": "DOC-PBI-T-022",
+      "rank": 5,
+      "score": 0.3933311104774475
+    }
+  ],
+  "source_citations": [
+    "DOC-PBI-M-027#C0",
+    "DOC-PBI-M-027#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 72,
+    "prompt_tokens": 1439,
+    "total_tokens": 1511
+  }
+}

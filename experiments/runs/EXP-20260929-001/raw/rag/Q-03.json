@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The current feature specification for Progressive Profiling is documented in DOC-FEAT-M-01-v2 [DOC-FEAT-M-01-v2#C0]. This document outlines the feature's lifecycle status as launched and describes its functionality, including the reliance on the Verisign Identity Verification API and the taxband rate service. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+  "latency_seconds_total": 1.254869292024523,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-03",
+  "query_text": "Which document is the current feature specification for Progressive Profiling?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.6937180161476135
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.6727621555328369
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 0.5540383458137512
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 4,
+      "score": 0.4820528030395508
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 5,
+      "score": 0.47475433349609375
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-01-v2#C0",
+    "DOC-FEAT-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 84,
+    "prompt_tokens": 1816,
+    "total_tokens": 1900
+  }
+}

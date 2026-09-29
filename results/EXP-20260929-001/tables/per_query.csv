@@ -1,0 +1,1 @@
+query_id,category,difficulty,bm25_precision@5,bm25_recall@5,bm25_mrr,rag_precision@5,rag_recall@5,rag_mrr

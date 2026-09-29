@@ -1,0 +1,52 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The decision record that prioritised releasing bulk approval for whole batches only is documented in Passage 1, which states that the Product Manager decided on this approach due to complications in the audit trail caused by partial-batch approval. The recommendation was made in the context of feature FEAT-M-03 (Bulk Timesheet Approval) [DOC-DEC-M-02#C0].\n\nEvidence: DOC-DEC-M-02#C0",
+  "latency_seconds_total": 1.3199424999766052,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-25",
+  "query_text": "Which decision record prioritised releasing bulk approval for whole batches only?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 0.6804532408714294
+    },
+    {
+      "chunk_id": "DOC-DEC-M-04-C0",
+      "document_id": "DOC-DEC-M-04",
+      "rank": 2,
+      "score": 0.4932471513748169
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 3,
+      "score": 0.4866974353790283
+    },
+    {
+      "chunk_id": "DOC-TKT-M-006-C0",
+      "document_id": "DOC-TKT-M-006",
+      "rank": 4,
+      "score": 0.4509388208389282
+    },
+    {
+      "chunk_id": "DOC-DEC-M-06-C0",
+      "document_id": "DOC-DEC-M-06",
+      "rank": 5,
+      "score": 0.4505269527435303
+    }
+  ],
+  "source_citations": [
+    "DOC-DEC-M-02#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 86,
+    "prompt_tokens": 1384,
+    "total_tokens": 1470
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "Yes, there is a stated order that requires identity verification (FEAT-M-02) to finish before progressive profiling (FEAT-M-01) in the product sequence. This is explicitly mentioned in the specification for FEAT-M-02, which states that \"FEAT-M-02 is ordered to run before FEAT-M-01 in the product sequence\" [DOC-FEAT-M-02#C0].\n\nEvidence: [DOC-FEAT-M-02#C0]",
+  "latency_seconds_total": 1.4913892922922969,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-11",
+  "query_text": "Is there a stated order so identity verification finishes before progressive profiling in the product sequence?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.527675449848175
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.495177686214447
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 3,
+      "score": 0.48328495025634766
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-02-C0",
+      "document_id": "DOC-FEAT-M-02",
+      "rank": 4,
+      "score": 0.4647436738014221
+    },
+    {
+      "chunk_id": "DOC-PBI-M-007-C0",
+      "document_id": "DOC-PBI-M-007",
+      "rank": 5,
+      "score": 0.46187323331832886
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-02#C0",
+    "DOC-FEAT-M-02#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 99,
+    "prompt_tokens": 1805,
+    "total_tokens": 1904
+  }
+}

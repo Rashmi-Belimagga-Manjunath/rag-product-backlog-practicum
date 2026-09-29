@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-01#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-12",
+  "query_text": "According to the specification, which external third-party service does Progressive Profiling rely on?",
+  "status": "failed",
+  "system": "rag"
+}

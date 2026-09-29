@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-13",
+  "query_text": "Which component is needed to support Bulk Timesheet Approval even though no specification states it directly?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 23.970828206998682
+    },
+    {
+      "chunk_id": "DOC-TKT-M-005-C0",
+      "document_id": "DOC-TKT-M-005",
+      "rank": 2,
+      "score": 15.751378078617934
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 3,
+      "score": 15.749540241441004
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-02-C0",
+      "document_id": "DOC-NOTE-M-02",
+      "rank": 4,
+      "score": 12.085216556462335
+    },
+    {
+      "chunk_id": "DOC-PBI-M-012-C0",
+      "document_id": "DOC-PBI-M-012",
+      "rank": 5,
+      "score": 12.047881239839057
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

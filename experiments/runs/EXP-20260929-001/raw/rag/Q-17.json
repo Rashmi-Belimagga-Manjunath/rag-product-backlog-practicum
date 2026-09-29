@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The document that mentions that Progressive Profiling depends on the taxband rate service is DOC-FEAT-M-01-v2 [DOC-FEAT-M-01-v2#C0]. This dependency is stated in the specification of the feature. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+  "latency_seconds_total": 1.7257499592378736,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-17",
+  "query_text": "Which document mentions that Progressive Profiling depends on the taxband rate service?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 1,
+      "score": 0.6209453344345093
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 0.6144130229949951
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-08-C0",
+      "document_id": "DOC-FEAT-M-08",
+      "rank": 3,
+      "score": 0.5612372159957886
+    },
+    {
+      "chunk_id": "DOC-COMP-M-06-C0",
+      "document_id": "DOC-COMP-M-06",
+      "rank": 4,
+      "score": 0.5348511338233948
+    },
+    {
+      "chunk_id": "DOC-RBK-M-03-C0",
+      "document_id": "DOC-RBK-M-03",
+      "rank": 5,
+      "score": 0.5142391324043274
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-01-v2#C0",
+    "DOC-FEAT-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 67,
+    "prompt_tokens": 1762,
+    "total_tokens": 1829
+  }
+}

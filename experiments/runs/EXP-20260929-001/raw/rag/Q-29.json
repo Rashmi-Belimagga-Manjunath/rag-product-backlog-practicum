@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.7039496661163867,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-29",
+  "query_text": "Putting the Progressive Profiling specification next to the tax-collection decision record, what do these two documents together tell a stakeholder?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 1,
+      "score": 0.5430962443351746
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 0.5411056876182556
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 3,
+      "score": 0.4863942861557007
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 4,
+      "score": 0.46319401264190674
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 5,
+      "score": 0.4521861672401428
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1994,
+    "total_tokens": 2010
+  }
+}

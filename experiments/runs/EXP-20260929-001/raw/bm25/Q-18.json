@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-18",
+  "query_text": "Which two places in the documentation must a reader consult together to spot where Progressive Profiling leans on the taxband rate service?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 1,
+      "score": 20.49024594018408
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 19.837467786314864
+    },
+    {
+      "chunk_id": "DOC-PBI-M-003-C0",
+      "document_id": "DOC-PBI-M-003",
+      "rank": 3,
+      "score": 16.81478068968542
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 4,
+      "score": 16.234546105916465
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 5,
+      "score": 15.92999161001486
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

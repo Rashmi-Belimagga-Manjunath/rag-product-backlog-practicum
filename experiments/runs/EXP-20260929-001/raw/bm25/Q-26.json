@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-26",
+  "query_text": "What does the onboarding PRD state as a non-goal and why was it excluded?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-07-C0",
+      "document_id": "DOC-DEC-M-07",
+      "rank": 1,
+      "score": 9.331148411108162
+    },
+    {
+      "chunk_id": "DOC-PRD-M-03-C0",
+      "document_id": "DOC-PRD-M-03",
+      "rank": 2,
+      "score": 8.699728334463327
+    },
+    {
+      "chunk_id": "DOC-PRD-T-02-C0",
+      "document_id": "DOC-PRD-T-02",
+      "rank": 3,
+      "score": 8.630865319175372
+    },
+    {
+      "chunk_id": "DOC-PRD-T-01-C0",
+      "document_id": "DOC-PRD-T-01",
+      "rank": 4,
+      "score": 8.55623849857494
+    },
+    {
+      "chunk_id": "DOC-PBI-M-005-C0",
+      "document_id": "DOC-PBI-M-005",
+      "rank": 5,
+      "score": 8.453293340983874
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

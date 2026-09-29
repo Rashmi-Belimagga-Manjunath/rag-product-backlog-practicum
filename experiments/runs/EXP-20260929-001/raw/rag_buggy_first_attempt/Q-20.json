@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.9748429581522942,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-20",
+  "query_text": "From the sequence in which the product's requirements are listed, which stage must complete before streak saver can act?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-TKT-T-002-C0",
+      "document_id": "DOC-TKT-T-002",
+      "rank": 1,
+      "score": 0.49042177200317383
+    },
+    {
+      "chunk_id": "DOC-FEAT-T-01-v2-C0",
+      "document_id": "DOC-FEAT-T-01-v2",
+      "rank": 2,
+      "score": 0.4790534973144531
+    },
+    {
+      "chunk_id": "DOC-PBI-T-021-C0",
+      "document_id": "DOC-PBI-T-021",
+      "rank": 3,
+      "score": 0.476412296295166
+    },
+    {
+      "chunk_id": "DOC-TKT-T-001-C0",
+      "document_id": "DOC-TKT-T-001",
+      "rank": 4,
+      "score": 0.47520166635513306
+    },
+    {
+      "chunk_id": "DOC-PBI-T-022-C0",
+      "document_id": "DOC-PBI-T-022",
+      "rank": 5,
+      "score": 0.46603041887283325
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1487,
+    "total_tokens": 1503
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-06",
+  "query_text": "Can you summarise what the Progressive Profiling feature does?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 12.321954689829262
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 11.140319546990069
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 3,
+      "score": 9.25704381259206
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 4,
+      "score": 8.205365115767938
+    },
+    {
+      "chunk_id": "DOC-PBI-M-003-C0",
+      "document_id": "DOC-PBI-M-003",
+      "rank": 5,
+      "score": 7.7971278544255185
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The component document that states the Timesheet Approval Engine depends on the payroll ledger database is DOC-COMP-M-03, as indicated in Passage 1 [DOC-COMP-M-03#C0]. \n\nEvidence: [DOC-COMP-M-03#C0]",
+  "latency_seconds_total": 1.01318437512964,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-10",
+  "query_text": "Which component document says the Timesheet Approval Engine depends on the payroll ledger database?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-COMP-M-03-C0",
+      "document_id": "DOC-COMP-M-03",
+      "rank": 1,
+      "score": 0.6502166986465454
+    },
+    {
+      "chunk_id": "DOC-COMP-M-02-C0",
+      "document_id": "DOC-COMP-M-02",
+      "rank": 2,
+      "score": 0.6338218450546265
+    },
+    {
+      "chunk_id": "DOC-COMP-M-10-C0",
+      "document_id": "DOC-COMP-M-10",
+      "rank": 3,
+      "score": 0.6280667781829834
+    },
+    {
+      "chunk_id": "DOC-RBK-M-02-C0",
+      "document_id": "DOC-RBK-M-02",
+      "rank": 4,
+      "score": 0.5889275074005127
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-05-C0",
+      "document_id": "DOC-FEAT-M-05",
+      "rank": 5,
+      "score": 0.5476105213165283
+    }
+  ],
+  "source_citations": [
+    "DOC-COMP-M-03#C0",
+    "DOC-COMP-M-03#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 55,
+    "prompt_tokens": 1404,
+    "total_tokens": 1459
+  }
+}

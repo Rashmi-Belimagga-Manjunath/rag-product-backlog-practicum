@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "Progressive Profiling relies on the third-party service Verisign Identity Verification API, as stated in the specification [DOC-FEAT-M-01-v2#C0]. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+  "latency_seconds_total": 1.4364654999226332,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-12",
+  "query_text": "According to the specification, which external third-party service does Progressive Profiling rely on?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.557566225528717
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.5268133282661438
+    },
+    {
+      "chunk_id": "DOC-COMP-M-01-C0",
+      "document_id": "DOC-COMP-M-01",
+      "rank": 3,
+      "score": 0.42383068799972534
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 4,
+      "score": 0.38588231801986694
+    },
+    {
+      "chunk_id": "DOC-COMP-T-03-C0",
+      "document_id": "DOC-COMP-T-03",
+      "rank": 5,
+      "score": 0.383388876914978
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-01-v2#C0",
+    "DOC-FEAT-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 53,
+    "prompt_tokens": 1652,
+    "total_tokens": 1705
+  }
+}

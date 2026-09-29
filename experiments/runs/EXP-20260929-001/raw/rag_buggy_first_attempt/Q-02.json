@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-05#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-02",
+  "query_text": "Where is the runbook for recovering a delayed event on the domain event bus?",
+  "status": "failed",
+  "system": "rag"
+}

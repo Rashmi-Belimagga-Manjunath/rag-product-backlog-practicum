@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-05",
+  "query_text": "When I logged in this morning the whole thing just sat there frozen for ages, so I had to give up on it.",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-T-01-C0",
+      "document_id": "DOC-DEC-T-01",
+      "rank": 1,
+      "score": 10.824954251672834
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 9.132005793796475
+    },
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 3,
+      "score": 8.647453778078479
+    },
+    {
+      "chunk_id": "DOC-FEAT-T-06-C0",
+      "document_id": "DOC-FEAT-T-06",
+      "rank": 4,
+      "score": 8.100764476116664
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-12-C0",
+      "document_id": "DOC-FEAT-M-12",
+      "rank": 5,
+      "score": 7.8914471021704085
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

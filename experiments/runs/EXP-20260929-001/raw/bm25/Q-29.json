@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-29",
+  "query_text": "Putting the Progressive Profiling specification next to the tax-collection decision record, what do these two documents together tell a stakeholder?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 1,
+      "score": 16.118132518924725
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 14.59860409604761
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 3,
+      "score": 14.541494653893665
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 4,
+      "score": 13.179357384189712
+    },
+    {
+      "chunk_id": "DOC-PBI-M-037-C0",
+      "document_id": "DOC-PBI-M-037",
+      "rank": 5,
+      "score": 11.249601313271508
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

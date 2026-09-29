@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-22",
+  "query_text": "Which documents settle the dispute between the onboarding PRD and the Progressive Profiling specification?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 17.266600576874556
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 15.656501163666277
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 11.634215792135254
+    },
+    {
+      "chunk_id": "DOC-PBI-M-003-C0",
+      "document_id": "DOC-PBI-M-003",
+      "rank": 4,
+      "score": 10.203636465082564
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 5,
+      "score": 10.100727905581566
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

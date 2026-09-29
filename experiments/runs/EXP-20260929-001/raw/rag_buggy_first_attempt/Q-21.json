@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-21",
+  "query_text": "Which older document still holds the only written trace of the dependency between requirement REQ-M-03 and the timesheet engine?",
+  "status": "failed",
+  "system": "rag"
+}

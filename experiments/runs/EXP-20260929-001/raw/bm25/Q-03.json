@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-03",
+  "query_text": "Which document is the current feature specification for Progressive Profiling?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 17.343110187428906
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 15.693041605851231
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 8.593287172225722
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 4,
+      "score": 8.480250601186317
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 5,
+      "score": 8.353276744707982
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

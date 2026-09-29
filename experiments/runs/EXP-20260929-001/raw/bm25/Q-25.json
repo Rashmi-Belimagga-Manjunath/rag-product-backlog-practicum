@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-25",
+  "query_text": "Which decision record prioritised releasing bulk approval for whole batches only?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 24.46667652949265
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 2,
+      "score": 8.857789227548745
+    },
+    {
+      "chunk_id": "DOC-PBI-M-014-C0",
+      "document_id": "DOC-PBI-M-014",
+      "rank": 3,
+      "score": 8.398255027692947
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-v2-C0",
+      "document_id": "DOC-PRD-M-02-v2",
+      "rank": 4,
+      "score": 8.155150824088647
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-C0",
+      "document_id": "DOC-PRD-M-02",
+      "rank": 5,
+      "score": 7.567916848403524
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

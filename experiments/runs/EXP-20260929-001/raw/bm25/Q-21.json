@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-21",
+  "query_text": "Which older document still holds the only written trace of the dependency between requirement REQ-M-03 and the timesheet engine?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-COMP-M-03-C0",
+      "document_id": "DOC-COMP-M-03",
+      "rank": 1,
+      "score": 11.397968722144865
+    },
+    {
+      "chunk_id": "DOC-PRD-M-03-C0",
+      "document_id": "DOC-PRD-M-03",
+      "rank": 2,
+      "score": 11.354862836718928
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-C0",
+      "document_id": "DOC-PRD-M-02",
+      "rank": 3,
+      "score": 10.886332963711872
+    },
+    {
+      "chunk_id": "DOC-PRD-T-03-C0",
+      "document_id": "DOC-PRD-T-03",
+      "rank": 4,
+      "score": 10.081814529272364
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 5,
+      "score": 9.677025986766035
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

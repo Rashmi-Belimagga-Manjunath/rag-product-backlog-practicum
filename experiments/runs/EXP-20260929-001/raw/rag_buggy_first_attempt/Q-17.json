@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-06#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-17",
+  "query_text": "Which document mentions that Progressive Profiling depends on the taxband rate service?",
+  "status": "failed",
+  "system": "rag"
+}

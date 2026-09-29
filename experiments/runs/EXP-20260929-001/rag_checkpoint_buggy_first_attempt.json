@@ -1,0 +1,2481 @@
+{
+  "captured_at": "2026-09-29T13:46:31+00:00",
+  "checkpoint": "RAG",
+  "configuration": {
+    "api_key_available_boolean_only": true,
+    "citation_format": "[DOCUMENT_ID#Cn]",
+    "collection": "v1-corpus",
+    "embedding_dimension": 3072,
+    "embedding_model": "text-embedding-3-large",
+    "max_tokens": 800,
+    "model": "gpt-4o-mini",
+    "n": 1,
+    "prompt_sha256": "7ab15349db7a7a5db04c3b1a5f6aa52505a4f7bbc3e7d1a37ea234b4ca553dc1",
+    "seed": null,
+    "temperature": 0.0,
+    "top_k": 5,
+    "top_p": null,
+    "vector_store": "data/vectorstore/v1-corpus"
+  },
+  "coverage": {
+    "n_failed": 8,
+    "n_ok": 24,
+    "n_records": 32
+  },
+  "embedding_matrix_sha256": "cfdf5f13508b26d61f0f3a8ceab10aedf829fc0e781aa7f66c165ac1276fba74",
+  "findings": {
+    "citations": [],
+    "coverage": [
+      "Q-02: status 'failed'",
+      "Q-10: status 'failed'",
+      "Q-12: status 'failed'",
+      "Q-13: status 'failed'",
+      "Q-16: status 'failed'",
+      "Q-17: status 'failed'",
+      "Q-18: status 'failed'",
+      "Q-21: status 'failed'"
+    ],
+    "retrieval": [],
+    "structure": [],
+    "timing": []
+  },
+  "frozen_input_hashes": {
+    "data/corpus/v1/chunks/chunks.json": "622801a1055c5de6addf1e881d53035feac3fadfd8e94797955538bb02dee1ed",
+    "data/exports/practicum_dataset_evidence.xlsx": "137bbaa1464747ad96acc970b98545b3ae95679629594f26c9ae34a3068ab57a",
+    "experiments/configs/bm25_config.json": "8674dcb3d2974df9c63d5ed24c46deaf56f05c2c6ce5da0460b8a593705e72ce",
+    "experiments/configs/embedding_config.json": "0219ca7e0f0c245fd1cbed2e8fdb8bcdf61859172ecb9d96f478b8fbb0dbb0b8",
+    "experiments/configs/rag_config.json": "cfccebc722abab8c41a2979f0a578fd49ce47164da11ed8afca128c60ab215ab",
+    "experiments/configs/rag_prompt.txt": "7ab15349db7a7a5db04c3b1a5f6aa52505a4f7bbc3e7d1a37ea234b4ca553dc1"
+  },
+  "git_commit": "0f74f4c6e63596fb303217938d4304eda6a8c0d8",
+  "ground_truth_agreement": {
+    "agreement": "PASS",
+    "queries_checked": 32,
+    "workbook_rows": 387
+  },
+  "mean_latency_seconds": 0.9505507266439963,
+  "numpy_crosscheck_vs_frozen_matrix": {
+    "n_checked": 24,
+    "n_ok": 24,
+    "per_query": {
+      "Q-01": true,
+      "Q-03": true,
+      "Q-04": true,
+      "Q-05": true,
+      "Q-06": true,
+      "Q-07": true,
+      "Q-08": true,
+      "Q-09": true,
+      "Q-11": true,
+      "Q-14": true,
+      "Q-15": true,
+      "Q-19": true,
+      "Q-20": true,
+      "Q-22": true,
+      "Q-23": true,
+      "Q-24": true,
+      "Q-25": true,
+      "Q-26": true,
+      "Q-27": true,
+      "Q-28": true,
+      "Q-29": true,
+      "Q-SUP-1": true,
+      "Q-SUP-2": true,
+      "Q-SUP-3": true
+    }
+  },
+  "per_query_evidence": [
+    {
+      "any_relevant_retrieved": true,
+      "category": "Information retrieval",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The Meridian PRD that defines employee onboarding and payroll readiness is DOC-PRD-M-01-v2, which is the current version of the document. It specifies how a new employee becomes payroll-ready, including the progressive collection of tax and banking details, and outlines that tax documentation must be collected after the employee's first successful login, not as part of initial account registration [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.6066894587129354,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-01",
+      "query_text": "Which Meridian PRD defines employee onboarding and payroll readiness?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01-v2",
+        "DOC-PRD-M-02-v2",
+        "DOC-PRD-M-03-v2",
+        "DOC-PRD-M-04",
+        "DOC-PRD-M-05",
+        "DOC-PRD-M-06",
+        "DOC-PRD-T-01-v2",
+        "DOC-PRD-T-02-v2",
+        "DOC-PRD-T-03-v2",
+        "DOC-PRD-T-04-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.3821321129798889,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.6178678870201111
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.39603114128112793,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.6039688587188721
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-11-C0",
+          "distance": 0.43515920639038086,
+          "document_id": "DOC-FEAT-M-11",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.5648407936096191
+        },
+        {
+          "chunk_id": "DOC-PRD-M-04-C0",
+          "distance": 0.44388347864151,
+          "document_id": "DOC-PRD-M-04",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.55611652135849
+        },
+        {
+          "chunk_id": "DOC-PRD-M-02-C0",
+          "distance": 0.44865357875823975,
+          "document_id": "DOC-PRD-M-02",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.5513464212417603
+        }
+      ],
+      "source_citations": [
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-PRD-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Information retrieval",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-05#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": false,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-02",
+      "query_text": "Where is the runbook for recovering a delayed event on the domain event bus?",
+      "relevant_document_ids": [
+        "DOC-RBK-M-01",
+        "DOC-RBK-M-02",
+        "DOC-RBK-M-03",
+        "DOC-RBK-M-04",
+        "DOC-RBK-T-01",
+        "DOC-RBK-T-02",
+        "DOC-RBK-T-03",
+        "DOC-RBK-T-04"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Information retrieval",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The current feature specification for Progressive Profiling is documented in DOC-FEAT-M-01-v2 [DOC-FEAT-M-01-v2#C0]. This document outlines the feature's lifecycle status as launched and describes its functionality, including the reliance on the Verisign Identity Verification API and the taxband rate service. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.4364727921783924,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0079",
+        "DEP-0134"
+      ],
+      "query_id": "Q-03",
+      "query_text": "Which document is the current feature specification for Progressive Profiling?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01-v2",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-03",
+        "DOC-FEAT-M-04-v2",
+        "DOC-FEAT-M-05",
+        "DOC-FEAT-M-06",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-FEAT-M-09",
+        "DOC-FEAT-M-10",
+        "DOC-FEAT-M-11",
+        "DOC-FEAT-M-12",
+        "DOC-FEAT-T-01-v2",
+        "DOC-FEAT-T-02",
+        "DOC-FEAT-T-03-v2",
+        "DOC-FEAT-T-04",
+        "DOC-FEAT-T-05-v2",
+        "DOC-FEAT-T-06",
+        "DOC-FEAT-T-07",
+        "DOC-FEAT-T-08",
+        "DOC-FEAT-T-09",
+        "DOC-FEAT-T-10",
+        "DOC-FEAT-T-11",
+        "DOC-FEAT-T-12"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.3062819838523865,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.6937180161476135
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.3272378444671631,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.6727621555328369
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.4459616541862488,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.5540383458137512
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.5179471969604492,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4820528030395508
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.5252456665039062,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.47475433349609375
+        }
+      ],
+      "source_citations": [
+        "DOC-FEAT-M-01-v2#C0",
+        "DOC-FEAT-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Information retrieval",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-01#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The decision record that explains why tax paperwork is no longer part of initial registration is found in Passage 1, which states that tax collection has been moved to day three of the onboarding ramp rather than during sign-up due to early testing showing that the long sign-up form caused abandonment in the first session. This decision was made by the Senior Product Manager and is referenced in the context of the onboarding ramp feature [DOC-DEC-M-01#C0].\n\nAdditionally, Passage 2 confirms this change, stating that the tax collection step has been moved out of initial registration and into the onboarding ramp, following the decision recorded in the decision log [DOC-PRD-M-01-v2#C0].\n\nEvidence: DOC-DEC-M-01#C0, DOC-PRD-M-01-v2#C0",
+      "is_dependency_query": false,
+      "latency_seconds_total": 2.755997208878398,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-04",
+      "query_text": "Which decision record explains why tax paperwork is no longer part of initial registration?",
+      "relevant_document_ids": [
+        "DOC-DEC-M-01",
+        "DOC-DEC-M-02",
+        "DOC-DEC-M-03",
+        "DOC-DEC-M-04",
+        "DOC-DEC-M-05",
+        "DOC-DEC-M-06",
+        "DOC-DEC-M-07",
+        "DOC-DEC-M-08",
+        "DOC-DEC-T-01",
+        "DOC-DEC-T-02",
+        "DOC-DEC-T-03",
+        "DOC-DEC-T-04",
+        "DOC-DEC-T-05",
+        "DOC-DEC-T-06",
+        "DOC-DEC-T-07",
+        "DOC-DEC-T-08"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "distance": 0.5002171397209167,
+          "document_id": "DOC-DEC-M-01",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.49978286027908325
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.5889026522636414,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.41109734773635864
+        },
+        {
+          "chunk_id": "DOC-PBI-M-039-C0",
+          "distance": 0.5982112884521484,
+          "document_id": "DOC-PBI-M-039",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.40178871154785156
+        },
+        {
+          "chunk_id": "DOC-PBI-M-040-C0",
+          "distance": 0.6112794876098633,
+          "document_id": "DOC-PBI-M-040",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3887205123901367
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.6229490041732788,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.3770509958267212
+        }
+      ],
+      "source_citations": [
+        "DOC-DEC-M-01#C0",
+        "DOC-PRD-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Information retrieval",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.671151916962117,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0004"
+      ],
+      "query_id": "Q-05",
+      "query_text": "When I logged in this morning the whole thing just sat there frozen for ages, so I had to give up on it.",
+      "relevant_document_ids": [
+        "DOC-TKT-T-001",
+        "DOC-TKT-T-002",
+        "DOC-TKT-T-003",
+        "DOC-TKT-T-004",
+        "DOC-TKT-T-005",
+        "DOC-TKT-T-006",
+        "DOC-TKT-T-007",
+        "DOC-TKT-T-008",
+        "DOC-TKT-T-009",
+        "DOC-TKT-T-010",
+        "DOC-TKT-T-011",
+        "DOC-TKT-T-012",
+        "DOC-TKT-T-013",
+        "DOC-TKT-T-014",
+        "DOC-TKT-T-015",
+        "DOC-TKT-T-016",
+        "DOC-TKT-T-017",
+        "DOC-TKT-T-018",
+        "DOC-TKT-T-019",
+        "DOC-TKT-T-020"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-TKT-M-016-C0",
+          "distance": 0.6347061395645142,
+          "document_id": "DOC-TKT-M-016",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.36529386043548584
+        },
+        {
+          "chunk_id": "DOC-TKT-T-005-C0",
+          "distance": 0.6716480851173401,
+          "document_id": "DOC-TKT-T-005",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.3283519148826599
+        },
+        {
+          "chunk_id": "DOC-TKT-T-020-C0",
+          "distance": 0.6778934001922607,
+          "document_id": "DOC-TKT-T-020",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.32210659980773926
+        },
+        {
+          "chunk_id": "DOC-TKT-M-009-C0",
+          "distance": 0.6796776056289673,
+          "document_id": "DOC-TKT-M-009",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3203223943710327
+        },
+        {
+          "chunk_id": "DOC-TKT-M-008-C0",
+          "distance": 0.6881433725357056,
+          "document_id": "DOC-TKT-M-008",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.31185662746429443
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Feature context",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The Progressive Profiling feature collects additional employee details progressively after the first login rather than in a single mandatory form. It is also referred to as onboarding ramp, new-user activation, or first-run setup. When this feature is active, it depends on the taxband rate service and relies on the Verisign Identity Verification API for its functionality. The current approval limit for Progressive Profiling is $5,000 [DOC-FEAT-M-01-v2#C0].\n\nEvidence: DOC-FEAT-M-01-v2#C0",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.5810282081365585,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0079",
+        "DEP-0134"
+      ],
+      "query_id": "Q-06",
+      "query_text": "Can you summarise what the Progressive Profiling feature does?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.3783661127090454,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.6216338872909546
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.4055888056755066,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.5944111943244934
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.570260226726532,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.429739773273468
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.5813535451889038,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4186464548110962
+        },
+        {
+          "chunk_id": "DOC-PBI-M-004-C0",
+          "distance": 0.6102001667022705,
+          "document_id": "DOC-PBI-M-004",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.3897998332977295
+        }
+      ],
+      "source_citations": [
+        "DOC-FEAT-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Feature context",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "An internal audit would point to the current document, DOC-PRD-M-01-v2, which states that tax documentation must be collected after the employee's first successful login, not as part of initial account registration [DOC-PRD-M-01-v2#C0]. This requirement is normative for Meridian and takes precedence over any conflicting statements in other documents [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.939133208245039,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0079",
+        "DEP-0147"
+      ],
+      "query_id": "Q-07",
+      "query_text": "Which document would an internal audit point to as the place where tax paperwork is requested only after a person has signed in for the very first time?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.4331096410751343,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.5668903589248657
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.4413912296295166,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.5586087703704834
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.5172551870346069,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.48274481296539307
+        },
+        {
+          "chunk_id": "DOC-PBI-M-056-C0",
+          "distance": 0.5174987316131592,
+          "document_id": "DOC-PBI-M-056",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4825012683868408
+        },
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "distance": 0.524928867816925,
+          "document_id": "DOC-DEC-M-01",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.47507113218307495
+        }
+      ],
+      "source_citations": [
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-PRD-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Feature context",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.8210601671598852,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-08",
+      "query_text": "What does the onboarding PRD explicitly leave out of its remit?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-NOTE-M-11-C0",
+          "distance": 0.5369285345077515,
+          "document_id": "DOC-NOTE-M-11",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.46307146549224854
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.539533257484436,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.46046674251556396
+        },
+        {
+          "chunk_id": "DOC-PBI-M-051-C0",
+          "distance": 0.5564500093460083,
+          "document_id": "DOC-PBI-M-051",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.4435499906539917
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-11-C0",
+          "distance": 0.5611119270324707,
+          "document_id": "DOC-FEAT-M-11",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4388880729675293
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-07-C0",
+          "distance": 0.5624622106552124,
+          "document_id": "DOC-NOTE-M-07",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4375377893447876
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Dependency identification",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "Progressive Profiling depends on the taxband rate service to provide its behavior, as stated in the feature specification [DOC-FEAT-M-01-v2#C0]. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+      "is_dependency_query": true,
+      "latency_seconds_total": 0.975867916829884,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0079",
+        "DEP-0134"
+      ],
+      "query_id": "Q-09",
+      "query_text": "Which component does Progressive Profiling depend on, per the feature specification?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-05",
+        "DOC-COMP-M-07",
+        "DOC-DEC-M-01",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-NOTE-M-01",
+        "DOC-PBI-M-001",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-004",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-006",
+        "DOC-PBI-M-016",
+        "DOC-PBI-M-026",
+        "DOC-PBI-M-036",
+        "DOC-PBI-M-046",
+        "DOC-PBI-M-056",
+        "DOC-RBK-M-03",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-004",
+        "DOC-TKT-M-010",
+        "DOC-TKT-M-016"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.35343265533447266,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.6465673446655273
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.3901357650756836,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.6098642349243164
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.5168066024780273,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.48319339752197266
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.5357445478439331,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.4642554521560669
+        },
+        {
+          "chunk_id": "DOC-PBI-M-004-C0",
+          "distance": 0.5630437731742859,
+          "document_id": "DOC-PBI-M-004",
+          "rank": 5,
+          "relevant": true,
+          "similarity": 0.4369562268257141
+        }
+      ],
+      "source_citations": [
+        "DOC-FEAT-M-01-v2#C0",
+        "DOC-FEAT-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Dependency identification",
+      "citation_audit": [],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-10",
+      "query_text": "Which component document says the Timesheet Approval Engine depends on the payroll ledger database?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-01",
+        "DOC-COMP-M-02",
+        "DOC-COMP-M-03",
+        "DOC-COMP-M-04",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-012",
+        "DOC-PBI-M-013",
+        "DOC-PBI-M-022",
+        "DOC-PBI-M-023",
+        "DOC-PBI-M-032",
+        "DOC-PBI-M-033",
+        "DOC-PBI-M-042",
+        "DOC-PBI-M-043",
+        "DOC-PBI-M-052",
+        "DOC-PBI-M-053",
+        "DOC-RBK-M-02",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-008",
+        "DOC-TKT-M-014",
+        "DOC-TKT-M-020"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Dependency identification",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-FEAT-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-02#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-FEAT-M-02#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "Yes, there is a stated order that requires identity verification (FEAT-M-02) to finish before progressive profiling (FEAT-M-01) in the product sequence. This is explicitly mentioned in the specification for FEAT-M-02, which states that \"FEAT-M-02 is ordered to run before FEAT-M-01 in the product sequence\" [DOC-FEAT-M-02#C0].\n\nEvidence: [DOC-FEAT-M-02#C0]",
+      "is_dependency_query": true,
+      "latency_seconds_total": 1.6650456660427153,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0079",
+        "DEP-0134",
+        "DEP-0144"
+      ],
+      "query_id": "Q-11",
+      "query_text": "Is there a stated order so identity verification finishes before progressive profiling in the product sequence?",
+      "relevant_document_ids": [
+        "DOC-DEC-M-01",
+        "DOC-FEAT-M-01-v2",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-03",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-NOTE-M-01",
+        "DOC-NOTE-M-03",
+        "DOC-PBI-M-001",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-004",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-006",
+        "DOC-PBI-M-007",
+        "DOC-PBI-M-008",
+        "DOC-PBI-M-009",
+        "DOC-PBI-M-010",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-003",
+        "DOC-TKT-M-004"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.47232455015182495,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.527675449848175
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.504822313785553,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.495177686214447
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.5167150497436523,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.48328495025634766
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-02-C0",
+          "distance": 0.5352563261985779,
+          "document_id": "DOC-FEAT-M-02",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.4647436738014221
+        },
+        {
+          "chunk_id": "DOC-PBI-M-007-C0",
+          "distance": 0.5381267666816711,
+          "document_id": "DOC-PBI-M-007",
+          "rank": 5,
+          "relevant": true,
+          "similarity": 0.46187323331832886
+        }
+      ],
+      "source_citations": [
+        "DOC-FEAT-M-02#C0",
+        "DOC-FEAT-M-02#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Dependency identification",
+      "citation_audit": [],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-01#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-12",
+      "query_text": "According to the specification, which external third-party service does Progressive Profiling rely on?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-02",
+        "DOC-DEC-M-01",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-NOTE-M-01",
+        "DOC-PBI-M-001",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-004",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-011",
+        "DOC-PBI-M-021",
+        "DOC-PBI-M-031",
+        "DOC-PBI-M-041",
+        "DOC-PBI-M-051",
+        "DOC-RBK-M-04",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-007",
+        "DOC-TKT-M-013",
+        "DOC-TKT-M-019"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Dependency identification",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-13",
+      "query_text": "Which component is needed to support Bulk Timesheet Approval even though no specification states it directly?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-04",
+        "DOC-COMP-M-06",
+        "DOC-DEC-M-02",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-04-v2",
+        "DOC-FEAT-M-06",
+        "DOC-FEAT-M-10",
+        "DOC-NOTE-M-02",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-011",
+        "DOC-PBI-M-012",
+        "DOC-PBI-M-013",
+        "DOC-PBI-M-014",
+        "DOC-PBI-M-015",
+        "DOC-PBI-M-025",
+        "DOC-PBI-M-035",
+        "DOC-PBI-M-045",
+        "DOC-PBI-M-055",
+        "DOC-RBK-M-01",
+        "DOC-TKT-M-003",
+        "DOC-TKT-M-005",
+        "DOC-TKT-M-006"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Dependency identification",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": true,
+      "latency_seconds_total": 0.7172901672311127,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0057",
+        "DEP-0117",
+        "DEP-0118",
+        "DEP-0121",
+        "DEP-0126"
+      ],
+      "query_id": "Q-14",
+      "query_text": "Which part of the product must be available before streak saver can work even though no document states that plainly?",
+      "relevant_document_ids": [
+        "DOC-DEC-T-01",
+        "DOC-DEC-T-05",
+        "DOC-FEAT-T-02",
+        "DOC-FEAT-T-03-v2",
+        "DOC-FEAT-T-05-v2",
+        "DOC-FEAT-T-08",
+        "DOC-FEAT-T-10",
+        "DOC-NOTE-T-01",
+        "DOC-NOTE-T-04",
+        "DOC-PBI-T-001",
+        "DOC-PBI-T-002",
+        "DOC-PBI-T-003",
+        "DOC-PBI-T-004",
+        "DOC-PBI-T-005",
+        "DOC-PBI-T-016",
+        "DOC-PBI-T-017",
+        "DOC-PBI-T-018",
+        "DOC-PBI-T-019",
+        "DOC-PBI-T-020",
+        "DOC-TKT-T-001",
+        "DOC-TKT-T-002",
+        "DOC-TKT-T-007",
+        "DOC-TKT-T-008"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-T-01-v2-C0",
+          "distance": 0.5406509637832642,
+          "document_id": "DOC-FEAT-T-01-v2",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.45934903621673584
+        },
+        {
+          "chunk_id": "DOC-PBI-T-021-C0",
+          "distance": 0.5446867942810059,
+          "document_id": "DOC-PBI-T-021",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.45531320571899414
+        },
+        {
+          "chunk_id": "DOC-TKT-T-002-C0",
+          "distance": 0.5522323846817017,
+          "document_id": "DOC-TKT-T-002",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.44776761531829834
+        },
+        {
+          "chunk_id": "DOC-FEAT-T-05-C0",
+          "distance": 0.5571608543395996,
+          "document_id": "DOC-FEAT-T-05",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4428391456604004
+        },
+        {
+          "chunk_id": "DOC-PRD-T-01-v2-C0",
+          "distance": 0.565784215927124,
+          "document_id": "DOC-PRD-T-01-v2",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.434215784072876
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Dependency identification",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-PBI-M-027-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PBI-M-027#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PBI-M-027-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PBI-M-027#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The feature that has to wait on another feature's delivery before its own items can proceed is FEAT-M-06 (Manager Approval Console), which depends on PBI-M-026 being complete before it can proceed with PBI-M-027 [DOC-PBI-M-027#C0].\n\nEvidence: [DOC-PBI-M-027#C0]",
+      "is_dependency_query": true,
+      "latency_seconds_total": 1.200941833667457,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0017"
+      ],
+      "query_id": "Q-15",
+      "query_text": "Which feature's work has to wait on another feature's delivery before its own items can proceed?",
+      "relevant_document_ids": [
+        "DOC-DEC-M-05",
+        "DOC-FEAT-M-01-v2",
+        "DOC-FEAT-M-05",
+        "DOC-FEAT-M-06",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-11",
+        "DOC-FEAT-M-12",
+        "DOC-NOTE-M-08",
+        "DOC-NOTE-M-09",
+        "DOC-PBI-M-036",
+        "DOC-PBI-M-037",
+        "DOC-PBI-M-038",
+        "DOC-PBI-M-039",
+        "DOC-PBI-M-040",
+        "DOC-PBI-M-041",
+        "DOC-PBI-M-042",
+        "DOC-PBI-M-043",
+        "DOC-PBI-M-044",
+        "DOC-PBI-M-045",
+        "DOC-TKT-M-013",
+        "DOC-TKT-M-014",
+        "DOC-TKT-M-015"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-PBI-M-027-C0",
+          "distance": 0.6029626131057739,
+          "document_id": "DOC-PBI-M-027",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.3970373868942261
+        },
+        {
+          "chunk_id": "DOC-PBI-M-007-C0",
+          "distance": 0.6030466556549072,
+          "document_id": "DOC-PBI-M-007",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.3969533443450928
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-06-C0",
+          "distance": 0.6061962842941284,
+          "document_id": "DOC-NOTE-M-06",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.3938037157058716
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-02-C0",
+          "distance": 0.6063648462295532,
+          "document_id": "DOC-NOTE-M-02",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3936351537704468
+        },
+        {
+          "chunk_id": "DOC-PBI-T-022-C0",
+          "distance": 0.6066688895225525,
+          "document_id": "DOC-PBI-T-022",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.3933311104774475
+        }
+      ],
+      "source_citations": [
+        "DOC-PBI-M-027#C0",
+        "DOC-PBI-M-027#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Dependency identification",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-16",
+      "query_text": "Which operating guide reveals the hidden dependency that Bulk Timesheet Approval has on another component?",
+      "relevant_document_ids": [
+        "DOC-RBK-M-01",
+        "DOC-RBK-M-02",
+        "DOC-RBK-M-03",
+        "DOC-RBK-M-04",
+        "DOC-RBK-T-01",
+        "DOC-RBK-T-02",
+        "DOC-RBK-T-03",
+        "DOC-RBK-T-04"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Cross-document reasoning",
+      "citation_audit": [],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-06#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-17",
+      "query_text": "Which document mentions that Progressive Profiling depends on the taxband rate service?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-05",
+        "DOC-COMP-M-07",
+        "DOC-DEC-M-01",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-NOTE-M-01",
+        "DOC-PBI-M-001",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-004",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-006",
+        "DOC-PBI-M-016",
+        "DOC-PBI-M-026",
+        "DOC-PBI-M-036",
+        "DOC-PBI-M-046",
+        "DOC-PBI-M-056",
+        "DOC-RBK-M-03",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-004",
+        "DOC-TKT-M-010",
+        "DOC-TKT-M-016"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Cross-document reasoning",
+      "citation_audit": [],
+      "dependency_explicitness": "explicit",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-06#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-18",
+      "query_text": "Which two places in the documentation must a reader consult together to spot where Progressive Profiling leans on the taxband rate service?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-05",
+        "DOC-COMP-M-07",
+        "DOC-DEC-M-01",
+        "DOC-FEAT-M-02",
+        "DOC-FEAT-M-07",
+        "DOC-FEAT-M-08",
+        "DOC-NOTE-M-01",
+        "DOC-PBI-M-001",
+        "DOC-PBI-M-002",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-004",
+        "DOC-PBI-M-005",
+        "DOC-PBI-M-006",
+        "DOC-PBI-M-016",
+        "DOC-PBI-M-026",
+        "DOC-PBI-M-036",
+        "DOC-PBI-M-046",
+        "DOC-PBI-M-056",
+        "DOC-RBK-M-03",
+        "DOC-TKT-M-001",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-004",
+        "DOC-TKT-M-010",
+        "DOC-TKT-M-016"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Cross-document reasoning",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": true,
+      "latency_seconds_total": 1.6331537086516619,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-19",
+      "query_text": "Which set of meeting minutes alludes to a connection between two backend services without ever asserting it outright?",
+      "relevant_document_ids": [
+        "DOC-NOTE-M-01",
+        "DOC-NOTE-M-02",
+        "DOC-NOTE-M-03",
+        "DOC-NOTE-M-04",
+        "DOC-NOTE-M-05",
+        "DOC-NOTE-M-06",
+        "DOC-NOTE-M-07",
+        "DOC-NOTE-M-08",
+        "DOC-NOTE-M-09",
+        "DOC-NOTE-M-10",
+        "DOC-NOTE-M-11",
+        "DOC-NOTE-M-12",
+        "DOC-NOTE-T-01",
+        "DOC-NOTE-T-02",
+        "DOC-NOTE-T-03",
+        "DOC-NOTE-T-04",
+        "DOC-NOTE-T-05",
+        "DOC-NOTE-T-06",
+        "DOC-NOTE-T-07",
+        "DOC-NOTE-T-08",
+        "DOC-NOTE-T-09",
+        "DOC-NOTE-T-10",
+        "DOC-NOTE-T-11",
+        "DOC-NOTE-T-12"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-NOTE-T-07-C0",
+          "distance": 0.6216871738433838,
+          "document_id": "DOC-NOTE-T-07",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.3783128261566162
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.6233314275741577,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.3766685724258423
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-05-C0",
+          "distance": 0.6243991255760193,
+          "document_id": "DOC-NOTE-M-05",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.3756008744239807
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-07-C0",
+          "distance": 0.6255306005477905,
+          "document_id": "DOC-NOTE-M-07",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.3744693994522095
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-10-C0",
+          "distance": 0.6329851150512695,
+          "document_id": "DOC-NOTE-M-10",
+          "rank": 5,
+          "relevant": true,
+          "similarity": 0.36701488494873047
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Cross-document reasoning",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": true,
+      "latency_seconds_total": 0.9748429581522942,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0017",
+        "DEP-0057",
+        "DEP-0117",
+        "DEP-0118",
+        "DEP-0121",
+        "DEP-0126"
+      ],
+      "query_id": "Q-20",
+      "query_text": "From the sequence in which the product's requirements are listed, which stage must complete before streak saver can act?",
+      "relevant_document_ids": [
+        "DOC-DEC-T-01",
+        "DOC-DEC-T-05",
+        "DOC-FEAT-T-02",
+        "DOC-FEAT-T-03-v2",
+        "DOC-FEAT-T-05-v2",
+        "DOC-FEAT-T-08",
+        "DOC-FEAT-T-10",
+        "DOC-NOTE-T-01",
+        "DOC-NOTE-T-04",
+        "DOC-PBI-T-001",
+        "DOC-PBI-T-002",
+        "DOC-PBI-T-003",
+        "DOC-PBI-T-004",
+        "DOC-PBI-T-005",
+        "DOC-PBI-T-016",
+        "DOC-PBI-T-017",
+        "DOC-PBI-T-018",
+        "DOC-PBI-T-019",
+        "DOC-PBI-T-020",
+        "DOC-TKT-T-001",
+        "DOC-TKT-T-002",
+        "DOC-TKT-T-007",
+        "DOC-TKT-T-008"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-TKT-T-002-C0",
+          "distance": 0.5095782279968262,
+          "document_id": "DOC-TKT-T-002",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.49042177200317383
+        },
+        {
+          "chunk_id": "DOC-FEAT-T-01-v2-C0",
+          "distance": 0.5209465026855469,
+          "document_id": "DOC-FEAT-T-01-v2",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.4790534973144531
+        },
+        {
+          "chunk_id": "DOC-PBI-T-021-C0",
+          "distance": 0.523587703704834,
+          "document_id": "DOC-PBI-T-021",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.476412296295166
+        },
+        {
+          "chunk_id": "DOC-TKT-T-001-C0",
+          "distance": 0.5247983336448669,
+          "document_id": "DOC-TKT-T-001",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.47520166635513306
+        },
+        {
+          "chunk_id": "DOC-PBI-T-022-C0",
+          "distance": 0.5339695811271667,
+          "document_id": "DOC-PBI-T-022",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.46603041887283325
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Cross-document reasoning",
+      "citation_audit": [],
+      "dependency_explicitness": "implicit",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+      "finish_reason": "",
+      "generated_answer": "",
+      "is_dependency_query": true,
+      "latency_seconds_total": null,
+      "model_returned": "",
+      "predicted_dependencies": [],
+      "query_id": "Q-21",
+      "query_text": "Which older document still holds the only written trace of the dependency between requirement REQ-M-03 and the timesheet engine?",
+      "relevant_document_ids": [
+        "DOC-COMP-M-02",
+        "DOC-COMP-M-04",
+        "DOC-PBI-M-003",
+        "DOC-PBI-M-013",
+        "DOC-PBI-M-023",
+        "DOC-PBI-M-033",
+        "DOC-PBI-M-043",
+        "DOC-PBI-M-053",
+        "DOC-PRD-M-02",
+        "DOC-PRD-M-02-v2",
+        "DOC-TKT-M-002",
+        "DOC-TKT-M-014"
+      ],
+      "retrieved": [],
+      "source_citations": [],
+      "status": "failed",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Conflict identification",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved passages do not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.6169127919711173,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0134"
+      ],
+      "query_id": "Q-22",
+      "query_text": "Which documents settle the dispute between the onboarding PRD and the Progressive Profiling specification?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01",
+        "DOC-PRD-M-01",
+        "DOC-PRD-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.43848323822021484,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.5615167617797852
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.4590727686882019,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.5409272313117981
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.49427521228790283,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.5057247877120972
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.5040246248245239,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.4959753751754761
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.5224918127059937,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 5,
+          "relevant": true,
+          "similarity": 0.47750818729400635
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Conflict identification",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question. \n\nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.6782276248559356,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0056",
+        "DEP-0109"
+      ],
+      "query_id": "Q-23",
+      "query_text": "Which documents disagree about how long generated payslips stay available for download?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-09",
+        "DOC-PRD-M-04"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-05-C0",
+          "distance": 0.4950101971626282,
+          "document_id": "DOC-DEC-M-05",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.5049898028373718
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-09-C0",
+          "distance": 0.5038903951644897,
+          "document_id": "DOC-FEAT-M-09",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.49610960483551025
+        },
+        {
+          "chunk_id": "DOC-PBI-M-043-C0",
+          "distance": 0.5570063591003418,
+          "document_id": "DOC-PBI-M-043",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.4429936408996582
+        },
+        {
+          "chunk_id": "DOC-PBI-M-044-C0",
+          "distance": 0.5570968389511108,
+          "document_id": "DOC-PBI-M-044",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.44290316104888916
+        },
+        {
+          "chunk_id": "DOC-DEC-M-06-C0",
+          "distance": 0.5585932731628418,
+          "document_id": "DOC-DEC-M-06",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4414067268371582
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Conflict identification",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.902994875330478,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-24",
+      "query_text": "Which two documents were originally at odds until a later PRD revision quietly resolved the discrepancy?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01",
+        "DOC-PRD-M-01",
+        "DOC-PRD-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-06-C0",
+          "distance": 0.6280964016914368,
+          "document_id": "DOC-DEC-M-06",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.37190359830856323
+        },
+        {
+          "chunk_id": "DOC-PRD-M-03-C0",
+          "distance": 0.6356335878372192,
+          "document_id": "DOC-PRD-M-03",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.36436641216278076
+        },
+        {
+          "chunk_id": "DOC-PRD-M-02-C0",
+          "distance": 0.6384760737419128,
+          "document_id": "DOC-PRD-M-02",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.36152392625808716
+        },
+        {
+          "chunk_id": "DOC-DEC-M-07-C0",
+          "distance": 0.6396641135215759,
+          "document_id": "DOC-DEC-M-07",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3603358864784241
+        },
+        {
+          "chunk_id": "DOC-DEC-T-07-C0",
+          "distance": 0.6409129500389099,
+          "document_id": "DOC-DEC-T-07",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.3590870499610901
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Backlog analysis",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-02#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The decision record that prioritised releasing bulk approval for whole batches only is documented in Passage 1, which states that the Product Manager decided on this approach due to complications in the audit trail caused by partial-batch approval. The recommendation was made in the context of feature FEAT-M-03 (Bulk Timesheet Approval) [DOC-DEC-M-02#C0].\n\nEvidence: DOC-DEC-M-02#C0",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.3199424999766052,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0133"
+      ],
+      "query_id": "Q-25",
+      "query_text": "Which decision record prioritised releasing bulk approval for whole batches only?",
+      "relevant_document_ids": [
+        "DOC-DEC-M-01",
+        "DOC-DEC-M-02",
+        "DOC-DEC-M-03",
+        "DOC-DEC-M-04",
+        "DOC-DEC-M-05",
+        "DOC-DEC-M-06",
+        "DOC-DEC-M-07",
+        "DOC-DEC-M-08",
+        "DOC-DEC-T-01",
+        "DOC-DEC-T-02",
+        "DOC-DEC-T-03",
+        "DOC-DEC-T-04",
+        "DOC-DEC-T-05",
+        "DOC-DEC-T-06",
+        "DOC-DEC-T-07",
+        "DOC-DEC-T-08"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "distance": 0.31954675912857056,
+          "document_id": "DOC-DEC-M-02",
+          "rank": 1,
+          "relevant": true,
+          "similarity": 0.6804532408714294
+        },
+        {
+          "chunk_id": "DOC-DEC-M-04-C0",
+          "distance": 0.5067528486251831,
+          "document_id": "DOC-DEC-M-04",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.4932471513748169
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-03-C0",
+          "distance": 0.5133025646209717,
+          "document_id": "DOC-FEAT-M-03",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.4866974353790283
+        },
+        {
+          "chunk_id": "DOC-TKT-M-006-C0",
+          "distance": 0.5490611791610718,
+          "document_id": "DOC-TKT-M-006",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4509388208389282
+        },
+        {
+          "chunk_id": "DOC-DEC-M-06-C0",
+          "distance": 0.5494730472564697,
+          "document_id": "DOC-DEC-M-06",
+          "rank": 5,
+          "relevant": true,
+          "similarity": 0.4505269527435303
+        }
+      ],
+      "source_citations": [
+        "DOC-DEC-M-02#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Backlog analysis",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.7890961249358952,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0049",
+        "DEP-0079",
+        "DEP-0115"
+      ],
+      "query_id": "Q-26",
+      "query_text": "What does the onboarding PRD state as a non-goal and why was it excluded?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.5792673826217651,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.42073261737823486
+        },
+        {
+          "chunk_id": "DOC-PBI-M-051-C0",
+          "distance": 0.594919741153717,
+          "document_id": "DOC-PBI-M-051",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.40508025884628296
+        },
+        {
+          "chunk_id": "DOC-PBI-M-001-C0",
+          "distance": 0.595533013343811,
+          "document_id": "DOC-PBI-M-001",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.40446698665618896
+        },
+        {
+          "chunk_id": "DOC-PBI-M-005-C0",
+          "distance": 0.597596287727356,
+          "document_id": "DOC-PBI-M-005",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.40240371227264404
+        },
+        {
+          "chunk_id": "DOC-PBI-M-055-C0",
+          "distance": 0.600197434425354,
+          "document_id": "DOC-PBI-M-055",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.399802565574646
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Backlog analysis",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-01#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-01#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The second release of the onboarding PRD (Product Requirements Document) includes a change that moves the tax collection step from the initial registration to the third day of the onboarding ramp. This change is documented in the decision made on 2026-07-16, which states that the tax collection was moved to day three to reduce abandonment during the sign-up process, as early testing indicated that a long sign-up form caused users to abandon the process. The decision also noted that asking for tax details after users have seen value increased the completion rate of the tax step [DOC-PRD-M-01-v2#C0][DOC-DEC-M-01#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0], [DOC-DEC-M-01#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 2.4003082499839365,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-27",
+      "query_text": "What exactly is different in the second release of the onboarding PRD, and which documented decision explains that difference?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01",
+        "DOC-PRD-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-PRD-M-03-v2-C0",
+          "distance": 0.5208935737609863,
+          "document_id": "DOC-PRD-M-03-v2",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.47910642623901367
+        },
+        {
+          "chunk_id": "DOC-PRD-M-02-v2-C0",
+          "distance": 0.5341824293136597,
+          "document_id": "DOC-PRD-M-02-v2",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.46581757068634033
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.5351903438568115,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 3,
+          "relevant": true,
+          "similarity": 0.4648096561431885
+        },
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "distance": 0.5396218299865723,
+          "document_id": "DOC-DEC-M-01",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.46037817001342773
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.5401833653450012,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4598166346549988
+        }
+      ],
+      "source_citations": [
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-DEC-M-01#C0",
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-DEC-M-01#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Backlog analysis",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-02#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The team deprioritised partial-batch approval because it complicates the audit trail and is not needed by the managers interviewed. This decision was made during the approval for bulk timesheet approval, which only allows for whole batches to be approved [DOC-DEC-M-02#C0].\n\nEvidence: DOC-DEC-M-02#C0",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.206078624818474,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-28",
+      "query_text": "Why did the team deprioritise partial-batch approval according to the decision record?",
+      "relevant_document_ids": [
+        "DOC-DEC-M-01"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "distance": 0.37874364852905273,
+          "document_id": "DOC-DEC-M-02",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.6212563514709473
+        },
+        {
+          "chunk_id": "DOC-DEC-M-04-C0",
+          "distance": 0.48540979623794556,
+          "document_id": "DOC-DEC-M-04",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.5145902037620544
+        },
+        {
+          "chunk_id": "DOC-DEC-T-04-C0",
+          "distance": 0.4952971935272217,
+          "document_id": "DOC-DEC-T-04",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.5047028064727783
+        },
+        {
+          "chunk_id": "DOC-TKT-M-006-C0",
+          "distance": 0.5014157295227051,
+          "document_id": "DOC-TKT-M-006",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.4985842704772949
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-02-C0",
+          "distance": 0.5290430784225464,
+          "document_id": "DOC-NOTE-M-02",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4709569215774536
+        }
+      ],
+      "source_citations": [
+        "DOC-DEC-M-02#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Backlog analysis",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.9528300422243774,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0061",
+        "DEP-0062",
+        "DEP-0134"
+      ],
+      "query_id": "Q-29",
+      "query_text": "Putting the Progressive Profiling specification next to the tax-collection decision record, what do these two documents together tell a stakeholder?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01-v2",
+        "DOC-DEC-M-01"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.45690375566482544,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.5430962443351746
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-v2-C0",
+          "distance": 0.4588943123817444,
+          "document_id": "DOC-FEAT-M-01-v2",
+          "rank": 2,
+          "relevant": true,
+          "similarity": 0.5411056876182556
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.5136057138442993,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.4863942861557007
+        },
+        {
+          "chunk_id": "DOC-PBI-M-004-C0",
+          "distance": 0.5368059873580933,
+          "document_id": "DOC-PBI-M-004",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.46319401264190674
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.5478138327598572,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4521861672401428
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Information retrieval",
+      "citation_audit": [],
+      "dependency_explicitness": "none",
+      "difficulty_label": "moderate",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+      "is_dependency_query": false,
+      "latency_seconds_total": 0.675766333937645,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [],
+      "query_id": "Q-SUP-1",
+      "query_text": "Which PRD is in production?",
+      "relevant_document_ids": [
+        "DOC-PRD-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-NOTE-M-06-C0",
+          "distance": 0.6361501216888428,
+          "document_id": "DOC-NOTE-M-06",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.3638498783111572
+        },
+        {
+          "chunk_id": "DOC-PRD-M-02-C0",
+          "distance": 0.6368340253829956,
+          "document_id": "DOC-PRD-M-02",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.3631659746170044
+        },
+        {
+          "chunk_id": "DOC-NOTE-M-01-C0",
+          "distance": 0.6374932527542114,
+          "document_id": "DOC-NOTE-M-01",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.3625067472457886
+        },
+        {
+          "chunk_id": "DOC-DEC-M-03-C0",
+          "distance": 0.6412554979324341,
+          "document_id": "DOC-DEC-M-03",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3587445020675659
+        },
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "distance": 0.6416363716125488,
+          "document_id": "DOC-DEC-M-02",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.35836362838745117
+        }
+      ],
+      "source_citations": [],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": true,
+      "category": "Feature context",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-PRD-M-01-v2#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "hard",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The current document specifying that tax documentation must be collected after the employee's first successful login is DOC-PRD-M-01-v2, which is the current version of the product documentation for Meridian. This requirement is normative for Meridian, and it states that tax documentation is not part of the initial account registration process [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.5838980828411877,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0008",
+        "DEP-0050",
+        "DEP-0147"
+      ],
+      "query_id": "Q-SUP-2",
+      "query_text": "A spec says tax at first login \u2014 which doc, still current?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01",
+        "DOC-FEAT-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-PRD-M-01-v2-C0",
+          "distance": 0.45139873027801514,
+          "document_id": "DOC-PRD-M-01-v2",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.5486012697219849
+        },
+        {
+          "chunk_id": "DOC-PRD-M-01-C0",
+          "distance": 0.4619751572608948,
+          "document_id": "DOC-PRD-M-01",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.5380248427391052
+        },
+        {
+          "chunk_id": "DOC-DEC-M-01-C0",
+          "distance": 0.5002988576889038,
+          "document_id": "DOC-DEC-M-01",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.4997011423110962
+        },
+        {
+          "chunk_id": "DOC-FEAT-M-01-C0",
+          "distance": 0.5174423456192017,
+          "document_id": "DOC-FEAT-M-01",
+          "rank": 4,
+          "relevant": true,
+          "similarity": 0.48255765438079834
+        },
+        {
+          "chunk_id": "DOC-PBI-M-036-C0",
+          "distance": 0.5258910655975342,
+          "document_id": "DOC-PBI-M-036",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.4741089344024658
+        }
+      ],
+      "source_citations": [
+        "DOC-PRD-M-01-v2#C0",
+        "DOC-PRD-M-01-v2#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    },
+    {
+      "any_relevant_retrieved": false,
+      "category": "Feature context",
+      "citation_audit": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-02#C0",
+          "supplied": true
+        },
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "in_frozen_corpus": true,
+          "raw": "DOC-DEC-M-02#C0",
+          "supplied": true
+        }
+      ],
+      "dependency_explicitness": "none",
+      "difficulty_label": "easy",
+      "fabricated_citations": [],
+      "failure_reason": "",
+      "finish_reason": "stop",
+      "generated_answer": "The current approval limit is for bulk approval of whole batches only, with no partial-batch approval allowed, as stated in the decision made by the Product Manager [DOC-DEC-M-02#C0]. \n\nEvidence: [DOC-DEC-M-02#C0]",
+      "is_dependency_query": false,
+      "latency_seconds_total": 1.3128927908837795,
+      "model_returned": "gpt-4o-mini-2024-07-18",
+      "predicted_dependencies": [
+        "DEP-0133"
+      ],
+      "query_id": "Q-SUP-3",
+      "query_text": "What is the current approval limit?",
+      "relevant_document_ids": [
+        "DOC-FEAT-M-01-v2"
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "DOC-DEC-M-02-C0",
+          "distance": 0.5807844400405884,
+          "document_id": "DOC-DEC-M-02",
+          "rank": 1,
+          "relevant": false,
+          "similarity": 0.4192155599594116
+        },
+        {
+          "chunk_id": "DOC-DEC-M-04-C0",
+          "distance": 0.581135630607605,
+          "document_id": "DOC-DEC-M-04",
+          "rank": 2,
+          "relevant": false,
+          "similarity": 0.418864369392395
+        },
+        {
+          "chunk_id": "DOC-DEC-M-06-C0",
+          "distance": 0.6430075168609619,
+          "document_id": "DOC-DEC-M-06",
+          "rank": 3,
+          "relevant": false,
+          "similarity": 0.3569924831390381
+        },
+        {
+          "chunk_id": "DOC-DEC-T-03-C0",
+          "distance": 0.6536622643470764,
+          "document_id": "DOC-DEC-T-03",
+          "rank": 4,
+          "relevant": false,
+          "similarity": 0.3463377356529236
+        },
+        {
+          "chunk_id": "DOC-DEC-M-07-C0",
+          "distance": 0.6555162072181702,
+          "document_id": "DOC-DEC-M-07",
+          "rank": 5,
+          "relevant": false,
+          "similarity": 0.34448379278182983
+        }
+      ],
+      "source_citations": [
+        "DOC-DEC-M-02#C0",
+        "DOC-DEC-M-02#C0"
+      ],
+      "status": "ok",
+      "unknown_citation_tokens": []
+    }
+  ],
+  "raw_evidence_dir": "experiments/runs/EXP-20260929-001/raw/rag",
+  "run_id": "EXP-20260929-001",
+  "total_latency_seconds": 30.417623252607882,
+  "usage": {
+    "completion_tokens": 1431,
+    "prompt_tokens": 38573,
+    "total_tokens": 40004
+  }
+}

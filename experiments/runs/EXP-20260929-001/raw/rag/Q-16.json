@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question. \n\nEvidence: none",
+  "latency_seconds_total": 0.7137481672689319,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-16",
+  "query_text": "Which operating guide reveals the hidden dependency that Bulk Timesheet Approval has on another component?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-COMP-M-03-C0",
+      "document_id": "DOC-COMP-M-03",
+      "rank": 1,
+      "score": 0.5541038513183594
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 2,
+      "score": 0.5276690125465393
+    },
+    {
+      "chunk_id": "DOC-TKT-M-006-C0",
+      "document_id": "DOC-TKT-M-006",
+      "rank": 3,
+      "score": 0.5123929381370544
+    },
+    {
+      "chunk_id": "DOC-PBI-M-012-C0",
+      "document_id": "DOC-PBI-M-012",
+      "rank": 4,
+      "score": 0.4986971616744995
+    },
+    {
+      "chunk_id": "DOC-COMP-M-08-C0",
+      "document_id": "DOC-COMP-M-08",
+      "rank": 5,
+      "score": 0.49373871088027954
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1495,
+    "total_tokens": 1511
+  }
+}

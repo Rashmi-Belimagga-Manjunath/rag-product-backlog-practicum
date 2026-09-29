@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-14",
+  "query_text": "Which part of the product must be available before streak saver can work even though no document states that plainly?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-NOTE-T-01-C0",
+      "document_id": "DOC-NOTE-T-01",
+      "rank": 1,
+      "score": 13.775014488864468
+    },
+    {
+      "chunk_id": "DOC-TKT-T-001-C0",
+      "document_id": "DOC-TKT-T-001",
+      "rank": 2,
+      "score": 12.782589250268838
+    },
+    {
+      "chunk_id": "DOC-PRD-T-04-v2-C0",
+      "document_id": "DOC-PRD-T-04-v2",
+      "rank": 3,
+      "score": 12.628258291556753
+    },
+    {
+      "chunk_id": "DOC-PRD-T-04-C0",
+      "document_id": "DOC-PRD-T-04",
+      "rank": 4,
+      "score": 11.900136996255101
+    },
+    {
+      "chunk_id": "DOC-NOTE-T-05-C0",
+      "document_id": "DOC-NOTE-T-05",
+      "rank": 5,
+      "score": 10.205056625249386
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

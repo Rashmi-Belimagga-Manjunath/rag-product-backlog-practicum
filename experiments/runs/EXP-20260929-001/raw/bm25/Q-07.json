@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-07",
+  "query_text": "Which document would an internal audit point to as the place where tax paperwork is requested only after a person has signed in for the very first time?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 1,
+      "score": 20.344466546637296
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 2,
+      "score": 19.13766559285766
+    },
+    {
+      "chunk_id": "DOC-PRD-M-06-C0",
+      "document_id": "DOC-PRD-M-06",
+      "rank": 3,
+      "score": 16.95045616313806
+    },
+    {
+      "chunk_id": "DOC-PRD-M-04-C0",
+      "document_id": "DOC-PRD-M-04",
+      "rank": 4,
+      "score": 15.531129894831604
+    },
+    {
+      "chunk_id": "DOC-PRD-T-04-C0",
+      "document_id": "DOC-PRD-T-04",
+      "rank": 5,
+      "score": 14.48341289357285
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

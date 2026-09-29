@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-24",
+  "query_text": "Which two documents were originally at odds until a later PRD revision quietly resolved the discrepancy?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-RBK-T-01-C0",
+      "document_id": "DOC-RBK-T-01",
+      "rank": 1,
+      "score": 10.951067831830573
+    },
+    {
+      "chunk_id": "DOC-DEC-T-01-C0",
+      "document_id": "DOC-DEC-T-01",
+      "rank": 2,
+      "score": 7.903776199380113
+    },
+    {
+      "chunk_id": "DOC-RBK-M-03-C0",
+      "document_id": "DOC-RBK-M-03",
+      "rank": 3,
+      "score": 5.813561029421555
+    },
+    {
+      "chunk_id": "DOC-RBK-T-04-C0",
+      "document_id": "DOC-RBK-T-04",
+      "rank": 4,
+      "score": 5.080059786581938
+    },
+    {
+      "chunk_id": "DOC-RBK-M-01-C0",
+      "document_id": "DOC-RBK-M-01",
+      "rank": 5,
+      "score": 4.998626095769193
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

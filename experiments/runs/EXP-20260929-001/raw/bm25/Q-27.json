@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-27",
+  "query_text": "What exactly is different in the second release of the onboarding PRD, and which documented decision explains that difference?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 1,
+      "score": 11.598376161097677
+    },
+    {
+      "chunk_id": "DOC-PRD-T-03-C0",
+      "document_id": "DOC-PRD-T-03",
+      "rank": 2,
+      "score": 9.443685105783956
+    },
+    {
+      "chunk_id": "DOC-PRD-T-04-C0",
+      "document_id": "DOC-PRD-T-04",
+      "rank": 3,
+      "score": 9.086375745341503
+    },
+    {
+      "chunk_id": "DOC-PRD-M-03-v2-C0",
+      "document_id": "DOC-PRD-M-03-v2",
+      "rank": 4,
+      "score": 8.849568902285224
+    },
+    {
+      "chunk_id": "DOC-PRD-T-03-v2-C0",
+      "document_id": "DOC-PRD-T-03-v2",
+      "rank": 5,
+      "score": 8.770553278374974
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

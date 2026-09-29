@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "Progressive Profiling depends on the taxband rate service to provide its behavior, as stated in the feature specification [DOC-FEAT-M-01-v2#C0]. \n\nEvidence: [DOC-FEAT-M-01-v2#C0]",
+  "latency_seconds_total": 0.9487222502939403,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-09",
+  "query_text": "Which component does Progressive Profiling depend on, per the feature specification?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 0.6465673446655273
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 0.6098642349243164
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 0.48319339752197266
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 4,
+      "score": 0.4642554521560669
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 5,
+      "score": 0.4369562268257141
+    }
+  ],
+  "source_citations": [
+    "DOC-FEAT-M-01-v2#C0",
+    "DOC-FEAT-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 53,
+    "prompt_tokens": 1681,
+    "total_tokens": 1734
+  }
+}

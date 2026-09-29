@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The decision record that explains why tax paperwork is no longer part of initial registration is found in Passage 1, which states that tax collection has been moved to day three of the onboarding ramp rather than during sign-up due to early testing showing that the long sign-up form caused abandonment in the first session. This decision was made by the Senior Product Manager and is referenced in the context of the onboarding ramp feature [DOC-DEC-M-01#C0].\n\nAdditionally, Passage 2 confirms this change, stating that the tax collection step has been moved out of initial registration and into the onboarding ramp, following the decision recorded in the decision log [DOC-PRD-M-01-v2#C0].\n\nEvidence: DOC-DEC-M-01#C0, DOC-PRD-M-01-v2#C0",
+  "latency_seconds_total": 2.755997208878398,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-04",
+  "query_text": "Which decision record explains why tax paperwork is no longer part of initial registration?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-01-C0",
+      "document_id": "DOC-DEC-M-01",
+      "rank": 1,
+      "score": 0.49978286027908325
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 2,
+      "score": 0.41109734773635864
+    },
+    {
+      "chunk_id": "DOC-PBI-M-039-C0",
+      "document_id": "DOC-PBI-M-039",
+      "rank": 3,
+      "score": 0.40178871154785156
+    },
+    {
+      "chunk_id": "DOC-PBI-M-040-C0",
+      "document_id": "DOC-PBI-M-040",
+      "rank": 4,
+      "score": 0.3887205123901367
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 5,
+      "score": 0.3770509958267212
+    }
+  ],
+  "source_citations": [
+    "DOC-DEC-M-01#C0",
+    "DOC-PRD-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 165,
+    "prompt_tokens": 1667,
+    "total_tokens": 1832
+  }
+}

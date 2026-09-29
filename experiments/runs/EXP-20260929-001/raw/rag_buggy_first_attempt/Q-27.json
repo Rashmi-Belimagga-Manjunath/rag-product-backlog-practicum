@@ -1,0 +1,55 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The second release of the onboarding PRD (Product Requirements Document) includes a change that moves the tax collection step from the initial registration to the third day of the onboarding ramp. This change is documented in the decision made on 2026-07-16, which states that the tax collection was moved to day three to reduce abandonment during the sign-up process, as early testing indicated that a long sign-up form caused users to abandon the process. The decision also noted that asking for tax details after users have seen value increased the completion rate of the tax step [DOC-PRD-M-01-v2#C0][DOC-DEC-M-01#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0], [DOC-DEC-M-01#C0]",
+  "latency_seconds_total": 2.4003082499839365,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-27",
+  "query_text": "What exactly is different in the second release of the onboarding PRD, and which documented decision explains that difference?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-03-v2-C0",
+      "document_id": "DOC-PRD-M-03-v2",
+      "rank": 1,
+      "score": 0.47910642623901367
+    },
+    {
+      "chunk_id": "DOC-PRD-M-02-v2-C0",
+      "document_id": "DOC-PRD-M-02-v2",
+      "rank": 2,
+      "score": 0.46581757068634033
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 3,
+      "score": 0.4648096561431885
+    },
+    {
+      "chunk_id": "DOC-DEC-M-01-C0",
+      "document_id": "DOC-DEC-M-01",
+      "rank": 4,
+      "score": 0.46037817001342773
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 5,
+      "score": 0.4598166346549988
+    }
+  ],
+  "source_citations": [
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-DEC-M-01#C0",
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-DEC-M-01#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 162,
+    "prompt_tokens": 1779,
+    "total_tokens": 1941
+  }
+}

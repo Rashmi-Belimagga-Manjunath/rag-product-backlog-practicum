@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-17",
+  "query_text": "Which document mentions that Progressive Profiling depends on the taxband rate service?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 19.35929040622209
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 17.056432427076015
+    },
+    {
+      "chunk_id": "DOC-PBI-M-003-C0",
+      "document_id": "DOC-PBI-M-003",
+      "rank": 3,
+      "score": 15.063730926524855
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 4,
+      "score": 14.495545462866172
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 5,
+      "score": 14.278379947535484
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

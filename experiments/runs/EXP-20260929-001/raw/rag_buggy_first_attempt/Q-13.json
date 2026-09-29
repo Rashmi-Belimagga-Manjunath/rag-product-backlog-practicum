@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-13",
+  "query_text": "Which component is needed to support Bulk Timesheet Approval even though no specification states it directly?",
+  "status": "failed",
+  "system": "rag"
+}

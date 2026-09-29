@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-09",
+  "query_text": "Which component does Progressive Profiling depend on, per the feature specification?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 15.995484052217417
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 14.327884536437727
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 3,
+      "score": 9.194192288958634
+    },
+    {
+      "chunk_id": "DOC-PBI-M-003-C0",
+      "document_id": "DOC-PBI-M-003",
+      "rank": 4,
+      "score": 9.044592021050828
+    },
+    {
+      "chunk_id": "DOC-PBI-M-004-C0",
+      "document_id": "DOC-PBI-M-004",
+      "rank": 5,
+      "score": 8.95302031542933
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.806464709341526,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-26",
+  "query_text": "What does the onboarding PRD state as a non-goal and why was it excluded?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-NOTE-M-01-C0",
+      "document_id": "DOC-NOTE-M-01",
+      "rank": 1,
+      "score": 0.42073261737823486
+    },
+    {
+      "chunk_id": "DOC-PBI-M-051-C0",
+      "document_id": "DOC-PBI-M-051",
+      "rank": 2,
+      "score": 0.40508025884628296
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 3,
+      "score": 0.40446698665618896
+    },
+    {
+      "chunk_id": "DOC-PBI-M-005-C0",
+      "document_id": "DOC-PBI-M-005",
+      "rank": 4,
+      "score": 0.40240371227264404
+    },
+    {
+      "chunk_id": "DOC-PBI-M-055-C0",
+      "document_id": "DOC-PBI-M-055",
+      "rank": 5,
+      "score": 0.399802565574646
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1386,
+    "total_tokens": 1402
+  }
+}

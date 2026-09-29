@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-04",
+  "query_text": "Which decision record explains why tax paperwork is no longer part of initial registration?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 1,
+      "score": 19.802021129110116
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 2,
+      "score": 11.992491180004837
+    },
+    {
+      "chunk_id": "DOC-PBI-M-039-C0",
+      "document_id": "DOC-PBI-M-039",
+      "rank": 3,
+      "score": 8.865755566230135
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-08-C0",
+      "document_id": "DOC-NOTE-M-08",
+      "rank": 4,
+      "score": 8.543887467405984
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 5,
+      "score": 7.948992658820363
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-SUP-3",
+  "query_text": "What is the current approval limit?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PBI-M-029-C0",
+      "document_id": "DOC-PBI-M-029",
+      "rank": 1,
+      "score": 6.3743686249935365
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 2,
+      "score": 6.313356711726773
+    },
+    {
+      "chunk_id": "DOC-PBI-M-027-C0",
+      "document_id": "DOC-PBI-M-027",
+      "rank": 3,
+      "score": 5.803582196004124
+    },
+    {
+      "chunk_id": "DOC-PBI-M-014-C0",
+      "document_id": "DOC-PBI-M-014",
+      "rank": 4,
+      "score": 4.873911456884098
+    },
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 5,
+      "score": 4.870861640436127
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

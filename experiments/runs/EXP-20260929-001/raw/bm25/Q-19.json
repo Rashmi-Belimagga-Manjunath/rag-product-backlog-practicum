@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-19",
+  "query_text": "Which set of meeting minutes alludes to a connection between two backend services without ever asserting it outright?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-RBK-M-01-C0",
+      "document_id": "DOC-RBK-M-01",
+      "rank": 1,
+      "score": 13.880399919721176
+    },
+    {
+      "chunk_id": "DOC-COMP-M-05-C0",
+      "document_id": "DOC-COMP-M-05",
+      "rank": 2,
+      "score": 9.011845214646991
+    },
+    {
+      "chunk_id": "DOC-PRD-T-02-v2-C0",
+      "document_id": "DOC-PRD-T-02-v2",
+      "rank": 3,
+      "score": 6.725412554958808
+    },
+    {
+      "chunk_id": "DOC-PRD-T-03-v2-C0",
+      "document_id": "DOC-PRD-T-03-v2",
+      "rank": 4,
+      "score": 6.484855163803452
+    },
+    {
+      "chunk_id": "DOC-RBK-T-04-C0",
+      "document_id": "DOC-RBK-T-04",
+      "rank": 5,
+      "score": 6.288541222481202
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

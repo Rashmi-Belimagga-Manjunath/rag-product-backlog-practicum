@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question.  \nEvidence: none",
+  "latency_seconds_total": 0.5925368340685964,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-05",
+  "query_text": "When I logged in this morning the whole thing just sat there frozen for ages, so I had to give up on it.",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-TKT-M-016-C0",
+      "document_id": "DOC-TKT-M-016",
+      "rank": 1,
+      "score": 0.36529386043548584
+    },
+    {
+      "chunk_id": "DOC-TKT-T-005-C0",
+      "document_id": "DOC-TKT-T-005",
+      "rank": 2,
+      "score": 0.3283519148826599
+    },
+    {
+      "chunk_id": "DOC-TKT-T-020-C0",
+      "document_id": "DOC-TKT-T-020",
+      "rank": 3,
+      "score": 0.32210659980773926
+    },
+    {
+      "chunk_id": "DOC-TKT-M-009-C0",
+      "document_id": "DOC-TKT-M-009",
+      "rank": 4,
+      "score": 0.3203223943710327
+    },
+    {
+      "chunk_id": "DOC-TKT-M-008-C0",
+      "document_id": "DOC-TKT-M-008",
+      "rank": 5,
+      "score": 0.31185662746429443
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1424,
+    "total_tokens": 1440
+  }
+}

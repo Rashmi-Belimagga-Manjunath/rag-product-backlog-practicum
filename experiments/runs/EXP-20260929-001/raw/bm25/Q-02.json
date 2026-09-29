@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-02",
+  "query_text": "Where is the runbook for recovering a delayed event on the domain event bus?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-RBK-M-01-C0",
+      "document_id": "DOC-RBK-M-01",
+      "rank": 1,
+      "score": 27.395851369615844
+    },
+    {
+      "chunk_id": "DOC-COMP-M-06-C0",
+      "document_id": "DOC-COMP-M-06",
+      "rank": 2,
+      "score": 16.70162218397575
+    },
+    {
+      "chunk_id": "DOC-COMP-M-02-C0",
+      "document_id": "DOC-COMP-M-02",
+      "rank": 3,
+      "score": 16.668721020472127
+    },
+    {
+      "chunk_id": "DOC-COMP-M-05-C0",
+      "document_id": "DOC-COMP-M-05",
+      "rank": 4,
+      "score": 16.547304378615976
+    },
+    {
+      "chunk_id": "DOC-COMP-M-04-C0",
+      "document_id": "DOC-COMP-M-04",
+      "rank": 5,
+      "score": 15.150513682788178
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

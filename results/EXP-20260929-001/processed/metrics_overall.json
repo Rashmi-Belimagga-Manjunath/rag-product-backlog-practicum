@@ -1,0 +1,648 @@
+{
+  "bm25": {
+    "mean_mrr": 0.49583333333333335,
+    "mean_precision": 0.25,
+    "mean_recall": 0.23421082427536233,
+    "mrr_by_category": {
+      "Backlog analysis": 0.5,
+      "Conflict identification": 0.5,
+      "Cross-document reasoning": 0.3,
+      "Dependency identification": 0.5833333333333334,
+      "Feature context": 0.54,
+      "Information retrieval": 0.5
+    },
+    "n_failed": 0,
+    "n_queries": 32,
+    "precision_by_category": {
+      "Backlog analysis": 0.12000000000000002,
+      "Conflict identification": 0.20000000000000004,
+      "Cross-document reasoning": 0.36,
+      "Dependency identification": 0.4,
+      "Feature context": 0.16,
+      "Information retrieval": 0.16666666666666666
+    },
+    "precision_by_difficulty": {
+      "easy": 0.3090909090909091,
+      "hard": 0.14,
+      "moderate": 0.29090909090909095
+    },
+    "precision_explicit": 0.5333333333333333,
+    "precision_implicit": 0.2571428571428572,
+    "recall_by_category": {
+      "Backlog analysis": 0.2125,
+      "Conflict identification": 0.4444444444444444,
+      "Cross-document reasoning": 0.08405797101449275,
+      "Dependency identification": 0.08899456521739131,
+      "Feature context": 0.7,
+      "Information retrieval": 0.07777777777777778
+    },
+    "recall_by_difficulty": {
+      "easy": 0.29121900826446284,
+      "hard": 0.12572463768115943,
+      "moderate": 0.27582644628099173
+    },
+    "recall_explicit": 0.11553030303030304,
+    "recall_implicit": 0.06272350837568229,
+    "system": "bm25"
+  },
+  "classifications": {
+    "bm25": {
+      "counts": {
+        "CORRECT": 22,
+        "RETRIEVAL_FAILURE": 10
+      },
+      "per_query": [
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-01",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-02",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-03",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-04",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-SUP-1",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-05",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-06",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-SUP-3",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-07",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-08",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-SUP-2",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-09",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-10",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-11",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-12",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-13",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-14",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-15",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-16",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-17",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-18",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-19",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-20",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-21",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-22",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-23",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-24",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-25",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-26",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-27",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-28",
+          "system": "bm25"
+        },
+        {
+          "evidence": [
+            "at least one relevant chunk in top-5"
+          ],
+          "judgement": "CORRECT",
+          "query_id": "Q-29",
+          "system": "bm25"
+        }
+      ]
+    },
+    "rag": {
+      "counts": {
+        "GENERATION_FAILURE": 7,
+        "MIS_CITATION": 14,
+        "REQUIRE_MANUAL_REVIEW": 3,
+        "RETRIEVAL_FAILURE": 8
+      },
+      "per_query": [
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-PRD-M-01-v2#C0', 'DOC-PRD-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-01",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence retrieved; answer correctness needs human review"
+          ],
+          "judgement": "REQUIRE_MANUAL_REVIEW",
+          "query_id": "Q-02",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-01-v2#C0', 'DOC-FEAT-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-03",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-DEC-M-01#C0', 'DOC-PRD-M-01-v2#C0', 'DOC-DEC-M-01#C0', 'DOC-PRD-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-04",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-SUP-1",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-05",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-06",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-SUP-3",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-PRD-M-01-v2#C0', 'DOC-PRD-M-01-v2#C0', 'DOC-PRD-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-07",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-08",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-PRD-M-01-v2#C0', 'DOC-PRD-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-SUP-2",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-01-v2#C0', 'DOC-FEAT-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-09",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-COMP-M-03#C0', 'DOC-COMP-M-03#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-10",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-02#C0', 'DOC-FEAT-M-02#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-11",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-01-v2#C0', 'DOC-FEAT-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-12",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-03#C0', 'DOC-COMP-M-03#C0', 'DOC-FEAT-M-03#C0', 'DOC-COMP-M-03#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-13",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-14",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-15",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-16",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-FEAT-M-01-v2#C0', 'DOC-FEAT-M-01-v2#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-17",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence retrieved; answer correctness needs human review"
+          ],
+          "judgement": "REQUIRE_MANUAL_REVIEW",
+          "query_id": "Q-18",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-19",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-20",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-21",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence retrieved; answer correctness needs human review"
+          ],
+          "judgement": "REQUIRE_MANUAL_REVIEW",
+          "query_id": "Q-22",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-23",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-24",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-DEC-M-02#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-25",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-26",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "retrieved-but-unsupporting citations: ['DOC-PRD-M-01-v2#C0', 'DOC-DEC-M-01#C0', 'DOC-PRD-M-01-v2#C0', 'DOC-DEC-M-01#C0']"
+          ],
+          "judgement": "MIS_CITATION",
+          "query_id": "Q-27",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "no relevant chunk in top-5"
+          ],
+          "judgement": "RETRIEVAL_FAILURE",
+          "query_id": "Q-28",
+          "system": "rag"
+        },
+        {
+          "evidence": [
+            "relevant evidence supplied but model abstained"
+          ],
+          "judgement": "GENERATION_FAILURE",
+          "query_id": "Q-29",
+          "system": "rag"
+        }
+      ]
+    }
+  },
+  "dependency_bm25": {
+    "f1": 0.10402930402930403,
+    "n_queries": 32,
+    "n_recall_queries": 13,
+    "precision": 0.2786458333333333,
+    "precision_on_dependency_queries": 0.07051282051282051,
+    "precision_on_non_dependency_queries": 0.42105263157894735,
+    "recall": 0.23076923076923078,
+    "vacuous_correct_count": 8
+  },
+  "dependency_rag": {
+    "f1": 0.10531135531135531,
+    "n_queries": 32,
+    "n_recall_queries": 13,
+    "precision": 0.2450892857142857,
+    "precision_on_dependency_queries": 0.06483516483516484,
+    "precision_on_non_dependency_queries": 0.3684210526315789,
+    "recall": 0.3076923076923077,
+    "vacuous_correct_count": 7
+  },
+  "evidence_sources": "experiments/runs/EXP-20260929-001/raw",
+  "rag": {
+    "mean_mrr": 0.5,
+    "mean_precision": 0.3,
+    "mean_recall": 0.22569067028985507,
+    "mrr_by_category": {
+      "Backlog analysis": 0.36666666666666664,
+      "Conflict identification": 0.3333333333333333,
+      "Cross-document reasoning": 0.7333333333333333,
+      "Dependency identification": 0.40625,
+      "Feature context": 0.45,
+      "Information retrieval": 0.6666666666666666
+    },
+    "n_failed": 0,
+    "n_queries": 32,
+    "precision_by_category": {
+      "Backlog analysis": 0.2,
+      "Conflict identification": 0.26666666666666666,
+      "Cross-document reasoning": 0.48,
+      "Dependency identification": 0.375,
+      "Feature context": 0.12000000000000002,
+      "Information retrieval": 0.3
+    },
+    "precision_by_difficulty": {
+      "easy": 0.38181818181818183,
+      "hard": 0.28,
+      "moderate": 0.23636363636363636
+    },
+    "precision_explicit": 0.4666666666666666,
+    "precision_implicit": 0.37142857142857144,
+    "recall_by_category": {
+      "Backlog analysis": 0.2375,
+      "Conflict identification": 0.5,
+      "Cross-document reasoning": 0.11739130434782608,
+      "Dependency identification": 0.08355978260869565,
+      "Feature context": 0.5,
+      "Information retrieval": 0.12986111111111112
+    },
+    "recall_by_difficulty": {
+      "easy": 0.2862603305785124,
+      "hard": 0.16054347826086957,
+      "moderate": 0.2243457300275482
+    },
+    "recall_explicit": 0.10227272727272728,
+    "recall_implicit": 0.09168548842461886,
+    "system": "rag"
+  },
+  "run_id": "EXP-20260929-001"
+}

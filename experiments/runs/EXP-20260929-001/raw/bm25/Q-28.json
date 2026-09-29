@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-28",
+  "query_text": "Why did the team deprioritise partial-batch approval according to the decision record?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 18.117186481148877
+    },
+    {
+      "chunk_id": "DOC-RBK-M-04-C0",
+      "document_id": "DOC-RBK-M-04",
+      "rank": 2,
+      "score": 11.598758887380956
+    },
+    {
+      "chunk_id": "DOC-PBI-M-014-C0",
+      "document_id": "DOC-PBI-M-014",
+      "rank": 3,
+      "score": 8.416009776031927
+    },
+    {
+      "chunk_id": "DOC-PBI-M-015-C0",
+      "document_id": "DOC-PBI-M-015",
+      "rank": 4,
+      "score": 7.640252186798061
+    },
+    {
+      "chunk_id": "DOC-PBI-M-030-C0",
+      "document_id": "DOC-PBI-M-030",
+      "rank": 5,
+      "score": 6.640570245225513
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-16",
+  "query_text": "Which operating guide reveals the hidden dependency that Bulk Timesheet Approval has on another component?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-03-C0",
+      "document_id": "DOC-FEAT-M-03",
+      "rank": 1,
+      "score": 13.965965684366369
+    },
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 2,
+      "score": 11.76457532088505
+    },
+    {
+      "chunk_id": "DOC-NOTE-M-02-C0",
+      "document_id": "DOC-NOTE-M-02",
+      "rank": 3,
+      "score": 10.927064161316089
+    },
+    {
+      "chunk_id": "DOC-PBI-M-014-C0",
+      "document_id": "DOC-PBI-M-014",
+      "rank": 4,
+      "score": 10.174465216132273
+    },
+    {
+      "chunk_id": "DOC-PBI-M-011-C0",
+      "document_id": "DOC-PBI-M-011",
+      "rank": 5,
+      "score": 9.888080093477312
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-15",
+  "query_text": "Which feature's work has to wait on another feature's delivery before its own items can proceed?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-RBK-M-04-C0",
+      "document_id": "DOC-RBK-M-04",
+      "rank": 1,
+      "score": 11.46701369329448
+    },
+    {
+      "chunk_id": "DOC-COMP-M-01-C0",
+      "document_id": "DOC-COMP-M-01",
+      "rank": 2,
+      "score": 10.47526417492045
+    },
+    {
+      "chunk_id": "DOC-COMP-T-06-C0",
+      "document_id": "DOC-COMP-T-06",
+      "rank": 3,
+      "score": 8.27144447383882
+    },
+    {
+      "chunk_id": "DOC-COMP-T-05-C0",
+      "document_id": "DOC-COMP-T-05",
+      "rank": 4,
+      "score": 8.17881263799346
+    },
+    {
+      "chunk_id": "DOC-COMP-T-08-C0",
+      "document_id": "DOC-COMP-T-08",
+      "rank": 5,
+      "score": 8.148400300837814
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

@@ -1,0 +1,52 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The current approval limit is for bulk approval of whole batches only, with no partial-batch approval allowed. This decision was made to avoid complications in the audit trail and is based on feedback from managers interviewed [DOC-DEC-M-02#C0].\n\nEvidence: DOC-DEC-M-02#C0",
+  "latency_seconds_total": 2.675727874971926,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-SUP-3",
+  "query_text": "What is the current approval limit?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-02-C0",
+      "document_id": "DOC-DEC-M-02",
+      "rank": 1,
+      "score": 0.4192155599594116
+    },
+    {
+      "chunk_id": "DOC-DEC-M-04-C0",
+      "document_id": "DOC-DEC-M-04",
+      "rank": 2,
+      "score": 0.418864369392395
+    },
+    {
+      "chunk_id": "DOC-DEC-M-06-C0",
+      "document_id": "DOC-DEC-M-06",
+      "rank": 3,
+      "score": 0.3569924831390381
+    },
+    {
+      "chunk_id": "DOC-DEC-T-03-C0",
+      "document_id": "DOC-DEC-T-03",
+      "rank": 4,
+      "score": 0.3463377356529236
+    },
+    {
+      "chunk_id": "DOC-DEC-M-07-C0",
+      "document_id": "DOC-DEC-M-07",
+      "rank": 5,
+      "score": 0.34448379278182983
+    }
+  ],
+  "source_citations": [
+    "DOC-DEC-M-02#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 62,
+    "prompt_tokens": 1265,
+    "total_tokens": 1327
+  }
+}

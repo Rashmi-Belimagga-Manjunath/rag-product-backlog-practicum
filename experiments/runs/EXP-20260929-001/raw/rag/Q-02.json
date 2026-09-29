@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The runbook for recovering a delayed event on the domain event bus is found in Passage 1, which outlines the steps to take when a delayed event shows up in the bus metrics as lag above 5 seconds. The steps include checking the consumer group lag, restarting the stalled consumer, and paging the platform team if lag persists after two restarts. \n\nEvidence: DOC-RBK-M-01#C0",
+  "latency_seconds_total": 1.7651610411703587,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-02",
+  "query_text": "Where is the runbook for recovering a delayed event on the domain event bus?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-RBK-M-01-C0",
+      "document_id": "DOC-RBK-M-01",
+      "rank": 1,
+      "score": 0.605675458908081
+    },
+    {
+      "chunk_id": "DOC-COMP-M-05-C0",
+      "document_id": "DOC-COMP-M-05",
+      "rank": 2,
+      "score": 0.4448543190956116
+    },
+    {
+      "chunk_id": "DOC-RBK-T-03-C0",
+      "document_id": "DOC-RBK-T-03",
+      "rank": 3,
+      "score": 0.3697810173034668
+    },
+    {
+      "chunk_id": "DOC-RBK-T-02-C0",
+      "document_id": "DOC-RBK-T-02",
+      "rank": 4,
+      "score": 0.3288094997406006
+    },
+    {
+      "chunk_id": "DOC-TKT-T-012-C0",
+      "document_id": "DOC-TKT-T-012",
+      "rank": 5,
+      "score": 0.31408560276031494
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 82,
+    "prompt_tokens": 1318,
+    "total_tokens": 1400
+  }
+}

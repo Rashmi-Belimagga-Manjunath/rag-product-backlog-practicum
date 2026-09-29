@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-12",
+  "query_text": "According to the specification, which external third-party service does Progressive Profiling rely on?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-01-v2-C0",
+      "document_id": "DOC-FEAT-M-01-v2",
+      "rank": 1,
+      "score": 21.13532812582791
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 2,
+      "score": 18.63087458585503
+    },
+    {
+      "chunk_id": "DOC-RBK-M-04-C0",
+      "document_id": "DOC-RBK-M-04",
+      "rank": 3,
+      "score": 15.029207512613773
+    },
+    {
+      "chunk_id": "DOC-COMP-M-01-C0",
+      "document_id": "DOC-COMP-M-01",
+      "rank": 4,
+      "score": 13.815574266115721
+    },
+    {
+      "chunk_id": "DOC-RBK-T-02-C0",
+      "document_id": "DOC-RBK-T-02",
+      "rank": 5,
+      "score": 10.692998376810666
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

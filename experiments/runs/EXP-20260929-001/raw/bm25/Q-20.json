@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-20",
+  "query_text": "From the sequence in which the product's requirements are listed, which stage must complete before streak saver can act?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-02-C0",
+      "document_id": "DOC-FEAT-M-02",
+      "rank": 1,
+      "score": 14.812334158253915
+    },
+    {
+      "chunk_id": "DOC-PBI-T-002-C0",
+      "document_id": "DOC-PBI-T-002",
+      "rank": 2,
+      "score": 11.204305841151855
+    },
+    {
+      "chunk_id": "DOC-FEAT-T-01-v2-C0",
+      "document_id": "DOC-FEAT-T-01-v2",
+      "rank": 3,
+      "score": 10.087214302613715
+    },
+    {
+      "chunk_id": "DOC-FEAT-T-05-C0",
+      "document_id": "DOC-FEAT-T-05",
+      "rank": 4,
+      "score": 10.045910479884862
+    },
+    {
+      "chunk_id": "DOC-PBI-T-001-C0",
+      "document_id": "DOC-PBI-T-001",
+      "rank": 5,
+      "score": 10.01484453646218
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}

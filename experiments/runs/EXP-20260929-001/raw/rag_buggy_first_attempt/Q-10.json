@@ -1,0 +1,7 @@
+{
+  "failure_reason": "ValueError: citation 'DOC#COMP-M-03#C0' is not of form DOCUMENT_ID#Cn",
+  "query_id": "Q-10",
+  "query_text": "Which component document says the Timesheet Approval Engine depends on the payroll ledger database?",
+  "status": "failed",
+  "system": "rag"
+}

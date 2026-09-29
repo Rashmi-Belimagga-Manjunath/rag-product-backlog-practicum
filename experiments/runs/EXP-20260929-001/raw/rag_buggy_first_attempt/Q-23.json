@@ -1,0 +1,50 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The retrieved evidence does not contain the answer to this question. \n\nEvidence: none",
+  "latency_seconds_total": 0.6782276248559356,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-23",
+  "query_text": "Which documents disagree about how long generated payslips stay available for download?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-DEC-M-05-C0",
+      "document_id": "DOC-DEC-M-05",
+      "rank": 1,
+      "score": 0.5049898028373718
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-09-C0",
+      "document_id": "DOC-FEAT-M-09",
+      "rank": 2,
+      "score": 0.49610960483551025
+    },
+    {
+      "chunk_id": "DOC-PBI-M-043-C0",
+      "document_id": "DOC-PBI-M-043",
+      "rank": 3,
+      "score": 0.4429936408996582
+    },
+    {
+      "chunk_id": "DOC-PBI-M-044-C0",
+      "document_id": "DOC-PBI-M-044",
+      "rank": 4,
+      "score": 0.44290316104888916
+    },
+    {
+      "chunk_id": "DOC-DEC-M-06-C0",
+      "document_id": "DOC-DEC-M-06",
+      "rank": 5,
+      "score": 0.4414067268371582
+    }
+  ],
+  "source_citations": [],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 1416,
+    "total_tokens": 1432
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "The current document specifying that tax documentation must be collected after the employee's first successful login is DOC-PRD-M-01-v2, which is the current version of the product documentation for Meridian. This requirement is normative for Meridian, and it states that tax documentation is not part of the initial account registration process [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+  "latency_seconds_total": 1.5838980828411877,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-SUP-2",
+  "query_text": "A spec says tax at first login \u2014 which doc, still current?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 1,
+      "score": 0.5486012697219849
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 2,
+      "score": 0.5380248427391052
+    },
+    {
+      "chunk_id": "DOC-DEC-M-01-C0",
+      "document_id": "DOC-DEC-M-01",
+      "rank": 3,
+      "score": 0.4997011423110962
+    },
+    {
+      "chunk_id": "DOC-FEAT-M-01-C0",
+      "document_id": "DOC-FEAT-M-01",
+      "rank": 4,
+      "score": 0.48255765438079834
+    },
+    {
+      "chunk_id": "DOC-PBI-M-036-C0",
+      "document_id": "DOC-PBI-M-036",
+      "rank": 5,
+      "score": 0.4741089344024658
+    }
+  ],
+  "source_citations": [
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-PRD-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 92,
+    "prompt_tokens": 1856,
+    "total_tokens": 1948
+  }
+}

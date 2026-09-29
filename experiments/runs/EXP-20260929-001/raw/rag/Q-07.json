@@ -1,0 +1,54 @@
+{
+  "fabricated_citations": [],
+  "finish_reason": "stop",
+  "generated_answer": "An internal audit would point to the current document, DOC-PRD-M-01-v2, which states that tax documentation must be collected after the employee's first successful login, not as part of initial account registration [DOC-PRD-M-01-v2#C0]. This requirement is normative for Meridian, meaning it takes precedence over any conflicting statements in other documents [DOC-PRD-M-01-v2#C0].\n\nEvidence: [DOC-PRD-M-01-v2#C0]",
+  "latency_seconds_total": 1.5617555831559002,
+  "model": "gpt-4o-mini-2024-07-18",
+  "query_id": "Q-07",
+  "query_text": "Which document would an internal audit point to as the place where tax paperwork is requested only after a person has signed in for the very first time?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-PRD-M-01-C0",
+      "document_id": "DOC-PRD-M-01",
+      "rank": 1,
+      "score": 0.5668903589248657
+    },
+    {
+      "chunk_id": "DOC-PRD-M-01-v2-C0",
+      "document_id": "DOC-PRD-M-01-v2",
+      "rank": 2,
+      "score": 0.5586087703704834
+    },
+    {
+      "chunk_id": "DOC-PBI-M-001-C0",
+      "document_id": "DOC-PBI-M-001",
+      "rank": 3,
+      "score": 0.48274481296539307
+    },
+    {
+      "chunk_id": "DOC-PBI-M-056-C0",
+      "document_id": "DOC-PBI-M-056",
+      "rank": 4,
+      "score": 0.4825012683868408
+    },
+    {
+      "chunk_id": "DOC-DEC-M-01-C0",
+      "document_id": "DOC-DEC-M-01",
+      "rank": 5,
+      "score": 0.47507113218307495
+    }
+  ],
+  "source_citations": [
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-PRD-M-01-v2#C0",
+    "DOC-PRD-M-01-v2#C0"
+  ],
+  "status": "ok",
+  "system": "rag",
+  "unknown_citation_tokens": [],
+  "usage": {
+    "completion_tokens": 105,
+    "prompt_tokens": 1714,
+    "total_tokens": 1819
+  }
+}

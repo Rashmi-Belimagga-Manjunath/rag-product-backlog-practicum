@@ -1,0 +1,38 @@
+{
+  "query_id": "Q-23",
+  "query_text": "Which documents disagree about how long generated payslips stay available for download?",
+  "retrieved": [
+    {
+      "chunk_id": "DOC-FEAT-M-09-C0",
+      "document_id": "DOC-FEAT-M-09",
+      "rank": 1,
+      "score": 15.913848611983163
+    },
+    {
+      "chunk_id": "DOC-PRD-M-04-C0",
+      "document_id": "DOC-PRD-M-04",
+      "rank": 2,
+      "score": 10.997289854813618
+    },
+    {
+      "chunk_id": "DOC-PRD-T-01-v2-C0",
+      "document_id": "DOC-PRD-T-01-v2",
+      "rank": 3,
+      "score": 6.707295061155374
+    },
+    {
+      "chunk_id": "DOC-PRD-T-01-C0",
+      "document_id": "DOC-PRD-T-01",
+      "rank": 4,
+      "score": 6.6646990512239785
+    },
+    {
+      "chunk_id": "DOC-RBK-T-04-C0",
+      "document_id": "DOC-RBK-T-04",
+      "rank": 5,
+      "score": 6.064074136033461
+    }
+  ],
+  "status": "ok",
+  "system": "bm25"
+}
