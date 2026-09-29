@@ -26,6 +26,25 @@ DEFAULT_PERSIST_DIRECTORY = "data/vectorstore/v1-corpus"
 DEFAULT_COLLECTION_NAME = "v1-corpus"
 
 
+def _embedding_list(query_embedding):
+    """Normalise a query embedding before handing it to Chroma.
+
+    Chroma's query_embeddings accepts a plain list either way. The experiment
+    path (run_rag) hands in a numpy array, while the Streamlit prototype embeds
+    through the OpenAI SDK, which returns a plain Python list (encoding_format
+    'float'). Both must work, so we adapt explicitly instead of assuming one
+    type or blindly calling .tolist() on an unknown object.
+    """
+    if isinstance(query_embedding, np.ndarray):
+        return query_embedding.tolist()
+    if isinstance(query_embedding, (list, tuple)):
+        return list(query_embedding)
+    raise TypeError(
+        "query_embedding must be a list or numpy.ndarray, got "
+        f"{type(query_embedding).__name__}"
+    )
+
+
 @dataclass(frozen=True)
 class VectorHit:
     chunk_id: str
@@ -98,7 +117,7 @@ class VectorStore:
     ):
         """Chroma's raw query result before our deterministic re-sort."""
         return self.collection.query(
-            query_embeddings=[query_embedding.tolist()],
+            query_embeddings=[_embedding_list(query_embedding)],
             n_results=k,
             include=list(include),
         )
@@ -113,7 +132,7 @@ class VectorStore:
         """
         n = units.by_id
         result = self.collection.query(
-            query_embeddings=[query_embedding.tolist()],
+            query_embeddings=[_embedding_list(query_embedding)],
             n_results=len(n),
             include=["distances", "metadatas", "documents"],
         )

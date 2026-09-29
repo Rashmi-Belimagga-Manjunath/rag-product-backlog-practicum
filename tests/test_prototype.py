@@ -33,6 +33,18 @@ class TestDemoPipeline:
             after = set(os.listdir(root)) if os.path.isdir(root) else set()
             assert after == before, f"demo wrote into {root}"
 
+    def test_rag_retrieve_accepts_python_list_embedding(self, pipeline):
+        # Regression for the demo crash: the Streamlit app embeds with the OpenAI
+        # SDK (plain list, encoding_format 'float'), then calls search_topk on the
+        # frozen vector store. Read-only: no writes to the store or benchmark.
+        hits = pipeline.rag_retrieve(
+            "describe the tax engine approval workflow",
+            lambda q: make_query_embedding(q),
+        )
+        assert hits
+        assert set(hits[0].keys()) == {"chunk_id", "rank", "score", "document_id"}
+        assert len(hits) <= pipeline.rag_config.top_k
+
     def test_answer_endpoint_with_fake_client_and_no_chroma(self, pipeline, monkeypatch):
         # RAG path is stubbed so no Chroma directory is created; this exercises
         # the answer() assembly + fake generation without any API/networking.

@@ -1,8 +1,10 @@
 import numpy as np
+import pytest
 
 from src.embeddings.cache import EmbeddingMeta, LoadedMatrix
 from src.vectorstore.store import CrossCheckResult, VectorStore, numpy_crosscheck
 from src.retrieval.units import RetrievalUnit, RetrievalUnitSet
+from src.vectorstore.store import _embedding_list
 
 
 def make_units_and_matrix(n=8, dimension=16):
@@ -90,6 +92,40 @@ class TestVectorStore:
         q = query_similar_to(loaded, 2)
         hits = store.search_topk(q, 1, units)
         assert hits[0].document_id == "DOC-02"
+
+
+class TestListVsNumpyEmbedding:
+    def test_search_accepts_python_list_embedding(self, tmp_path):
+        # Regression for the Streamlit demo crash: the prototype embeds through
+        # the OpenAI SDK, which returns a plain Python list (encoding_format
+        # 'float'); search_topk must not call .tolist() on it.
+        store, units, loaded, _ = build_store(tmp_path)
+        q_array = query_similar_to(loaded, 0)
+        q_list = q_array.tolist()
+        assert type(q_list) is list
+        hits_list = store.search_topk(q_list, 3, units)
+        hits_array = store.search_topk(q_array, 3, units)
+        assert [h.chunk_id for h in hits_list] == [h.chunk_id for h in hits_array]
+        assert hits_list[0].chunk_id == units.units[0].chunk_id
+
+    def test_query_native_accepts_python_list_embedding(self, tmp_path):
+        store, units, loaded, _ = build_store(tmp_path)
+        q_list = query_similar_to(loaded, 0).tolist()
+        result = store.query_native(q_list, 1)
+        assert result["ids"]
+        assert len(result["ids"][0]) == 1
+
+    def test_unknown_embedding_type_raises_type_error(self, tmp_path):
+        store, units, loaded, _ = build_store(tmp_path)
+        with pytest.raises(TypeError):
+            store.search_topk("not-an-embedding", 3, units)
+
+    def test_embedding_list_helper_preserves_types(self):
+        array = np.array([0.1, 0.2, 0.3])
+        assert _embedding_list(array) == [0.1, 0.2, 0.3]
+        assert _embedding_list([0.1, 0.2, 0.3]) == [0.1, 0.2, 0.3]
+        with pytest.raises(TypeError):
+            _embedding_list(None)
 
 
 class TestNumpyCrosscheck:
