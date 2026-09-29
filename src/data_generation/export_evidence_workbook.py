@@ -34,7 +34,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 from ..benchmark.query_spec import (
-    CHUNKING_LIMITATION_NOTE, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE,
+    CATEGORY_LABEL, CHUNKING_LIMITATION_NOTE, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE,
     Q05_INTENT_NOTE, SLOTS,
 )
 from ..benchmark.validate_ground_truth import known_ids, validate_ground_truth
@@ -63,14 +63,8 @@ GATE_DESCRIPTIONS = {
     "Q-21": "An implicit dependency whose evidence sits in a superseded document.",
 }
 
-CATEGORY_LABEL = {
-    "information_retrieval": "Information retrieval",
-    "feature_context": "Feature context",
-    "dependency_identification": "Dependency identification",
-    "cross_document_reasoning": "Cross-document reasoning",
-    "conflict_identification": "Conflict identification",
-    "backlog_analysis": "Backlog analysis",
-}
+from ..benchmark.query_spec import CATEGORY_LABEL
+
 DOC_TYPE_LABEL = {
     "prd": "Product requirements document",
     "feature_spec": "Feature specification",

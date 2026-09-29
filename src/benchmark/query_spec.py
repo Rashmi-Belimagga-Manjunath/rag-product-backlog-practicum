@@ -41,6 +41,15 @@ APPROVED_DEPENDENCY_TOTAL = 13
 APPROVED_EXPLICIT = 6
 APPROVED_IMPLICIT = 7
 
+CATEGORY_LABEL = {
+    "information_retrieval": "Information retrieval",
+    "feature_context": "Feature context",
+    "dependency_identification": "Dependency identification",
+    "cross_document_reasoning": "Cross-document reasoning",
+    "conflict_identification": "Conflict identification",
+    "backlog_analysis": "Backlog analysis",
+}
+
 # Approved Q-SUP wording. Fixed by the specification; these three are not placeholders.
 Q_SUP_1 = "Which PRD is in production?"
 Q_SUP_2 = "A spec says tax at first login \u2014 which doc, still current?"

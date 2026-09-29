@@ -15,20 +15,12 @@ from pathlib import Path
 
 from .query_spec import (
     APPROVED_CATEGORY_COUNTS, APPROVED_DEPENDENCY_TOTAL, APPROVED_DIFFICULTY_COUNTS,
-    APPROVED_EXPLICIT, APPROVED_IMPLICIT, CHUNKING_LIMITATION_NOTE,
+    APPROVED_EXPLICIT, APPROVED_IMPLICIT, CATEGORY_LABEL, CHUNKING_LIMITATION_NOTE,
     DEPENDENCY_CATEGORIES, DIFFICULTY_METHOD_NOTE, DIFFICULTY_MISMATCH_NOTE,
     Q05_INTENT_NOTE, SLOTS, validate_spec,
 )
 
 DOC = Path("docs/query_specification.md")
-CATEGORY_LABEL = {
-    "information_retrieval": "Information retrieval",
-    "feature_context": "Feature context",
-    "dependency_identification": "Dependency identification",
-    "cross_document_reasoning": "Cross-document reasoning",
-    "conflict_identification": "Conflict identification",
-    "backlog_analysis": "Backlog analysis",
-}
 
 
 def render() -> str:

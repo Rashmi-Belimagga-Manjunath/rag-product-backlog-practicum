@@ -25,6 +25,9 @@ openai>=1.0
 # D3: chromadb (as committed in CA2) vs exact NumPy cosine similarity
 chromadb>=1.0
 
+# --- Reporting / figures ---
+matplotlib>=3.8
+
 # --- App ---
 # D8: streamlit (simple, recommended) vs fastapi + custom UI
 streamlit>=1.0
