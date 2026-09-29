@@ -1,0 +1,217 @@
+{
+  "manifest_version": 1,
+  "captured_at": "2026-09-29T13:16:37+00:00",
+  "repository": "https://github.com/Rashmi-Belimagga-Manjunath/rag-product-backlog-practicum",
+  "git_commit": "9c5001bc911ca4e1ea3688336cb8c6fbd3e87695",
+  "working_tree_clean": true,
+  "complete": true,
+  "artefacts": [
+    {
+      "artefact": "structured_source_of_truth",
+      "what": "Structured source of truth (single JSON serialisation of the entity model)",
+      "path": "data/corpus/v1/source_model.json",
+      "algorithm": "sha256",
+      "scope": "file",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "6494446e16cbcccacc38289ccf6c93fbc76d290261b141971466f13ce0b0c2f8",
+      "detail": {
+        "path": "data/corpus/v1/source_model.json"
+      }
+    },
+    {
+      "artefact": "final_rendered_corpus",
+      "what": "Final rendered corpus (aggregate over sorted per-file digests)",
+      "path": "data/corpus/v1/rendered/",
+      "algorithm": "sha256",
+      "scope": "tree",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "afb73fe598887e63eafb03f8f434781a73c3ae5ded46f6840efbcdb93535b9c9",
+      "detail": {
+        "file_count": 273,
+        "path": "data/corpus/v1/rendered/"
+      }
+    },
+    {
+      "artefact": "query_benchmark",
+      "what": "Query benchmark machine specification (authoritative) + generated document",
+      "path": "src/benchmark/query_spec.py",
+      "algorithm": "sha256",
+      "scope": "multi",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "75ddb68f65f04f9ce19e665af434c5d3ca7ce3811e95d722d4dda4163f504b24",
+      "detail": {
+        "files": [
+          "src/benchmark/query_spec.py",
+          "src/benchmark/render_spec_doc.py",
+          "src/benchmark/selectors.py",
+          "docs/query_specification.md"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "artefact": "ground_truth_specification",
+      "what": "Ground-truth schema, selectors and validator",
+      "path": "src/ground_truth/schema.py",
+      "algorithm": "sha256",
+      "scope": "multi",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "7854a2ff89fa091224641f33ddbdc86a67b741abb9e0a6fee807f15862ee4225",
+      "detail": {
+        "files": [
+          "src/ground_truth/schema.py",
+          "src/benchmark/selectors.py",
+          "src/benchmark/validate_ground_truth.py"
+        ],
+        "count": 3
+      }
+    },
+    {
+      "artefact": "final_chunked_corpus",
+      "what": "Final chunked corpus + frozen chunking decision",
+      "path": "data/corpus/v1/chunks/chunks.json",
+      "algorithm": "sha256",
+      "scope": "multi",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "7b044ca1900cf099be2f1b6b30fd53f7677f8458210eac52ca888a983ba7c605",
+      "detail": {
+        "files": [
+          "data/corpus/v1/chunks/chunks.json",
+          "CHUNKING_DECISION.md"
+        ],
+        "count": 2
+      }
+    },
+    {
+      "artefact": "embedding_matrix",
+      "what": "Embedding matrix (raw array bytes; no dated model snapshot is published)",
+      "path": "data/embeddings/v1-corpus/embeddings.npy",
+      "algorithm": "sha256",
+      "scope": "file",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "cfdf5f13508b26d61f0f3a8ceab10aedf829fc0e781aa7f66c165ac1276fba74",
+      "detail": {
+        "path": "data/embeddings/v1-corpus/embeddings.npy"
+      }
+    },
+    {
+      "artefact": "embedding_metadata",
+      "what": "Embedding metadata, including the positional chunk_id_order",
+      "path": "data/embeddings/v1-corpus/embeddings.meta.json",
+      "algorithm": "sha256",
+      "scope": "file",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "417ff03cccb248000c2610c53ee5aa08e42be948863733ea0b53fdf00df822a9",
+      "detail": {
+        "path": "data/embeddings/v1-corpus/embeddings.meta.json"
+      }
+    },
+    {
+      "artefact": "experiment_configuration",
+      "what": "Frozen experiment configuration (embedding, RAG, BM25)",
+      "path": "experiments/configs/embedding_config.json",
+      "algorithm": "sha256",
+      "scope": "multi",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "abdc5e44022d000120d02ef96dad04d967b99351506479d46e0f7d65cb613825",
+      "detail": {
+        "files": [
+          "experiments/configs/embedding_config.json",
+          "experiments/configs/rag_config.json",
+          "experiments/configs/bm25_config.json"
+        ],
+        "count": 3
+      }
+    },
+    {
+      "artefact": "rag_prompt",
+      "what": "Frozen RAG system prompt (hashed separately: it is prose and is edited most)",
+      "path": "experiments/configs/rag_prompt.txt",
+      "algorithm": "sha256",
+      "scope": "file",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "7ab15349db7a7a5db04c3b1a5f6aa52505a4f7bbc3e7d1a37ea234b4ca553dc1",
+      "detail": {
+        "path": "experiments/configs/rag_prompt.txt"
+      }
+    },
+    {
+      "artefact": "git_commit",
+      "what": "Source-code commit SHA (content-addressed already; recorded, not committed)",
+      "path": "<git HEAD>",
+      "algorithm": "sha256",
+      "scope": "git",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "9c5001bc911ca4e1ea3688336cb8c6fbd3e87695",
+      "detail": {
+        "branch": "main",
+        "working_tree_clean": true
+      }
+    },
+    {
+      "artefact": "environment_lockfile",
+      "what": "Dependency/environment lockfile + resolved pip freeze",
+      "path": "uv.lock",
+      "algorithm": "sha256",
+      "scope": "lockfile",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "b62a853c697a534eb93c9c23e1fdebfb2a5991833dcdfe9f7672b29d1d62dbc3",
+      "detail": {
+        "lockfile": "requirements.txt",
+        "pip_freeze_sha256": "72563538c2e9be634f683838fc85c75d1c05663ce060a9d2a91713b9dbdf0ad4"
+      }
+    },
+    {
+      "artefact": "environment_record",
+      "what": "Python version, OS, package versions, exact gpt-4o-mini model string",
+      "path": "data/manifest/environment.json",
+      "algorithm": "sha256",
+      "scope": "file",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "048c8b5c474b82a922a7a87a3f15eda1fad1e9a683b62b690ea5ae4390d6663a",
+      "detail": {
+        "path": "data/manifest/environment.json"
+      }
+    },
+    {
+      "artefact": "validation_reports",
+      "what": "C1-C8 coherence, ground-truth validation and spec-sync reports",
+      "path": "data/manifest/validation/",
+      "algorithm": "sha256",
+      "scope": "tree",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "6132b7a762a36aa56acea6325fe2af93d222bd426eab297f8759f592a123f385",
+      "detail": {
+        "file_count": 1,
+        "path": "data/manifest/validation/"
+      }
+    },
+    {
+      "artefact": "run_outputs",
+      "what": "Per-system retrieval logs and generated responses (retrieval logged separately)",
+      "path": "experiments/runs/",
+      "algorithm": "sha256",
+      "scope": "tree",
+      "committed_to_git": true,
+      "status": "ok",
+      "value": "78b87015915c8e9cf963fa4fe8cfe053021f5dcdfc91d6cce3f0e87221ef73a4",
+      "detail": {
+        "file_count": 1,
+        "path": "experiments/runs/"
+      }
+    }
+  ]
+}
