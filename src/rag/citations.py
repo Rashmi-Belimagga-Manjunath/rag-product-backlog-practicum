@@ -19,7 +19,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from src.retrieval.units import parse_citation
+from src.retrieval.units import _split_chunk_id, parse_citation
 
 # [DOC-PRD-A-01-v2#C0]
 CITATION_RE = re.compile(r"\[([^\]]+)\]")
@@ -80,9 +80,14 @@ def validate(citations: list[Citation], supplied_citation_ids: set[str]) -> Cita
 
 
 def supplied_citation_ids(supplied_chunk_ids: list[str]) -> set[str]:
-    """Convert chunk ids (e.g. DOC-PRD-A-01-v2-C0) into citation ids."""
+    """Convert chunk ids (e.g. DOC-PRD-A-01-v2-C0) into citation ids.
+
+    The frozen chunk-id parser splits only the *trailing* -C<index> suffix, so
+    document ids that themselves contain "-C" (e.g. the DOC-COMP-* components)
+    are never corrupted.
+    """
     result = set()
     for chunk_id in supplied_chunk_ids:
-        document_id, chunk_index = parse_citation(chunk_id.replace("-C", "#C"))
+        document_id, chunk_index = _split_chunk_id(chunk_id)
         result.add(f"{document_id}#C{chunk_index}")
     return result

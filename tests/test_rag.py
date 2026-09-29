@@ -89,6 +89,12 @@ class TestCitationParse:
         supplied = ci.supplied_citation_ids(["DOC-PRD-A-01-v2-C0"])
         assert supplied == {"DOC-PRD-A-01-v2#C0"}
 
+    def test_supplied_citation_ids_handle_embedded_dash_c_in_document_ids(self):
+        # Component document ids contain "-C" (e.g. DOC-COMP-M-05). Only the
+        # trailing -C<index> is the chunk suffix; the document id must survive.
+        supplied = ci.supplied_citation_ids(["DOC-COMP-M-05-C0", "DOC-PRD-A-01-v2-C0"])
+        assert supplied == {"DOC-COMP-M-05#C0", "DOC-PRD-A-01-v2#C0"}
+
 
 class TestGeneratorParameters:
     def test_frozen_parameters_sent(self):
