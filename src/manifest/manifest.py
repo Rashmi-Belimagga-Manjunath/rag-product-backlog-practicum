@@ -247,6 +247,19 @@ def build(version: int = 1) -> int:
     return 0
 
 
+def commit_is_ancestor(commit: str, ref: str) -> bool:
+    """True when `commit` is an ancestor of (or equal to) `ref`."""
+    if not commit:
+        return False
+    try:
+        return subprocess.run(
+            ["git", "merge-base", "--is-ancestor", commit, ref],
+            capture_output=True,
+        ).returncode == 0
+    except Exception:
+        return False
+
+
 def verify() -> int:
     if not FREEZE_JSON.exists():
         print(f"FAIL: {FREEZE_JSON} does not exist. Nothing to verify.")
@@ -256,19 +269,31 @@ def verify() -> int:
     for e in recorded["artefacts"]:
         if e["status"] != "ok":
             continue
-        artefact = next(a for a in ARTEFACTS if a["key"] == e["artefact"])
+        if e["artefact"] == "git_commit":
+            # The recorded git_commit is the freeze commit; the manifest itself is
+            # committed afterwards (a later commit cannot change its own SHA), so it is
+            # verified by the commit-semantics checks below, not by head comparison.
+            continue
+        artefact = next(a for a in ARTEFACTS if a.key == e["artefact"])
         status, value, _ = digest_for(artefact)
         if status != "ok":
             failures.append(f"{e['artefact']}: was recorded but is now MISSING")
         elif value != e["value"]:
             failures.append(f"{e['artefact']}: CHANGED\n    recorded {e['value']}\n    now      {value}")
+    recorded_commit = str(recorded.get("git_commit") or "")
+    if not recorded_commit:
+        failures.append("manifest records no git_commit")
+    elif not commit_is_ancestor(recorded_commit, "HEAD"):
+        failures.append(
+            f"recorded freeze commit {recorded_commit} is not an ancestor of HEAD; "
+            "the frozen state is no longer part of this history")
+    elif not commit_is_ancestor(recorded_commit, "origin/main"):
+        failures.append(f"recorded freeze commit {recorded_commit} is not in origin/main")
     print(f"manifest v{recorded['manifest_version']} captured {recorded['captured_at']}")
-    print(f"git commit recorded: {recorded['git_commit']}")
+    print(f"git commit recorded: {recorded_commit}")
     print(f"git commit now:      {git('rev-parse', 'HEAD')}")
-    if recorded["git_commit"] != git("rev-parse", "HEAD"):
-        failures.append("HEAD has moved since the manifest was captured")
     if not failures:
-        print("VERIFY: OK - every recorded digest matches.")
+        print("VERIFY: OK - every recorded digest matches and the freeze commit is in the pushed history.")
         return 0
     print("VERIFY: FAILED")
     for f in failures:

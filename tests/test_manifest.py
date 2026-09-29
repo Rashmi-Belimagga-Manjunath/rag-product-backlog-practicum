@@ -118,3 +118,62 @@ def test_prompt_hash_in_rag_config_matches_the_file():
     recorded = cfg["prompt"]["sha256"]
     actual = sha256_file(Path(cfg["prompt"]["path"]))
     assert recorded == actual, "rag_config.json prompt hash is stale; re-freeze it"
+
+
+def _fake_manifest(tmp_path, monkeypatch, git_commit="a" * 40, artefacts=None):
+    """Write a FREEZE.json into tmp_path and point the module at it."""
+    import src.manifest.manifest as m
+    from src.manifest.manifest import Artefact
+
+    fake = Artefact("fake_key", "what it hashes", "path/to/x", scope="file", committed=True)
+    monkeypatch.setattr(m, "ARTEFACTS", (fake,))
+    frozen = tmp_path / "FREEZE.json"
+    frozen.write_text(json.dumps({
+        "manifest_version": 1,
+        "captured_at": "2026-01-01T00:00:00+00:00",
+        "git_commit": git_commit,
+        "artefacts": artefacts if artefacts is not None else [
+            {"artefact": "fake_key", "status": "ok", "value": "cafebabe"},
+        ],
+    }))
+    monkeypatch.setattr(m, "FREEZE_JSON", frozen)
+    return m
+
+
+def test_verify_succeeds_when_freeze_commit_is_ancestor(tmp_path, monkeypatch):
+    """Committing the manifest itself moves HEAD: the recorded freeze commit is an ancestor
+    of the new HEAD, and verification must pass as long as every digest is unchanged."""
+    m = _fake_manifest(tmp_path, monkeypatch)
+    monkeypatch.setattr(m, "digest_for", lambda a: ("ok", "cafebabe", {}))
+    monkeypatch.setattr(m, "commit_is_ancestor", lambda c, ref: True)
+    assert m.verify() == 0
+
+
+def test_verify_fails_when_a_digest_changes(tmp_path, monkeypatch):
+    """A silent edit to a frozen artefact changes its recomputed digest and must fail."""
+    m = _fake_manifest(tmp_path, monkeypatch)
+    monkeypatch.setattr(m, "digest_for", lambda a: ("ok", "deadbeef", {}))
+    monkeypatch.setattr(m, "commit_is_ancestor", lambda c, ref: True)
+    assert m.verify() == 1
+
+
+def test_verify_fails_when_freeze_commit_is_not_ancestor(tmp_path, monkeypatch):
+    """A freeze whose recorded commit is no longer reachable from HEAD is not verifiable."""
+    m = _fake_manifest(tmp_path, monkeypatch)
+    monkeypatch.setattr(m, "digest_for", lambda a: ("ok", "cafebabe", {}))
+    monkeypatch.setattr(m, "commit_is_ancestor", lambda c, ref: ref != "HEAD")
+    assert m.verify() == 1
+
+
+def test_verify_fails_when_freeze_commit_unpushed(tmp_path, monkeypatch):
+    """Artefact 8 must match the pushed commit; an unpushed freeze commit fails."""
+    m = _fake_manifest(tmp_path, monkeypatch)
+    monkeypatch.setattr(m, "digest_for", lambda a: ("ok", "cafebabe", {}))
+    monkeypatch.setattr(m, "commit_is_ancestor", lambda c, ref: ref == "HEAD")
+    assert m.verify() == 1
+
+
+def test_verify_fails_without_a_git_commit(tmp_path, monkeypatch):
+    m = _fake_manifest(tmp_path, monkeypatch, git_commit="")
+    monkeypatch.setattr(m, "digest_for", lambda a: ("ok", "cafebabe", {}))
+    assert m.verify() == 1

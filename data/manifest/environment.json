@@ -1,0 +1,34 @@
+{
+  "captured_at": "2026-09-29T13:08:23+00:00",
+  "llm": {
+    "dimensions_parameter": null,
+    "embedding_dimension": 3072,
+    "embedding_model": "text-embedding-3-large",
+    "encoding_format": "float",
+    "rag_model_configured": "gpt-4o-mini",
+    "rag_model_string_note": "Configured value from experiments/configs/rag_config.json; the exact returned model string is recorded per-response in run raw evidence, not asserted here."
+  },
+  "note": "Environment record for reproducibility (docs/reproducibility.md environment_record). Factual values only; nothing here is measured experiment output.",
+  "os": {
+    "machine": "arm64",
+    "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
+    "release": "25.3.0",
+    "system": "Darwin"
+  },
+  "packages": {
+    "chromadb": "1.5.9",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "openai": "3.19.2",
+    "openpyxl": "3.1.5",
+    "pandas": "3.0.6",
+    "plotly": "unknown",
+    "python-dotenv": "1.2.3",
+    "streamlit": "1.64.0"
+  },
+  "python": {
+    "executable_family": "venv (.venv)",
+    "implementation": "CPython",
+    "version": "3.14.2"
+  }
+}
