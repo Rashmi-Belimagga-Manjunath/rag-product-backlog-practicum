@@ -129,6 +129,7 @@ class AggregatedRetrieval:
             "recall_explicit": self.recall_explicit,
             "precision_implicit": self.precision_implicit,
             "recall_implicit": self.recall_implicit,
+            "per_query": self.per_query,
         }
 
 

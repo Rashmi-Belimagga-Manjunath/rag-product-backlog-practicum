@@ -19,6 +19,7 @@ EXPECTED_METRIC_KEYS = {
     "precision_by_category", "recall_by_category", "mrr_by_category",
     "precision_by_difficulty", "recall_by_difficulty",
     "precision_explicit", "recall_explicit", "precision_implicit", "recall_implicit",
+    "per_query",
 }
 EXPECTED_DEPENDENCY_KEYS = {"precision", "recall", "f1", "n_queries", "n_recall_queries"}
 

@@ -16,6 +16,15 @@ D-009 separates retrieval failure from generation/reasoning failure:
         relevant evidence was supplied -> generation/reasoning failure.
       - otherwise: answer quality cannot be classified from evidence alone and
         is marked REQUIRE_MANUAL_REVIEW, never guessed.
+
+  The RAG path therefore intentionally has NO CORRECT branch. D-009 lists
+  'Correct' as `P(q) = E(q)`, which requires judging answer/content equivalence
+  and cannot be automated from the retrieval log and evidence alone; any case
+  that passes the low-level rules above is deferred to REQUIRE_MANUAL_REVIEW
+  rather than auto-marked correct. Consequently a reported 'RAG CORRECT = 0' is
+  a structural property of the error classifier (category counts), and must be
+  distinguished from overall answer correctness, which is evaluated separately
+  and is not auto-judged here.
 """
 
 from __future__ import annotations

@@ -109,6 +109,17 @@ class TestClassifyRAG:
         c = classify_rag(make_inputs([A0], gt, report))
         assert c.judgement == "REQUIRE_MANUAL_REVIEW"
 
+    def test_rag_has_no_automated_correct_branch(self):
+        # Documentation test. D-009 lists 'Correct' as P(q) = E(q), which needs
+        # a human reading of the answer and cannot be automated from evidence
+        # alone. Even the most favourable inputs must never yield CORRECT; the
+        # classifier defers them to REQUIRE_MANUAL_REVIEW. A reported
+        # 'RAG CORRECT = 0' is therefore structural, not a zero-answers verdict.
+        for answer in ["Supported by [DOC-A#C0].", "The answer is in DOC-A.", "Yes."]:
+            c = classify_rag(make_inputs([A0], make_gt(), answer=answer))
+            assert c.judgement != "CORRECT"
+            assert c.judgement == "REQUIRE_MANUAL_REVIEW"
+
 
 class TestSummarize:
     def test_counts(self):

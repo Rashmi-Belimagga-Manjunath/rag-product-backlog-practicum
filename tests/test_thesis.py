@@ -1,3 +1,4 @@
+import csv
 import json
 from pathlib import Path
 
@@ -30,6 +31,9 @@ def metric_payload(run_id="EXP-20260101-001"):
             "precision_implicit": 0.5,
             "recall_implicit": 0.5,
             "per_query": [
+                {"query_id": "Q-02", "category": "Feature context", "difficulty": "hard",
+                 "retrieved_count": 5, "relevant_count": 2, "precision@5": 0.4,
+                 "recall@5": 0.5, "mrr": 0.25, "failed": False},
                 {"query_id": "Q-01", "category": "Information retrieval", "difficulty": "easy",
                  "retrieved_count": 5, "relevant_count": 1, "precision@5": 0.2,
                  "recall@5": 1.0, "mrr": 0.2, "failed": False},
@@ -123,6 +127,22 @@ class TestTables:
         content = json.loads(sidecar.read_text())
         assert "generated_from" in content
         assert content["generated_from"] == "experiments/runs/EXP-20260101-001/raw"
+
+    def test_per_query_table_matches_payload_rows(self, run_paths):
+        # per_query.csv must be populated from the processed payload (never
+        # header-only) and preserve the payload's canonical row order.
+        write_processed(run_paths)
+        results = load_processed(str(run_paths.processed_dir))
+        build_all_tables(run_paths, results)
+        with open(run_paths.tables_dir / "per_query.csv") as handle:
+            rows = list(csv.DictReader(handle))
+        assert len(rows) == 2
+        assert [row["query_id"] for row in rows] == ["Q-02", "Q-01"]
+        assert float(rows[0]["bm25_precision@5"]) == pytest.approx(0.4)
+        assert float(rows[0]["rag_precision@5"]) == pytest.approx(0.4)
+        assert float(rows[0]["bm25_recall@5"]) == pytest.approx(0.5)
+        assert float(rows[1]["bm25_mrr"]) == pytest.approx(0.2)
+        assert float(rows[1]["rag_mrr"]) == pytest.approx(0.2)
 
 
 class TestFigures:

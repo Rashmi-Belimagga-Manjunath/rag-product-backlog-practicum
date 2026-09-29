@@ -107,6 +107,16 @@ class TestAggregation:
         metrics = score_run("s", rows)
         assert [r["query_id"] for r in metrics.per_query] == ["Q-09", "Q-01"]
 
+    def test_as_dict_persists_per_query(self):
+        # The export-layer guarantee: the serialized metrics payload carries the
+        # per-query rows so tables/per_query.csv can be rebuilt from processed
+        # output alone (it must never be emitted header-only).
+        rows = [make_row("Q-01", ["c1"], ["c1"]), make_row("Q-02", ["x"], ["c1"])]
+        metrics = score_run("s", rows)
+        payload = metrics.as_dict()
+        assert payload["per_query"] == metrics.per_query
+        assert [r["query_id"] for r in payload["per_query"]] == ["Q-01", "Q-02"]
+
     def test_dependency_split_reported(self):
         rows = [
             make_row("Q1", ["c1"], ["c1"], is_dep=True, expl="explicit"),
