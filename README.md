@@ -9,7 +9,7 @@ BM25 keyword-search baseline over an identical corpus and query set.
 MSc in Artificial Intelligence for Business · National College of Ireland · 2026
 Module: Practicum (Final) · Supervisor: Prof. Namita Agarwal
 
-**Local:** `~/Desktop/RAG-Practicum` (primary working copy)
+**Local:** `~/Desktop/RAG-Practicum final` (primary working copy)
 **GitHub:** https://github.com/Rashmi-Belimagga-Manjunath/rag-product-backlog-practicum (private)
 
 > The submitted CA1/CA2 documents, architecture diagram, progress deck and weekly
@@ -22,23 +22,21 @@ Module: Practicum (Final) · Supervisor: Prof. Namita Agarwal
 
 ## Status
 
-**Checkpoint 1 complete — specification stage. Nothing is implemented yet.**
-
-No dataset has been generated. No retrieval system has been built. No experiment has
-been run, and **no results exist**. This is deliberate: the evaluation protocol and the
-data design are fixed and recorded *before* any system runs, so that later claims of
-methodological integrity are credible.
+**Post-experiment checkpoint — EXP-20260929-001 (2026-09-29) complete and frozen.**
+The corpus, benchmark, both systems, the automated evaluation, and the thesis write-up
+are done. What remains is the ethics determination (D-011), any supervisor-ordered
+revisions to the write-up, and submission logistics.
 
 | Phase | Status |
 |---|---|
 | 1. Specification, data design, governance | ✅ Complete |
-| 2. Technology decisions | ⏸ Awaiting student approval |
-| 3. Synthetic corpus generation | ⏸ Blocked on decisions |
-| 4. Baseline (BM25) | ⏸ Blocked on decisions |
-| 5. RAG pipeline | ⏸ Blocked on decisions |
-| 6. Automated evaluation | ⏸ Blocked |
-| 7. Human evaluation | 🔒 Blocked pending ethics approval |
-| 8. Analysis and write-up | ⏸ Blocked |
+| 2. Technology decisions (D-001–D-005) | ✅ Complete |
+| 3. Synthetic corpus generation (corpus v1, frozen) | ✅ Complete |
+| 4. Baseline (BM25, k1/b frozen) | ✅ Complete |
+| 5. RAG pipeline (embedding/generation frozen) | ✅ Complete |
+| 6. Automated evaluation (Layer A + Layer B) | ✅ Complete — `results/EXP-20260929-001/` |
+| 7. Human evaluation | 🔒 Blocked pending ethics determination (D-011); Layer B currently researcher-rated and disclosed as such |
+| 8. Analysis and write-up | ✅ Complete (`FULL_THESIS.md` / `Practicum Final Report.docx`) |
 
 ---
 
@@ -50,7 +48,7 @@ methodological integrity are credible.
 | `PROJECT_SPECIFICATION.md` | Research question, objectives, systems A and B, evaluation methodology, scope, open decisions, assumptions. |
 | `DATA_DESIGN.md` | The structured synthetic product model. How the corpus, queries, and ground-truth labels are derived from one source of truth. |
 | `DECISIONS.md` | Methodological decision log. Open decisions, open assumptions, decisions taken. |
-| `EXPERIMENT_LOG.md` | Append-only record of every experiment run. Currently empty. |
+| `EXPERIMENT_LOG.md` | Append-only record of every experiment run. One entry: EXP-20260929-001. |
 
 ---
 
@@ -171,37 +169,32 @@ the fact. See `DECISIONS.md` D-000.
 
 ## Setup
 
-**Not yet available** — dependencies are not pinned, because the technology decisions
-in `DECISIONS.md` are still open. Once approved, this section will carry exact
-install and run commands.
+Verified environment: Python 3.14.2 on macOS, `.venv/` in the project root.
 
-Environment verified so far: Python 3.14.2 on macOS. A dry-run resolution check
-confirmed that the candidate packages (`openai`, `chromadb`, `bm25s`, `numpy`, `pandas`,
-`streamlit`, `pytest`) all have compatible distributions available. There is no
-environment blocker.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt     # provisional list; exact locked env = uv.lock + data/manifest/environment.json
+export OPENAI_API_KEY=$(grep -m1 OPENAI_API_KEY .env | cut -d= -f2-)   # key only read from git-ignored .env
+streamlit run prototype_app.py      # demonstration UI at http://localhost:8501
+```
+
+The experiment itself runs through the frozen harness (`results/EXP-20260929-001/`
+holds its outputs; the `EXPERIMENT_FREEZE_CHECKLIST.md` documents the freeze workflow).
 
 ---
 
-## What still needs your decision
+## Decision status
 
-Nine implementation decisions and eight data-design questions are open. The ones that
-block the next phase of work:
+All implementation decisions (D-001 … D-013) were ratified, frozen, and executed;
+the corpus, benchmark, configurations, freeze manifest, and experimental run are all
+frozen and hash-verified (`data/manifest/FREEZE.json`). The full history and current
+state live in `DECISIONS.md`. The single still-open item:
 
-1. **Orchestration** — CA2 committed to Flowise. Flowise is a no-code GUI, which makes
-   prompt versions and retrieval state hard to log and hard to reproduce. Native Python
-   would be more traceable but deviates from the committed design. Your call — I will
-   not silently drop Flowise.
-2. **Embedding model** — CA1/CA2 committed to OpenAI embeddings. A local open-weights
-   model would be free, offline, and deterministic. Different reproducibility
-   trade-off.
-3. **Corpus scale and query distribution** — the query count and category spread
-   materially affect methodology, so they need your explicit approval before the query
-   set is built.
-4. **Rendering approach** — pure templates (reproducible, less natural prose) vs
-   LLM-assisted prose (natural, still model-grounded, less deterministic).
-
-All options with recommendations are in `PROJECT_SPECIFICATION.md` §11 and
-`DATA_DESIGN.md` §11.
+1. **Ethics determination (D-011)** — whether the NCI coordinator/supervisor requires a
+   formal ethics process for the researcher-rated Layer B metrics and/or any future
+   participant study. Until answered, no human-participant data is collected, and the
+   Layer B results are reported as researcher ratings, disclosed as a limitation.
 
 ---
 

@@ -20,6 +20,10 @@ From-Problem-to-Prototype.pptx
 *.pptx
 source_material/
 
+# The thesis text itself. Presentation this week: the write-up stays a local
+# Desktop document and is deliberately not in the repository.
+FULL_THESIS.md
+
 # =============================================================================
 # SECRETS — never commit. Checked before every push.
 # =============================================================================

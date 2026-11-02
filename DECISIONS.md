@@ -280,29 +280,35 @@ The current version must be **unambiguous in the source-of-truth model**.
 Assumptions still unconfirmed. Each must be confirmed or replaced before it is relied
 upon. See `PROJECT_SPECIFICATION.md` §12.
 
+_Status refreshed 2026-10-28 following completion of EXP-20260929-001. Historical
+entries below are untouched._
+
 | ID | Assumption | Status |
 |---|---|---|
-| A1 | B2B SaaS / HRTech is an appropriate synthetic domain | Unconfirmed |
+| A1 | B2B SaaS / HRTech is an appropriate synthetic domain | **Resolved** — corpus v1 generated on this domain (D-004) |
 | A2 | Fully synthetic documentation is acceptable in place of real artefacts | **Resolved by D9** — synthetic confirmed |
-| A3 | A few hundred chunks is sufficient to observe a measurable difference | Unconfirmed — depends on D6 |
-| A4 | Chunk size 1000 / overlap 200 remains appropriate | Unconfirmed — CA2 flags this as needing a pilot |
+| A3 | A few hundred chunks is sufficient to observe a measurable difference | **Resolved** — corpus v1 built and frozen (272 chunks; FREEZE.json) |
+| A4 | Chunk size 1000 / overlap 200 remains appropriate | **Resolved by D-006** — frozen at 1000/200 after the chunking pilot |
 | A5 | Student intends to work ahead of the six-week schedule | Stated intention, not commitment |
-| A6 | Ethics approval is not required for a fully synthetic corpus | **Unconfirmed — do not assume either way.** Being confirmed with the NCI coordinator/supervisor |
-| A7 | The exact OpenAI embedding model name | Not yet selected. Must be frozen before the comparison runs |
+| A6 | Ethics approval is not required for a fully synthetic corpus | **Unconfirmed — do not assume either way.** Being confirmed with the NCI coordinator/supervisor (D-011). Hard gate on human-participant activity |
+| A7 | The exact OpenAI embedding model name | **Resolved** — `text-embedding-3-large` verified and frozen 2026-09-28 |
 
 ---
 
 ## Still open
 
-| ID | Decision | Blocks |
-|---|---|---|
-| D6 | Corpus scale and product count | Full corpus generation — **APPROVED**, generation pending (272 docs) |
-| D7 | Query count, category distribution, difficulty definition | Query set — **APPROVED** (32 queries, 2/2/2, 11/11/10) |
-| D8 | UI framework (deprioritised, not decided) | App stage |
-| A7 | Exact OpenAI embedding model | Experiment run — must be frozen before results |
-| — | Whether ethics approval covers a synthetic-only corpus | Any statement about ethics in the write-up. Hard gate on all human-participant activity |
+_Status refreshed 2026-10-28. The items below were blockers for the run; the run is now
+complete. Only the ethics determination remains externally open._
 
-**Approved and closed:** D1, D2, D3, D4, D5, D9, Q4, Q5, Q6, Q7.
+| ID | Decision | Status |
+|---|---|---|
+| D6 | Corpus scale and product count | **Closed** — corpus v1 generated (272 rendered documents) and frozen |
+| D7 | Query count, category distribution, difficulty definition | **Closed** — 32-query benchmark built, frozen, and run |
+| D8 | UI framework | **Closed for the practicum** — Streamlit prototype implemented (`prototype_app.py` / `app/`), presentation-layer only |
+| A7 | Exact OpenAI embedding model | **Closed** — frozen 2026-09-28 (see above) |
+| Ethics | Whether ethics approval covers a synthetic-only corpus / researcher-rated metrics | **OPEN (D-011)** — hard gate on human-participant evaluation; technical results unaffected |
+
+**Approved and closed:** D1, D2, D3, D4, D5, D6, D7, D9, Q4, Q5, Q6, Q7.
 
 
 ---
