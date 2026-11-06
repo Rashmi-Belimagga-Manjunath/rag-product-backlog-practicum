@@ -34,8 +34,16 @@ _DOC_REF_RE = re.compile(r"[A-Za-z][A-Za-z0-9-]*#C\d+")
 
 
 def env_openai_key() -> str:
-    """Return the key value or '' — the value is used live and never logged."""
-    return os.environ.get("OPENAI_API_KEY", "")
+    """Return the key value or '' — the value is used live and never logged.
+
+    Reads Streamlit Cloud Secrets first (	hosted deployment, key stored in the
+    app's secrets vault), then falls back to the local environment / .env file.
+    """
+    try:
+        value = st.secrets.get("OPENAI_API_KEY", "")
+    except FileNotFoundError:
+        value = ""
+    return value or os.environ.get("OPENAI_API_KEY", "")
 
 
 @st.cache_resource
@@ -178,8 +186,9 @@ def main() -> None:
 
     key = env_openai_key()
     if not key:
-        st.error("OPENAI_API_KEY is not set in your environment. Set it in a local "
-                 ".env file (ignored by git) before running the demo.")
+        st.error("OPENAI_API_KEY is not set. Locally, set it in a .env file "
+                 "(git-ignored) before running the app. On Streamlit Cloud, add "
+                 "it under the app's Settings → Secrets.")
         return
 
     import openai
