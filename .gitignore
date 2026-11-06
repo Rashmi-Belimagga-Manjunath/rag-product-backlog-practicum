@@ -109,6 +109,14 @@ embeddings_cache/
 *.bin
 .cache/
 
+# Exception (D-014): the frozen v1-corpus artefacts ARE committed. The Chroma
+# store is the frozen retrieval index used by EXP-20260929-001 and needed by the
+# hosted prototype; the embedding matrix was recorded in FREEZE.json as
+# committed but was silently blocked by the patterns above until now.
+!data/vectorstore/v1-corpus/
+!data/vectorstore/v1-corpus/**
+!data/embeddings/v1-corpus/embeddings.npy
+
 # Note: the synthetic corpus, query set, ground truth and experiment results are
 # deliberately NOT ignored. Reproducibility requires them to be version-controlled
 # alongside the code that produced them. Only caches and secrets are excluded.

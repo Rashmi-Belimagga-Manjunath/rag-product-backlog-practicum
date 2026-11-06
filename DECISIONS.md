@@ -756,3 +756,34 @@ Neither change is a rerun or a tuning of any frozen number; both are data-model
 extensions needed for the already-approved gate set to be satisfiable. Re-freeze is
 recorded in a new commit that re-verifies the deterministic sample and the full suite
 before final-corpus generation proceeds.
+
+### D-014 — Frozen artefacts committed for the hosted prototype; manifest tracking correction (RECORDED 2026-11-06)
+
+**Status:** RECORDED. No experimental or methodological change; no frozen configuration,
+corpus, query, ground-truth or prompt content is altered. This entry exists so the
+repository state change is traceable, per AGENTS.md §1 rule 15.
+
+While preparing the Streamlit Community Cloud deployment of the interactive prototype
+(no research change: deployment of the demonstration interface only), two traceability
+gaps were discovered on the Desktop working copy:
+
+1. `FREEZE.json` records the embedding matrix `data/embeddings/v1-corpus/embeddings.npy`
+   (sha256 `cfdf5f13…`, status `ok`) with `committed_to_git: true`, but the file was in
+   fact excluded from every commit by the gitignore rule `*.npy` — the manifest's claim
+   was inconsistent with the repository for as long as that rule stood. The matrix is
+   now committed (the `.gitignore` rule now carries an explicit exception); the recorded
+   freeze hash is unaffected. Anyone replaying the freeze verification should re-verify
+   hashes against their own checkout, as the manifest instructs.
+2. The frozen Chroma persist directory `data/vectorstore/v1-corpus` (built from the
+   frozen embedding matrix), designed "rebuildable", was not version-controlled. For the
+   hosted prototype the exact store used by EXP-20260929-001 is preferable to a
+   cloud-side rebuild (which would have re-embedded the corpus on Streamlit's
+   infrastructure). The store is therefore committed (exception added to `.gitignore`).
+   No frozen hash existed for this store in `FREEZE.json` (the frozen retrieval
+   artefacts are the embedding matrix and its metadata sidecar); the committed copy is
+   the on-disk store as used by the local prototype, whose embedded vectors are a copy
+   of the frozen matrix.
+
+The prototype code itself changed only in how it reads the API key (Streamlit Cloud
+secrets vault first, local environment fallback) — retrieval, embedding, prompt,
+generation and evaluation code paths are untouched.
